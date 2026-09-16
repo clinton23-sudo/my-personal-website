@@ -1,0 +1,200 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .admin-box {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .admin-box h2 {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 15px 0 7px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .save-button {
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Website Dashboard ⚙️</h1>
+
+        <p>Manage your personal website</p>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="projects.html">Projects</a>
+            <a href="hobbies.html">Hobbies</a>
+            <a href="skills.html">Skills</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <main class="admin-container">
+
+        <div class="admin-box">
+
+            <h2>👤 Personal Information</h2>
+
+            <label for="name">Your Name</label>
+
+            <input
+                type="text"
+                id="name"
+                value="Clinton Ncube"
+            >
+
+            <label for="welcome">Welcome Message</label>
+
+            <textarea id="welcome">Welcome to my personal website!</textarea>
+
+            <button
+                class="button save-button"
+                onclick="saveInformation()"
+            >
+                Save Information
+            </button>
+
+            <p id="message" class="message"></p>
+
+        </div>
+
+
+        <div class="admin-box">
+
+            <h2>🎯 My Goal</h2>
+
+            <label for="goal">Website Goal</label>
+
+            <textarea id="goal">My goal is to continue learning, improving my skills and creating useful and interesting projects.</textarea>
+
+            <button
+                class="button save-button"
+                onclick="saveGoal()"
+            >
+                Save Goal
+            </button>
+
+            <p id="goalMessage" class="message"></p>
+
+        </div>
+
+
+        <div class="admin-box">
+
+            <h2>📝 Preview</h2>
+
+            <p>
+                Your dashboard is ready. Information saved here
+                will be stored in this browser.
+            </p>
+
+            <p>
+                The next step will be connecting the dashboard
+                to your live website.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>&copy; 2026 Clinton Ncube</p>
+
+        <p>Website Dashboard</p>
+
+    </footer>
+
+
+    <script>
+
+        function saveInformation() {
+
+            const name = document.getElementById("name").value;
+
+            const welcome = document.getElementById("welcome").value;
+
+            localStorage.setItem("websiteName", name);
+
+            localStorage.setItem("welcomeMessage", welcome);
+
+            document.getElementById("message").textContent =
+                "Information saved successfully! ✓";
+
+        }
+
+
+        function saveGoal() {
+
+            const goal = document.getElementById("goal").value;
+
+            localStorage.setItem("websiteGoal", goal);
+
+            document.getElementById("goalMessage").textContent =
+                "Goal saved successfully! ✓";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
