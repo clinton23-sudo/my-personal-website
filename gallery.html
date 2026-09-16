@@ -1,95 +1,164 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Gallery</title>
-    <link rel="stylesheet" href="css/style.css">
+
+```
+<title>My Gallery</title>
+
+<link rel="stylesheet" href="css/style.css">
+```
+
 </head>
 
 <body>
 
-    <header>
+```
+<!-- HEADER -->
 
-        <h1>My Gallery</h1>
+<header>
 
-        <p>A collection of my favourite moments</p>
+    <h1>My Gallery</h1>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="projects.html">Projects</a>
-            <a href="hobbies.html">Hobbies</a>
-            <a href="skills.html">Skills</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+    <p>A collection of my favourite moments</p>
 
-    </header>
+    <nav>
 
+        <a href="index.html">Home</a>
 
-    <main>
+        <a href="about.html">About Me</a>
 
-        <section>
+        <a href="projects.html">Projects</a>
 
-            <h2>My Photos</h2>
+        <a href="hobbies.html">Hobbies</a>
 
-            <p>
-                Here are some photos and memories
-                that I would like to share.
-            </p>
+        <a href="skills.html">Skills</a>
 
-        </section>
+        <a class="active" href="gallery.html">Gallery</a>
+
+        <a href="contact.html">Contact</a>
+
+    </nav>
+
+</header>
 
 
-        <section>
+<!-- MAIN CONTENT -->
 
-            <div class="card-container">
+<main>
 
-                <div class="card">
+    <section>
 
-                    <img src="images/photo1.webp.png" alt="My favourite photo">
+        <h2>My Photos</h2>
 
-                    <h3>My Favourite Photo</h3>
-
-                    <p>
-                        One of my favourite photos.
-                    </p>
-
-                </div>
+        <p>
+            Welcome to my gallery. Here I share some of
+            my favourite moments, activities and memories.
+        </p>
 
 
-                <div class="card">
+        <!-- PHOTO GALLERY -->
 
-                    <img src="images/photo2.webp.png" alt="A special moment">
+        <div class="gallery-grid">
 
-                    <h3>A Special Moment</h3>
 
-                    <p>
-                        A photo that represents
-                        a special memory.
-                    </p>
+            <!-- PHOTO 1 -->
 
-                </div>
+            <div class="gallery-item">
+
+                <img
+                    src="images/photo1.webp.png"
+                    alt="My photo 1"
+                >
+
+                <p>My Photo</p>
 
             </div>
 
-        </section>
 
-    </main>
+            <!-- PHOTO 2 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/photo2.webp.png"
+                    alt="My photo 2"
+                >
+
+                <p>My Photo</p>
+
+            </div>
 
 
-    <footer>
+            <!-- NEW PHOTO 3 -->
 
-        <p>&copy; 2026 My Personal Website</p>
+            <div class="gallery-item">
+
+                <img
+                    src="images/IMG_20250802_093252.jpg"
+                    alt="Gallery photo"
+                >
+
+                <p>My Photo</p>
+
+            </div>
+
+
+            <!-- NEW PHOTO 4 -->
+
+            <div class="gallery-item">
+
+                <img
+                    src="images/IMG_20250802_093305.jpg"
+                    alt="Gallery photo"
+                >
+
+                <p>My Photo</p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- MORE PHOTOS -->
+
+    <section>
+
+        <h2>More Memories</h2>
 
         <p>
-            Built with HTML & CSS | My Personal Portfolio
+            More photos can be added to this gallery
+            whenever I want. Each new photo can be
+            uploaded to the images folder and added
+            to this page.
         </p>
 
-    </footer>
+    </section>
 
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        &copy; 2026 My Personal Website
+    </p>
+
+    <p>
+        Built with HTML & CSS | My Personal Portfolio
+    </p>
+
+</footer>
+```
 
 </body>
+
 </html>
