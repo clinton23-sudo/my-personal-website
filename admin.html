@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Admin Dashboard | Clinton Ncube</title>
 
     <style>
@@ -21,12 +22,28 @@
         header {
             background: #111827;
             color: white;
-            padding: 25px;
+            padding: 30px 20px;
             text-align: center;
         }
 
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 30px auto;
             padding: 20px;
         }
@@ -41,12 +58,13 @@
 
         h2 {
             margin-top: 0;
+            color: #111827;
         }
 
         label {
             display: block;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 18px;
             margin-bottom: 7px;
         }
 
@@ -57,6 +75,7 @@
             border: 1px solid #ccc;
             border-radius: 7px;
             font-size: 16px;
+            font-family: inherit;
         }
 
         textarea {
@@ -66,7 +85,7 @@
 
         button {
             margin-top: 20px;
-            padding: 12px 20px;
+            padding: 13px 22px;
             border: none;
             border-radius: 7px;
             background: #2563eb;
@@ -79,24 +98,37 @@
             background: #1d4ed8;
         }
 
-        .danger {
-            background: #dc2626;
+        .secondary {
+            background: #374151;
         }
 
-        .danger:hover {
-            background: #b91c1c;
-        }
-
-        .back {
-            display: inline-block;
-            margin-top: 10px;
-            color: white;
-            text-decoration: none;
+        .secondary:hover {
+            background: #1f2937;
         }
 
         #message {
             margin-top: 15px;
             font-weight: bold;
+        }
+
+        .notice {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .preview {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .preview strong {
+            display: block;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -106,12 +138,22 @@
 <header>
     <h1>Clinton Ncube</h1>
     <p>Website Admin Dashboard</p>
-    <a href="index.html" class="back">← Back to Website</a>
+
+    <a href="index.html" class="back">
+        ← Back to Website
+    </a>
 </header>
 
 <div class="container">
 
+    <div class="notice">
+        <strong>Website Editor</strong><br>
+        Use this dashboard to edit the information displayed on your
+        personal website.
+    </div>
+
     <div class="card">
+
         <h2>🏠 Home Page</h2>
 
         <label for="name">Your Name</label>
@@ -126,25 +168,63 @@
         <label for="about">About Me</label>
         <textarea id="about"></textarea>
 
-        <button onclick="saveChanges()">Save Changes</button>
+        <button onclick="saveChanges()">
+            💾 Save Changes
+        </button>
+
+        <button class="secondary" onclick="resetChanges()">
+            ↩ Reset
+        </button>
 
         <p id="message"></p>
+
     </div>
 
     <div class="card">
+
         <h2>📸 Gallery</h2>
+
         <p>
-            Gallery management will be added next. You'll be able to add
-            photographs without changing the HTML manually.
+            Gallery management will be added next. You will be able to
+            manage your photographs from the dashboard.
         </p>
+
     </div>
 
     <div class="card">
+
         <h2>🏆 Achievements</h2>
+
         <p>
-            Achievement management will also be added so you can update
-            your achievements from the dashboard.
+            Achievement management will be added next.
         </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>👀 Current Information</h2>
+
+        <div class="preview">
+            <strong>Name</strong>
+            <span id="previewName"></span>
+        </div>
+
+        <div class="preview">
+            <strong>Welcome</strong>
+            <span id="previewWelcome"></span>
+        </div>
+
+        <div class="preview">
+            <strong>Goal</strong>
+            <span id="previewGoal"></span>
+        </div>
+
+        <div class="preview">
+            <strong>About</strong>
+            <span id="previewAbout"></span>
+        </div>
+
     </div>
 
 </div>
@@ -152,35 +232,106 @@
 <script src="data.js"></script>
 
 <script>
+
+    const savedData =
+        JSON.parse(localStorage.getItem("clintonWebsiteData"));
+
+    const currentData =
+        savedData || websiteData;
+
+
     document.getElementById("name").value =
-        websiteData.name || "";
+        currentData.name || "";
 
     document.getElementById("welcome").value =
-        websiteData.welcome || "";
+        currentData.welcome || "";
 
     document.getElementById("goal").value =
-        websiteData.goal || "";
+        currentData.goal || "";
 
     document.getElementById("about").value =
-        websiteData.about || "";
+        currentData.about || "";
+
+
+    function updatePreview() {
+
+        document.getElementById("previewName").textContent =
+            document.getElementById("name").value;
+
+        document.getElementById("previewWelcome").textContent =
+            document.getElementById("welcome").value;
+
+        document.getElementById("previewGoal").textContent =
+            document.getElementById("goal").value;
+
+        document.getElementById("previewAbout").textContent =
+            document.getElementById("about").value;
+    }
+
 
     function saveChanges() {
 
         const updatedData = {
-            name: document.getElementById("name").value,
-            welcome: document.getElementById("welcome").value,
-            goal: document.getElementById("goal").value,
-            about: document.getElementById("about").value
+
+            name:
+                document.getElementById("name").value,
+
+            welcome:
+                document.getElementById("welcome").value,
+
+            goal:
+                document.getElementById("goal").value,
+
+            about:
+                document.getElementById("about").value,
+
+            lastUpdated:
+                new Date().getFullYear().toString()
         };
+
 
         localStorage.setItem(
             "clintonWebsiteData",
             JSON.stringify(updatedData)
         );
 
+
         document.getElementById("message").textContent =
-            "✅ Changes saved on this device!";
+            "✅ Changes saved successfully on this device!";
+
+
+        updatePreview();
     }
+
+
+    function resetChanges() {
+
+        localStorage.removeItem(
+            "clintonWebsiteData"
+        );
+
+        document.getElementById("name").value =
+            websiteData.name || "";
+
+        document.getElementById("welcome").value =
+            websiteData.welcome || "";
+
+        document.getElementById("goal").value =
+            websiteData.goal || "";
+
+        document.getElementById("about").value =
+            websiteData.about || "";
+
+
+        document.getElementById("message").textContent =
+            "↩ Information reset to the original website data.";
+
+        updatePreview();
+    }
+
+
+    updatePreview();
+
 </script>
 
 </body>
