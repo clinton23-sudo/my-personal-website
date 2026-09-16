@@ -1,178 +1,224 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Personal Website</title>
+    <title>Gallery | Clinton Ncube</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #1f2937;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .photo img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption {
+            padding: 15px;
+        }
+
+        .caption h3 {
+            margin: 0 0 8px;
+        }
+
+        .caption p {
+            margin: 0;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            background: #111827;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <header>
+<header>
+    <h1>📸 Clinton Ncube</h1>
+    <p>My Photo Gallery</p>
+</header>
 
-        <h1>My Personal Website</h1>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="hobbies.html">Hobbies</a>
+    <a href="contact.html">Contact</a>
+</nav>
 
-        <p>Welcome to my personal portfolio</p>
+<div class="container">
 
-        <nav>
-            <a class="active" href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="projects.html">Projects</a>
-            <a href="hobbies.html">Hobbies</a>
-            <a href="skills.html">Skills</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+    <div class="intro">
+        <h2>My Gallery</h2>
+        <p>Some of my favourite photos and memories.</p>
+    </div>
 
-    </header>
+    <div class="gallery">
 
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-inner">
-
-                <img
-                    src="images/IMG_20250802_093252.jpg"
-                    alt="My profile photo"
-                    class="profile-photo"
-                >
-
-              <h2>Hello, Clinton Ncube 👋</h2>
-
-                <p>
-                    Hello and welcome! This is my personal website where
-                    I share information about myself, my projects,
-                    hobbies, skills and favourite memories.
-                </p>
-
-                <a href="about.html" class="button">
-                    Learn More About Me
-                </a>
-
-                <a href="gallery.html" class="button">
-                    View My Gallery
-                </a>
-
+        <div class="photo">
+            <img src="images/IMG_20250802_093252.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 1</h3>
+                <p>A special moment.</p>
             </div>
+        </div>
 
-        </section>
-
-
-        <section>
-
-            <h2>What You Can Find Here</h2>
-
-            <div class="card-container">
-
-                <div class="card">
-
-                    <h3>👤 About Me</h3>
-
-                    <p>
-                        Learn more about me, my interests,
-                        goals and personal journey.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>📁 My Projects</h3>
-
-                    <p>
-                        Explore some of the projects I have
-                        worked on and the skills I have developed.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>🏀 My Hobbies</h3>
-
-                    <p>
-                        Discover the activities I enjoy,
-                        including basketball, swimming,
-                        reading and athletics.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>💻 My Skills</h3>
-
-                    <p>
-                        See the skills I am developing in
-                        technology, web development and other areas.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>🖼️ My Gallery</h3>
-
-                    <p>
-                        View some of my favourite photos
-                        and memories.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>📧 Contact</h3>
-
-                    <p>
-                        Visit my contact page to find out
-                        how to get in touch.
-                    </p>
-
-                </div>
-
+        <div class="photo">
+            <img src="images/IMG_20250802_093305.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 2</h3>
+                <p>A memorable moment.</p>
             </div>
+        </div>
 
-        </section>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_48_08_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 3</h3>
+                <p>A special memory.</p>
+            </div>
+        </div>
 
+        <div class="photo">
+            <img src="images/WIN_20260814_16_48_27_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 4</h3>
+                <p>A memorable experience.</p>
+            </div>
+        </div>
 
-        <section>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_48_35_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 5</h3>
+                <p>A special moment.</p>
+            </div>
+        </div>
 
-            <h2>My Goal 🚀</h2>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_48_39_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 6</h3>
+                <p>A memorable moment.</p>
+            </div>
+        </div>
 
-            <p>
-                My goal is to continue learning, improving my
-                skills and creating useful and interesting projects.
-                This website is part of my journey in learning
-                web development and technology.
-            </p>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_49_03_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 7</h3>
+                <p>A special memory.</p>
+            </div>
+        </div>
 
-        </section>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_49_16_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 8</h3>
+                <p>A memorable experience.</p>
+            </div>
+        </div>
 
-    </main>
+        <div class="photo">
+            <img src="images/WIN_20260814_16_49_28_Pro.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 9</h3>
+                <p>A special moment.</p>
+            </div>
+        </div>
 
+        <div class="photo">
+            <img src="images/photo3.jpg"
+                 alt="Clinton Ncube photo">
+            <div class="caption">
+                <h3>Memory 10</h3>
+                <p>A favourite memory.</p>
+            </div>
+        </div>
 
-    <footer>
+    </div>
 
-        <p>&copy; 2026 My Personal Website</p>
+</div>
 
-        <p>Built with HTML & CSS | My Personal Portfolio</p>
-
-    </footer>
+<footer>
+    <p>© 2026 Clinton Ncube. All Rights Reserved.</p>
+</footer>
 
 </body>
-
 </html>
 ```
