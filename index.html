@@ -196,5 +196,107 @@
 
         <section>
 
-            <h2>My
+            <h2>My Highlights ⭐</h2>
+
+            <div class="card-container">
+
+                <div class="card">
+
+                    <h3>🎓 Student</h3>
+
+                    <p>
+                        I am focused on my education and
+                        developing useful skills for my future.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>💻 Web Developer</h3>
+
+                    <p>
+                        I am learning how to create websites
+                        using HTML, CSS and GitHub.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🏆 Achievements</h3>
+
+                    <p>
+                        I enjoy taking part in school activities,
+                        projects and different challenges.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GOAL -->
+
+        <section>
+
+            <h2>My Goal 🚀</h2>
+
+            <p id="home-goal">
+                My goal is to continue learning, improving
+                my skills and creating useful and interesting
+                projects.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>&copy; 2026 Clinton Ncube</p>
+
+        <p>
+            Built with HTML & CSS |
+            My Personal Portfolio
+        </p>
+
+    </footer>
+
+
+    <!-- WEBSITE DATA -->
+
+    <script src="data.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (typeof websiteData !== "undefined") {
+
+                document.getElementById("home-name").textContent =
+                    "Hello, I'm " + websiteData.name + " 👋";
+
+                document.getElementById("home-welcome").textContent =
+                    websiteData.welcome;
+
+                document.getElementById("home-goal").textContent =
+                    websiteData.goal;
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
 ```
