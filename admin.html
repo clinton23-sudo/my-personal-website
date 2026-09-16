@@ -1,47 +1,61 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Website Dashboard</title>
-
-    <link rel="stylesheet" href="css/style.css">
+    <title>Admin Dashboard | Clinton Ncube</title>
 
     <style>
-        .admin-container {
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 30px auto;
             padding: 20px;
         }
 
-        .admin-box {
+        .card {
             background: white;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            text-align: left;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .admin-box h2 {
-            margin-bottom: 15px;
+        h2 {
+            margin-top: 0;
         }
 
         label {
             display: block;
             font-weight: bold;
-            margin: 15px 0 7px;
+            margin-top: 15px;
+            margin-bottom: 7px;
         }
 
         input,
         textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
             font-size: 16px;
         }
 
@@ -50,151 +64,125 @@
             resize: vertical;
         }
 
-        .save-button {
+        button {
             margin-top: 20px;
+            padding: 12px 20px;
             border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
         }
 
-        .message {
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .danger {
+            background: #dc2626;
+        }
+
+        .danger:hover {
+            background: #b91c1c;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        #message {
             margin-top: 15px;
             font-weight: bold;
         }
     </style>
-
 </head>
 
 <body>
 
-    <header>
+<header>
+    <h1>Clinton Ncube</h1>
+    <p>Website Admin Dashboard</p>
+    <a href="index.html" class="back">← Back to Website</a>
+</header>
 
-        <h1>Website Dashboard ⚙️</h1>
+<div class="container">
 
-        <p>Manage your personal website</p>
+    <div class="card">
+        <h2>🏠 Home Page</h2>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="projects.html">Projects</a>
-            <a href="hobbies.html">Hobbies</a>
-            <a href="skills.html">Skills</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <label for="name">Your Name</label>
+        <input type="text" id="name">
 
-    </header>
+        <label for="welcome">Welcome Message</label>
+        <textarea id="welcome"></textarea>
 
+        <label for="goal">My Goal</label>
+        <textarea id="goal"></textarea>
 
-    <main class="admin-container">
+        <label for="about">About Me</label>
+        <textarea id="about"></textarea>
 
-        <div class="admin-box">
+        <button onclick="saveChanges()">Save Changes</button>
 
-            <h2>👤 Personal Information</h2>
+        <p id="message"></p>
+    </div>
 
-            <label for="name">Your Name</label>
+    <div class="card">
+        <h2>📸 Gallery</h2>
+        <p>
+            Gallery management will be added next. You'll be able to add
+            photographs without changing the HTML manually.
+        </p>
+    </div>
 
-            <input
-                type="text"
-                id="name"
-                value="Clinton Ncube"
-            >
+    <div class="card">
+        <h2>🏆 Achievements</h2>
+        <p>
+            Achievement management will also be added so you can update
+            your achievements from the dashboard.
+        </p>
+    </div>
 
-            <label for="welcome">Welcome Message</label>
+</div>
 
-            <textarea id="welcome">Welcome to my personal website!</textarea>
+<script src="data.js"></script>
 
-            <button
-                class="button save-button"
-                onclick="saveInformation()"
-            >
-                Save Information
-            </button>
+<script>
+    document.getElementById("name").value =
+        websiteData.name || "";
 
-            <p id="message" class="message"></p>
+    document.getElementById("welcome").value =
+        websiteData.welcome || "";
 
-        </div>
+    document.getElementById("goal").value =
+        websiteData.goal || "";
 
+    document.getElementById("about").value =
+        websiteData.about || "";
 
-        <div class="admin-box">
+    function saveChanges() {
 
-            <h2>🎯 My Goal</h2>
+        const updatedData = {
+            name: document.getElementById("name").value,
+            welcome: document.getElementById("welcome").value,
+            goal: document.getElementById("goal").value,
+            about: document.getElementById("about").value
+        };
 
-            <label for="goal">Website Goal</label>
+        localStorage.setItem(
+            "clintonWebsiteData",
+            JSON.stringify(updatedData)
+        );
 
-            <textarea id="goal">My goal is to continue learning, improving my skills and creating useful and interesting projects.</textarea>
-
-            <button
-                class="button save-button"
-                onclick="saveGoal()"
-            >
-                Save Goal
-            </button>
-
-            <p id="goalMessage" class="message"></p>
-
-        </div>
-
-
-        <div class="admin-box">
-
-            <h2>📝 Preview</h2>
-
-            <p>
-                Your dashboard is ready. Information saved here
-                will be stored in this browser.
-            </p>
-
-            <p>
-                The next step will be connecting the dashboard
-                to your live website.
-            </p>
-
-        </div>
-
-    </main>
-
-
-    <footer>
-
-        <p>&copy; 2026 Clinton Ncube</p>
-
-        <p>Website Dashboard</p>
-
-    </footer>
-
-
-    <script>
-
-        function saveInformation() {
-
-            const name = document.getElementById("name").value;
-
-            const welcome = document.getElementById("welcome").value;
-
-            localStorage.setItem("websiteName", name);
-
-            localStorage.setItem("welcomeMessage", welcome);
-
-            document.getElementById("message").textContent =
-                "Information saved successfully! ✓";
-
-        }
-
-
-        function saveGoal() {
-
-            const goal = document.getElementById("goal").value;
-
-            localStorage.setItem("websiteGoal", goal);
-
-            document.getElementById("goalMessage").textContent =
-                "Goal saved successfully! ✓";
-
-        }
-
-    </script>
+        document.getElementById("message").textContent =
+            "✅ Changes saved on this device!";
+    }
+</script>
 
 </body>
-
 </html>
 ```
