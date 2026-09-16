@@ -108,16 +108,28 @@ margin: 0 auto 25px;
 }
 
 /* BUTTONS */
-
 .button {
-display: inline-block;
-background: #111827;
-color: white;
-padding: 13px 25px;
-text-decoration: none;
-border-radius: 8px;
-font-weight: bold;
-transition: 0.25s;
+    display: inline-block;
+    background: #111827;
+    color: white;
+    padding: 14px 24px;
+    margin: 8px 5px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover {
+    background: #374151;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+}
+.button:hover {
+    background: #374151;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
