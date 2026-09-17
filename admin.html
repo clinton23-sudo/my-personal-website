@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,6 +154,11 @@
             color: #777;
             font-style: italic;
         }
+
+        .small {
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -182,10 +186,12 @@
         <strong>📝 Website Editor</strong><br>
 
         Use this dashboard to manage your personal website
-        information.
+        information, gallery and achievements.
 
     </div>
 
+
+    <!-- HOME PAGE -->
 
     <div class="card">
 
@@ -273,6 +279,11 @@
             id="photoFile"
             placeholder="Example: photo3.jpg"
         >
+
+        <p class="small">
+            Enter only the filename, including the extension.
+            Example: IMG_20230121_WA0001.webp
+        </p>
 
         <label for="photoDescription">
             Photo Description
@@ -383,25 +394,31 @@
 </div>
 
 
-<!-- DATA FILES -->
+<!-- DATA FILE -->
 
 <script src="data.js"></script>
-
-<script src="achievements.js"></script>
 
 
 <script>
 
-/* =========================
+/* =====================================================
    WEBSITE INFORMATION
-   ========================= */
+   ===================================================== */
 
-let savedWebsite =
-    JSON.parse(
-        localStorage.getItem(
-            "clintonWebsiteData"
-        )
-    );
+let savedWebsite = null;
+
+try {
+
+    savedWebsite =
+        JSON.parse(
+            localStorage.getItem("clintonWebsiteData")
+        );
+
+} catch (error) {
+
+    console.log("No saved website information found.");
+
+}
 
 
 let currentWebsite =
@@ -413,14 +430,11 @@ let currentWebsite =
 document.getElementById("name").value =
     currentWebsite.name || "";
 
-
 document.getElementById("welcome").value =
     currentWebsite.welcome || "";
 
-
 document.getElementById("goal").value =
     currentWebsite.goal || "";
-
 
 document.getElementById("about").value =
     currentWebsite.about || "";
@@ -434,16 +448,13 @@ function updateCurrentInformation() {
         .textContent =
         document.getElementById("name").value;
 
-
     document.getElementById("currentWelcome")
         .textContent =
         document.getElementById("welcome").value;
 
-
     document.getElementById("currentGoal")
         .textContent =
         document.getElementById("goal").value;
-
 
     document.getElementById("currentAbout")
         .textContent =
@@ -505,14 +516,11 @@ function resetWebsite() {
     document.getElementById("name").value =
         websiteData.name || "";
 
-
     document.getElementById("welcome").value =
         websiteData.welcome || "";
 
-
     document.getElementById("goal").value =
         websiteData.goal || "";
-
 
     document.getElementById("about").value =
         websiteData.about || "";
@@ -529,67 +537,600 @@ function resetWebsite() {
 }
 
 
-/* =========================
+/* =====================================================
    GALLERY
-   ========================= */
+   ===================================================== */
 
-let gallery =
-    JSON.parse(
-        localStorage.getItem(
-            "clintonGallery"
-        )
-    ) || [
 
-        {
-            title: "Memory 1",
-            file: "IMG_20250802_093252.jpg",
-            description: "A special moment."
-        },
+/*
+   IMPORTANT:
+   Gallery information is saved in the browser using
+   localStorage.
+*/
 
-        {
-            title: "Memory 2",
-            file: "IMG_20250802_093305.jpg",
-            description: "A memorable moment."
-        },
+let defaultGallery = [
 
-        {
-            title: "Memory 3",
-            file: "WIN_20260814_16_48_08_Pro.jpg",
-            description: "A special memory."
-        },
+    {
+        title: "Memory 1",
+        file: "IMG_20250802_093252.jpg",
+        description: "A special moment."
+    },
 
-        {
-            title: "Memory 4",
-            file: "WIN_20260814_16_48_27_Pro.jpg",
-            description: "A memorable experience."
-        },
+    {
+        title: "Memory 2",
+        file: "IMG_20250802_093305.jpg",
+        description: "A memorable moment."
+    },
 
-        {
-            title: "Memory 5",
-            file: "WIN_20260814_16_48_35_Pro.jpg",
-            description: "A special moment."
-        },
+    {
+        title: "Memory 3",
+        file: "WIN_20260814_16_48_08_Pro.jpg",
+        description: "A special memory."
+    },
 
-        {
-            title: "Memory 6",
-            file: "WIN_20260814_16_48_39_Pro.jpg",
-            description: "A memorable moment."
-        },
+    {
+        title: "Memory 4",
+        file: "WIN_20260814_16_48_27_Pro.jpg",
+        description: "A memorable experience."
+    },
 
-        {
-            title: "Memory 7",
-            file: "WIN_20260814_16_49_03_Pro.jpg",
-            description: "A special memory."
-        },
+    {
+        title: "Memory 5",
+        file: "WIN_20260814_16_48_35_Pro.jpg",
+        description: "A special moment."
+    },
 
-        {
-            title: "Memory 8",
-            file: "WIN_20260814_16_49_16_Pro.jpg",
-            description: "A memorable experience."
-        },
+    {
+        title: "Memory 6",
+        file: "WIN_20260814_16_48_39_Pro.jpg",
+        description: "A memorable moment."
+    },
 
-        {
-            title: "Memory 9",
-            file: "WIN_20260814_16_49_28_Pro.jpg",
-            description: "A special moment."
-```
+    {
+        title: "Memory 7",
+        file: "WIN_20260814_16_49_03_Pro.jpg",
+        description: "A special memory."
+    },
+
+    {
+        title: "Memory 8",
+        file: "WIN_20260814_16_49_16_Pro.jpg",
+        description: "A memorable experience."
+    },
+
+    {
+        title: "Memory 9",
+        file: "WIN_20260814_16_49_28_Pro.jpg",
+        description: "A special moment."
+    }
+
+];
+
+
+let gallery = [];
+
+try {
+
+    const savedGallery =
+        JSON.parse(
+            localStorage.getItem("clintonGallery")
+        );
+
+    if (
+        Array.isArray(savedGallery)
+        &&
+        savedGallery.length > 0
+    ) {
+
+        gallery = savedGallery;
+
+    } else {
+
+        gallery = defaultGallery;
+
+    }
+
+} catch (error) {
+
+    gallery = defaultGallery;
+
+}
+
+
+/* SAVE GALLERY */
+
+function saveGallery() {
+
+    localStorage.setItem(
+        "clintonGallery",
+        JSON.stringify(gallery)
+    );
+
+}
+
+
+/* DISPLAY GALLERY */
+
+function displayGallery() {
+
+    const galleryList =
+        document.getElementById("galleryList");
+
+
+    galleryList.innerHTML = "";
+
+
+    if (gallery.length === 0) {
+
+        galleryList.innerHTML =
+            '<p class="empty">No gallery photos added yet.</p>';
+
+        return;
+
+    }
+
+
+    gallery.forEach(
+        function(photo, index) {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "item";
+
+
+            const image =
+                document.createElement("img");
+
+            image.src =
+                "images/" + photo.file;
+
+            image.alt =
+                photo.title;
+
+
+            image.onerror =
+                function() {
+
+                    image.style.display = "none";
+
+                };
+
+
+            const title =
+                document.createElement("h3");
+
+            title.textContent =
+                photo.title;
+
+
+            const description =
+                document.createElement("p");
+
+            description.textContent =
+                photo.description;
+
+
+            const filename =
+                document.createElement("p");
+
+            filename.className = "small";
+
+            filename.textContent =
+                "File: images/" + photo.file;
+
+
+            const deleteButton =
+                document.createElement("button");
+
+            deleteButton.className =
+                "delete";
+
+            deleteButton.textContent =
+                "🗑️ Delete Photo";
+
+
+            deleteButton.onclick =
+                function() {
+
+                    deletePhoto(index);
+
+                };
+
+
+            item.appendChild(image);
+
+            item.appendChild(title);
+
+            item.appendChild(description);
+
+            item.appendChild(filename);
+
+            item.appendChild(deleteButton);
+
+            galleryList.appendChild(item);
+
+        }
+    );
+
+}
+
+
+/* ADD PHOTO */
+
+function addPhoto() {
+
+    const title =
+        document.getElementById(
+            "photoTitle"
+        ).value.trim();
+
+
+    const file =
+        document.getElementById(
+            "photoFile"
+        ).value.trim();
+
+
+    const description =
+        document.getElementById(
+            "photoDescription"
+        ).value.trim();
+
+
+    const message =
+        document.getElementById(
+            "galleryMessage"
+        );
+
+
+    if (!title) {
+
+        message.textContent =
+            "⚠️ Please enter a photo title.";
+
+        return;
+
+    }
+
+
+    if (!file) {
+
+        message.textContent =
+            "⚠️ Please enter the photo filename.";
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        message.textContent =
+            "⚠️ Please enter a photo description.";
+
+        return;
+
+    }
+
+
+    gallery.push({
+
+        title: title,
+
+        file: file,
+
+        description: description
+
+    });
+
+
+    saveGallery();
+
+    displayGallery();
+
+
+    document.getElementById(
+        "photoTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "photoFile"
+    ).value = "";
+
+
+    document.getElementById(
+        "photoDescription"
+    ).value = "";
+
+
+    message.textContent =
+        "✅ Photo added successfully!";
+
+}
+
+
+/* DELETE PHOTO */
+
+function deletePhoto(index) {
+
+    gallery.splice(index, 1);
+
+    saveGallery();
+
+    displayGallery();
+
+
+    document.getElementById(
+        "galleryMessage"
+    ).textContent =
+        "🗑️ Photo deleted.";
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+   ===================================================== */
+
+
+/* DEFAULT ACHIEVEMENTS */
+
+let defaultAchievements = [
+
+    {
+        title: "Academic Achievement",
+        description:
+            "A record of my academic progress and achievements."
+    },
+
+    {
+        title: "School Activities",
+        description:
+            "Participation in school activities, projects and events."
+    },
+
+    {
+        title: "Personal Projects",
+        description:
+            "Creative and educational projects that I have worked on."
+    }
+
+];
+
+
+let achievements = [];
+
+
+try {
+
+    const savedAchievements =
+        JSON.parse(
+            localStorage.getItem(
+                "clintonAchievements"
+            )
+        );
+
+
+    if (
+        Array.isArray(savedAchievements)
+        &&
+        savedAchievements.length > 0
+    ) {
+
+        achievements =
+            savedAchievements;
+
+    } else {
+
+        achievements =
+            defaultAchievements;
+
+    }
+
+} catch (error) {
+
+    achievements =
+        defaultAchievements;
+
+}
+
+
+/* SAVE ACHIEVEMENTS */
+
+function saveAchievements() {
+
+    localStorage.setItem(
+        "clintonAchievements",
+        JSON.stringify(achievements)
+    );
+
+}
+
+
+/* DISPLAY ACHIEVEMENTS */
+
+function displayAchievements() {
+
+    const list =
+        document.getElementById(
+            "achievementList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    if (achievements.length === 0) {
+
+        list.innerHTML =
+            '<p class="empty">No achievements added yet.</p>';
+
+        return;
+
+    }
+
+
+    achievements.forEach(
+        function(achievement, index) {
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "item";
+
+
+            const title =
+                document.createElement("h3");
+
+            title.textContent =
+                achievement.title;
+
+
+            const description =
+                document.createElement("p");
+
+            description.textContent =
+                achievement.description;
+
+
+            const deleteButton =
+                document.createElement("button");
+
+            deleteButton.className =
+                "delete";
+
+            deleteButton.textContent =
+                "🗑️ Delete Achievement";
+
+
+            deleteButton.onclick =
+                function() {
+
+                    deleteAchievement(index);
+
+                };
+
+
+            item.appendChild(title);
+
+            item.appendChild(description);
+
+            item.appendChild(deleteButton);
+
+
+            list.appendChild(item);
+
+        }
+    );
+
+}
+
+
+/* ADD ACHIEVEMENT */
+
+function addAchievement() {
+
+    const title =
+        document.getElementById(
+            "achievementTitle"
+        ).value.trim();
+
+
+    const description =
+        document.getElementById(
+            "achievementDescription"
+        ).value.trim();
+
+
+    const message =
+        document.getElementById(
+            "achievementMessage"
+        );
+
+
+    if (!title) {
+
+        message.textContent =
+            "⚠️ Please enter an achievement title.";
+
+        return;
+
+    }
+
+
+    if (!description) {
+
+        message.textContent =
+            "⚠️ Please enter an achievement description.";
+
+        return;
+
+    }
+
+
+    achievements.push({
+
+        title: title,
+
+        description: description
+
+    });
+
+
+    saveAchievements();
+
+    displayAchievements();
+
+
+    document.getElementById(
+        "achievementTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "achievementDescription"
+    ).value = "";
+
+
+    message.textContent =
+        "✅ Achievement added successfully!";
+
+}
+
+
+/* DELETE ACHIEVEMENT */
+
+function deleteAchievement(index) {
+
+    achievements.splice(index, 1);
+
+    saveAchievements();
+
+    displayAchievements();
+
+
+    document.getElementById(
+        "achievementMessage"
+    ).textContent =
+        "🗑️ Achievement deleted.";
+
+}
+
+
+/* =====================================================
+   START DASHBOARD
+   ===================================================== */
+
+updateCurrentInformation();
+
+displayGallery();
+
+displayAchievements();
+
+</script>
+
+</body>
+</html>
