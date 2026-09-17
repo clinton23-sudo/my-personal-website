@@ -200,7 +200,6 @@
             id="name"
         >
 
-
         <label for="welcome">
             Welcome Message
         </label>
@@ -208,7 +207,6 @@
         <textarea
             id="welcome"
         ></textarea>
-
 
         <label for="goal">
             My Goal
@@ -218,7 +216,6 @@
             id="goal"
         ></textarea>
 
-
         <label for="about">
             About Me
         </label>
@@ -227,11 +224,9 @@
             id="about"
         ></textarea>
 
-
         <button onclick="saveWebsite()">
             💾 Save Website Information
         </button>
-
 
         <button
             class="secondary"
@@ -239,7 +234,6 @@
         >
             ↩ Reset
         </button>
-
 
         <p
             id="websiteMessage"
@@ -260,7 +254,6 @@
             <strong>images</strong> folder.
         </p>
 
-
         <label for="photoTitle">
             Photo Title
         </label>
@@ -270,7 +263,6 @@
             id="photoTitle"
             placeholder="Example: School Memory"
         >
-
 
         <label for="photoFile">
             Photo Filename
@@ -282,7 +274,6 @@
             placeholder="Example: photo3.jpg"
         >
 
-
         <label for="photoDescription">
             Photo Description
         </label>
@@ -292,17 +283,14 @@
             placeholder="Write a short description"
         ></textarea>
 
-
         <button onclick="addPhoto()">
             📸 Add Photo
         </button>
-
 
         <p
             id="galleryMessage"
             class="message"
         ></p>
-
 
         <h3>Current Gallery Photos</h3>
 
@@ -317,7 +305,6 @@
 
         <h2>🏆 Achievement Manager</h2>
 
-
         <label for="achievementTitle">
             Achievement Title
         </label>
@@ -328,7 +315,6 @@
             placeholder="Example: Academic Achievement"
         >
 
-
         <label for="achievementDescription">
             Achievement Description
         </label>
@@ -338,17 +324,14 @@
             placeholder="Describe your achievement"
         ></textarea>
 
-
         <button onclick="addAchievement()">
             🏆 Add Achievement
         </button>
-
 
         <p
             id="achievementMessage"
             class="message"
         ></p>
-
 
         <h3>Current Achievements</h3>
 
@@ -363,7 +346,6 @@
 
         <h2>👀 Current Information</h2>
 
-
         <div class="item">
 
             <h3>Name</h3>
@@ -371,7 +353,6 @@
             <p id="currentName"></p>
 
         </div>
-
 
         <div class="item">
 
@@ -381,7 +362,6 @@
 
         </div>
 
-
         <div class="item">
 
             <h3>Goal</h3>
@@ -389,7 +369,6 @@
             <p id="currentGoal"></p>
 
         </div>
-
 
         <div class="item">
 
@@ -404,6 +383,8 @@
 </div>
 
 
+<!-- DATA FILES -->
+
 <script src="data.js"></script>
 
 <script src="achievements.js"></script>
@@ -411,459 +392,204 @@
 
 <script>
 
-    /* =========================
-       WEBSITE INFORMATION
-       ========================= */
+/* =========================
+   WEBSITE INFORMATION
+   ========================= */
 
-    let savedWebsite =
-        JSON.parse(
-            localStorage.getItem(
-                "clintonWebsiteData"
-            )
-        );
+let savedWebsite =
+    JSON.parse(
+        localStorage.getItem(
+            "clintonWebsiteData"
+        )
+    );
 
 
-    let currentWebsite =
-        savedWebsite || websiteData;
+let currentWebsite =
+    savedWebsite || websiteData;
+
+
+/* LOAD WEBSITE INFORMATION */
+
+document.getElementById("name").value =
+    currentWebsite.name || "";
+
+
+document.getElementById("welcome").value =
+    currentWebsite.welcome || "";
+
+
+document.getElementById("goal").value =
+    currentWebsite.goal || "";
+
+
+document.getElementById("about").value =
+    currentWebsite.about || "";
+
+
+/* DISPLAY CURRENT INFORMATION */
+
+function updateCurrentInformation() {
+
+    document.getElementById("currentName")
+        .textContent =
+        document.getElementById("name").value;
+
+
+    document.getElementById("currentWelcome")
+        .textContent =
+        document.getElementById("welcome").value;
+
+
+    document.getElementById("currentGoal")
+        .textContent =
+        document.getElementById("goal").value;
+
+
+    document.getElementById("currentAbout")
+        .textContent =
+        document.getElementById("about").value;
+
+}
+
+
+/* SAVE WEBSITE */
+
+function saveWebsite() {
+
+    const updatedWebsite = {
+
+        name:
+            document.getElementById("name").value,
+
+        welcome:
+            document.getElementById("welcome").value,
+
+        goal:
+            document.getElementById("goal").value,
+
+        about:
+            document.getElementById("about").value,
+
+        lastUpdated:
+            new Date().getFullYear().toString()
+
+    };
+
+
+    localStorage.setItem(
+        "clintonWebsiteData",
+        JSON.stringify(updatedWebsite)
+    );
+
+
+    document.getElementById(
+        "websiteMessage"
+    ).textContent =
+        "✅ Website information saved!";
+
+
+    updateCurrentInformation();
+
+}
+
+
+/* RESET WEBSITE */
+
+function resetWebsite() {
+
+    localStorage.removeItem(
+        "clintonWebsiteData"
+    );
 
 
     document.getElementById("name").value =
-        currentWebsite.name || "";
+        websiteData.name || "";
 
 
     document.getElementById("welcome").value =
-        currentWebsite.welcome || "";
+        websiteData.welcome || "";
 
 
     document.getElementById("goal").value =
-        currentWebsite.goal || "";
+        websiteData.goal || "";
 
 
     document.getElementById("about").value =
-        currentWebsite.about || "";
-
-
-    function updateCurrentInformation() {
-
-        document.getElementById("currentName")
-            .textContent =
-            document.getElementById("name").value;
-
-
-        document.getElementById("currentWelcome")
-            .textContent =
-            document.getElementById("welcome").value;
-
-
-        document.getElementById("currentGoal")
-            .textContent =
-            document.getElementById("goal").value;
-
-
-        document.getElementById("currentAbout")
-            .textContent =
-            document.getElementById("about").value;
-
-    }
-
-
-    function saveWebsite() {
-
-        const updatedWebsite = {
-
-            name:
-                document.getElementById("name").value,
-
-            welcome:
-                document.getElementById("welcome").value,
-
-            goal:
-                document.getElementById("goal").value,
-
-            about:
-                document.getElementById("about").value,
-
-            lastUpdated:
-                new Date().getFullYear().toString()
-
-        };
-
-
-        localStorage.setItem(
-            "clintonWebsiteData",
-            JSON.stringify(updatedWebsite)
-        );
-
-
-        document.getElementById(
-            "websiteMessage"
-        ).textContent =
-            "✅ Website information saved!";
-
-
-        updateCurrentInformation();
-
-    }
-
-
-    function resetWebsite() {
-
-        localStorage.removeItem(
-            "clintonWebsiteData"
-        );
-
-
-        document.getElementById("name").value =
-            websiteData.name || "";
-
-
-        document.getElementById("welcome").value =
-            websiteData.welcome || "";
-
-
-        document.getElementById("goal").value =
-            websiteData.goal || "";
-
-
-        document.getElementById("about").value =
-            websiteData.about || "";
-
-
-        document.getElementById(
-            "websiteMessage"
-        ).textContent =
-            "↩ Information reset.";
-
-
-        updateCurrentInformation();
-
-    }
-
-
-    /* =========================
-       GALLERY
-       ========================= */
-
-
-    let gallery =
-        JSON.parse(
-            localStorage.getItem(
-                "clintonGallery"
-            )
-        ) || [
-
-            {
-                title: "Memory 1",
-                file: "IMG_20250802_093252.jpg",
-                description: "A special moment."
-            },
-
-            {
-                title: "Memory 2",
-                file: "IMG_20250802_093305.jpg",
-                description: "A memorable moment."
-            },
-
-            {
-                title: "Memory 3",
-                file: "WIN_20260814_16_48_08_Pro.jpg",
-                description: "A special memory."
-            },
-
-            {
-                title: "Memory 4",
-                file: "WIN_20260814_16_48_27_Pro.jpg",
-                description: "A memorable experience."
-            },
-
-            {
-                title: "Memory 5",
-                file: "WIN_20260814_16_48_35_Pro.jpg",
-                description: "A special moment."
-            },
-
-            {
-                title: "Memory 6",
-                file: "WIN_20260814_16_48_39_Pro.jpg",
-                description: "A memorable moment."
-            },
-
-            {
-                title: "Memory 7",
-                file: "WIN_20260814_16_49_03_Pro.jpg",
-                description: "A special memory."
-            },
-
-            {
-                title: "Memory 8",
-                file: "WIN_20260814_16_49_16_Pro.jpg",
-                description: "A memorable experience."
-            },
-
-            {
-                title: "Memory 9",
-                file: "WIN_20260814_16_49_28_Pro.jpg",
-                description: "A special moment."
-            },
-
-            {
-                title: "Memory 10",
-                file: "photo3.jpg",
-                description: "A favourite memory."
-            }
-
-        ];
-
-
-    function displayGallery() {
-
-        const list =
-            document.getElementById(
-                "galleryList"
-            );
-
-
-        list.innerHTML = "";
-
-
-        if (gallery.length === 0) {
-
-            list.innerHTML =
-                '<p class="empty">No photos added yet.</p>';
-
-            return;
-        }
-
-
-        gallery.forEach(
-            function(photo, index) {
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className = "item";
-
-
-                item.innerHTML = `
-
-                    <img
-                        src="images/${photo.file}"
-                        alt="${photo.title}"
-                    >
-
-                    <h3>
-                        ${photo.title}
-                    </h3>
-
-                    <p>
-                        ${photo.description}
-                    </p>
-
-                    <button
-                        class="delete"
-                        onclick="deletePhoto(${index})"
-                    >
-                        Delete Photo
-                    </button>
-
-                `;
-
-
-                list.appendChild(item);
-
-            }
-        );
-
-    }
-
-
-    function addPhoto() {
-
-        const title =
-            document.getElementById(
-                "photoTitle"
-            ).value.trim();
-
-
-        const file =
-            document.getElementById(
-                "photoFile"
-            ).value.trim();
-
-
-        const description =
-            document.getElementById(
-                "photoDescription"
-            ).value.trim();
-
-
-        if (!title || !file) {
-
-            document.getElementById(
-                "galleryMessage"
-            ).textContent =
-                "⚠️ Enter a photo title and filename.";
-
-            return;
-
-        }
-
-
-        gallery.push({
-
-            title: title,
-
-            file: file,
-
-            description:
-                description ||
-                "A special memory."
-
-        });
-
-
-        localStorage.setItem(
-            "clintonGallery",
-            JSON.stringify(gallery)
-        );
-
-
-        document.getElementById(
-            "galleryMessage"
-        ).textContent =
-            "✅ Photo added to the dashboard!";
-
-
-        document.getElementById(
-            "photoTitle"
-        ).value = "";
-
-
-        document.getElementById(
-            "photoFile"
-        ).value = "";
-
-
-        document.getElementById(
-            "photoDescription"
-        ).value = "";
-
-
-        displayGallery();
-
-    }
-
-
-    function deletePhoto(index) {
-
-        gallery.splice(index, 1);
-
-
-        localStorage.setItem(
-            "clintonGallery",
-            JSON.stringify(gallery)
-        );
-
-
-        displayGallery();
-
-    }
-
-
-    /* =========================
-       ACHIEVEMENTS
-       ========================= */
-
-
-    let myAchievements =
-        JSON.parse(
-            localStorage.getItem(
-                "clintonAchievements"
-            )
-        ) || achievements;
-
-
-    function displayAchievements() {
-
-        const list =
-            document.getElementById(
-                "achievementList"
-            );
-
-
-        list.innerHTML = "";
-
-
-        if (
-            myAchievements.length === 0
-        ) {
-
-            list.innerHTML =
-                '<p class="empty">No achievements added yet.</p>';
-
-            return;
-
-        }
-
-
-        myAchievements.forEach(
-            function(item, index) {
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className = "item";
-
-
-                card.innerHTML = `
-
-                    <h3>
-                        🏆 ${item.title}
-                    </h3>
-
-                    <p>
-                        ${item.description}
-                    </p>
-
-                    <button
-                        class="delete"
-                        onclick="deleteAchievement(${index})"
-                    >
-                        Delete Achievement
-                    </button>
-
-                `;
-
-
-                list.appendChild(card);
-
-            }
-        );
-
-    }
-
-
-    function addAchievement() {
-
-        const title =
-            document.getElementById(
-                "achievementTitle"
-            ).value.trim();
-
-
-        const description =
-            document.getElementById(
-                "achievementDescription"
-            ).value.trim();
-
-
-        if (!title || !description) {
-
-            document.ge
+        websiteData.about || "";
+
+
+    document.getElementById(
+        "websiteMessage"
+    ).textContent =
+        "↩ Information reset.";
+
+
+    updateCurrentInformation();
+
+}
+
+
+/* =========================
+   GALLERY
+   ========================= */
+
+let gallery =
+    JSON.parse(
+        localStorage.getItem(
+            "clintonGallery"
+        )
+    ) || [
+
+        {
+            title: "Memory 1",
+            file: "IMG_20250802_093252.jpg",
+            description: "A special moment."
+        },
+
+        {
+            title: "Memory 2",
+            file: "IMG_20250802_093305.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Memory 3",
+            file: "WIN_20260814_16_48_08_Pro.jpg",
+            description: "A special memory."
+        },
+
+        {
+            title: "Memory 4",
+            file: "WIN_20260814_16_48_27_Pro.jpg",
+            description: "A memorable experience."
+        },
+
+        {
+            title: "Memory 5",
+            file: "WIN_20260814_16_48_35_Pro.jpg",
+            description: "A special moment."
+        },
+
+        {
+            title: "Memory 6",
+            file: "WIN_20260814_16_48_39_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Memory 7",
+            file: "WIN_20260814_16_49_03_Pro.jpg",
+            description: "A special memory."
+        },
+
+        {
+            title: "Memory 8",
+            file: "WIN_20260814_16_49_16_Pro.jpg",
+            description: "A memorable experience."
+        },
+
+        {
+            title: "Memory 9",
+            file: "WIN_20260814_16_49_28_Pro.jpg",
+            description: "A special moment."
 ```
