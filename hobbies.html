@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>My Hobbies</title>
+    <title>My Hobbies</title>
 
-<link rel="stylesheet" href="css/style.css">
-```
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-```
 <!-- HEADER -->
 
 <header>
@@ -42,6 +37,7 @@
         <a href="contact.html">Contact</a>
 
         <a href="achievements.html">Achievements</a>
+
     </nav>
 
 </header>
@@ -61,61 +57,11 @@
             stay active, learn new things and have fun.
         </p>
 
+        <!-- Firebase Hobbies -->
 
-        <div class="card-container">
+        <div class="card-container" id="hobbies-container">
 
-            <div class="card">
-
-                <h3>🏀 Basketball</h3>
-
-                <p>
-                    I enjoy playing basketball because it
-                    helps me develop teamwork, coordination
-                    and concentration.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🏊 Swimming</h3>
-
-                <p>
-                    I enjoy swimming as a fun activity that
-                    helps me stay active and improve my
-                    swimming skills.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>📚 Reading</h3>
-
-                <p>
-                    I enjoy reading books and other
-                    interesting materials because it helps
-                    me learn new ideas and improve my
-                    knowledge.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🏃 Athletics</h3>
-
-                <p>
-                    I enjoy doing athletics and taking part
-                    in running activities. It helps me
-                    practise discipline, teamwork and
-                    determination.
-                </p>
-
-            </div>
+            <p>Loading hobbies...</p>
 
         </div>
 
@@ -202,7 +148,141 @@
     </p>
 
 </footer>
-```
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getDatabase,
+        ref,
+        onValue
+    }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+    // Firebase configuration
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+
+        authDomain: "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId: "clinton-ncube-website",
+
+        storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId: "946671700613",
+
+        appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId: "G-K1S62MHHXP"
+
+    };
+
+
+    // Initialize Firebase
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+
+    // Hobby container
+
+    const hobbiesContainer =
+        document.getElementById("hobbies-container");
+
+
+    // Protect displayed text from HTML injection
+
+    function escapeHTML(text) {
+
+        if (!text) return "";
+
+        return String(text)
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    // Load hobbies from Firebase
+
+    const hobbiesRef = ref(db, "hobbies");
+
+
+    onValue(hobbiesRef, (snapshot) => {
+
+        const hobbies = snapshot.val();
+
+        hobbiesContainer.innerHTML = "";
+
+
+        // If there are no hobbies
+
+        if (!hobbies) {
+
+            hobbiesContainer.innerHTML = `
+
+                <p>
+                    No hobbies have been added yet.
+                </p>
+
+            `;
+
+            return;
+
+        }
+
+
+        // Display hobbies
+
+        Object.values(hobbies).forEach((hobby) => {
+
+            const card = document.createElement("div");
+
+            card.className = "card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(hobby.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(hobby.description)}
+                </p>
+
+            `;
+
+
+            hobbiesContainer.appendChild(card);
+
+        });
+
+    });
+
+</script>
 
 </body>
 
