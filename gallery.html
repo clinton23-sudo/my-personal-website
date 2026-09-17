@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +64,11 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .photo:hover {
+            transform: translateY(-5px);
         }
 
         .photo img {
@@ -87,12 +91,39 @@
             color: #666;
         }
 
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        .error-message {
+            text-align: center;
+            color: #b91c1c;
+            padding: 15px;
+        }
+
         footer {
             text-align: center;
             background: #111827;
             color: white;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .photo img {
+                height: 220px;
+            }
+
         }
     </style>
 </head>
@@ -120,98 +151,8 @@
         <p>Some of my favourite photos and memories.</p>
     </div>
 
-    <div class="gallery">
-
-        <div class="photo">
-            <img src="images/IMG_20250802_093252.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 1</h3>
-                <p>A special moment.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/IMG_20250802_093305.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 2</h3>
-                <p>A memorable moment.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_48_08_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 3</h3>
-                <p>A special memory.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_48_27_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 4</h3>
-                <p>A memorable experience.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_48_35_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 5</h3>
-                <p>A special moment.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_48_39_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 6</h3>
-                <p>A memorable moment.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_49_03_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 7</h3>
-                <p>A special memory.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_49_16_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 8</h3>
-                <p>A memorable experience.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/WIN_20260814_16_49_28_Pro.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 9</h3>
-                <p>A special moment.</p>
-            </div>
-        </div>
-
-        <div class="photo">
-            <img src="images/photo3.jpg"
-                 alt="Clinton Ncube photo">
-            <div class="caption">
-                <h3>Memory 10</h3>
-                <p>A favourite memory.</p>
-            </div>
-        </div>
-
+    <!-- PHOTOS WILL BE LOADED HERE -->
+    <div class="gallery" id="gallery">
     </div>
 
 </div>
@@ -220,6 +161,225 @@
     <p>© 2026 Clinton Ncube. All Rights Reserved.</p>
 </footer>
 
+
+<script>
+
+    /*
+     * Default gallery
+     * These are your original 9 photos.
+     */
+
+    var defaultGallery = [
+
+        {
+            title: "Memory 1",
+            file: "IMG_20250802_093252.jpg",
+            description: "A special moment."
+        },
+
+        {
+            title: "Memory 2",
+            file: "IMG_20250802_093305.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Memory 3",
+            file: "WIN_20260814_16_48_08_Pro.jpg",
+            description: "A special memory."
+        },
+
+        {
+            title: "Memory 4",
+            file: "WIN_20260814_16_48_27_Pro.jpg",
+            description: "A memorable experience."
+        },
+
+        {
+            title: "Memory 5",
+            file: "WIN_20260814_16_48_35_Pro.jpg",
+            description: "A special moment."
+        },
+
+        {
+            title: "Memory 6",
+            file: "WIN_20260814_16_48_39_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Memory 7",
+            file: "WIN_20260814_16_49_03_Pro.jpg",
+            description: "A special memory."
+        },
+
+        {
+            title: "Memory 8",
+            file: "WIN_20260814_16_49_16_Pro.jpg",
+            description: "A memorable experience."
+        },
+
+        {
+            title: "Memory 9",
+            file: "WIN_20260814_16_49_28_Pro.jpg",
+            description: "A special moment."
+        }
+
+    ];
+
+
+    /*
+     * Get gallery information saved by Admin Dashboard.
+     */
+
+    var gallery = null;
+
+    try {
+
+        gallery =
+            JSON.parse(localStorage.getItem("clintonGallery"));
+
+    } catch (error) {
+
+        gallery = null;
+
+    }
+
+
+    /*
+     * If the Admin Dashboard has not saved
+     * a gallery yet, use the original photos.
+     */
+
+    if (!Array.isArray(gallery)) {
+
+        gallery = defaultGallery;
+
+    }
+
+
+    /*
+     * Display the gallery.
+     */
+
+    function displayGallery() {
+
+        var galleryContainer =
+            document.getElementById("gallery");
+
+        galleryContainer.innerHTML = "";
+
+
+        /*
+         * If there are no photos.
+         */
+
+        if (gallery.length === 0) {
+
+            galleryContainer.innerHTML =
+                '<div class="empty">' +
+                '<h3>📸 No Photos Yet</h3>' +
+                '<p>Photos added through the Admin Dashboard will appear here.</p>' +
+                '</div>';
+
+            return;
+
+        }
+
+
+        /*
+         * Create each photo.
+         */
+
+        gallery.forEach(function(photo) {
+
+            var photoDiv =
+                document.createElement("div");
+
+            photoDiv.className = "photo";
+
+
+            var image =
+                document.createElement("img");
+
+            image.src =
+                "images/" + photo.file;
+
+            image.alt =
+                photo.title;
+
+
+            /*
+             * Show a message if the image
+             * cannot be found.
+             */
+
+            image.onerror = function() {
+
+                image.style.display = "none";
+
+                var error =
+                    document.createElement("p");
+
+                error.className =
+                    "error-message";
+
+                error.textContent =
+                    "❌ Image not found: images/" + photo.file;
+
+                photoDiv.insertBefore(
+                    error,
+                    photoDiv.firstChild
+                );
+
+            };
+
+
+            var caption =
+                document.createElement("div");
+
+            caption.className =
+                "caption";
+
+
+            var title =
+                document.createElement("h3");
+
+            title.textContent =
+                photo.title;
+
+
+            var description =
+                document.createElement("p");
+
+            description.textContent =
+                photo.description;
+
+
+            caption.appendChild(title);
+
+            caption.appendChild(description);
+
+
+            photoDiv.appendChild(image);
+
+            photoDiv.appendChild(caption);
+
+
+            galleryContainer.appendChild(photoDiv);
+
+        });
+
+    }
+
+
+    /*
+     * Start the gallery.
+     */
+
+    displayGallery();
+
+</script>
+
 </body>
 </html>
-```
