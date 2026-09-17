@@ -32,7 +32,6 @@
 
         header p {
             margin: 0;
-            opacity: 0.9;
         }
 
         .back {
@@ -43,7 +42,7 @@
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 20px;
         }
@@ -79,13 +78,13 @@
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 110px;
             resize: vertical;
         }
 
         button {
             margin-top: 20px;
-            padding: 13px 22px;
+            padding: 13px 20px;
             border: none;
             border-radius: 7px;
             background: #2563eb;
@@ -106,7 +105,15 @@
             background: #1f2937;
         }
 
-        #message {
+        .delete {
+            background: #dc2626;
+        }
+
+        .delete:hover {
+            background: #b91c1c;
+        }
+
+        .message {
             margin-top: 15px;
             font-weight: bold;
         }
@@ -119,16 +126,34 @@
             line-height: 1.5;
         }
 
-        .preview {
+        .item {
             background: #f9fafb;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
-        .preview strong {
+        .item img {
+            width: 100%;
+            max-width: 250px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .item h3 {
+            margin: 5px 0;
+        }
+
+        .item p {
+            color: #555;
+        }
+
+        .empty {
+            color: #777;
+            font-style: italic;
         }
     </style>
 </head>
@@ -136,142 +161,315 @@
 <body>
 
 <header>
+
     <h1>Clinton Ncube</h1>
+
     <p>Website Admin Dashboard</p>
 
     <a href="index.html" class="back">
         ← Back to Website
     </a>
+
 </header>
+
 
 <div class="container">
 
+    <!-- WEBSITE EDITOR -->
+
     <div class="notice">
-        <strong>Website Editor</strong><br>
-        Use this dashboard to edit the information displayed on your
-        personal website.
+
+        <strong>📝 Website Editor</strong><br>
+
+        Use this dashboard to manage your personal website
+        information.
+
     </div>
+
 
     <div class="card">
 
         <h2>🏠 Home Page</h2>
 
-        <label for="name">Your Name</label>
-        <input type="text" id="name">
+        <label for="name">
+            Your Name
+        </label>
 
-        <label for="welcome">Welcome Message</label>
-        <textarea id="welcome"></textarea>
+        <input
+            type="text"
+            id="name"
+        >
 
-        <label for="goal">My Goal</label>
-        <textarea id="goal"></textarea>
 
-        <label for="about">About Me</label>
-        <textarea id="about"></textarea>
+        <label for="welcome">
+            Welcome Message
+        </label>
 
-        <button onclick="saveChanges()">
-            💾 Save Changes
+        <textarea
+            id="welcome"
+        ></textarea>
+
+
+        <label for="goal">
+            My Goal
+        </label>
+
+        <textarea
+            id="goal"
+        ></textarea>
+
+
+        <label for="about">
+            About Me
+        </label>
+
+        <textarea
+            id="about"
+        ></textarea>
+
+
+        <button onclick="saveWebsite()">
+            💾 Save Website Information
         </button>
 
-        <button class="secondary" onclick="resetChanges()">
+
+        <button
+            class="secondary"
+            onclick="resetWebsite()"
+        >
             ↩ Reset
         </button>
 
-        <p id="message"></p>
+
+        <p
+            id="websiteMessage"
+            class="message"
+        ></p>
 
     </div>
+
+
+    <!-- GALLERY -->
 
     <div class="card">
 
-        <h2>📸 Gallery</h2>
+        <h2>📸 Gallery Manager</h2>
 
         <p>
-            Gallery management will be added next. You will be able to
-            manage your photographs from the dashboard.
+            Add a photo that already exists inside your
+            <strong>images</strong> folder.
         </p>
 
+
+        <label for="photoTitle">
+            Photo Title
+        </label>
+
+        <input
+            type="text"
+            id="photoTitle"
+            placeholder="Example: School Memory"
+        >
+
+
+        <label for="photoFile">
+            Photo Filename
+        </label>
+
+        <input
+            type="text"
+            id="photoFile"
+            placeholder="Example: photo3.jpg"
+        >
+
+
+        <label for="photoDescription">
+            Photo Description
+        </label>
+
+        <textarea
+            id="photoDescription"
+            placeholder="Write a short description"
+        ></textarea>
+
+
+        <button onclick="addPhoto()">
+            📸 Add Photo
+        </button>
+
+
+        <p
+            id="galleryMessage"
+            class="message"
+        ></p>
+
+
+        <h3>Current Gallery Photos</h3>
+
+        <div id="galleryList"></div>
+
     </div>
+
+
+    <!-- ACHIEVEMENTS -->
 
     <div class="card">
 
-        <h2>🏆 Achievements</h2>
+        <h2>🏆 Achievement Manager</h2>
 
-        <p>
-            Achievement management will be added next.
-        </p>
+
+        <label for="achievementTitle">
+            Achievement Title
+        </label>
+
+        <input
+            type="text"
+            id="achievementTitle"
+            placeholder="Example: Academic Achievement"
+        >
+
+
+        <label for="achievementDescription">
+            Achievement Description
+        </label>
+
+        <textarea
+            id="achievementDescription"
+            placeholder="Describe your achievement"
+        ></textarea>
+
+
+        <button onclick="addAchievement()">
+            🏆 Add Achievement
+        </button>
+
+
+        <p
+            id="achievementMessage"
+            class="message"
+        ></p>
+
+
+        <h3>Current Achievements</h3>
+
+        <div id="achievementList"></div>
 
     </div>
+
+
+    <!-- CURRENT INFORMATION -->
 
     <div class="card">
 
         <h2>👀 Current Information</h2>
 
-        <div class="preview">
-            <strong>Name</strong>
-            <span id="previewName"></span>
+
+        <div class="item">
+
+            <h3>Name</h3>
+
+            <p id="currentName"></p>
+
         </div>
 
-        <div class="preview">
-            <strong>Welcome</strong>
-            <span id="previewWelcome"></span>
+
+        <div class="item">
+
+            <h3>Welcome Message</h3>
+
+            <p id="currentWelcome"></p>
+
         </div>
 
-        <div class="preview">
-            <strong>Goal</strong>
-            <span id="previewGoal"></span>
+
+        <div class="item">
+
+            <h3>Goal</h3>
+
+            <p id="currentGoal"></p>
+
         </div>
 
-        <div class="preview">
-            <strong>About</strong>
-            <span id="previewAbout"></span>
+
+        <div class="item">
+
+            <h3>About Me</h3>
+
+            <p id="currentAbout"></p>
+
         </div>
 
     </div>
 
 </div>
 
+
 <script src="data.js"></script>
+
+<script src="achievements.js"></script>
+
 
 <script>
 
-    const savedData =
-        JSON.parse(localStorage.getItem("clintonWebsiteData"));
+    /* =========================
+       WEBSITE INFORMATION
+       ========================= */
 
-    const currentData =
-        savedData || websiteData;
+    let savedWebsite =
+        JSON.parse(
+            localStorage.getItem(
+                "clintonWebsiteData"
+            )
+        );
+
+
+    let currentWebsite =
+        savedWebsite || websiteData;
 
 
     document.getElementById("name").value =
-        currentData.name || "";
+        currentWebsite.name || "";
+
 
     document.getElementById("welcome").value =
-        currentData.welcome || "";
+        currentWebsite.welcome || "";
+
 
     document.getElementById("goal").value =
-        currentData.goal || "";
+        currentWebsite.goal || "";
+
 
     document.getElementById("about").value =
-        currentData.about || "";
+        currentWebsite.about || "";
 
 
-    function updatePreview() {
+    function updateCurrentInformation() {
 
-        document.getElementById("previewName").textContent =
+        document.getElementById("currentName")
+            .textContent =
             document.getElementById("name").value;
 
-        document.getElementById("previewWelcome").textContent =
+
+        document.getElementById("currentWelcome")
+            .textContent =
             document.getElementById("welcome").value;
 
-        document.getElementById("previewGoal").textContent =
+
+        document.getElementById("currentGoal")
+            .textContent =
             document.getElementById("goal").value;
 
-        document.getElementById("previewAbout").textContent =
+
+        document.getElementById("currentAbout")
+            .textContent =
             document.getElementById("about").value;
+
     }
 
 
-    function saveChanges() {
+    function saveWebsite() {
 
-        const updatedData = {
+        const updatedWebsite = {
 
             name:
                 document.getElementById("name").value,
@@ -287,53 +485,385 @@
 
             lastUpdated:
                 new Date().getFullYear().toString()
+
         };
 
 
         localStorage.setItem(
             "clintonWebsiteData",
-            JSON.stringify(updatedData)
+            JSON.stringify(updatedWebsite)
         );
 
 
-        document.getElementById("message").textContent =
-            "✅ Changes saved successfully on this device!";
+        document.getElementById(
+            "websiteMessage"
+        ).textContent =
+            "✅ Website information saved!";
 
 
-        updatePreview();
+        updateCurrentInformation();
+
     }
 
 
-    function resetChanges() {
+    function resetWebsite() {
 
         localStorage.removeItem(
             "clintonWebsiteData"
         );
 
+
         document.getElementById("name").value =
             websiteData.name || "";
+
 
         document.getElementById("welcome").value =
             websiteData.welcome || "";
 
+
         document.getElementById("goal").value =
             websiteData.goal || "";
+
 
         document.getElementById("about").value =
             websiteData.about || "";
 
 
-        document.getElementById("message").textContent =
-            "↩ Information reset to the original website data.";
+        document.getElementById(
+            "websiteMessage"
+        ).textContent =
+            "↩ Information reset.";
 
-        updatePreview();
+
+        updateCurrentInformation();
+
     }
 
 
-    updatePreview();
+    /* =========================
+       GALLERY
+       ========================= */
 
-</script>
 
-</body>
-</html>
+    let gallery =
+        JSON.parse(
+            localStorage.getItem(
+                "clintonGallery"
+            )
+        ) || [
+
+            {
+                title: "Memory 1",
+                file: "IMG_20250802_093252.jpg",
+                description: "A special moment."
+            },
+
+            {
+                title: "Memory 2",
+                file: "IMG_20250802_093305.jpg",
+                description: "A memorable moment."
+            },
+
+            {
+                title: "Memory 3",
+                file: "WIN_20260814_16_48_08_Pro.jpg",
+                description: "A special memory."
+            },
+
+            {
+                title: "Memory 4",
+                file: "WIN_20260814_16_48_27_Pro.jpg",
+                description: "A memorable experience."
+            },
+
+            {
+                title: "Memory 5",
+                file: "WIN_20260814_16_48_35_Pro.jpg",
+                description: "A special moment."
+            },
+
+            {
+                title: "Memory 6",
+                file: "WIN_20260814_16_48_39_Pro.jpg",
+                description: "A memorable moment."
+            },
+
+            {
+                title: "Memory 7",
+                file: "WIN_20260814_16_49_03_Pro.jpg",
+                description: "A special memory."
+            },
+
+            {
+                title: "Memory 8",
+                file: "WIN_20260814_16_49_16_Pro.jpg",
+                description: "A memorable experience."
+            },
+
+            {
+                title: "Memory 9",
+                file: "WIN_20260814_16_49_28_Pro.jpg",
+                description: "A special moment."
+            },
+
+            {
+                title: "Memory 10",
+                file: "photo3.jpg",
+                description: "A favourite memory."
+            }
+
+        ];
+
+
+    function displayGallery() {
+
+        const list =
+            document.getElementById(
+                "galleryList"
+            );
+
+
+        list.innerHTML = "";
+
+
+        if (gallery.length === 0) {
+
+            list.innerHTML =
+                '<p class="empty">No photos added yet.</p>';
+
+            return;
+        }
+
+
+        gallery.forEach(
+            function(photo, index) {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className = "item";
+
+
+                item.innerHTML = `
+
+                    <img
+                        src="images/${photo.file}"
+                        alt="${photo.title}"
+                    >
+
+                    <h3>
+                        ${photo.title}
+                    </h3>
+
+                    <p>
+                        ${photo.description}
+                    </p>
+
+                    <button
+                        class="delete"
+                        onclick="deletePhoto(${index})"
+                    >
+                        Delete Photo
+                    </button>
+
+                `;
+
+
+                list.appendChild(item);
+
+            }
+        );
+
+    }
+
+
+    function addPhoto() {
+
+        const title =
+            document.getElementById(
+                "photoTitle"
+            ).value.trim();
+
+
+        const file =
+            document.getElementById(
+                "photoFile"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "photoDescription"
+            ).value.trim();
+
+
+        if (!title || !file) {
+
+            document.getElementById(
+                "galleryMessage"
+            ).textContent =
+                "⚠️ Enter a photo title and filename.";
+
+            return;
+
+        }
+
+
+        gallery.push({
+
+            title: title,
+
+            file: file,
+
+            description:
+                description ||
+                "A special memory."
+
+        });
+
+
+        localStorage.setItem(
+            "clintonGallery",
+            JSON.stringify(gallery)
+        );
+
+
+        document.getElementById(
+            "galleryMessage"
+        ).textContent =
+            "✅ Photo added to the dashboard!";
+
+
+        document.getElementById(
+            "photoTitle"
+        ).value = "";
+
+
+        document.getElementById(
+            "photoFile"
+        ).value = "";
+
+
+        document.getElementById(
+            "photoDescription"
+        ).value = "";
+
+
+        displayGallery();
+
+    }
+
+
+    function deletePhoto(index) {
+
+        gallery.splice(index, 1);
+
+
+        localStorage.setItem(
+            "clintonGallery",
+            JSON.stringify(gallery)
+        );
+
+
+        displayGallery();
+
+    }
+
+
+    /* =========================
+       ACHIEVEMENTS
+       ========================= */
+
+
+    let myAchievements =
+        JSON.parse(
+            localStorage.getItem(
+                "clintonAchievements"
+            )
+        ) || achievements;
+
+
+    function displayAchievements() {
+
+        const list =
+            document.getElementById(
+                "achievementList"
+            );
+
+
+        list.innerHTML = "";
+
+
+        if (
+            myAchievements.length === 0
+        ) {
+
+            list.innerHTML =
+                '<p class="empty">No achievements added yet.</p>';
+
+            return;
+
+        }
+
+
+        myAchievements.forEach(
+            function(item, index) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className = "item";
+
+
+                card.innerHTML = `
+
+                    <h3>
+                        🏆 ${item.title}
+                    </h3>
+
+                    <p>
+                        ${item.description}
+                    </p>
+
+                    <button
+                        class="delete"
+                        onclick="deleteAchievement(${index})"
+                    >
+                        Delete Achievement
+                    </button>
+
+                `;
+
+
+                list.appendChild(card);
+
+            }
+        );
+
+    }
+
+
+    function addAchievement() {
+
+        const title =
+            document.getElementById(
+                "achievementTitle"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "achievementDescription"
+            ).value.trim();
+
+
+        if (!title || !description) {
+
+            document.ge
 ```
