@@ -159,6 +159,14 @@
             font-size: 14px;
             color: #666;
         }
+
+        .success {
+            color: #15803d;
+        }
+
+        .error {
+            color: #dc2626;
+        }
     </style>
 </head>
 
@@ -179,14 +187,14 @@
 
 <div class="container">
 
-    <!-- WEBSITE EDITOR -->
+    <!-- NOTICE -->
 
     <div class="notice">
 
         <strong>📝 Website Editor</strong><br>
 
-        Use this dashboard to manage your personal website
-        information, gallery and achievements.
+        Use this dashboard to manage your personal website,
+        gallery and achievements.
 
     </div>
 
@@ -281,7 +289,6 @@
         >
 
         <p class="small">
-            Enter only the filename, including the extension.
             Example: IMG_20230121_WA0001.webp
         </p>
 
@@ -394,42 +401,50 @@
 </div>
 
 
-<!-- DATA FILE -->
 <script>
-const websiteData = {
+
+/* =====================================================
+   WEBSITE DATA
+   ===================================================== */
+
+var websiteData = {
+
     name: "Clinton Ncube",
-    welcome: "Welcome to my personal website!",
-    goal: "My goal is to continue learning and improving my skills.",
-    about: "I am Clinton Ncube. I am a student who enjoys learning and developing new skills.",
+
+    welcome:
+        "Welcome to my personal website! This is my personal portfolio where I share information about myself, my projects, hobbies, skills and favourite memories.",
+
+    goal:
+        "My goal is to continue learning, improving my skills and creating useful and interesting projects.",
+
+    about:
+        "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.",
+
     lastUpdated: "2026"
+
 };
-</script>
 
-
-
-<script>
 
 /* =====================================================
    WEBSITE INFORMATION
    ===================================================== */
 
-let savedWebsite = null;
+var savedWebsite = null;
 
 try {
 
-    savedWebsite =
-        JSON.parse(
-            localStorage.getItem("clintonWebsiteData")
-        );
+    savedWebsite = JSON.parse(
+        localStorage.getItem("clintonWebsiteData")
+    );
 
 } catch (error) {
 
-    console.log("No saved website information found.");
+    savedWebsite = null;
 
 }
 
 
-let currentWebsite =
+var currentWebsite =
     savedWebsite || websiteData;
 
 
@@ -448,7 +463,7 @@ document.getElementById("about").value =
     currentWebsite.about || "";
 
 
-/* DISPLAY CURRENT INFORMATION */
+/* UPDATE CURRENT INFORMATION */
 
 function updateCurrentInformation() {
 
@@ -475,7 +490,7 @@ function updateCurrentInformation() {
 
 function saveWebsite() {
 
-    const updatedWebsite = {
+    var updatedWebsite = {
 
         name:
             document.getElementById("name").value,
@@ -507,6 +522,12 @@ function saveWebsite() {
         "✅ Website information saved!";
 
 
+    document.getElementById(
+        "websiteMessage"
+    ).className =
+        "message success";
+
+
     updateCurrentInformation();
 
 }
@@ -522,22 +543,28 @@ function resetWebsite() {
 
 
     document.getElementById("name").value =
-        websiteData.name || "";
+        websiteData.name;
 
     document.getElementById("welcome").value =
-        websiteData.welcome || "";
+        websiteData.welcome;
 
     document.getElementById("goal").value =
-        websiteData.goal || "";
+        websiteData.goal;
 
     document.getElementById("about").value =
-        websiteData.about || "";
+        websiteData.about;
 
 
     document.getElementById(
         "websiteMessage"
     ).textContent =
         "↩ Information reset.";
+
+
+    document.getElementById(
+        "websiteMessage"
+    ).className =
+        "message";
 
 
     updateCurrentInformation();
@@ -549,14 +576,13 @@ function resetWebsite() {
    GALLERY
    ===================================================== */
 
-
 /*
    IMPORTANT:
-   Gallery information is saved in the browser using
-   localStorage.
+   The gallery variable is created BEFORE
+   any gallery functions are called.
 */
 
-let defaultGallery = [
+var defaultGallery = [
 
     {
         title: "Memory 1",
@@ -615,22 +641,26 @@ let defaultGallery = [
 ];
 
 
-let gallery = [];
+/* CREATE GALLERY VARIABLE FIRST */
+
+var gallery = [];
+
+
+/* LOAD SAVED GALLERY */
 
 try {
 
-    const savedGallery =
+    var storedGallery =
         JSON.parse(
             localStorage.getItem("clintonGallery")
         );
 
+
     if (
-        Array.isArray(savedGallery)
-        &&
-        savedGallery.length > 0
+        Array.isArray(storedGallery)
     ) {
 
-        gallery = savedGallery;
+        gallery = storedGallery;
 
     } else {
 
@@ -661,8 +691,10 @@ function saveGallery() {
 
 function displayGallery() {
 
-    const galleryList =
-        document.getElementById("galleryList");
+    var galleryList =
+        document.getElementById(
+            "galleryList"
+        );
 
 
     galleryList.innerHTML = "";
@@ -681,13 +713,14 @@ function displayGallery() {
     gallery.forEach(
         function(photo, index) {
 
-            const item =
+            var item =
                 document.createElement("div");
 
-            item.className = "item";
+            item.className =
+                "item";
 
 
-            const image =
+            var image =
                 document.createElement("img");
 
             image.src =
@@ -700,35 +733,37 @@ function displayGallery() {
             image.onerror =
                 function() {
 
-                    image.style.display = "none";
+                    image.style.display =
+                        "none";
 
                 };
 
 
-            const title =
+            var title =
                 document.createElement("h3");
 
             title.textContent =
                 photo.title;
 
 
-            const description =
+            var description =
                 document.createElement("p");
 
             description.textContent =
                 photo.description;
 
 
-            const filename =
+            var filename =
                 document.createElement("p");
 
-            filename.className = "small";
+            filename.className =
+                "small";
 
             filename.textContent =
                 "File: images/" + photo.file;
 
 
-            const deleteButton =
+            var deleteButton =
                 document.createElement("button");
 
             deleteButton.className =
@@ -756,6 +791,7 @@ function displayGallery() {
 
             item.appendChild(deleteButton);
 
+
             galleryList.appendChild(item);
 
         }
@@ -768,54 +804,63 @@ function displayGallery() {
 
 function addPhoto() {
 
-    const title =
+    var title =
         document.getElementById(
             "photoTitle"
         ).value.trim();
 
 
-    const file =
+    var file =
         document.getElementById(
             "photoFile"
         ).value.trim();
 
 
-    const description =
+    var description =
         document.getElementById(
             "photoDescription"
         ).value.trim();
 
 
-    const message =
+    var message =
         document.getElementById(
             "galleryMessage"
         );
 
 
-    if (!title) {
+    if (title === "") {
 
         message.textContent =
             "⚠️ Please enter a photo title.";
 
+        message.className =
+            "message error";
+
         return;
 
     }
 
 
-    if (!file) {
+    if (file === "") {
 
         message.textContent =
             "⚠️ Please enter the photo filename.";
 
+        message.className =
+            "message error";
+
         return;
 
     }
 
 
-    if (!description) {
+    if (description === "") {
 
         message.textContent =
             "⚠️ Please enter a photo description.";
+
+        message.className =
+            "message error";
 
         return;
 
@@ -856,6 +901,10 @@ function addPhoto() {
     message.textContent =
         "✅ Photo added successfully!";
 
+
+    message.className =
+        "message success";
+
 }
 
 
@@ -882,25 +931,25 @@ function deletePhoto(index) {
    ACHIEVEMENTS
    ===================================================== */
 
-
-/* DEFAULT ACHIEVEMENTS */
-
-let defaultAchievements = [
+var defaultAchievements = [
 
     {
         title: "Academic Achievement",
+
         description:
             "A record of my academic progress and achievements."
     },
 
     {
         title: "School Activities",
+
         description:
             "Participation in school activities, projects and events."
     },
 
     {
         title: "Personal Projects",
+
         description:
             "Creative and educational projects that I have worked on."
     }
@@ -908,12 +957,16 @@ let defaultAchievements = [
 ];
 
 
-let achievements = [];
+/* CREATE ACHIEVEMENTS VARIABLE FIRST */
 
+var achievements = [];
+
+
+/* LOAD ACHIEVEMENTS */
 
 try {
 
-    const savedAchievements =
+    var storedAchievements =
         JSON.parse(
             localStorage.getItem(
                 "clintonAchievements"
@@ -922,13 +975,11 @@ try {
 
 
     if (
-        Array.isArray(savedAchievements)
-        &&
-        savedAchievements.length > 0
+        Array.isArray(storedAchievements)
     ) {
 
         achievements =
-            savedAchievements;
+            storedAchievements;
 
     } else {
 
@@ -961,7 +1012,7 @@ function saveAchievements() {
 
 function displayAchievements() {
 
-    const list =
+    var list =
         document.getElementById(
             "achievementList"
         );
@@ -983,28 +1034,28 @@ function displayAchievements() {
     achievements.forEach(
         function(achievement, index) {
 
-            const item =
+            var item =
                 document.createElement("div");
 
             item.className =
                 "item";
 
 
-            const title =
+            var title =
                 document.createElement("h3");
 
             title.textContent =
                 achievement.title;
 
 
-            const description =
+            var description =
                 document.createElement("p");
 
             description.textContent =
                 achievement.description;
 
 
-            const deleteButton =
+            var deleteButton =
                 document.createElement("button");
 
             deleteButton.className =
@@ -1041,38 +1092,44 @@ function displayAchievements() {
 
 function addAchievement() {
 
-    const title =
+    var title =
         document.getElementById(
             "achievementTitle"
         ).value.trim();
 
 
-    const description =
+    var description =
         document.getElementById(
             "achievementDescription"
         ).value.trim();
 
 
-    const message =
+    var message =
         document.getElementById(
             "achievementMessage"
         );
 
 
-    if (!title) {
+    if (title === "") {
 
         message.textContent =
             "⚠️ Please enter an achievement title.";
+
+        message.className =
+            "message error";
 
         return;
 
     }
 
 
-    if (!description) {
+    if (description === "") {
 
         message.textContent =
             "⚠️ Please enter an achievement description.";
+
+        message.className =
+            "message error";
 
         return;
 
@@ -1105,6 +1162,10 @@ function addAchievement() {
 
     message.textContent =
         "✅ Achievement added successfully!";
+
+
+    message.className =
+        "message success";
 
 }
 
