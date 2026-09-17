@@ -21,7 +21,7 @@
         header {
             background: #111827;
             color: white;
-            padding: 30px 20px;
+            padding: 20px;
             text-align: center;
         }
 
@@ -31,368 +31,343 @@
 
         header p {
             margin: 0;
-        }
-
-        .back {
-            display: inline-block;
-            margin-top: 15px;
-            color: white;
-            text-decoration: none;
+            color: #d1d5db;
         }
 
         .container {
-            max-width: 900px;
+            width: 92%;
+            max-width: 1100px;
             margin: 30px auto;
-            padding: 20px;
         }
 
         .card {
             background: white;
             padding: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-radius: 12px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        h2 {
+        .card h2 {
             margin-top: 0;
             color: #111827;
         }
 
         label {
             display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
             font-weight: bold;
-            margin-top: 18px;
-            margin-bottom: 7px;
         }
 
         input,
         textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid #d1d5db;
             border-radius: 7px;
-            font-size: 16px;
-            font-family: inherit;
+            font-size: 15px;
         }
 
         textarea {
-            min-height: 110px;
+            min-height: 100px;
             resize: vertical;
         }
 
         button {
-            margin-top: 20px;
-            padding: 13px 20px;
             border: none;
+            padding: 11px 18px;
             border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
             cursor: pointer;
+            font-size: 15px;
+            margin-top: 15px;
         }
 
-        button:hover {
+        .save-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .save-btn:hover {
             background: #1d4ed8;
         }
 
-        .secondary {
-            background: #374151;
-        }
-
-        .secondary:hover {
-            background: #1f2937;
-        }
-
-        .delete {
+        .delete-btn {
             background: #dc2626;
+            color: white;
         }
 
-        .delete:hover {
+        .delete-btn:hover {
             background: #b91c1c;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            margin-left: 8px;
+        }
+
+        .back-btn {
+            background: #374151;
+            color: white;
+        }
+
+        .login-box {
+            max-width: 450px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .login-box h1 {
+            text-align: center;
         }
 
         .message {
             margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .notice {
-            background: #eff6ff;
-            border-left: 4px solid #2563eb;
-            padding: 15px;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .item {
-            background: #f9fafb;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 12px;
-        }
-
-        .item img {
-            width: 100%;
-            max-width: 250px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .item h3 {
-            margin: 5px 0;
-        }
-
-        .item p {
-            color: #555;
-        }
-
-        .empty {
-            color: #777;
-            font-style: italic;
-        }
-
-        .small {
-            font-size: 14px;
-            color: #666;
+            padding: 12px;
+            border-radius: 7px;
+            display: none;
         }
 
         .success {
-            color: #15803d;
+            background: #dcfce7;
+            color: #166534;
         }
 
         .error {
-            color: #dc2626;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .item {
+            border: 1px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            background: #f9fafb;
+        }
+
+        .item h3 {
+            margin-top: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .top-buttons {
+            margin-top: 15px;
+        }
+
+        .status {
+            padding: 12px;
+            background: #eff6ff;
+            color: #1e40af;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+
+            .card {
+                padding: 18px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
+<!-- LOGIN -->
+<div id="loginSection" class="login-box">
 
-    <h1>Clinton Ncube</h1>
+    <h1>Admin Login</h1>
 
-    <p>Website Admin Dashboard</p>
+    <p style="text-align:center;">
+        Clinton Ncube Website
+    </p>
 
-    <a href="index.html" class="back">
-        ← Back to Website
-    </a>
+    <label>Email</label>
+    <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter admin email"
+    >
 
-</header>
+    <label>Password</label>
+    <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter password"
+    >
 
+    <button class="save-btn" onclick="login()">
+        Login
+    </button>
 
-<div class="container">
+    <div id="loginMessage" class="message"></div>
 
-    <!-- NOTICE -->
-
-    <div class="notice">
-
-        <strong>📝 Website Editor</strong><br>
-
-        Use this dashboard to manage your personal website,
-        gallery and achievements.
-
-    </div>
-
-
-    <!-- HOME PAGE -->
-
-    <div class="card">
-
-        <h2>🏠 Home Page</h2>
-
-        <label for="name">
-            Your Name
-        </label>
-
-        <input
-            type="text"
-            id="name"
-        >
-
-        <label for="welcome">
-            Welcome Message
-        </label>
-
-        <textarea
-            id="welcome"
-        ></textarea>
-
-        <label for="goal">
-            My Goal
-        </label>
-
-        <textarea
-            id="goal"
-        ></textarea>
-
-        <label for="about">
-            About Me
-        </label>
-
-        <textarea
-            id="about"
-        ></textarea>
-
-        <button onclick="saveWebsite()">
-            💾 Save Website Information
-        </button>
-
-        <button
-            class="secondary"
-            onclick="resetWebsite()"
-        >
-            ↩ Reset
-        </button>
-
-        <p
-            id="websiteMessage"
-            class="message"
-        ></p>
-
-    </div>
+</div>
 
 
-    <!-- GALLERY -->
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
 
-    <div class="card">
+    <header>
 
-        <h2>📸 Gallery Manager</h2>
+        <h1>Clinton Ncube Admin Dashboard</h1>
 
         <p>
-            Add a photo that already exists inside your
-            <strong>images</strong> folder.
+            Manage your website online
         </p>
 
-        <label for="photoTitle">
-            Photo Title
-        </label>
+        <div class="top-buttons">
 
-        <input
-            type="text"
-            id="photoTitle"
-            placeholder="Example: School Memory"
-        >
+            <button
+                class="back-btn"
+                onclick="window.location.href='index.html'"
+            >
+                ← Back to Website
+            </button>
 
-        <label for="photoFile">
-            Photo Filename
-        </label>
-
-        <input
-            type="text"
-            id="photoFile"
-            placeholder="Example: photo3.jpg"
-        >
-
-        <p class="small">
-            Example: IMG_20230121_WA0001.webp
-        </p>
-
-        <label for="photoDescription">
-            Photo Description
-        </label>
-
-        <textarea
-            id="photoDescription"
-            placeholder="Write a short description"
-        ></textarea>
-
-        <button onclick="addPhoto()">
-            📸 Add Photo
-        </button>
-
-        <p
-            id="galleryMessage"
-            class="message"
-        ></p>
-
-        <h3>Current Gallery Photos</h3>
-
-        <div id="galleryList"></div>
-
-    </div>
-
-
-    <!-- ACHIEVEMENTS -->
-
-    <div class="card">
-
-        <h2>🏆 Achievement Manager</h2>
-
-        <label for="achievementTitle">
-            Achievement Title
-        </label>
-
-        <input
-            type="text"
-            id="achievementTitle"
-            placeholder="Example: Academic Achievement"
-        >
-
-        <label for="achievementDescription">
-            Achievement Description
-        </label>
-
-        <textarea
-            id="achievementDescription"
-            placeholder="Describe your achievement"
-        ></textarea>
-
-        <button onclick="addAchievement()">
-            🏆 Add Achievement
-        </button>
-
-        <p
-            id="achievementMessage"
-            class="message"
-        ></p>
-
-        <h3>Current Achievements</h3>
-
-        <div id="achievementList"></div>
-
-    </div>
-
-
-    <!-- CURRENT INFORMATION -->
-
-    <div class="card">
-
-        <h2>👀 Current Information</h2>
-
-        <div class="item">
-
-            <h3>Name</h3>
-
-            <p id="currentName"></p>
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
 
         </div>
 
-        <div class="item">
+    </header>
 
-            <h3>Welcome Message</h3>
 
-            <p id="currentWelcome"></p>
+    <div class="container">
+
+        <div class="status">
+            ✅ You are logged in. Changes saved here will be stored online in Firebase.
+        </div>
+
+
+        <!-- HOME -->
+        <div class="card">
+
+            <h2>🏠 Home Information</h2>
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                id="homeName"
+                value="Clinton Ncube"
+            >
+
+            <label>Welcome Message</label>
+
+            <textarea id="homeWelcome"></textarea>
+
+            <label>Goal</label>
+
+            <textarea id="homeGoal"></textarea>
+
+            <label>About Me</label>
+
+            <textarea id="homeAbout"></textarea>
+
+            <button
+                class="save-btn"
+                onclick="saveHome()"
+            >
+                Save Home Information
+            </button>
+
+            <div id="homeMessage" class="message"></div>
 
         </div>
 
-        <div class="item">
 
-            <h3>Goal</h3>
+        <!-- GALLERY -->
+        <div class="card">
 
-            <p id="currentGoal"></p>
+            <h2>🖼️ Gallery Manager</h2>
+
+            <label>Photo Title</label>
+
+            <input
+                type="text"
+                id="photoTitle"
+                placeholder="Example: School Event"
+            >
+
+            <label>Image Filename</label>
+
+            <input
+                type="text"
+                id="photoFile"
+                placeholder="Example: photo1.jpg"
+            >
+
+            <label>Description</label>
+
+            <textarea
+                id="photoDescription"
+                placeholder="Describe the photo"
+            ></textarea>
+
+            <button
+                class="save-btn"
+                onclick="addPhoto()"
+            >
+                Add Photo
+            </button>
+
+            <div id="galleryMessage" class="message"></div>
+
+            <h3>Current Gallery</h3>
+
+            <div id="galleryList"></div>
 
         </div>
 
-        <div class="item">
 
-            <h3>About Me</h3>
+        <!-- ACHIEVEMENTS -->
+        <div class="card">
 
-            <p id="currentAbout"></p>
+            <h2>🏆 Achievements Manager</h2>
+
+            <label>Achievement Title</label>
+
+            <input
+                type="text"
+                id="achievementTitle"
+                placeholder="Example: Academic Achievement"
+            >
+
+            <label>Description</label>
+
+            <textarea
+                id="achievementDescription"
+                placeholder="Describe the achievement"
+            ></textarea>
+
+            <button
+                class="save-btn"
+                onclick="addAchievement()"
+            >
+                Add Achievement
+            </button>
+
+            <div id="achievementMessage" class="message"></div>
+
+            <h3>Current Achievements</h3>
+
+            <div id="achievementList"></div>
 
         </div>
 
@@ -401,803 +376,914 @@
 </div>
 
 
-<script>
+<script type="module">
 
-/* =====================================================
-   WEBSITE DATA
-   ===================================================== */
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-var websiteData = {
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        signOut
+    }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    name: "Clinton Ncube",
-
-    welcome:
-        "Welcome to my personal website! This is my personal portfolio where I share information about myself, my projects, hobbies, skills and favourite memories.",
-
-    goal:
-        "My goal is to continue learning, improving my skills and creating useful and interesting projects.",
-
-    about:
-        "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.",
-
-    lastUpdated: "2026"
-
-};
-
-
-/* =====================================================
-   WEBSITE INFORMATION
-   ===================================================== */
-
-var savedWebsite = null;
-
-try {
-
-    savedWebsite = JSON.parse(
-        localStorage.getItem("clintonWebsiteData")
-    );
-
-} catch (error) {
-
-    savedWebsite = null;
-
-}
+    import {
+        getDatabase,
+        ref,
+        get,
+        set,
+        push,
+        remove
+    }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-var currentWebsite =
-    savedWebsite || websiteData;
+    /* =========================
+       FIREBASE CONFIGURATION
+       ========================= */
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+
+        authDomain:
+            "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId:
+            "clinton-ncube-website",
+
+        storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId:
+            "946671700613",
+
+        appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId:
+            "G-K1S62MHHXP"
+    };
 
 
-/* LOAD WEBSITE INFORMATION */
+    /* =========================
+       INITIALIZE FIREBASE
+       ========================= */
 
-document.getElementById("name").value =
-    currentWebsite.name || "";
+    const app = initializeApp(firebaseConfig);
 
-document.getElementById("welcome").value =
-    currentWebsite.welcome || "";
+    const auth = getAuth(app);
 
-document.getElementById("goal").value =
-    currentWebsite.goal || "";
-
-document.getElementById("about").value =
-    currentWebsite.about || "";
+    const db = getDatabase(app);
 
 
-/* UPDATE CURRENT INFORMATION */
+    /* =========================
+       DEFAULT DATA
+       ========================= */
 
-function updateCurrentInformation() {
+    const defaultHome = {
 
-    document.getElementById("currentName")
-        .textContent =
-        document.getElementById("name").value;
-
-    document.getElementById("currentWelcome")
-        .textContent =
-        document.getElementById("welcome").value;
-
-    document.getElementById("currentGoal")
-        .textContent =
-        document.getElementById("goal").value;
-
-    document.getElementById("currentAbout")
-        .textContent =
-        document.getElementById("about").value;
-
-}
-
-
-/* SAVE WEBSITE */
-
-function saveWebsite() {
-
-    var updatedWebsite = {
-
-        name:
-            document.getElementById("name").value,
+        name: "Clinton Ncube",
 
         welcome:
-            document.getElementById("welcome").value,
+            "Welcome to my personal website! This is my personal portfolio where I share information about myself, my projects, hobbies, skills and favourite memories.",
 
         goal:
-            document.getElementById("goal").value,
+            "My goal is to continue learning, improving my skills and creating useful and interesting projects.",
 
         about:
-            document.getElementById("about").value,
+            "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.",
 
-        lastUpdated:
-            new Date().getFullYear().toString()
+        lastUpdated: "2026"
+    };
+
+
+    const defaultGallery = [
+
+        {
+            title: "Photo 1",
+            file: "IMG_20250802_093252.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 2",
+            file: "IMG_20250802_093305.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 3",
+            file: "WIN_20260814_16_48_08_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 4",
+            file: "WIN_20260814_16_48_27_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 5",
+            file: "WIN_20260814_16_48_35_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 6",
+            file: "WIN_20260814_16_48_39_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 7",
+            file: "WIN_20260814_16_49_03_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 8",
+            file: "WIN_20260814_16_49_16_Pro.jpg",
+            description: "A memorable moment."
+        },
+
+        {
+            title: "Photo 9",
+            file: "WIN_20260814_16_49_28_Pro.jpg",
+            description: "A memorable moment."
+        }
+
+    ];
+
+
+    const defaultAchievements = [
+
+        {
+            title: "Academic Achievement",
+            description:
+                "A record of my academic progress and achievements."
+        },
+
+        {
+            title: "School Activities",
+            description:
+                "Participation in school activities, projects and events."
+        },
+
+        {
+            title: "Personal Projects",
+            description:
+                "Creative and educational projects that I have worked on."
+        }
+
+    ];
+
+
+    /* =========================
+       LOGIN
+       ========================= */
+
+    window.login = async function () {
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "loginMessage",
+                "Please enter your email and password.",
+                false
+            );
+
+            return;
+        }
+
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "loginMessage",
+                "Login failed. Check your email and password.",
+                false
+            );
+
+        }
 
     };
 
 
-    localStorage.setItem(
-        "clintonWebsiteData",
-        JSON.stringify(updatedWebsite)
-    );
+    /* =========================
+       LOGOUT
+       ========================= */
 
+    window.logout = async function () {
 
-    document.getElementById(
-        "websiteMessage"
-    ).textContent =
-        "✅ Website information saved!";
+        await signOut(auth);
 
+    };
 
-    document.getElementById(
-        "websiteMessage"
-    ).className =
-        "message success";
 
+    /* =========================
+       AUTH STATE
+       ========================= */
 
-    updateCurrentInformation();
+    onAuthStateChanged(auth, async (user) => {
 
-}
+        if (user) {
 
+            document
+                .getElementById("loginSection")
+                .classList.add("hidden");
 
-/* RESET WEBSITE */
+            document
+                .getElementById("dashboard")
+                .classList.remove("hidden");
 
-function resetWebsite() {
+            await initializeDatabase();
 
-    localStorage.removeItem(
-        "clintonWebsiteData"
-    );
+            await loadHome();
 
+            await loadGallery();
 
-    document.getElementById("name").value =
-        websiteData.name;
-
-    document.getElementById("welcome").value =
-        websiteData.welcome;
-
-    document.getElementById("goal").value =
-        websiteData.goal;
-
-    document.getElementById("about").value =
-        websiteData.about;
-
-
-    document.getElementById(
-        "websiteMessage"
-    ).textContent =
-        "↩ Information reset.";
-
-
-    document.getElementById(
-        "websiteMessage"
-    ).className =
-        "message";
-
-
-    updateCurrentInformation();
-
-}
-
-
-/* =====================================================
-   GALLERY
-   ===================================================== */
-
-/*
-   IMPORTANT:
-   The gallery variable is created BEFORE
-   any gallery functions are called.
-*/
-
-var defaultGallery = [
-
-    {
-        title: "Memory 1",
-        file: "IMG_20250802_093252.jpg",
-        description: "A special moment."
-    },
-
-    {
-        title: "Memory 2",
-        file: "IMG_20250802_093305.jpg",
-        description: "A memorable moment."
-    },
-
-    {
-        title: "Memory 3",
-        file: "WIN_20260814_16_48_08_Pro.jpg",
-        description: "A special memory."
-    },
-
-    {
-        title: "Memory 4",
-        file: "WIN_20260814_16_48_27_Pro.jpg",
-        description: "A memorable experience."
-    },
-
-    {
-        title: "Memory 5",
-        file: "WIN_20260814_16_48_35_Pro.jpg",
-        description: "A special moment."
-    },
-
-    {
-        title: "Memory 6",
-        file: "WIN_20260814_16_48_39_Pro.jpg",
-        description: "A memorable moment."
-    },
-
-    {
-        title: "Memory 7",
-        file: "WIN_20260814_16_49_03_Pro.jpg",
-        description: "A special memory."
-    },
-
-    {
-        title: "Memory 8",
-        file: "WIN_20260814_16_49_16_Pro.jpg",
-        description: "A memorable experience."
-    },
-
-    {
-        title: "Memory 9",
-        file: "WIN_20260814_16_49_28_Pro.jpg",
-        description: "A special moment."
-    }
-
-];
-
-
-/* CREATE GALLERY VARIABLE FIRST */
-
-var gallery = [];
-
-
-/* LOAD SAVED GALLERY */
-
-try {
-
-    var storedGallery =
-        JSON.parse(
-            localStorage.getItem("clintonGallery")
-        );
-
-
-    if (
-        Array.isArray(storedGallery)
-    ) {
-
-        gallery = storedGallery;
-
-    } else {
-
-        gallery = defaultGallery;
-
-    }
-
-} catch (error) {
-
-    gallery = defaultGallery;
-
-}
-
-
-/* SAVE GALLERY */
-
-function saveGallery() {
-
-    localStorage.setItem(
-        "clintonGallery",
-        JSON.stringify(gallery)
-    );
-
-}
-
-
-/* DISPLAY GALLERY */
-
-function displayGallery() {
-
-    var galleryList =
-        document.getElementById(
-            "galleryList"
-        );
-
-
-    galleryList.innerHTML = "";
-
-
-    if (gallery.length === 0) {
-
-        galleryList.innerHTML =
-            '<p class="empty">No gallery photos added yet.</p>';
-
-        return;
-
-    }
-
-
-    gallery.forEach(
-        function(photo, index) {
-
-            var item =
-                document.createElement("div");
-
-            item.className =
-                "item";
-
-
-            var image =
-                document.createElement("img");
-
-            image.src =
-                "images/" + photo.file;
-
-            image.alt =
-                photo.title;
-
-
-            image.onerror =
-                function() {
-
-                    image.style.display =
-                        "none";
-
-                };
-
-
-            var title =
-                document.createElement("h3");
-
-            title.textContent =
-                photo.title;
-
-
-            var description =
-                document.createElement("p");
-
-            description.textContent =
-                photo.description;
-
-
-            var filename =
-                document.createElement("p");
-
-            filename.className =
-                "small";
-
-            filename.textContent =
-                "File: images/" + photo.file;
-
-
-            var deleteButton =
-                document.createElement("button");
-
-            deleteButton.className =
-                "delete";
-
-            deleteButton.textContent =
-                "🗑️ Delete Photo";
-
-
-            deleteButton.onclick =
-                function() {
-
-                    deletePhoto(index);
-
-                };
-
-
-            item.appendChild(image);
-
-            item.appendChild(title);
-
-            item.appendChild(description);
-
-            item.appendChild(filename);
-
-            item.appendChild(deleteButton);
-
-
-            galleryList.appendChild(item);
+            await loadAchievements();
 
         }
-    );
 
-}
+        else {
 
+            document
+                .getElementById("loginSection")
+                .classList.remove("hidden");
 
-/* ADD PHOTO */
+            document
+                .getElementById("dashboard")
+                .classList.add("hidden");
 
-function addPhoto() {
-
-    var title =
-        document.getElementById(
-            "photoTitle"
-        ).value.trim();
-
-
-    var file =
-        document.getElementById(
-            "photoFile"
-        ).value.trim();
-
-
-    var description =
-        document.getElementById(
-            "photoDescription"
-        ).value.trim();
-
-
-    var message =
-        document.getElementById(
-            "galleryMessage"
-        );
-
-
-    if (title === "") {
-
-        message.textContent =
-            "⚠️ Please enter a photo title.";
-
-        message.className =
-            "message error";
-
-        return;
-
-    }
-
-
-    if (file === "") {
-
-        message.textContent =
-            "⚠️ Please enter the photo filename.";
-
-        message.className =
-            "message error";
-
-        return;
-
-    }
-
-
-    if (description === "") {
-
-        message.textContent =
-            "⚠️ Please enter a photo description.";
-
-        message.className =
-            "message error";
-
-        return;
-
-    }
-
-
-    gallery.push({
-
-        title: title,
-
-        file: file,
-
-        description: description
+        }
 
     });
 
 
-    saveGallery();
+    /* =========================
+       INITIAL DATABASE
+       ========================= */
 
-    displayGallery();
+    async function initializeDatabase() {
 
+        const homeRef =
+            ref(db, "websiteData");
 
-    document.getElementById(
-        "photoTitle"
-    ).value = "";
+        const homeSnapshot =
+            await get(homeRef);
 
 
-    document.getElementById(
-        "photoFile"
-    ).value = "";
+        if (!homeSnapshot.exists()) {
 
-
-    document.getElementById(
-        "photoDescription"
-    ).value = "";
-
-
-    message.textContent =
-        "✅ Photo added successfully!";
-
-
-    message.className =
-        "message success";
-
-}
-
-
-/* DELETE PHOTO */
-
-function deletePhoto(index) {
-
-    gallery.splice(index, 1);
-
-    saveGallery();
-
-    displayGallery();
-
-
-    document.getElementById(
-        "galleryMessage"
-    ).textContent =
-        "🗑️ Photo deleted.";
-
-}
-
-
-/* =====================================================
-   ACHIEVEMENTS
-   ===================================================== */
-
-var defaultAchievements = [
-
-    {
-        title: "Academic Achievement",
-
-        description:
-            "A record of my academic progress and achievements."
-    },
-
-    {
-        title: "School Activities",
-
-        description:
-            "Participation in school activities, projects and events."
-    },
-
-    {
-        title: "Personal Projects",
-
-        description:
-            "Creative and educational projects that I have worked on."
-    }
-
-];
-
-
-/* CREATE ACHIEVEMENTS VARIABLE FIRST */
-
-var achievements = [];
-
-
-/* LOAD ACHIEVEMENTS */
-
-try {
-
-    var storedAchievements =
-        JSON.parse(
-            localStorage.getItem(
-                "clintonAchievements"
-            )
-        );
-
-
-    if (
-        Array.isArray(storedAchievements)
-    ) {
-
-        achievements =
-            storedAchievements;
-
-    } else {
-
-        achievements =
-            defaultAchievements;
-
-    }
-
-} catch (error) {
-
-    achievements =
-        defaultAchievements;
-
-}
-
-
-/* SAVE ACHIEVEMENTS */
-
-function saveAchievements() {
-
-    localStorage.setItem(
-        "clintonAchievements",
-        JSON.stringify(achievements)
-    );
-
-}
-
-
-/* DISPLAY ACHIEVEMENTS */
-
-function displayAchievements() {
-
-    var list =
-        document.getElementById(
-            "achievementList"
-        );
-
-
-    list.innerHTML = "";
-
-
-    if (achievements.length === 0) {
-
-        list.innerHTML =
-            '<p class="empty">No achievements added yet.</p>';
-
-        return;
-
-    }
-
-
-    achievements.forEach(
-        function(achievement, index) {
-
-            var item =
-                document.createElement("div");
-
-            item.className =
-                "item";
-
-
-            var title =
-                document.createElement("h3");
-
-            title.textContent =
-                achievement.title;
-
-
-            var description =
-                document.createElement("p");
-
-            description.textContent =
-                achievement.description;
-
-
-            var deleteButton =
-                document.createElement("button");
-
-            deleteButton.className =
-                "delete";
-
-            deleteButton.textContent =
-                "🗑️ Delete Achievement";
-
-
-            deleteButton.onclick =
-                function() {
-
-                    deleteAchievement(index);
-
-                };
-
-
-            item.appendChild(title);
-
-            item.appendChild(description);
-
-            item.appendChild(deleteButton);
-
-
-            list.appendChild(item);
+            await set(
+                homeRef,
+                defaultHome
+            );
 
         }
-    );
-
-}
 
 
-/* ADD ACHIEVEMENT */
+        const galleryRef =
+            ref(db, "gallery");
 
-function addAchievement() {
-
-    var title =
-        document.getElementById(
-            "achievementTitle"
-        ).value.trim();
+        const gallerySnapshot =
+            await get(galleryRef);
 
 
-    var description =
-        document.getElementById(
-            "achievementDescription"
-        ).value.trim();
+        if (!gallerySnapshot.exists()) {
+
+            const galleryObject = {};
+
+            defaultGallery.forEach(photo => {
+
+                const newRef =
+                    push(galleryRef);
+
+                galleryObject[newRef.key] = photo;
+
+            });
+
+            await set(
+                galleryRef,
+                galleryObject
+            );
+
+        }
 
 
-    var message =
-        document.getElementById(
-            "achievementMessage"
+        const achievementsRef =
+            ref(db, "achievements");
+
+        const achievementsSnapshot =
+            await get(achievementsRef);
+
+
+        if (!achievementsSnapshot.exists()) {
+
+            const achievementsObject = {};
+
+            defaultAchievements.forEach(achievement => {
+
+                const newRef =
+                    push(achievementsRef);
+
+                achievementsObject[newRef.key] =
+                    achievement;
+
+            });
+
+            await set(
+                achievementsRef,
+                achievementsObject
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       SAVE HOME
+       ========================= */
+
+    window.saveHome = async function () {
+
+        const data = {
+
+            name:
+                document.getElementById("homeName").value,
+
+            welcome:
+                document.getElementById("homeWelcome").value,
+
+            goal:
+                document.getElementById("homeGoal").value,
+
+            about:
+                document.getElementById("homeAbout").value,
+
+            lastUpdated:
+                new Date().getFullYear().toString()
+
+        };
+
+
+        try {
+
+            await set(
+                ref(db, "websiteData"),
+                data
+            );
+
+
+            showMessage(
+                "homeMessage",
+                "Home information saved online successfully!",
+                true
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "homeMessage",
+                "Could not save Home information.",
+                false
+            );
+
+        }
+
+    };
+
+
+    /* =========================
+       LOAD HOME
+       ========================= */
+
+    async function loadHome() {
+
+        const snapshot =
+            await get(
+                ref(db, "websiteData")
+            );
+
+
+        if (!snapshot.exists()) return;
+
+
+        const data =
+            snapshot.val();
+
+
+        document.getElementById("homeName").value =
+            data.name || "";
+
+        document.getElementById("homeWelcome").value =
+            data.welcome || "";
+
+        document.getElementById("homeGoal").value =
+            data.goal || "";
+
+        document.getElementById("homeAbout").value =
+            data.about || "";
+
+    }
+
+
+    /* =========================
+       ADD PHOTO
+       ========================= */
+
+    window.addPhoto = async function () {
+
+        const title =
+            document.getElementById("photoTitle").value.trim();
+
+        const file =
+            document.getElementById("photoFile").value.trim();
+
+        const description =
+            document.getElementById("photoDescription").value.trim();
+
+
+        if (!title || !file) {
+
+            showMessage(
+                "galleryMessage",
+                "Please enter a photo title and filename.",
+                false
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const galleryRef =
+                ref(db, "gallery");
+
+            const newPhotoRef =
+                push(galleryRef);
+
+
+            await set(
+                newPhotoRef,
+                {
+                    title: title,
+                    file: file,
+                    description: description
+                }
+            );
+
+
+            document.getElementById("photoTitle").value = "";
+
+            document.getElementById("photoFile").value = "";
+
+            document.getElementById("photoDescription").value = "";
+
+
+            showMessage(
+                "galleryMessage",
+                "Photo added successfully!",
+                true
+            );
+
+
+            await loadGallery();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "galleryMessage",
+                "Could not add photo.",
+                false
+            );
+
+        }
+
+    };
+
+
+    /* =========================
+       LOAD GALLERY
+       ========================= */
+
+    async function loadGallery() {
+
+        const snapshot =
+            await get(
+                ref(db, "gallery")
+            );
+
+
+        const list =
+            document.getElementById("galleryList");
+
+
+        list.innerHTML = "";
+
+
+        if (!snapshot.exists()) {
+
+            list.innerHTML =
+                "<p>No photos yet.</p>";
+
+            return;
+
+        }
+
+
+        const gallery =
+            snapshot.val();
+
+
+        Object.entries(gallery).forEach(
+            ([id, photo]) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "item";
+
+
+                item.innerHTML = `
+
+                    <h3>${escapeHTML(photo.title || "Untitled")}</h3>
+
+                    <p>
+                        <strong>Filename:</strong>
+                        ${escapeHTML(photo.file || "")}
+                    </p>
+
+                    <p>
+                        ${escapeHTML(photo.description || "")}
+                    </p>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deletePhoto('${id}')"
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(item);
+
+            }
         );
 
+    }
 
-    if (title === "") {
 
-        message.textContent =
-            "⚠️ Please enter an achievement title.";
+    /* =========================
+       DELETE PHOTO
+       ========================= */
 
-        message.className =
-            "message error";
+    window.deletePhoto = async function (id) {
 
-        return;
+        if (!confirm("Delete this photo?")) {
+            return;
+        }
+
+
+        try {
+
+            await remove(
+                ref(db, "gallery/" + id)
+            );
+
+
+            await loadGallery();
+
+
+            showMessage(
+                "galleryMessage",
+                "Photo deleted successfully.",
+                true
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "galleryMessage",
+                "Could not delete photo.",
+                false
+            );
+
+        }
+
+    };
+
+
+    /* =========================
+       ADD ACHIEVEMENT
+       ========================= */
+
+    window.addAchievement = async function () {
+
+        const title =
+            document
+                .getElementById("achievementTitle")
+                .value
+                .trim();
+
+
+        const description =
+            document
+                .getElementById("achievementDescription")
+                .value
+                .trim();
+
+
+        if (!title || !description) {
+
+            showMessage(
+                "achievementMessage",
+                "Please enter the title and description.",
+                false
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const achievementsRef =
+                ref(db, "achievements");
+
+            const newAchievementRef =
+                push(achievementsRef);
+
+
+            await set(
+                newAchievementRef,
+                {
+                    title: title,
+                    description: description
+                }
+            );
+
+
+            document
+                .getElementById("achievementTitle")
+                .value = "";
+
+
+            document
+                .getElementById("achievementDescription")
+                .value = "";
+
+
+            showMessage(
+                "achievementMessage",
+                "Achievement added successfully!",
+                true
+            );
+
+
+            await loadAchievements();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "achievementMessage",
+                "Could not add achievement.",
+                false
+            );
+
+        }
+
+    };
+
+
+    /* =========================
+       LOAD ACHIEVEMENTS
+       ========================= */
+
+    async function loadAchievements() {
+
+        const snapshot =
+            await get(
+                ref(db, "achievements")
+            );
+
+
+        const list =
+            document.getElementById(
+                "achievementList"
+            );
+
+
+        list.innerHTML = "";
+
+
+        if (!snapshot.exists()) {
+
+            list.innerHTML =
+                "<p>No achievements yet.</p>";
+
+            return;
+
+        }
+
+
+        const achievements =
+            snapshot.val();
+
+
+        Object.entries(achievements).forEach(
+            ([id, achievement]) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "item";
+
+
+                item.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            achievement.title || "Untitled"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            achievement.description || ""
+                        )}
+                    </p>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteAchievement('${id}')"
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(item);
+
+            }
+        );
 
     }
 
 
-    if (description === "") {
+    /* =========================
+       DELETE ACHIEVEMENT
+       ========================= */
 
-        message.textContent =
-            "⚠️ Please enter an achievement description.";
+    window.deleteAchievement =
+        async function (id) {
 
-        message.className =
-            "message error";
+            if (
+                !confirm(
+                    "Delete this achievement?"
+                )
+            ) {
+                return;
+            }
 
-        return;
+
+            try {
+
+                await remove(
+                    ref(
+                        db,
+                        "achievements/" + id
+                    )
+                );
+
+
+                await loadAchievements();
+
+
+                showMessage(
+                    "achievementMessage",
+                    "Achievement deleted successfully.",
+                    true
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "achievementMessage",
+                    "Could not delete achievement.",
+                    false
+                );
+
+            }
+
+        };
+
+
+    /* =========================
+       MESSAGE
+       ========================= */
+
+    function showMessage(
+        elementId,
+        text,
+        success
+    ) {
+
+        const element =
+            document.getElementById(elementId);
+
+
+        element.textContent = text;
+
+        element.className =
+            "message " +
+            (success ? "success" : "error");
+
+        element.style.display = "block";
+
+
+        setTimeout(() => {
+
+            element.style.display = "none";
+
+        }, 4000);
 
     }
 
 
-    achievements.push({
+    /* =========================
+       SECURITY
+       ========================= */
 
-        title: title,
+    function escapeHTML(value) {
 
-        description: description
+        return String(value)
 
-    });
+            .replace(/&/g, "&amp;")
 
+            .replace(/</g, "&lt;")
 
-    saveAchievements();
+            .replace(/>/g, "&gt;")
 
-    displayAchievements();
+            .replace(/"/g, "&quot;")
 
+            .replace(/'/g, "&#039;");
 
-    document.getElementById(
-        "achievementTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "achievementDescription"
-    ).value = "";
-
-
-    message.textContent =
-        "✅ Achievement added successfully!";
-
-
-    message.className =
-        "message success";
-
-}
-
-
-/* DELETE ACHIEVEMENT */
-
-function deleteAchievement(index) {
-
-    achievements.splice(index, 1);
-
-    saveAchievements();
-
-    displayAchievements();
-
-
-    document.getElementById(
-        "achievementMessage"
-    ).textContent =
-        "🗑️ Achievement deleted.";
-
-}
-
-
-/* =====================================================
-   START DASHBOARD
-   ===================================================== */
-
-updateCurrentInformation();
-
-displayGallery();
-
-displayAchievements();
+    }
 
 </script>
 
