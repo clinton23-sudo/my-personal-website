@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +65,11 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border-top: 5px solid #2563eb;
+            transition: transform 0.2s ease;
+        }
+
+        .achievement:hover {
+            transform: translateY(-5px);
         }
 
         .achievement h2 {
@@ -77,12 +81,30 @@
             line-height: 1.6;
         }
 
+        .empty {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+
         footer {
             background: #111827;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
         }
     </style>
 </head>
@@ -101,16 +123,22 @@
     <a href="achievements.html">Achievements</a>
     <a href="hobbies.html">Hobbies</a>
     <a href="contact.html">Contact</a>
+    <a href="admin.html">⚙️ Dashboard</a>
 </nav>
 
 <div class="container">
 
     <div class="intro">
+
         <h1>My Achievements</h1>
+
         <p>
             Here are some of my academic, school and personal achievements.
         </p>
+
     </div>
+
+    <!-- ACHIEVEMENTS WILL APPEAR HERE -->
 
     <div class="achievements" id="achievementsContainer">
     </div>
@@ -121,27 +149,152 @@
     <p>© 2026 Clinton Ncube. All Rights Reserved.</p>
 </footer>
 
-<script src="achievements.js"></script>
 
 <script>
-    const container =
-        document.getElementById("achievementsContainer");
 
-    achievements.forEach(function(achievement) {
+    /*
+     * Default achievements
+     * These appear if nothing has been saved
+     * from the Admin Dashboard yet.
+     */
 
-        const card = document.createElement("div");
+    var defaultAchievements = [
 
-        card.className = "achievement";
+        {
+            title: "Academic Achievement",
+            description:
+                "A record of my academic progress and achievements."
+        },
 
-        card.innerHTML = `
-            <h2>🏆 ${achievement.title}</h2>
-            <p>${achievement.description}</p>
-        `;
+        {
+            title: "School Activities",
+            description:
+                "Participation in school activities, projects and events."
+        },
 
-        container.appendChild(card);
-    });
+        {
+            title: "Personal Projects",
+            description:
+                "Creative and educational projects that I have worked on."
+        }
+
+    ];
+
+
+    /*
+     * Get achievements saved by the Admin Dashboard.
+     */
+
+    var achievements = null;
+
+    try {
+
+        achievements =
+            JSON.parse(
+                localStorage.getItem("clintonAchievements")
+            );
+
+    } catch (error) {
+
+        achievements = null;
+
+    }
+
+
+    /*
+     * If there are no saved achievements,
+     * use the default achievements.
+     */
+
+    if (!Array.isArray(achievements)) {
+
+        achievements = defaultAchievements;
+
+    }
+
+
+    /*
+     * Display the achievements.
+     */
+
+    function displayAchievements() {
+
+        var container =
+            document.getElementById(
+                "achievementsContainer"
+            );
+
+        container.innerHTML = "";
+
+
+        /*
+         * If there are no achievements.
+         */
+
+        if (achievements.length === 0) {
+
+            container.innerHTML =
+
+                '<div class="empty">' +
+
+                '<h2>🏆 No Achievements Yet</h2>' +
+
+                '<p>' +
+                'Achievements added through the Admin Dashboard will appear here.' +
+                '</p>' +
+
+                '</div>';
+
+            return;
+
+        }
+
+
+        /*
+         * Create each achievement card.
+         */
+
+        achievements.forEach(function(achievement) {
+
+            var card =
+                document.createElement("div");
+
+            card.className =
+                "achievement";
+
+
+            var title =
+                document.createElement("h2");
+
+            title.textContent =
+                "🏆 " + achievement.title;
+
+
+            var description =
+                document.createElement("p");
+
+            description.textContent =
+                achievement.description;
+
+
+            card.appendChild(title);
+
+            card.appendChild(description);
+
+            container.appendChild(card);
+
+        });
+
+    }
+
+
+    /*
+     * Start the achievements page.
+     */
+
+    displayAchievements();
+
 </script>
 
 </body>
 </html>
-```
