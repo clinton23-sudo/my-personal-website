@@ -1,417 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Projects | Clinton Ncube</title>
 
-    <title>
-        Achievements | Clinton Ncube
-    </title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
 
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            background: #374151;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .project-card p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 9px 14px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .project-link:hover {
+            background: #374151;
+        }
+
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        #empty {
+            text-align: center;
+            display: none;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            background: #111827;
+            color: white;
+        }
+    </style>
 </head>
-
 
 <body>
 
+<header>
+    <h1>Clinton Ncube</h1>
 
-    <!-- HEADER -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="skills.html">Skills</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
-    <header>
+<main>
 
-        <h1>
-            Clinton Ncube
-        </h1>
+    <section class="intro">
+        <h2>My Projects</h2>
+        <p>Here are some of the projects I have worked on.</p>
+    </section>
 
-        <p>
-            My Achievements
-        </p>
+    <div id="loading">
+        Loading projects...
+    </div>
 
+    <div id="empty">
+        <h3>No projects have been added yet.</h3>
+        <p>Projects added from the Admin Dashboard will appear here.</p>
+    </div>
 
-        <nav>
+    <div class="projects-container" id="projects-container"></div>
 
-            <a href="index.html">
-                Home
-            </a>
+</main>
 
-            <a href="about.html">
-                About Me
-            </a>
-
-            <a href="projects.html">
-                Projects
-            </a>
-
-            <a href="hobbies.html">
-                Hobbies
-            </a>
-
-            <a href="skills.html">
-                Skills
-            </a>
-
-            <a href="gallery.html">
-                Gallery
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-            <a href="admin.html">
-                ⚙️ Dashboard
-            </a>
-
-            <a
-                class="active"
-                href="achievements.html"
-            >
-                Achievements
-            </a>
-
-        </nav>
-
-    </header>
+<footer>
+    <p>© 2026 Clinton Ncube. All rights reserved.</p>
+</footer>
 
 
+<script type="module">
 
-    <!-- MAIN CONTENT -->
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    <main>
-
-
-        <!-- INTRODUCTION -->
-
-        <section>
-
-            <h2>
-                My Achievements 🏆
-            </h2>
-
-            <p>
-                Here are some of my achievements,
-                activities and accomplishments.
-            </p>
-
-        </section>
+    import {
+        getDatabase,
+        ref,
+        onValue
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
+    // Firebase configuration
+    const firebaseConfig = {
 
-        <!-- ACHIEVEMENTS -->
+        apiKey: "AIzaSyCW9kqho3sPz1W6wGEftS3nNSaJigR-1vd4",
 
-        <section>
+        authDomain: "clinton-ncube-website.firebaseapp.com",
 
-            <div
-                id="achievements-container"
-                class="card-container"
-            >
+        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-                <p>
-                    Loading achievements...
-                </p>
+        projectId: "clinton-ncube-website",
 
-            </div>
+        storageBucket: "clinton-ncube-website.firebasestorage.app",
 
-        </section>
+        messagingSenderId: "946671700613",
 
+        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-    </main>
-
+        measurementId: "G-K1S62MHHXP"
+    };
 
 
-    <!-- FOOTER -->
+    // Start Firebase
+    const app = initializeApp(firebaseConfig);
 
-    <footer>
-
-        <p>
-            &copy; 2026 Clinton Ncube
-        </p>
-
-        <p>
-            Built with HTML & CSS |
-            My Personal Portfolio
-        </p>
-
-    </footer>
+    const database = getDatabase(app);
 
 
+    const projectsContainer =
+        document.getElementById("projects-container");
 
-    <!-- FIREBASE -->
+    const loading =
+        document.getElementById("loading");
 
-    <script type="module">
+    const empty =
+        document.getElementById("empty");
 
 
-        /*
-         * FIREBASE IMPORTS
-         */
+    // Prevent HTML injection
+    function escapeHTML(text) {
 
-        import {
-            initializeApp
+        return String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    // Load projects from Firebase
+    const projectsRef = ref(database, "projects");
+
+
+    onValue(projectsRef, (snapshot) => {
+
+        projectsContainer.innerHTML = "";
+
+        loading.style.display = "none";
+
+
+        if (!snapshot.exists()) {
+
+            empty.style.display = "block";
+
+            return;
         }
-        from
-        "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 
-        import {
-            getDatabase,
-            ref,
-            onValue
-        }
-        from
-        "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+        empty.style.display = "none";
 
 
+        const projects = snapshot.val();
 
-        /*
-         * FIREBASE CONFIGURATION
-         */
 
-        const firebaseConfig = {
+        Object.entries(projects).forEach(([id, project]) => {
 
-            apiKey:
-                "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+            const card = document.createElement("div");
 
-            authDomain:
-                "clinton-ncube-website.firebaseapp.com",
+            card.className = "project-card";
 
-            databaseURL:
-                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-            projectId:
-                "clinton-ncube-website",
+            let linkHTML = "";
 
-            storageBucket:
-                "clinton-ncube-website.firebasestorage.app",
 
-            messagingSenderId:
-                "946671700613",
+            if (project.link) {
 
-            appId:
-                "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-            measurementId:
-                "G-K1S62MHHXP"
-
-        };
-
-
-
-        /*
-         * INITIALIZE FIREBASE
-         */
-
-        const app =
-            initializeApp(firebaseConfig);
-
-
-        const db =
-            getDatabase(app);
-
-
-
-        /*
-         * ACHIEVEMENTS DATABASE
-         */
-
-        const achievementsRef =
-            ref(db, "achievements");
-
-
-
-        /*
-         * LOAD ACHIEVEMENTS
-         */
-
-        onValue(
-
-            achievementsRef,
-
-            (snapshot) => {
-
-
-                const container =
-                    document.getElementById(
-                        "achievements-container"
-                    );
-
-
-                container.innerHTML = "";
-
-
-
-                /*
-                 * NO ACHIEVEMENTS
-                 */
-
-                if (!snapshot.exists()) {
-
-                    container.innerHTML = `
-
-                        <div class="card">
-
-                            <h3>
-                                No Achievements Yet
-                            </h3>
-
-                            <p>
-                                Achievements added
-                                through the Admin
-                                Dashboard will
-                                appear here.
-                            </p>
-
-                        </div>
-
-                    `;
-
-                    return;
-
-                }
-
-
-
-                /*
-                 * GET FIREBASE DATA
-                 */
-
-                const achievements =
-                    snapshot.val();
-
-
-
-                /*
-                 * CREATE ACHIEVEMENT CARDS
-                 */
-
-                Object.entries(achievements)
-                    .forEach(
-                        ([id, achievement]) => {
-
-
-                            const card =
-                                document.createElement(
-                                    "div"
-                                );
-
-
-                            card.className =
-                                "card";
-
-
-
-                            card.innerHTML = `
-
-                                <h3>
-                                    🏆
-                                    ${escapeHTML(
-                                        achievement.title ||
-                                        "Achievement"
-                                    )}
-                                </h3>
-
-                                <p>
-                                    ${escapeHTML(
-                                        achievement.description ||
-                                        ""
-                                    )}
-                                </p>
-
-                            `;
-
-
-                            container.appendChild(
-                                card
-                            );
-
-                        }
-                    );
-
-            },
-
-            (error) => {
-
-
-                console.error(
-                    "Firebase Achievements Error:",
-                    error
-                );
-
-
-                document.getElementById(
-                    "achievements-container"
-                ).innerHTML = `
-
-                    <div class="card">
-
-                        <h3>
-                            Achievements Error
-                        </h3>
-
-                        <p>
-                            The achievements
-                            could not be loaded.
-                            Please try again later.
-                        </p>
-
-                    </div>
-
+                linkHTML = `
+                    <a
+                        class="project-link"
+                        href="${escapeHTML(project.link)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Project
+                    </a>
                 `;
-
             }
 
-        );
+
+            card.innerHTML = `
+
+                <h3>${escapeHTML(project.title)}</h3>
+
+                <p>
+                    ${escapeHTML(project.description)}
+                </p>
+
+                ${linkHTML}
+
+            `;
 
 
+            projectsContainer.appendChild(card);
 
-        /*
-         * SECURITY FUNCTION
-         */
+        });
 
-        function escapeHTML(value) {
-
-            return String(value)
-
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
-
-        }
+    });
 
 
-    </script>
-
+</script>
 
 </body>
-
 </html>
