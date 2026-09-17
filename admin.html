@@ -170,6 +170,11 @@
             margin-bottom: 20px;
         }
 
+        .project-link-preview {
+            color: #2563eb;
+            word-break: break-all;
+        }
+
         @media (max-width: 600px) {
             .container {
                 width: 95%;
@@ -184,7 +189,10 @@
 
 <body>
 
-<!-- LOGIN -->
+<!-- =========================
+     LOGIN
+     ========================= -->
+
 <div id="loginSection" class="login-box">
 
     <h1>Admin Login</h1>
@@ -194,6 +202,7 @@
     </p>
 
     <label>Email</label>
+
     <input
         type="email"
         id="loginEmail"
@@ -201,6 +210,7 @@
     >
 
     <label>Password</label>
+
     <input
         type="password"
         id="loginPassword"
@@ -216,7 +226,10 @@
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+     ========================= -->
+
 <div id="dashboard" class="hidden">
 
     <header>
@@ -255,7 +268,10 @@
         </div>
 
 
-        <!-- HOME -->
+        <!-- =========================
+             HOME
+             ========================= -->
+
         <div class="card">
 
             <h2>🏠 Home Information</h2>
@@ -292,7 +308,10 @@
         </div>
 
 
-        <!-- GALLERY -->
+        <!-- =========================
+             GALLERY
+             ========================= -->
+
         <div class="card">
 
             <h2>🖼️ Gallery Manager</h2>
@@ -336,7 +355,10 @@
         </div>
 
 
-        <!-- ACHIEVEMENTS -->
+        <!-- =========================
+             ACHIEVEMENTS
+             ========================= -->
+
         <div class="card">
 
             <h2>🏆 Achievements Manager</h2>
@@ -371,12 +393,63 @@
 
         </div>
 
+
+        <!-- =========================
+             PROJECTS
+             ========================= -->
+
+        <div class="card">
+
+            <h2>📁 Projects Manager</h2>
+
+            <label>Project Title</label>
+
+            <input
+                type="text"
+                id="projectTitle"
+                placeholder="Example: Personal Website"
+            >
+
+            <label>Project Description</label>
+
+            <textarea
+                id="projectDescription"
+                placeholder="Describe your project"
+            ></textarea>
+
+            <label>Project Link</label>
+
+            <input
+                type="url"
+                id="projectLink"
+                placeholder="Example: https://example.com"
+            >
+
+            <button
+                class="save-btn"
+                onclick="addProject()"
+            >
+                Add Project
+            </button>
+
+            <div id="projectMessage" class="message"></div>
+
+            <h3>Current Projects</h3>
+
+            <div id="projectList"></div>
+
+        </div>
+
     </div>
 
 </div>
 
 
 <script type="module">
+
+    /* =========================
+       FIREBASE IMPORTS
+       ========================= */
 
     import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
@@ -406,7 +479,8 @@
 
     const firebaseConfig = {
 
-        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+        apiKey:
+            "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
 
         authDomain:
             "clinton-ncube-website.firebaseapp.com",
@@ -435,15 +509,18 @@
        INITIALIZE FIREBASE
        ========================= */
 
-    const app = initializeApp(firebaseConfig);
+    const app =
+        initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
+    const auth =
+        getAuth(app);
 
-    const db = getDatabase(app);
+    const db =
+        getDatabase(app);
 
 
     /* =========================
-       DEFAULT DATA
+       DEFAULT HOME DATA
        ========================= */
 
     const defaultHome = {
@@ -460,8 +537,13 @@
             "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.",
 
         lastUpdated: "2026"
+
     };
 
+
+    /* =========================
+       DEFAULT GALLERY
+       ========================= */
 
     const defaultGallery = [
 
@@ -522,6 +604,10 @@
     ];
 
 
+    /* =========================
+       DEFAULT ACHIEVEMENTS
+       ========================= */
+
     const defaultAchievements = [
 
         {
@@ -552,10 +638,15 @@
     window.login = async function () {
 
         const email =
-            document.getElementById("loginEmail").value.trim();
+            document
+                .getElementById("loginEmail")
+                .value
+                .trim();
 
         const password =
-            document.getElementById("loginPassword").value;
+            document
+                .getElementById("loginPassword")
+                .value;
 
 
         if (!email || !password) {
@@ -622,6 +713,7 @@
                 .getElementById("dashboard")
                 .classList.remove("hidden");
 
+
             await initializeDatabase();
 
             await loadHome();
@@ -629,6 +721,8 @@
             await loadGallery();
 
             await loadAchievements();
+
+            await loadProjects();
 
         }
 
@@ -681,14 +775,17 @@
 
             const galleryObject = {};
 
+
             defaultGallery.forEach(photo => {
 
                 const newRef =
                     push(galleryRef);
 
-                galleryObject[newRef.key] = photo;
+                galleryObject[newRef.key] =
+                    photo;
 
             });
+
 
             await set(
                 galleryRef,
@@ -709,6 +806,7 @@
 
             const achievementsObject = {};
 
+
             defaultAchievements.forEach(achievement => {
 
                 const newRef =
@@ -719,12 +817,29 @@
 
             });
 
+
             await set(
                 achievementsRef,
                 achievementsObject
             );
 
         }
+
+
+        /* PROJECTS */
+
+        const projectsRef =
+            ref(db, "projects");
+
+        const projectsSnapshot =
+            await get(projectsRef);
+
+
+        /*
+         * We intentionally do NOT create fake/default
+         * projects here. Projects will be added by you
+         * from the Projects Manager.
+         */
 
     }
 
@@ -738,19 +853,29 @@
         const data = {
 
             name:
-                document.getElementById("homeName").value,
+                document
+                    .getElementById("homeName")
+                    .value,
 
             welcome:
-                document.getElementById("homeWelcome").value,
+                document
+                    .getElementById("homeWelcome")
+                    .value,
 
             goal:
-                document.getElementById("homeGoal").value,
+                document
+                    .getElementById("homeGoal")
+                    .value,
 
             about:
-                document.getElementById("homeAbout").value,
+                document
+                    .getElementById("homeAbout")
+                    .value,
 
             lastUpdated:
-                new Date().getFullYear().toString()
+                new Date()
+                    .getFullYear()
+                    .toString()
 
         };
 
@@ -798,23 +923,36 @@
             );
 
 
-        if (!snapshot.exists()) return;
+        if (!snapshot.exists()) {
+            return;
+        }
 
 
         const data =
             snapshot.val();
 
 
-        document.getElementById("homeName").value =
+        document
+            .getElementById("homeName")
+            .value =
             data.name || "";
 
-        document.getElementById("homeWelcome").value =
+
+        document
+            .getElementById("homeWelcome")
+            .value =
             data.welcome || "";
 
-        document.getElementById("homeGoal").value =
+
+        document
+            .getElementById("homeGoal")
+            .value =
             data.goal || "";
 
-        document.getElementById("homeAbout").value =
+
+        document
+            .getElementById("homeAbout")
+            .value =
             data.about || "";
 
     }
@@ -827,13 +965,24 @@
     window.addPhoto = async function () {
 
         const title =
-            document.getElementById("photoTitle").value.trim();
+            document
+                .getElementById("photoTitle")
+                .value
+                .trim();
+
 
         const file =
-            document.getElementById("photoFile").value.trim();
+            document
+                .getElementById("photoFile")
+                .value
+                .trim();
+
 
         const description =
-            document.getElementById("photoDescription").value.trim();
+            document
+                .getElementById("photoDescription")
+                .value
+                .trim();
 
 
         if (!title || !file) {
@@ -868,11 +1017,19 @@
             );
 
 
-            document.getElementById("photoTitle").value = "";
+            document
+                .getElementById("photoTitle")
+                .value = "";
 
-            document.getElementById("photoFile").value = "";
 
-            document.getElementById("photoDescription").value = "";
+            document
+                .getElementById("photoFile")
+                .value = "";
+
+
+            document
+                .getElementById("photoDescription")
+                .value = "";
 
 
             showMessage(
@@ -914,7 +1071,9 @@
 
 
         const list =
-            document.getElementById("galleryList");
+            document.getElementById(
+                "galleryList"
+            );
 
 
         list.innerHTML = "";
@@ -945,15 +1104,23 @@
 
                 item.innerHTML = `
 
-                    <h3>${escapeHTML(photo.title || "Untitled")}</h3>
+                    <h3>
+                        ${escapeHTML(
+                            photo.title || "Untitled"
+                        )}
+                    </h3>
 
                     <p>
                         <strong>Filename:</strong>
-                        ${escapeHTML(photo.file || "")}
+                        ${escapeHTML(
+                            photo.file || ""
+                        )}
                     </p>
 
                     <p>
-                        ${escapeHTML(photo.description || "")}
+                        ${escapeHTML(
+                            photo.description || ""
+                        )}
                     </p>
 
                     <button
@@ -978,131 +1145,149 @@
        DELETE PHOTO
        ========================= */
 
-    window.deletePhoto = async function (id) {
+    window.deletePhoto =
+        async function (id) {
 
-        if (!confirm("Delete this photo?")) {
-            return;
-        }
-
-
-        try {
-
-            await remove(
-                ref(db, "gallery/" + id)
-            );
+            if (
+                !confirm(
+                    "Delete this photo?"
+                )
+            ) {
+                return;
+            }
 
 
-            await loadGallery();
+            try {
+
+                await remove(
+                    ref(
+                        db,
+                        "gallery/" + id
+                    )
+                );
 
 
-            showMessage(
-                "galleryMessage",
-                "Photo deleted successfully.",
-                true
-            );
+                await loadGallery();
 
-        }
 
-        catch (error) {
+                showMessage(
+                    "galleryMessage",
+                    "Photo deleted successfully.",
+                    true
+                );
 
-            console.error(error);
+            }
 
-            showMessage(
-                "galleryMessage",
-                "Could not delete photo.",
-                false
-            );
+            catch (error) {
 
-        }
+                console.error(error);
 
-    };
+                showMessage(
+                    "galleryMessage",
+                    "Could not delete photo.",
+                    false
+                );
+
+            }
+
+        };
 
 
     /* =========================
        ADD ACHIEVEMENT
        ========================= */
 
-    window.addAchievement = async function () {
+    window.addAchievement =
+        async function () {
 
-        const title =
-            document
-                .getElementById("achievementTitle")
-                .value
-                .trim();
-
-
-        const description =
-            document
-                .getElementById("achievementDescription")
-                .value
-                .trim();
+            const title =
+                document
+                    .getElementById(
+                        "achievementTitle"
+                    )
+                    .value
+                    .trim();
 
 
-        if (!title || !description) {
-
-            showMessage(
-                "achievementMessage",
-                "Please enter the title and description.",
-                false
-            );
-
-            return;
-
-        }
+            const description =
+                document
+                    .getElementById(
+                        "achievementDescription"
+                    )
+                    .value
+                    .trim();
 
 
-        try {
+            if (!title || !description) {
 
-            const achievementsRef =
-                ref(db, "achievements");
+                showMessage(
+                    "achievementMessage",
+                    "Please enter the title and description.",
+                    false
+                );
 
-            const newAchievementRef =
-                push(achievementsRef);
+                return;
 
-
-            await set(
-                newAchievementRef,
-                {
-                    title: title,
-                    description: description
-                }
-            );
+            }
 
 
-            document
-                .getElementById("achievementTitle")
-                .value = "";
+            try {
+
+                const achievementsRef =
+                    ref(db, "achievements");
 
 
-            document
-                .getElementById("achievementDescription")
-                .value = "";
+                const newAchievementRef =
+                    push(achievementsRef);
 
 
-            showMessage(
-                "achievementMessage",
-                "Achievement added successfully!",
-                true
-            );
+                await set(
+                    newAchievementRef,
+                    {
+                        title: title,
+                        description: description
+                    }
+                );
 
 
-            await loadAchievements();
+                document
+                    .getElementById(
+                        "achievementTitle"
+                    )
+                    .value = "";
 
-        }
 
-        catch (error) {
+                document
+                    .getElementById(
+                        "achievementDescription"
+                    )
+                    .value = "";
 
-            console.error(error);
 
-            showMessage(
-                "achievementMessage",
-                "Could not add achievement.",
-                false
-            );
+                showMessage(
+                    "achievementMessage",
+                    "Achievement added successfully!",
+                    true
+                );
 
-        }
 
-    };
+                await loadAchievements();
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "achievementMessage",
+                    "Could not add achievement.",
+                    false
+                );
+
+            }
+
+        };
 
 
     /* =========================
@@ -1153,13 +1338,15 @@
 
                     <h3>
                         ${escapeHTML(
-                            achievement.title || "Untitled"
+                            achievement.title ||
+                            "Untitled"
                         )}
                     </h3>
 
                     <p>
                         ${escapeHTML(
-                            achievement.description || ""
+                            achievement.description ||
+                            ""
                         )}
                     </p>
 
@@ -1234,7 +1421,275 @@
 
 
     /* =========================
-       MESSAGE
+       ADD PROJECT
+       ========================= */
+
+    window.addProject =
+        async function () {
+
+            const title =
+                document
+                    .getElementById(
+                        "projectTitle"
+                    )
+                    .value
+                    .trim();
+
+
+            const description =
+                document
+                    .getElementById(
+                        "projectDescription"
+                    )
+                    .value
+                    .trim();
+
+
+            const link =
+                document
+                    .getElementById(
+                        "projectLink"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!title || !description) {
+
+                showMessage(
+                    "projectMessage",
+                    "Please enter a project title and description.",
+                    false
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const projectsRef =
+                    ref(db, "projects");
+
+
+                const newProjectRef =
+                    push(projectsRef);
+
+
+                await set(
+                    newProjectRef,
+                    {
+                        title: title,
+                        description: description,
+                        link: link
+                    }
+                );
+
+
+                document
+                    .getElementById(
+                        "projectTitle"
+                    )
+                    .value = "";
+
+
+                document
+                    .getElementById(
+                        "projectDescription"
+                    )
+                    .value = "";
+
+
+                document
+                    .getElementById(
+                        "projectLink"
+                    )
+                    .value = "";
+
+
+                showMessage(
+                    "projectMessage",
+                    "Project added successfully!",
+                    true
+                );
+
+
+                await loadProjects();
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "projectMessage",
+                    "Could not add project.",
+                    false
+                );
+
+            }
+
+        };
+
+
+    /* =========================
+       LOAD PROJECTS
+       ========================= */
+
+    async function loadProjects() {
+
+        const snapshot =
+            await get(
+                ref(db, "projects")
+            );
+
+
+        const list =
+            document.getElementById(
+                "projectList"
+            );
+
+
+        list.innerHTML = "";
+
+
+        if (!snapshot.exists()) {
+
+            list.innerHTML =
+                "<p>No projects yet.</p>";
+
+            return;
+
+        }
+
+
+        const projects =
+            snapshot.val();
+
+
+        Object.entries(projects).forEach(
+            ([id, project]) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "item";
+
+
+                let linkHTML = "";
+
+
+                if (project.link) {
+
+                    linkHTML = `
+
+                        <p>
+                            <strong>Link:</strong><br>
+
+                            <span class="project-link-preview">
+                                ${escapeHTML(
+                                    project.link
+                                )}
+                            </span>
+                        </p>
+
+                    `;
+
+                }
+
+
+                item.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            project.title ||
+                            "Untitled Project"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            project.description ||
+                            ""
+                        )}
+                    </p>
+
+                    ${linkHTML}
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProject('${id}')"
+                    >
+                        Delete Project
+                    </button>
+
+                `;
+
+
+                list.appendChild(item);
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       DELETE PROJECT
+       ========================= */
+
+    window.deleteProject =
+        async function (id) {
+
+            if (
+                !confirm(
+                    "Delete this project?"
+                )
+            ) {
+                return;
+            }
+
+
+            try {
+
+                await remove(
+                    ref(
+                        db,
+                        "projects/" + id
+                    )
+                );
+
+
+                await loadProjects();
+
+
+                showMessage(
+                    "projectMessage",
+                    "Project deleted successfully.",
+                    true
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "projectMessage",
+                    "Could not delete project.",
+                    false
+                );
+
+            }
+
+        };
+
+
+    /* =========================
+       MESSAGE FUNCTION
        ========================= */
 
     function showMessage(
@@ -1244,21 +1699,32 @@
     ) {
 
         const element =
-            document.getElementById(elementId);
+            document.getElementById(
+                elementId
+            );
 
 
-        element.textContent = text;
+        element.textContent =
+            text;
+
 
         element.className =
             "message " +
-            (success ? "success" : "error");
+            (
+                success
+                    ? "success"
+                    : "error"
+            );
 
-        element.style.display = "block";
+
+        element.style.display =
+            "block";
 
 
         setTimeout(() => {
 
-            element.style.display = "none";
+            element.style.display =
+                "none";
 
         }, 4000);
 
@@ -1273,15 +1739,30 @@
 
         return String(value)
 
-            .replace(/&/g, "&amp;")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
 
-            .replace(/</g, "&lt;")
+            .replace(
+                /</g,
+                "&lt;"
+            )
 
-            .replace(/>/g, "&gt;")
+            .replace(
+                />/g,
+                "&gt;"
+            )
 
-            .replace(/"/g, "&quot;")
+            .replace(
+                /"/g,
+                "&quot;"
+            )
 
-            .replace(/'/g, "&#039;");
+            .replace(
+                /'/g,
+                "&#039;"
+            );
 
     }
 
