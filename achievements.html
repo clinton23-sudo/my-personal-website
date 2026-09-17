@@ -1,300 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Achievements | Clinton Ncube</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <title>
+        Achievements | Clinton Ncube
+    </title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #222;
-        }
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        nav {
-            background: #1f2937;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .achievements {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .achievement {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-top: 5px solid #2563eb;
-            transition: transform 0.2s ease;
-        }
-
-        .achievement:hover {
-            transform: translateY(-5px);
-        }
-
-        .achievement h2 {
-            margin-top: 0;
-        }
-
-        .achievement p {
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .empty {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            color: #666;
-            grid-column: 1 / -1;
-        }
-
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-
-            nav a {
-                display: inline-block;
-                margin: 6px 8px;
-            }
-
-        }
-    </style>
 </head>
+
 
 <body>
 
-<header>
-    <h1>🏆 My Achievements</h1>
-    <p>Clinton Ncube</p>
-</header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="achievements.html">Achievements</a>
-    <a href="hobbies.html">Hobbies</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin.html">⚙️ Dashboard</a>
-</nav>
+    <!-- HEADER -->
 
-<div class="container">
+    <header>
 
-    <div class="intro">
-
-        <h1>My Achievements</h1>
+        <h1>
+            Clinton Ncube
+        </h1>
 
         <p>
-            Here are some of my academic, school and personal achievements.
+            My Achievements
         </p>
 
-    </div>
 
-    <!-- ACHIEVEMENTS WILL APPEAR HERE -->
+        <nav>
 
-    <div class="achievements" id="achievementsContainer">
-    </div>
+            <a href="index.html">
+                Home
+            </a>
 
-</div>
+            <a href="about.html">
+                About Me
+            </a>
 
-<footer>
-    <p>© 2026 Clinton Ncube. All Rights Reserved.</p>
-</footer>
+            <a href="projects.html">
+                Projects
+            </a>
 
+            <a href="hobbies.html">
+                Hobbies
+            </a>
 
-<script>
+            <a href="skills.html">
+                Skills
+            </a>
 
-    /*
-     * Default achievements
-     * These appear if nothing has been saved
-     * from the Admin Dashboard yet.
-     */
+            <a href="gallery.html">
+                Gallery
+            </a>
 
-    var defaultAchievements = [
+            <a href="contact.html">
+                Contact
+            </a>
 
-        {
-            title: "Academic Achievement",
-            description:
-                "A record of my academic progress and achievements."
-        },
+            <a href="admin.html">
+                ⚙️ Dashboard
+            </a>
 
-        {
-            title: "School Activities",
-            description:
-                "Participation in school activities, projects and events."
-        },
+            <a
+                class="active"
+                href="achievements.html"
+            >
+                Achievements
+            </a>
 
-        {
-            title: "Personal Projects",
-            description:
-                "Creative and educational projects that I have worked on."
-        }
+        </nav>
 
-    ];
-
-
-    /*
-     * Get achievements saved by the Admin Dashboard.
-     */
-
-    var achievements = null;
-
-    try {
-
-        achievements =
-            JSON.parse(
-                localStorage.getItem("clintonAchievements")
-            );
-
-    } catch (error) {
-
-        achievements = null;
-
-    }
+    </header>
 
 
-    /*
-     * If there are no saved achievements,
-     * use the default achievements.
-     */
 
-    if (!Array.isArray(achievements)) {
+    <!-- MAIN CONTENT -->
 
-        achievements = defaultAchievements;
-
-    }
+    <main>
 
 
-    /*
-     * Display the achievements.
-     */
+        <!-- INTRODUCTION -->
 
-    function displayAchievements() {
+        <section>
 
-        var container =
-            document.getElementById(
-                "achievementsContainer"
-            );
+            <h2>
+                My Achievements 🏆
+            </h2>
 
-        container.innerHTML = "";
+            <p>
+                Here are some of my achievements,
+                activities and accomplishments.
+            </p>
+
+        </section>
+
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <section>
+
+            <div
+                id="achievements-container"
+                class="card-container"
+            >
+
+                <p>
+                    Loading achievements...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Clinton Ncube
+        </p>
+
+        <p>
+            Built with HTML & CSS |
+            My Personal Portfolio
+        </p>
+
+    </footer>
+
+
+
+    <!-- FIREBASE -->
+
+    <script type="module">
 
 
         /*
-         * If there are no achievements.
+         * FIREBASE IMPORTS
          */
 
-        if (achievements.length === 0) {
+        import {
+            initializeApp
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-            container.innerHTML =
 
-                '<div class="empty">' +
+        import {
+            getDatabase,
+            ref,
+            onValue
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-                '<h2>🏆 No Achievements Yet</h2>' +
 
-                '<p>' +
-                'Achievements added through the Admin Dashboard will appear here.' +
-                '</p>' +
 
-                '</div>';
+        /*
+         * FIREBASE CONFIGURATION
+         */
 
-            return;
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+
+            authDomain:
+                "clinton-ncube-website.firebaseapp.com",
+
+            databaseURL:
+                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+            projectId:
+                "clinton-ncube-website",
+
+            storageBucket:
+                "clinton-ncube-website.firebasestorage.app",
+
+            messagingSenderId:
+                "946671700613",
+
+            appId:
+                "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+            measurementId:
+                "G-K1S62MHHXP"
+
+        };
+
+
+
+        /*
+         * INITIALIZE FIREBASE
+         */
+
+        const app =
+            initializeApp(firebaseConfig);
+
+
+        const db =
+            getDatabase(app);
+
+
+
+        /*
+         * ACHIEVEMENTS DATABASE
+         */
+
+        const achievementsRef =
+            ref(db, "achievements");
+
+
+
+        /*
+         * LOAD ACHIEVEMENTS
+         */
+
+        onValue(
+
+            achievementsRef,
+
+            (snapshot) => {
+
+
+                const container =
+                    document.getElementById(
+                        "achievements-container"
+                    );
+
+
+                container.innerHTML = "";
+
+
+
+                /*
+                 * NO ACHIEVEMENTS
+                 */
+
+                if (!snapshot.exists()) {
+
+                    container.innerHTML = `
+
+                        <div class="card">
+
+                            <h3>
+                                No Achievements Yet
+                            </h3>
+
+                            <p>
+                                Achievements added
+                                through the Admin
+                                Dashboard will
+                                appear here.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+
+                /*
+                 * GET FIREBASE DATA
+                 */
+
+                const achievements =
+                    snapshot.val();
+
+
+
+                /*
+                 * CREATE ACHIEVEMENT CARDS
+                 */
+
+                Object.entries(achievements)
+                    .forEach(
+                        ([id, achievement]) => {
+
+
+                            const card =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            card.className =
+                                "card";
+
+
+
+                            card.innerHTML = `
+
+                                <h3>
+                                    🏆
+                                    ${escapeHTML(
+                                        achievement.title ||
+                                        "Achievement"
+                                    )}
+                                </h3>
+
+                                <p>
+                                    ${escapeHTML(
+                                        achievement.description ||
+                                        ""
+                                    )}
+                                </p>
+
+                            `;
+
+
+                            container.appendChild(
+                                card
+                            );
+
+                        }
+                    );
+
+            },
+
+            (error) => {
+
+
+                console.error(
+                    "Firebase Achievements Error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "achievements-container"
+                ).innerHTML = `
+
+                    <div class="card">
+
+                        <h3>
+                            Achievements Error
+                        </h3>
+
+                        <p>
+                            The achievements
+                            could not be loaded.
+                            Please try again later.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+
+
+        /*
+         * SECURITY FUNCTION
+         */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
 
-        /*
-         * Create each achievement card.
-         */
+    </script>
 
-        achievements.forEach(function(achievement) {
-
-            var card =
-                document.createElement("div");
-
-            card.className =
-                "achievement";
-
-
-            var title =
-                document.createElement("h2");
-
-            title.textContent =
-                "🏆 " + achievement.title;
-
-
-            var description =
-                document.createElement("p");
-
-            description.textContent =
-                achievement.description;
-
-
-            card.appendChild(title);
-
-            card.appendChild(description);
-
-            container.appendChild(card);
-
-        });
-
-    }
-
-
-    /*
-     * Start the achievements page.
-     */
-
-    displayAchievements();
-
-</script>
 
 </body>
+
 </html>
