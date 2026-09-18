@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Skills | Clinton Ncube</title>
 
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
 <nav>
-    <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <ul>
+    <a href="index.html" class="logo">
+        Clinton Ncube
+    </a>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false">
+        ☰
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -23,19 +41,28 @@
         <li><a href="hobbies.html">Hobbies</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
+
     </ul>
+
 </nav>
 
 <header class="page-header">
-    <h1>💻 My Skills</h1>
-    <p>Skills I am developing through learning and practice</p>
+
+    <h1>My Skills</h1>
+
+    <p>
+        Skills I am learning and developing.
+    </p>
+
 </header>
 
 <section>
 
     <div class="container">
 
-        <div id="skillsContainer" class="cards">
+        <div
+            id="skillsContainer"
+            class="cards">
 
             <div class="loading">
                 Loading skills...
@@ -48,125 +75,121 @@
 </section>
 
 <footer>
-    <p>© 2026 Clinton Ncube. All rights reserved.</p>
-    <p>Personal Portfolio Website</p>
-</footer>
 
+    <p>
+        © 2026 Clinton Ncube. All rights reserved.
+    </p>
+
+    <p>
+        Personal Portfolio Website
+    </p>
+
+</footer>
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
     getDatabase,
     ref,
     onValue
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+    apiKey:
+        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-    authDomain: "clinton-ncube-website.firebaseapp.com",
+    authDomain:
+        "clinton-ncube-website.firebaseapp.com",
 
     databaseURL:
         "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-    projectId: "clinton-ncube-website",
+    projectId:
+        "clinton-ncube-website",
 
     storageBucket:
         "clinton-ncube-website.firebasestorage.app",
 
-    messagingSenderId: "946671700613",
+    messagingSenderId:
+        "946671700613",
 
     appId:
         "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-    measurementId: "G-K1S62MHHXP"
+    measurementId:
+        "G-K1S62MHHXP"
 };
 
+const app =
+    initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-
-const db = getDatabase(app);
+const db =
+    getDatabase(app);
 
 const skillsRef =
     ref(db, "skills");
 
 const container =
-    document.getElementById("skillsContainer");
-
-
-function escapeHTML(value) {
-
-    const div = document.createElement("div");
-
-    div.textContent = value || "";
-
-    return div.innerHTML;
-}
-
+    document.getElementById(
+        "skillsContainer"
+    );
 
 onValue(
     skillsRef,
     (snapshot) => {
 
-        const data = snapshot.val();
-
         container.innerHTML = "";
+
+        const data =
+            snapshot.val();
 
         if (!data) {
 
             container.innerHTML = `
                 <div class="empty">
-                    <h3>No skills yet</h3>
-                    <p>
-                        Skills added through the
-                        Admin Dashboard will appear here.
-                    </p>
+                    No skills have been added yet.
                 </div>
             `;
 
             return;
         }
 
+        Object.values(data)
+            .forEach(skill => {
 
-        Object.values(data).forEach(skill => {
+                const card =
+                    document.createElement("div");
 
-            const card =
-                document.createElement("div");
+                card.className = "card";
 
-            card.className = "card";
+                const title =
+                    document.createElement("h3");
 
-            card.innerHTML = `
+                title.textContent =
+                    "💻 " +
+                    (skill.title || "Skill");
 
-                <div style="
-                    font-size:2.8rem;
-                    margin-bottom:12px;
-                ">
-                    💻
-                </div>
+                const description =
+                    document.createElement("p");
 
-                <h3>
-                    ${escapeHTML(skill.title)}
-                </h3>
+                description.textContent =
+                    skill.description || "";
 
-                <p>
-                    ${escapeHTML(skill.description)}
-                </p>
+                card.appendChild(title);
 
-            `;
+                card.appendChild(description);
 
-            container.appendChild(card);
+                container.appendChild(card);
 
-        });
+            });
 
     },
-
-    error => {
+    (error) => {
 
         container.innerHTML = `
             <div class="empty">
@@ -178,6 +201,50 @@ onValue(
 
     }
 );
+
+</script>
+
+<script>
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    const isOpen =
+        navMenu.classList.contains("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuToggle.textContent =
+        isOpen ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
+            menuToggle.textContent = "☰";
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
 
 </script>
 
