@@ -1,524 +1,2449 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Login | Clinton Ncube</title>
+<title>Admin Dashboard | Clinton Ncube</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #2563eb);
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+}
 
-        .login-box {
-            width: 90%;
-            max-width: 420px;
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
-        }
+/* LOGIN */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a, #2563eb);
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #0f172a;
-        }
+.login-box {
+    width: 90%;
+    max-width: 420px;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
 
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 30px;
-        }
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: bold;
-            color: #334155;
-        }
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 28px;
+}
 
-        input {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 18px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
 
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
 
-        button {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
 
-        button:hover {
-            background: #1d4ed8;
-        }
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        button:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-        }
+button:hover {
+    background: #1d4ed8;
+}
 
-        #status {
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-            text-align: center;
-            line-height: 1.5;
-        }
+.full-button {
+    width: 100%;
+}
 
-        .success {
-            display: block !important;
-            background: #dcfce7;
-            color: #166534;
-        }
+.delete-btn {
+    background: #dc2626;
+}
 
-        .error {
-            display: block !important;
-            background: #fee2e2;
-            color: #991b1b;
-        }
+.delete-btn:hover {
+    background: #b91c1c;
+}
 
-        #dashboard {
-            display: none;
-            text-align: center;
-        }
+.edit-btn {
+    background: #f59e0b;
+}
 
-        #dashboard h2 {
-            color: #0f172a;
-        }
+.edit-btn:hover {
+    background: #d97706;
+}
 
-        .logout {
-            margin-top: 20px;
-            background: #dc2626;
-        }
+#loginStatus,
+#message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
 
-        .logout:hover {
-            background: #b91c1c;
-        }
-    </style>
+.error {
+    display: block !important;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.success {
+    display: block !important;
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* ADMIN */
+.admin {
+    display: none;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: #0f172a;
+    color: white;
+    padding: 25px 15px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.sidebar p {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    margin-bottom: 6px;
+    border-radius: 8px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: #2563eb;
+}
+
+.logout-sidebar {
+    background: #dc2626;
+    margin-top: 20px;
+}
+
+.logout-sidebar:hover {
+    background: #b91c1c;
+}
+
+.main {
+    margin-left: 250px;
+    padding: 30px;
+}
+
+.topbar {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.topbar h1 {
+    margin: 0;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 32px;
+    margin: 5px 0;
+    color: #2563eb;
+}
+
+.item {
+    border: 1px solid #e2e8f0;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.item h3 {
+    margin-top: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.diary-note {
+    background: #f8fafc;
+    padding: 15px;
+    border-left: 4px solid #2563eb;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.gallery-image {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .main {
+        padding: 15px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage" class="login-page">
+
     <div class="login-box">
 
-        <!-- LOGIN SECTION -->
-        <div id="loginSection">
+        <h1>Clinton Ncube</h1>
 
-            <h1>Clinton Ncube</h1>
+        <p class="subtitle">
+            Admin Dashboard
+        </p>
 
-            <p class="subtitle">
-                Admin Dashboard
-            </p>
+        <label>Email Address</label>
 
-            <label for="email">
-                Email Address
-            </label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+        >
 
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                autocomplete="email"
-            >
+        <label>Password</label>
 
-            <label for="password">
-                Password
-            </label>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+        >
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                autocomplete="current-password"
-            >
+        <button
+            id="loginButton"
+            class="full-button">
+            Login
+        </button>
 
-            <button id="loginButton">
-                Login
-            </button>
-
-            <div id="status"></div>
-
-        </div>
-
-
-        <!-- DASHBOARD SECTION -->
-        <div id="dashboard">
-
-            <h2>
-                Welcome, Clinton!
-            </h2>
-
-            <p>
-                You have successfully logged into
-                the Admin Dashboard.
-            </p>
-
-            <p id="loggedInEmail"></p>
-
-            <button
-                id="logoutButton"
-                class="logout">
-                Logout
-            </button>
-
-        </div>
+        <div id="loginStatus"></div>
 
     </div>
 
+</div>
 
-    <!-- FIREBASE -->
-    <script type="module">
 
-        import { initializeApp }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+<!-- ================= ADMIN DASHBOARD ================= -->
 
-        import {
-            getAuth,
-            signInWithEmailAndPassword,
-            onAuthStateChanged,
-            signOut
+<div id="admin" class="admin">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>Clinton Ncube</h2>
+
+        <p>Website Administration</p>
+
+        <button class="nav-btn active" onclick="showSection('dashboardSection', this)">
+            🏠 Dashboard
+        </button>
+
+        <button class="nav-btn" onclick="showSection('homeSection', this)">
+            🏠 Home
+        </button>
+
+        <button class="nav-btn" onclick="showSection('gallerySection', this)">
+            🖼️ Gallery
+        </button>
+
+        <button class="nav-btn" onclick="showSection('achievementsSection', this)">
+            🏆 Achievements
+        </button>
+
+        <button class="nav-btn" onclick="showSection('projectsSection', this)">
+            📚 Projects
+        </button>
+
+        <button class="nav-btn" onclick="showSection('hobbiesSection', this)">
+            🏀 Hobbies
+        </button>
+
+        <button class="nav-btn" onclick="showSection('skillsSection', this)">
+            💻 Skills
+        </button>
+
+        <button class="nav-btn" onclick="showSection('diarySection', this)">
+            📔 Private Diary
+        </button>
+
+        <button
+            id="logoutButton"
+            class="nav-btn logout-sidebar">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p id="loggedInUser"></p>
+            </div>
+
+            <a
+                href="index.html"
+                target="_blank"
+                style="text-decoration:none;">
+                <button>
+                    🌐 View Website
+                </button>
+            </a>
+
+        </div>
+
+
+        <div id="message"></div>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboardSection" class="section active">
+
+            <div class="card">
+
+                <h2>Welcome, Clinton! 👋</h2>
+
+                <p>
+                    Use this dashboard to manage the content
+                    on your personal website.
+                </p>
+
+            </div>
+
+            <div class="dashboard-grid">
+
+                <div class="stat">
+                    <div>🖼️</div>
+                    <h2 id="galleryCount">0</h2>
+                    <p>Gallery Items</p>
+                </div>
+
+                <div class="stat">
+                    <div>🏆</div>
+                    <h2 id="achievementCount">0</h2>
+                    <p>Achievements</p>
+                </div>
+
+                <div class="stat">
+                    <div>📚</div>
+                    <h2 id="projectCount">0</h2>
+                    <p>Projects</p>
+                </div>
+
+                <div class="stat">
+                    <div>🏀</div>
+                    <h2 id="hobbyCount">0</h2>
+                    <p>Hobbies</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOME ================= -->
+
+        <section id="homeSection" class="section">
+
+            <div class="card">
+
+                <h2>🏠 Home Manager</h2>
+
+                <label>Name</label>
+
+                <input id="homeName">
+
+                <label>Welcome Message</label>
+
+                <textarea id="homeWelcome"></textarea>
+
+                <label>Goal</label>
+
+                <textarea id="homeGoal"></textarea>
+
+                <label>About</label>
+
+                <textarea id="homeAbout"></textarea>
+
+                <button onclick="saveHome()">
+                    💾 Save Home Information
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GALLERY ================= -->
+
+        <section id="gallerySection" class="section">
+
+            <div class="card">
+
+                <h2>🖼️ Gallery Manager</h2>
+
+                <input
+                    type="hidden"
+                    id="galleryEditId"
+                >
+
+                <label>Title</label>
+
+                <input
+                    id="galleryTitle"
+                    placeholder="Photo title"
+                >
+
+                <label>Image Filename / URL</label>
+
+                <input
+                    id="galleryFile"
+                    placeholder="example.jpg"
+                >
+
+                <label>Description</label>
+
+                <textarea
+                    id="galleryDescription"
+                    placeholder="Description">
+                </textarea>
+
+                <button onclick="saveGallery()">
+                    💾 Save Gallery Item
+                </button>
+
+                <button
+                    onclick="clearGalleryForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Gallery Items</h2>
+
+                <div id="galleryList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ACHIEVEMENTS ================= -->
+
+        <section id="achievementsSection" class="section">
+
+            <div class="card">
+
+                <h2>🏆 Achievements Manager</h2>
+
+                <input
+                    type="hidden"
+                    id="achievementEditId"
+                >
+
+                <label>Title</label>
+
+                <input id="achievementTitle">
+
+                <label>Description</label>
+
+                <textarea id="achievementDescription"></textarea>
+
+                <button onclick="saveAchievement()">
+                    💾 Save Achievement
+                </button>
+
+                <button
+                    onclick="clearAchievementForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Achievements</h2>
+
+                <div id="achievementList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROJECTS ================= -->
+
+        <section id="projectsSection" class="section">
+
+            <div class="card">
+
+                <h2>📚 Projects Manager</h2>
+
+                <input
+                    type="hidden"
+                    id="projectEditId"
+                >
+
+                <label>Project Title</label>
+
+                <input id="projectTitle">
+
+                <label>Description</label>
+
+                <textarea id="projectDescription"></textarea>
+
+                <label>Project Link</label>
+
+                <input
+                    id="projectLink"
+                    placeholder="Optional link"
+                >
+
+                <button onclick="saveProject()">
+                    💾 Save Project
+                </button>
+
+                <button
+                    onclick="clearProjectForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Projects</h2>
+
+                <div id="projectList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOBBIES ================= -->
+
+        <section id="hobbiesSection" class="section">
+
+            <div class="card">
+
+                <h2>🏀 Hobbies Manager</h2>
+
+                <input
+                    type="hidden"
+                    id="hobbyEditId"
+                >
+
+                <label>Hobby</label>
+
+                <input id="hobbyTitle">
+
+                <label>Description</label>
+
+                <textarea id="hobbyDescription"></textarea>
+
+                <button onclick="saveHobby()">
+                    💾 Save Hobby
+                </button>
+
+                <button
+                    onclick="clearHobbyForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Hobbies</h2>
+
+                <div id="hobbyList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <section id="skillsSection" class="section">
+
+            <div class="card">
+
+                <h2>💻 Skills Manager</h2>
+
+                <input
+                    type="hidden"
+                    id="skillEditId"
+                >
+
+                <label>Skill</label>
+
+                <input id="skillTitle">
+
+                <label>Description</label>
+
+                <textarea id="skillDescription"></textarea>
+
+                <button onclick="saveSkill()">
+                    💾 Save Skill
+                </button>
+
+                <button
+                    onclick="clearSkillForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Skills</h2>
+
+                <div id="skillList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DIARY ================= -->
+
+        <section id="diarySection" class="section">
+
+            <div class="card">
+
+                <h2>📔 Private Diary</h2>
+
+                <p>
+                    Diary entries are stored separately
+                    from the public website content.
+                </p>
+
+                <input
+                    type="hidden"
+                    id="diaryEditId"
+                >
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    id="diaryDate"
+                >
+
+                <label>Title</label>
+
+                <input id="diaryTitle">
+
+                <label>What happened?</label>
+
+                <textarea id="diaryHappened"></textarea>
+
+                <label>How did you feel?</label>
+
+                <textarea id="diaryFeelings"></textarea>
+
+                <label>Notes</label>
+
+                <textarea id="diaryNotes"></textarea>
+
+                <label>Photo URL (optional)</label>
+
+                <input
+                    id="diaryPhoto"
+                    placeholder="Optional image URL"
+                >
+
+                <button onclick="saveDiary()">
+                    💾 Save Diary Entry
+                </button>
+
+                <button
+                    onclick="clearDiaryForm()"
+                    style="background:#64748b;">
+                    Clear
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Diary Entries</h2>
+
+                <div id="diaryList">
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    get,
+    set,
+    push,
+    remove
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+/* ==========================================
+   FIREBASE CONFIG
+========================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+    authDomain:
+    "clinton-ncube-website.firebaseapp.com",
+
+    databaseURL:
+    "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId:
+    "clinton-ncube-website",
+
+    storageBucket:
+    "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId:
+    "946671700613",
+
+    appId:
+    "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId:
+    "G-K1S62MHHXP"
+};
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getDatabase(app);
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const loginPage =
+document.getElementById("loginPage");
+
+const admin =
+document.getElementById("admin");
+
+const loginButton =
+document.getElementById("loginButton");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const loginStatus =
+document.getElementById("loginStatus");
+
+const loggedInUser =
+document.getElementById("loggedInUser");
+
+const message =
+document.getElementById("message");
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+function showMessage(text, type = "success") {
+
+    message.textContent = text;
+
+    message.className = type;
+
+    setTimeout(() => {
+
+        message.className = "";
+
+        message.style.display = "none";
+
+    }, 3000);
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+loginButton.addEventListener(
+    "click",
+    async () => {
+
+        const email =
+        document.getElementById("email")
+        .value.trim();
+
+        const password =
+        document.getElementById("password")
+        .value;
+
+        if (!email || !password) {
+
+            loginStatus.textContent =
+            "Please enter your email and password.";
+
+            loginStatus.className =
+            "error";
+
+            return;
         }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
+        loginButton.disabled = true;
 
-        /* =========================================
-           FIREBASE CONFIGURATION
-        ========================================= */
+        loginButton.textContent =
+        "Logging in...";
 
-        const firebaseConfig = {
+        try {
 
-            apiKey:
-            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
-
-            authDomain:
-            "clinton-ncube-website.firebaseapp.com",
-
-            databaseURL:
-            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-
-            projectId:
-            "clinton-ncube-website",
-
-            storageBucket:
-            "clinton-ncube-website.firebasestorage.app",
-
-            messagingSenderId:
-            "946671700613",
-
-            appId:
-            "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-            measurementId:
-            "G-K1S62MHHXP"
-        };
-
-
-        /* =========================================
-           INITIALIZE FIREBASE
-        ========================================= */
-
-        const app =
-            initializeApp(firebaseConfig);
-
-        const auth =
-            getAuth(app);
-
-
-        /* =========================================
-           GET HTML ELEMENTS
-        ========================================= */
-
-        const loginSection =
-            document.getElementById(
-                "loginSection"
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
-        const dashboard =
-            document.getElementById(
-                "dashboard"
+        } catch (error) {
+
+            console.error(error);
+
+            loginStatus.textContent =
+            "Login failed: " + error.code;
+
+            loginStatus.className =
+            "error";
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+            "Login";
+        }
+    }
+);
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+logoutButton.addEventListener(
+    "click",
+    async () => {
+
+        await signOut(auth);
+    }
+);
+
+
+/* ==========================================
+   AUTH STATE
+========================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (user) {
+
+            loginPage.style.display =
+            "none";
+
+            admin.style.display =
+            "block";
+
+            loggedInUser.textContent =
+            "Logged in as: " + user.email;
+
+            await loadAll();
+
+        } else {
+
+            loginPage.style.display =
+            "flex";
+
+            admin.style.display =
+            "none";
+        }
+    }
+);
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+window.showSection =
+function(sectionId, button) {
+
+    document
+    .querySelectorAll(".section")
+    .forEach(section => {
+
+        section.classList.remove("active");
+
+    });
+
+    document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+
+    document
+    .getElementById(sectionId)
+    .classList.add("active");
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+};
+
+
+/* ==========================================
+   ESCAPE HTML
+========================================== */
+
+function escapeHTML(value) {
+
+    if (!value) return "";
+
+    return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+/* ==========================================
+   HOME
+========================================== */
+
+async function loadHome() {
+
+    const snapshot =
+    await get(ref(db, "websiteData"));
+
+    const data =
+    snapshot.val() || {};
+
+    document.getElementById("homeName").value =
+    data.name || "Clinton Ncube";
+
+    document.getElementById("homeWelcome").value =
+    data.welcome || "";
+
+    document.getElementById("homeGoal").value =
+    data.goal || "";
+
+    document.getElementById("homeAbout").value =
+    data.about || "";
+}
+
+
+window.saveHome =
+async function() {
+
+    try {
+
+        await set(
+            ref(db, "websiteData"),
+            {
+
+                name:
+                document.getElementById("homeName").value,
+
+                welcome:
+                document.getElementById("homeWelcome").value,
+
+                goal:
+                document.getElementById("homeGoal").value,
+
+                about:
+                document.getElementById("homeAbout").value,
+
+                lastUpdated:
+                new Date().getFullYear().toString()
+            }
+        );
+
+        showMessage(
+            "Home information saved successfully."
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Could not save Home information.",
+            "error"
+        );
+    }
+};
+
+
+/* ==========================================
+   GALLERY
+========================================== */
+
+let galleryData = {};
+
+
+async function loadGallery() {
+
+    const snapshot =
+    await get(ref(db, "gallery"));
+
+    galleryData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("galleryList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(galleryData);
+
+    document.getElementById("galleryCount")
+    .textContent = entries.length;
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No gallery items yet.</p>";
+
+        return;
+    }
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>${escapeHTML(item.title)}</h3>
+
+            ${
+                item.file
+                ?
+                `<img
+                    class="gallery-image"
+                    src="${escapeHTML(item.file)}"
+                    alt="${escapeHTML(item.title)}"
+                    onerror="this.style.display='none';"
+                >`
+                :
+                ""
+            }
+
+            <p>
+                ${escapeHTML(item.description)}
+            </p>
+
+            <small>
+                ${escapeHTML(item.file)}
+            </small>
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editGallery('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteGallery('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveGallery =
+async function() {
+
+    const id =
+    document.getElementById("galleryEditId").value;
+
+    const data = {
+
+        title:
+        document.getElementById("galleryTitle").value,
+
+        file:
+        document.getElementById("galleryFile").value,
+
+        description:
+        document.getElementById("galleryDescription").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "gallery/" + id),
+                data
             );
 
-        const emailInput =
-            document.getElementById(
-                "email"
+        } else {
+
+            await push(
+                ref(db, "gallery"),
+                data
             );
-
-        const passwordInput =
-            document.getElementById(
-                "password"
-            );
-
-        const loginButton =
-            document.getElementById(
-                "loginButton"
-            );
-
-        const logoutButton =
-            document.getElementById(
-                "logoutButton"
-            );
-
-        const status =
-            document.getElementById(
-                "status"
-            );
-
-        const loggedInEmail =
-            document.getElementById(
-                "loggedInEmail"
-            );
-
-
-        /* =========================================
-           SHOW MESSAGE
-        ========================================= */
-
-        function showStatus(
-            message,
-            type
-        ) {
-
-            status.textContent =
-                message;
-
-            status.className =
-                type;
-
         }
 
+        clearGalleryForm();
 
-        /* =========================================
-           LOGIN
-        ========================================= */
+        await loadGallery();
 
-        loginButton.addEventListener(
-            "click",
-            async function () {
-
-                const email =
-                    emailInput.value.trim();
-
-                const password =
-                    passwordInput.value;
-
-
-                if (
-                    !email ||
-                    !password
-                ) {
-
-                    showStatus(
-                        "Please enter your email and password.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                loginButton.disabled =
-                    true;
-
-                loginButton.textContent =
-                    "Logging in...";
-
-
-                try {
-
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
-
-                }
-
-                catch (error) {
-
-                    console.error(
-                        "Firebase login error:",
-                        error
-                    );
-
-
-                    let message =
-                        "Login failed.";
-
-
-                    if (
-                        error.code ===
-                        "auth/invalid-credential"
-                    ) {
-
-                        message =
-                            "The email or password is incorrect.";
-
-                    }
-
-                    else if (
-                        error.code ===
-                        "auth/user-not-found"
-                    ) {
-
-                        message =
-                            "No Firebase account was found with this email.";
-
-                    }
-
-                    else if (
-                        error.code ===
-                        "auth/wrong-password"
-                    ) {
-
-                        message =
-                            "The password is incorrect.";
-
-                    }
-
-                    else if (
-                        error.code ===
-                        "auth/invalid-api-key"
-                    ) {
-
-                        message =
-                            "Firebase API key is invalid.";
-
-                    }
-
-                    else if (
-                        error.code ===
-                        "auth/api-key-not-valid"
-                    ) {
-
-                        message =
-                            "Firebase API key is not valid.";
-
-                    }
-
-                    else {
-
-                        message =
-                            "Login failed: " +
-                            error.code;
-                    }
-
-
-                    showStatus(
-                        message,
-                        "error"
-                    );
-
-
-                    loginButton.disabled =
-                        false;
-
-                    loginButton.textContent =
-                        "Login";
-
-                }
-
-            }
+        showMessage(
+            "Gallery item saved."
         );
 
+    } catch (error) {
 
-        /* =========================================
-           LOGOUT
-        ========================================= */
+        console.error(error);
 
-        logoutButton.addEventListener(
-            "click",
-            async function () {
+        showMessage(
+            "Could not save gallery item.",
+            "error"
+        );
+    }
+};
 
-                try {
 
-                    await signOut(auth);
+window.editGallery =
+function(id) {
 
-                }
+    const item =
+    galleryData[id];
 
-                catch (error) {
+    if (!item) return;
 
-                    console.error(error);
+    document.getElementById("galleryEditId").value =
+    id;
 
-                }
+    document.getElementById("galleryTitle").value =
+    item.title || "";
 
-            }
+    document.getElementById("galleryFile").value =
+    item.file || "";
+
+    document.getElementById("galleryDescription").value =
+    item.description || "";
+
+    showSection(
+        "gallerySection",
+        document.querySelectorAll(".nav-btn")[2]
+    );
+
+    window.scrollTo(0, 0);
+};
+
+
+window.deleteGallery =
+async function(id) {
+
+    if (!confirm("Delete this gallery item?")) {
+        return;
+    }
+
+    await remove(
+        ref(db, "gallery/" + id)
+    );
+
+    await loadGallery();
+
+    showMessage(
+        "Gallery item deleted."
+    );
+};
+
+
+window.clearGalleryForm =
+function() {
+
+    document.getElementById("galleryEditId").value =
+    "";
+
+    document.getElementById("galleryTitle").value =
+    "";
+
+    document.getElementById("galleryFile").value =
+    "";
+
+    document.getElementById("galleryDescription").value =
+    "";
+};
+
+
+/* ==========================================
+   ACHIEVEMENTS
+========================================== */
+
+let achievementData = {};
+
+
+async function loadAchievements() {
+
+    const snapshot =
+    await get(ref(db, "achievements"));
+
+    achievementData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("achievementList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(achievementData);
+
+    document.getElementById("achievementCount")
+    .textContent = entries.length;
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No achievements yet.</p>";
+
+        return;
+    }
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(item.title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(item.description)}
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editAchievement('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteAchievement('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveAchievement =
+async function() {
+
+    const id =
+    document.getElementById("achievementEditId").value;
+
+    const data = {
+
+        title:
+        document.getElementById("achievementTitle").value,
+
+        description:
+        document.getElementById("achievementDescription").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "achievements/" + id),
+                data
+            );
+
+        } else {
+
+            await push(
+                ref(db, "achievements"),
+                data
+            );
+        }
+
+        clearAchievementForm();
+
+        await loadAchievements();
+
+        showMessage(
+            "Achievement saved."
         );
 
+    } catch (error) {
 
-        /* =========================================
-           AUTHENTICATION STATE
-        ========================================= */
+        console.error(error);
 
-        onAuthStateChanged(
-            auth,
-            function (user) {
+        showMessage(
+            "Could not save achievement.",
+            "error"
+        );
+    }
+};
 
-                if (user) {
 
-                    loginSection.style.display =
-                        "none";
+window.editAchievement =
+function(id) {
 
-                    dashboard.style.display =
-                        "block";
+    const item =
+    achievementData[id];
 
-                    loggedInEmail.textContent =
-                        "Logged in as: " +
-                        user.email;
+    document.getElementById(
+        "achievementEditId"
+    ).value = id;
 
-                }
+    document.getElementById(
+        "achievementTitle"
+    ).value = item.title || "";
 
-                else {
+    document.getElementById(
+        "achievementDescription"
+    ).value = item.description || "";
+};
 
-                    loginSection.style.display =
-                        "block";
 
-                    dashboard.style.display =
-                        "none";
+window.deleteAchievement =
+async function(id) {
 
-                    loginButton.disabled =
-                        false;
+    if (!confirm("Delete this achievement?")) {
+        return;
+    }
 
-                    loginButton.textContent =
-                        "Login";
+    await remove(
+        ref(db, "achievements/" + id)
+    );
 
-                }
+    await loadAchievements();
 
+    showMessage(
+        "Achievement deleted."
+    );
+};
+
+
+window.clearAchievementForm =
+function() {
+
+    document.getElementById(
+        "achievementEditId"
+    ).value = "";
+
+    document.getElementById(
+        "achievementTitle"
+    ).value = "";
+
+    document.getElementById(
+        "achievementDescription"
+    ).value = "";
+};
+
+
+/* ==========================================
+   PROJECTS
+========================================== */
+
+let projectData = {};
+
+
+async function loadProjects() {
+
+    const snapshot =
+    await get(ref(db, "projects"));
+
+    projectData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("projectList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(projectData);
+
+    document.getElementById("projectCount")
+    .textContent = entries.length;
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No projects yet.</p>";
+
+        return;
+    }
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(item.title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(item.description)}
+            </p>
+
+            ${
+                item.link
+                ?
+                `<a
+                    href="${escapeHTML(item.link)}"
+                    target="_blank">
+                    View Project
+                </a>`
+                :
+                ""
             }
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editProject('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteProject('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveProject =
+async function() {
+
+    const id =
+    document.getElementById("projectEditId").value;
+
+    const data = {
+
+        title:
+        document.getElementById("projectTitle").value,
+
+        description:
+        document.getElementById("projectDescription").value,
+
+        link:
+        document.getElementById("projectLink").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "projects/" + id),
+                data
+            );
+
+        } else {
+
+            await push(
+                ref(db, "projects"),
+                data
+            );
+        }
+
+        clearProjectForm();
+
+        await loadProjects();
+
+        showMessage(
+            "Project saved."
         );
 
-    </script>
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Could not save project.",
+            "error"
+        );
+    }
+};
+
+
+window.editProject =
+function(id) {
+
+    const item =
+    projectData[id];
+
+    document.getElementById(
+        "projectEditId"
+    ).value = id;
+
+    document.getElementById(
+        "projectTitle"
+    ).value = item.title || "";
+
+    document.getElementById(
+        "projectDescription"
+    ).value = item.description || "";
+
+    document.getElementById(
+        "projectLink"
+    ).value = item.link || "";
+};
+
+
+window.deleteProject =
+async function(id) {
+
+    if (!confirm("Delete this project?")) {
+        return;
+    }
+
+    await remove(
+        ref(db, "projects/" + id)
+    );
+
+    await loadProjects();
+
+    showMessage(
+        "Project deleted."
+    );
+};
+
+
+window.clearProjectForm =
+function() {
+
+    document.getElementById(
+        "projectEditId"
+    ).value = "";
+
+    document.getElementById(
+        "projectTitle"
+    ).value = "";
+
+    document.getElementById(
+        "projectDescription"
+    ).value = "";
+
+    document.getElementById(
+        "projectLink"
+    ).value = "";
+};
+
+
+/* ==========================================
+   HOBBIES
+========================================== */
+
+let hobbyData = {};
+
+
+async function loadHobbies() {
+
+    const snapshot =
+    await get(ref(db, "hobbies"));
+
+    hobbyData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("hobbyList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(hobbyData);
+
+    document.getElementById("hobbyCount")
+    .textContent = entries.length;
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No hobbies yet.</p>";
+
+        return;
+    }
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(item.title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(item.description)}
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editHobby('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteHobby('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveHobby =
+async function() {
+
+    const id =
+    document.getElementById("hobbyEditId").value;
+
+    const data = {
+
+        title:
+        document.getElementById("hobbyTitle").value,
+
+        description:
+        document.getElementById("hobbyDescription").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "hobbies/" + id),
+                data
+            );
+
+        } else {
+
+            await push(
+                ref(db, "hobbies"),
+                data
+            );
+        }
+
+        clearHobbyForm();
+
+        await loadHobbies();
+
+        showMessage(
+            "Hobby saved."
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Could not save hobby.",
+            "error"
+        );
+    }
+};
+
+
+window.editHobby =
+function(id) {
+
+    const item =
+    hobbyData[id];
+
+    document.getElementById(
+        "hobbyEditId"
+    ).value = id;
+
+    document.getElementById(
+        "hobbyTitle"
+    ).value = item.title || "";
+
+    document.getElementById(
+        "hobbyDescription"
+    ).value = item.description || "";
+};
+
+
+window.deleteHobby =
+async function(id) {
+
+    if (!confirm("Delete this hobby?")) {
+        return;
+    }
+
+    await remove(
+        ref(db, "hobbies/" + id)
+    );
+
+    await loadHobbies();
+
+    showMessage(
+        "Hobby deleted."
+    );
+};
+
+
+window.clearHobbyForm =
+function() {
+
+    document.getElementById(
+        "hobbyEditId"
+    ).value = "";
+
+    document.getElementById(
+        "hobbyTitle"
+    ).value = "";
+
+    document.getElementById(
+        "hobbyDescription"
+    ).value = "";
+};
+
+
+/* ==========================================
+   SKILLS
+========================================== */
+
+let skillData = {};
+
+
+async function loadSkills() {
+
+    const snapshot =
+    await get(ref(db, "skills"));
+
+    skillData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("skillList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(skillData);
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No skills yet.</p>";
+
+        return;
+    }
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(item.title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(item.description)}
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editSkill('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteSkill('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveSkill =
+async function() {
+
+    const id =
+    document.getElementById("skillEditId").value;
+
+    const data = {
+
+        title:
+        document.getElementById("skillTitle").value,
+
+        description:
+        document.getElementById("skillDescription").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "skills/" + id),
+                data
+            );
+
+        } else {
+
+            await push(
+                ref(db, "skills"),
+                data
+            );
+        }
+
+        clearSkillForm();
+
+        await loadSkills();
+
+        showMessage(
+            "Skill saved."
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Could not save skill.",
+            "error"
+        );
+    }
+};
+
+
+window.editSkill =
+function(id) {
+
+    const item =
+    skillData[id];
+
+    document.getElementById(
+        "skillEditId"
+    ).value = id;
+
+    document.getElementById(
+        "skillTitle"
+    ).value = item.title || "";
+
+    document.getElementById(
+        "skillDescription"
+    ).value = item.description || "";
+};
+
+
+window.deleteSkill =
+async function(id) {
+
+    if (!confirm("Delete this skill?")) {
+        return;
+    }
+
+    await remove(
+        ref(db, "skills/" + id)
+    );
+
+    await loadSkills();
+
+    showMessage(
+        "Skill deleted."
+    );
+};
+
+
+window.clearSkillForm =
+function() {
+
+    document.getElementById(
+        "skillEditId"
+    ).value = "";
+
+    document.getElementById(
+        "skillTitle"
+    ).value = "";
+
+    document.getElementById(
+        "skillDescription"
+    ).value = "";
+};
+
+
+/* ==========================================
+   DIARY
+========================================== */
+
+let diaryData = {};
+
+
+async function loadDiary() {
+
+    const snapshot =
+    await get(ref(db, "diary"));
+
+    diaryData =
+    snapshot.val() || {};
+
+    const list =
+    document.getElementById("diaryList");
+
+    list.innerHTML = "";
+
+    const entries =
+    Object.entries(diaryData);
+
+    if (!entries.length) {
+
+        list.innerHTML =
+        "<p>No diary entries yet.</p>";
+
+        return;
+    }
+
+    entries.sort((a, b) => {
+
+        return String(b[1].date || "")
+        .localeCompare(
+            String(a[1].date || "")
+        );
+    });
+
+    entries.forEach(([id, item]) => {
+
+        const div =
+        document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${escapeHTML(item.title)}
+            </h3>
+
+            <strong>
+                ${escapeHTML(item.date)}
+            </strong>
+
+            <div class="diary-note">
+
+                <strong>
+                    What happened:
+                </strong>
+
+                <p>
+                    ${escapeHTML(item.happened)}
+                </p>
+
+            </div>
+
+            <div class="diary-note">
+
+                <strong>
+                    Feelings:
+                </strong>
+
+                <p>
+                    ${escapeHTML(item.feelings)}
+                </p>
+
+            </div>
+
+            <div class="diary-note">
+
+                <strong>
+                    Notes:
+                </strong>
+
+                <p>
+                    ${escapeHTML(item.notes)}
+                </p>
+
+            </div>
+
+            ${
+                item.photo
+                ?
+                `<img
+                    class="gallery-image"
+                    src="${escapeHTML(item.photo)}"
+                    alt="Diary photo"
+                >`
+                :
+                ""
+            }
+
+            <div class="actions">
+
+                <button
+                    class="edit-btn"
+                    onclick="editDiary('${id}')">
+                    Edit
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteDiary('${id}')">
+                    Delete
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+
+window.saveDiary =
+async function() {
+
+    const id =
+    document.getElementById("diaryEditId").value;
+
+    const data = {
+
+        date:
+        document.getElementById("diaryDate").value,
+
+        title:
+        document.getElementById("diaryTitle").value,
+
+        happened:
+        document.getElementById("diaryHappened").value,
+
+        feelings:
+        document.getElementById("diaryFeelings").value,
+
+        notes:
+        document.getElementById("diaryNotes").value,
+
+        photo:
+        document.getElementById("diaryPhoto").value
+    };
+
+    try {
+
+        if (id) {
+
+            await set(
+                ref(db, "diary/" + id),
+                data
+            );
+
+        } else {
+
+            await push(
+                ref(db, "diary"),
+                data
+            );
+        }
+
+        clearDiaryForm();
+
+        await loadDiary();
+
+        showMessage(
+            "Diary entry saved."
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Could not save diary entry. Check your Firebase rules.",
+            "error"
+        );
+    }
+};
+
+
+window.editDiary =
+function(id) {
+
+    const item =
+    diaryData[id];
+
+    document.getElementById(
+        "diaryEditId"
+    ).value = id;
+
+    document.getElementById(
+        "diaryDate"
+    ).value = item.date || "";
+
+    document.getElementById(
+        "diaryTitle"
+    ).value = item.title || "";
+
+    document.getElementById(
+        "diaryHappened"
+    ).value = item.happened || "";
+
+    document.getElementById(
+        "diaryFeelings"
+    ).value = item.feelings || "";
+
+    document.getElementById(
+        "diaryNotes"
+    ).value = item.notes || "";
+
+    document.getElementById(
+        "diaryPhoto"
+    ).value = item.photo || "";
+};
+
+
+window.deleteDiary =
+async function(id) {
+
+    if (!confirm("Delete this diary entry?")) {
+        return;
+    }
+
+    await remove(
+        ref(db, "diary/" + id)
+    );
+
+    await loadDiary();
+
+    showMessage(
+        "Diary entry deleted."
+    );
+};
+
+
+window.clearDiaryForm =
+function() {
+
+    document.getElementById(
+        "diaryEditId"
+    ).value = "";
+
+    document.getElementById(
+        "diaryDate"
+    ).value = "";
+
+    document.getElementById(
+        "diaryTitle"
+    ).value = "";
+
+    document.getElementById(
+        "diaryHappened"
+    ).value = "";
+
+    document.getElementById(
+        "diaryFeelings"
+    ).value = "";
+
+    document.getElementById(
+        "diaryNotes"
+    ).value = "";
+
+    document.getElementById(
+        "diaryPhoto"
+    ).value = "";
+};
+
+
+/* ==========================================
+   LOAD EVERYTHING
+========================================== */
+
+async function loadAll() {
+
+    try {
+
+        await loadHome();
+
+        await loadGallery();
+
+        await loadAchievements();
+
+        await loadProjects();
+
+        await loadHobbies();
+
+        await loadSkills();
+
+        await loadDiary();
+
+    } catch (error) {
+
+        console.error(
+            "Database loading error:",
+            error
+        );
+
+        showMessage(
+            "Some website data could not be loaded.",
+            "error"
+        );
+    }
+}
+
+</script>
 
 </body>
-
 </html>
-```
