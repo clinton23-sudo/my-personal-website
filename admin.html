@@ -1,739 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Admin Dashboard | Clinton Ncube</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f6f9;
-            color: #222;
-        }
-
-        button,
-        input,
-        textarea,
-        select {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        /* =========================
-           LOGIN
-        ========================= */
-
-        #loginScreen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #111827, #1f2937);
-        }
-
-        .login-box {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-        }
-
-        .login-box h1 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #111827;
-        }
-
-        .login-box p {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            outline: none;
-        }
-
-        .login-box input:focus {
-            border-color: #2563eb;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-weight: bold;
-        }
-
-        .login-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .login-error {
-            color: #dc2626;
-            text-align: center;
-            margin-top: 15px;
-            min-height: 20px;
-        }
-
-        /* =========================
-           ADMIN LAYOUT
-        ========================= */
-
-        #adminApp {
-            display: none;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 250px;
-            background: #111827;
-            color: white;
-            padding: 20px 14px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-
-        .sidebar-logo {
-            text-align: center;
-            padding: 10px 5px 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
-            margin-bottom: 15px;
-        }
-
-        .sidebar-logo h2 {
-            font-size: 21px;
-        }
-
-        .sidebar-logo span {
-            display: block;
-            color: #9ca3af;
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        .nav-btn {
-            width: 100%;
-            background: transparent;
-            color: #d1d5db;
-            border: none;
-            text-align: left;
-            padding: 12px 14px;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            transition: 0.2s;
-        }
-
-        .nav-btn:hover,
-        .nav-btn.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .logout-side {
-            margin-top: 20px;
-            color: #fca5a5;
-        }
-
-        .logout-side:hover {
-            background: #991b1b;
-            color: white;
-        }
-
-        .main {
-            margin-left: 250px;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           TOPBAR
-        ========================= */
-
-        .topbar {
-            height: 72px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-            position: sticky;
-            top: 0;
-            z-index: 900;
-        }
-
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .menu-toggle {
-            display: none;
-            border: none;
-            background: #111827;
-            color: white;
-            border-radius: 7px;
-            padding: 9px 12px;
-            font-size: 20px;
-        }
-
-        .topbar h1 {
-            font-size: 21px;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .admin-email {
-            color: #6b7280;
-            font-size: 13px;
-        }
-
-        .website-btn {
-            text-decoration: none;
-            background: #2563eb;
-            color: white;
-            padding: 9px 13px;
-            border-radius: 7px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .website-btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .content {
-            padding: 25px;
-            max-width: 1500px;
-            margin: auto;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .page-title {
-            margin-bottom: 7px;
-        }
-
-        .page-subtitle {
-            color: #6b7280;
-            margin-bottom: 25px;
-        }
-
-        /* =========================
-           DASHBOARD
-        ========================= */
-
-        .welcome-banner {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            color: white;
-            border-radius: 14px;
-            padding: 25px;
-            margin-bottom: 22px;
-        }
-
-        .welcome-banner h2 {
-            margin-bottom: 8px;
-        }
-
-        .welcome-banner p {
-            opacity: 0.9;
-        }
-
-        .dashboard-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 18px;
-        }
-
-        .btn {
-            border: none;
-            border-radius: 7px;
-            padding: 10px 15px;
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-success {
-            background: #16a34a;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #dc2626;
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #6b7280;
-            color: white;
-        }
-
-        .btn-light {
-            background: #e5e7eb;
-            color: #111827;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .stat-card .number {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2563eb;
-        }
-
-        .stat-card .label {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 22px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            padding: 11px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-weight: bold;
-        }
-
-        .info-value {
-            color: #6b7280;
-            text-align: right;
-        }
-
-        .refresh-info {
-            color: #6b7280;
-            font-size: 13px;
-            margin-top: 10px;
-        }
-
-        /* =========================
-           FORMS
-        ========================= */
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            padding: 11px;
-            outline: none;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: #2563eb;
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        /* =========================
-           ITEMS
-        ========================= */
-
-        .items-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .item {
-            border: 1px solid #e5e7eb;
-            border-radius: 9px;
-            padding: 15px;
-            background: #fafafa;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .item h4 {
-            margin-bottom: 5px;
-        }
-
-        .item p {
-            color: #666;
-            line-height: 1.5;
-        }
-
-        .item-actions {
-            display: flex;
-            gap: 7px;
-            flex-shrink: 0;
-        }
-
-        .small-btn {
-            border: none;
-            padding: 7px 10px;
-            border-radius: 6px;
-            color: white;
-            font-size: 12px;
-        }
-
-        .edit-btn {
-            background: #2563eb;
-        }
-
-        .delete-btn {
-            background: #dc2626;
-        }
-
-        /* =========================
-           GALLERY
-        ========================= */
-
-        .warning-box {
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
-            color: #9a3412;
-            border-radius: 9px;
-            padding: 15px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .gallery-preview {
-            width: 180px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .gallery-item {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .gallery-item img {
-            width: 120px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 7px;
-            background: #eee;
-        }
-
-        /* =========================
-           EMPTY / LOADING
-        ========================= */
-
-        .empty {
-            text-align: center;
-            padding: 30px;
-            color: #777;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 25px;
-            color: #777;
-        }
-
-        /* =========================
-           TOAST
-        ========================= */
-
-        #toastContainer {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 3000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 350px;
-        }
-
-        .toast {
-            background: #111827;
-            color: white;
-            padding: 13px 16px;
-            border-radius: 8px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            animation: toastIn 0.25s ease;
-        }
-
-        .toast.success {
-            background: #15803d;
-        }
-
-        .toast.error {
-            background: #b91c1c;
-        }
-
-        .toast.info {
-            background: #2563eb;
-        }
-
-        @keyframes toastIn {
-            from {
-                transform: translateY(15px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* =========================
-           MOBILE OVERLAY
-        ========================= */
-
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            z-index: 950;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 1100px) {
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 800px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.25s ease;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .sidebar-overlay.open {
-                display: block;
-            }
-
-            .main {
-                margin-left: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .topbar {
-                padding: 0 15px;
-            }
-
-            .topbar h1 {
-                font-size: 17px;
-            }
-
-            .admin-email {
-                display: none;
-            }
-
-            .website-btn {
-                display: none;
-            }
-
-            .content {
-                padding: 18px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
-
-            .gallery-item {
-                grid-template-columns: 80px 1fr;
-            }
-
-            .gallery-item .item-actions {
-                grid-column: 1 / -1;
-            }
-
-            .gallery-item img {
-                width: 80px;
-                height: 65px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .item-header {
-                flex-direction: column;
-            }
-
-            .item-actions {
-                width: 100%;
-            }
-
-            .small-btn {
-                flex: 1;
-            }
-
-            .info-row {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .info-value {
-                text-align: left;
-            }
-
-            .dashboard-actions .btn {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Clinton Ncube</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f6f9;
+    color:#222;
+}
+
+button,input,textarea,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* LOGIN */
+
+#loginScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#111827,#1f2937);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:35px;
+    border-radius:16px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.login-box h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.login-box p{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.login-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:#2563eb;
+}
+
+.login-btn{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+}
+
+.login-error{
+    color:#dc2626;
+    text-align:center;
+    margin-top:15px;
+    min-height:20px;
+}
+
+/* ADMIN */
+
+#adminApp{
+    display:none;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:250px;
+    background:#111827;
+    color:white;
+    padding:20px 14px;
+    overflow-y:auto;
+    z-index:1000;
+}
+
+.sidebar-logo{
+    text-align:center;
+    padding:10px 5px 25px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    margin-bottom:15px;
+}
+
+.sidebar-logo h2{
+    font-size:21px;
+}
+
+.sidebar-logo span{
+    display:block;
+    color:#9ca3af;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.nav-btn{
+    width:100%;
+    background:transparent;
+    color:#d1d5db;
+    border:none;
+    text-align:left;
+    padding:12px 14px;
+    border-radius:8px;
+    margin-bottom:5px;
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+    background:#2563eb;
+    color:white;
+}
+
+.logout-side{
+    margin-top:20px;
+    color:#fca5a5;
+}
+
+.logout-side:hover{
+    background:#991b1b;
+    color:white;
+}
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    position:sticky;
+    top:0;
+    z-index:900;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.menu-toggle{
+    display:none;
+    border:none;
+    background:#111827;
+    color:white;
+    border-radius:7px;
+    padding:9px 12px;
+    font-size:20px;
+}
+
+.topbar h1{
+    font-size:21px;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.admin-email{
+    color:#6b7280;
+    font-size:13px;
+}
+
+.website-btn{
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:9px 13px;
+    border-radius:7px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* CONTENT */
+
+.content{
+    padding:25px;
+    max-width:1500px;
+    margin:auto;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-title{
+    margin-bottom:7px;
+}
+
+.page-subtitle{
+    color:#6b7280;
+    margin-bottom:25px;
+}
+
+/* CARDS */
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+/* DASHBOARD */
+
+.welcome-banner{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:22px;
+}
+
+.welcome-banner h2{
+    margin-bottom:8px;
+}
+
+.dashboard-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.btn{
+    border:none;
+    border-radius:7px;
+    padding:10px 15px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-secondary{
+    background:#6b7280;
+    color:white;
+}
+
+.btn-light{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+
+.stat-card .number{
+    font-size:30px;
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:5px;
+}
+
+.stat-card .label{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:11px 0;
+    border-bottom:1px solid #eee;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-label{
+    font-weight:bold;
+}
+
+.info-value{
+    color:#6b7280;
+    text-align:right;
+}
+
+.refresh-info{
+    color:#dbeafe;
+    font-size:13px;
+    margin-top:10px;
+}
+
+/* FORMS */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    padding:11px;
+    outline:none;
+    background:white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#2563eb;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ITEMS */
+
+.items-list{
+    display:grid;
+    gap:12px;
+}
+
+.item{
+    border:1px solid #e5e7eb;
+    border-radius:9px;
+    padding:15px;
+    background:#fafafa;
+}
+
+.item-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.item h4{
+    margin-bottom:5px;
+}
+
+.item p{
+    color:#666;
+    line-height:1.5;
+}
+
+.item-actions{
+    display:flex;
+    gap:7px;
+    flex-shrink:0;
+}
+
+.small-btn{
+    border:none;
+    padding:7px 10px;
+    border-radius:6px;
+    color:white;
+    font-size:12px;
+}
+
+.edit-btn{
+    background:#2563eb;
+}
+
+.delete-btn{
+    background:#dc2626;
+}
+
+/* GALLERY */
+
+.warning-box{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    border-radius:9px;
+    padding:15px;
+    margin-bottom:20px;
+    line-height:1.6;
+}
+
+.gallery-preview{
+    width:180px;
+    height:130px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #ddd;
+    margin-top:10px;
+    display:none;
+}
+
+.gallery-item{
+    display:grid;
+    grid-template-columns:120px 1fr auto;
+    gap:15px;
+    align-items:center;
+}
+
+.gallery-item img{
+    width:120px;
+    height:90px;
+    object-fit:cover;
+    border-radius:7px;
+    background:#eee;
+}
+
+/* PREVIEW */
+
+.preview-box{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:20px;
+    margin-top:20px;
+}
+
+.preview-box h3{
+    margin-bottom:8px;
+}
+
+.preview-frame{
+    width:100%;
+    height:600px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    background:white;
+    margin-top:15px;
+}
+
+.preview-controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.preview-note{
+    color:#6b7280;
+    font-size:13px;
+    margin-top:10px;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+.loading{
+    text-align:center;
+    padding:25px;
+    color:#777;
+}
+
+/* TOAST */
+
+#toastContainer{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:3000;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-width:350px;
+}
+
+.toast{
+    background:#111827;
+    color:white;
+    padding:13px 16px;
+    border-radius:8px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.toast.success{
+    background:#15803d;
+}
+
+.toast.error{
+    background:#b91c1c;
+}
+
+.toast.info{
+    background:#2563eb;
+}
+
+/* MOBILE */
+
+.sidebar-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:950;
+}
+
+@media(max-width:1100px){
+
+    .stats-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .sidebar-overlay.open{
+        display:block;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .topbar{
+        padding:0 15px;
+    }
+
+    .topbar h1{
+        font-size:17px;
+    }
+
+    .admin-email,
+    .website-btn{
+        display:none;
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .gallery-item{
+        grid-template-columns:80px 1fr;
+    }
+
+    .gallery-item .item-actions{
+        grid-column:1/-1;
+    }
+
+    .gallery-item img{
+        width:80px;
+        height:65px;
+    }
+
+    .preview-frame{
+        height:500px;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .item-header{
+        flex-direction:column;
+    }
+
+    .item-actions{
+        width:100%;
+    }
+
+    .small-btn{
+        flex:1;
+    }
+
+    .info-row{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .info-value{
+        text-align:left;
+    }
+
+    .dashboard-actions .btn{
+        width:100%;
+    }
+
+    .preview-frame{
+        height:400px;
+    }
+
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
+<!-- LOGIN -->
 
 <div id="loginScreen">
 
@@ -741,7 +729,9 @@
 
         <h1>Admin Dashboard</h1>
 
-        <p>Login to manage Clinton Ncube's website.</p>
+        <p>
+            Login to manage Clinton Ncube's website.
+        </p>
 
         <form id="loginForm">
 
@@ -760,36 +750,34 @@
             >
 
             <button
-                type="submit"
                 class="login-btn"
                 id="loginButton"
+                type="submit"
             >
                 Login
             </button>
 
         </form>
 
-        <div
-            id="loginError"
-            class="login-error"
-        ></div>
+        <div id="loginError" class="login-error"></div>
 
     </div>
 
 </div>
 
 
-<!-- =========================
-     ADMIN APP
-========================= -->
+<!-- ADMIN -->
 
 <div id="adminApp">
 
     <aside class="sidebar" id="sidebar">
 
         <div class="sidebar-logo">
+
             <h2>Clinton Ncube</h2>
+
             <span>Admin Dashboard</span>
+
         </div>
 
         <button class="nav-btn active" data-page="dashboard">
@@ -830,6 +818,7 @@
 
     </aside>
 
+
     <div
         class="sidebar-overlay"
         id="sidebarOverlay"
@@ -849,11 +838,9 @@
                     ☰
                 </button>
 
-                <div>
-                    <h1 id="topbarTitle">
-                        Dashboard
-                    </h1>
-                </div>
+                <h1 id="topbarTitle">
+                    Dashboard
+                </h1>
 
             </div>
 
@@ -880,9 +867,7 @@
         <div class="content">
 
 
-            <!-- =========================
-                 DASHBOARD
-            ========================= -->
+            <!-- DASHBOARD -->
 
             <section
                 class="page active"
@@ -894,7 +879,7 @@
                 </h2>
 
                 <p class="page-subtitle">
-                    Manage and monitor your personal website.
+                    Manage and preview your personal website.
                 </p>
 
 
@@ -917,6 +902,13 @@
                             🔄 Refresh Dashboard
                         </button>
 
+                        <button
+                            class="btn btn-light"
+                            id="previewWebsiteBtn"
+                        >
+                            👁️ Live Preview
+                        </button>
+
                         <a
                             class="btn btn-light"
                             href="https://clinton23-sudo.github.io/my-personal-website/"
@@ -929,9 +921,8 @@
                     </div>
 
                     <div
-                        class="refresh-info"
                         id="lastRefresh"
-                        style="color:#dbeafe;"
+                        class="refresh-info"
                     >
                         Last dashboard refresh: Not yet refreshed
                     </div>
@@ -942,6 +933,7 @@
                 <div class="stats-grid">
 
                     <div class="stat-card">
+
                         <div
                             class="number"
                             id="galleryCount"
@@ -952,9 +944,12 @@
                         <div class="label">
                             Gallery Images
                         </div>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <div
                             class="number"
                             id="achievementCount"
@@ -965,9 +960,12 @@
                         <div class="label">
                             Achievements
                         </div>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <div
                             class="number"
                             id="projectCount"
@@ -978,9 +976,12 @@
                         <div class="label">
                             Projects
                         </div>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <div
                             class="number"
                             id="hobbyCount"
@@ -991,9 +992,12 @@
                         <div class="label">
                             Hobbies
                         </div>
+
                     </div>
 
+
                     <div class="stat-card">
+
                         <div
                             class="number"
                             id="skillCount"
@@ -1004,6 +1008,7 @@
                         <div class="label">
                             Skills
                         </div>
+
                     </div>
 
                 </div>
@@ -1018,6 +1023,7 @@
                         </h3>
 
                         <div class="info-row">
+
                             <span class="info-label">
                                 Name
                             </span>
@@ -1028,9 +1034,12 @@
                             >
                                 Loading...
                             </span>
+
                         </div>
 
+
                         <div class="info-row">
+
                             <span class="info-label">
                                 Goal
                             </span>
@@ -1041,9 +1050,12 @@
                             >
                                 Loading...
                             </span>
+
                         </div>
 
+
                         <div class="info-row">
+
                             <span class="info-label">
                                 Last Updated
                             </span>
@@ -1054,6 +1066,7 @@
                             >
                                 Loading...
                             </span>
+
                         </div>
 
                     </div>
@@ -1078,21 +1091,21 @@
                                 class="btn btn-primary"
                                 onclick="showPage('gallery')"
                             >
-                                🖼️ Manage Gallery
+                                🖼️ Gallery
                             </button>
 
                             <button
                                 class="btn btn-primary"
                                 onclick="showPage('projects')"
                             >
-                                📚 Manage Projects
+                                📚 Projects
                             </button>
 
                             <button
                                 class="btn btn-primary"
                                 onclick="showPage('diary')"
                             >
-                                📔 Open Diary
+                                📔 Diary
                             </button>
 
                         </div>
@@ -1101,12 +1114,65 @@
 
                 </div>
 
+
+                <!-- LIVE PREVIEW -->
+
+                <div class="preview-box">
+
+                    <h3>
+                        👁️ Live Website Preview
+                    </h3>
+
+                    <p>
+                        This preview opens your actual GitHub Pages website.
+                    </p>
+
+                    <div class="preview-controls">
+
+                        <button
+                            class="btn btn-primary"
+                            id="loadPreviewBtn"
+                        >
+                            👁️ Load Preview
+                        </button>
+
+                        <button
+                            class="btn btn-light"
+                            id="refreshPreviewBtn"
+                        >
+                            🔄 Refresh Preview
+                        </button>
+
+                        <a
+                            class="btn btn-success"
+                            href="https://clinton23-sudo.github.io/my-personal-website/"
+                            target="_blank"
+                            style="text-decoration:none;"
+                        >
+                            🌐 Open Full Website
+                        </a>
+
+                    </div>
+
+                    <p class="preview-note">
+                        If you have just committed a change to GitHub,
+                        give GitHub Pages a little time to publish it before
+                        refreshing this preview.
+                    </p>
+
+                    <iframe
+                        id="previewFrame"
+                        class="preview-frame"
+                        title="Website Preview"
+                        style="display:none;"
+                    ></iframe>
+
+                </div>
+
             </section>
 
 
-            <!-- =========================
-                 HOME MANAGER
-            ========================= -->
+            <!-- HOME -->
 
             <section
                 class="page"
@@ -1121,6 +1187,7 @@
                     Update the information displayed on your homepage.
                 </p>
 
+
                 <div class="card">
 
                     <form id="homeForm">
@@ -1129,14 +1196,14 @@
 
                             <div class="form-group">
 
-                                <label for="homeName">
+                                <label>
                                     Name
                                 </label>
 
                                 <input
                                     type="text"
                                     id="homeName"
-                                    placeholder="Clinton Ncube"
+                                    value="Clinton Ncube"
                                     required
                                 >
 
@@ -1145,7 +1212,7 @@
 
                             <div class="form-group">
 
-                                <label for="homeUpdated">
+                                <label>
                                     Last Updated
                                 </label>
 
@@ -1160,13 +1227,12 @@
 
                             <div class="form-group full">
 
-                                <label for="homeWelcome">
+                                <label>
                                     Welcome Message
                                 </label>
 
                                 <textarea
                                     id="homeWelcome"
-                                    placeholder="Welcome to my personal website..."
                                 ></textarea>
 
                             </div>
@@ -1174,13 +1240,12 @@
 
                             <div class="form-group full">
 
-                                <label for="homeGoal">
+                                <label>
                                     Goal
                                 </label>
 
                                 <textarea
                                     id="homeGoal"
-                                    placeholder="My goal is..."
                                 ></textarea>
 
                             </div>
@@ -1188,13 +1253,12 @@
 
                             <div class="form-group full">
 
-                                <label for="homeAbout">
+                                <label>
                                     About
                                 </label>
 
                                 <textarea
                                     id="homeAbout"
-                                    placeholder="Tell visitors about yourself..."
                                 ></textarea>
 
                             </div>
@@ -1219,6 +1283,14 @@
                                 🔄 Reload
                             </button>
 
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                onclick="previewWebsite()"
+                            >
+                                👁️ Preview Website
+                            </button>
+
                         </div>
 
                     </form>
@@ -1228,9 +1300,7 @@
             </section>
 
 
-            <!-- =========================
-                 GALLERY
-            ========================= -->
+            <!-- GALLERY -->
 
             <section
                 class="page"
@@ -1259,18 +1329,13 @@
 
                     <br>
 
-                    Your gallery information is saved through Firebase
+                    Gallery information is saved through Firebase
                     Realtime Database.
 
                     <br>
 
                     New image files still need to be placed inside your
                     GitHub <strong>images</strong> folder.
-
-                    <br>
-
-                    The selector below lets you choose from the images
-                    currently configured in this dashboard.
 
                 </div>
 
@@ -1292,14 +1357,13 @@
 
                             <div class="form-group full">
 
-                                <label for="galleryTitle">
+                                <label>
                                     Image Title
                                 </label>
 
                                 <input
                                     type="text"
                                     id="galleryTitle"
-                                    placeholder="My First Gallery Picture"
                                     required
                                 >
 
@@ -1308,7 +1372,7 @@
 
                             <div class="form-group full">
 
-                                <label for="gallerySelector">
+                                <label>
                                     Choose Existing Website Image
                                 </label>
 
@@ -1364,14 +1428,13 @@
 
                             <div class="form-group full">
 
-                                <label for="galleryFile">
+                                <label>
                                     Image Path / URL
                                 </label>
 
                                 <input
                                     type="text"
                                     id="galleryFile"
-                                    placeholder="images/example.jpg"
                                     oninput="previewGalleryURL()"
                                     required
                                 >
@@ -1387,13 +1450,12 @@
 
                             <div class="form-group full">
 
-                                <label for="galleryLocalFile">
+                                <label>
                                     Temporary Local Preview
                                 </label>
 
                                 <input
                                     type="file"
-                                    id="galleryLocalFile"
                                     accept="image/*"
                                     onchange="previewLocalImage(event)"
                                 >
@@ -1403,13 +1465,12 @@
 
                             <div class="form-group full">
 
-                                <label for="galleryDescription">
+                                <label>
                                     Description
                                 </label>
 
                                 <textarea
                                     id="galleryDescription"
-                                    placeholder="Describe this picture..."
                                 ></textarea>
 
                             </div>
@@ -1461,9 +1522,7 @@
             </section>
 
 
-            <!-- =========================
-                 ACHIEVEMENTS
-            ========================= -->
+            <!-- ACHIEVEMENTS -->
 
             <section
                 class="page"
@@ -1494,7 +1553,7 @@
 
                         <div class="form-group">
 
-                            <label for="achievementTitle">
+                            <label>
                                 Title
                             </label>
 
@@ -1509,7 +1568,7 @@
 
                         <div class="form-group">
 
-                            <label for="achievementDescription">
+                            <label>
                                 Description
                             </label>
 
@@ -1554,20 +1613,14 @@
                     <div
                         class="items-list"
                         id="achievementList"
-                    >
-                        <div class="loading">
-                            Loading achievements...
-                        </div>
-                    </div>
+                    ></div>
 
                 </div>
 
             </section>
 
 
-            <!-- =========================
-                 PROJECTS
-            ========================= -->
+            <!-- PROJECTS -->
 
             <section
                 class="page"
@@ -1598,7 +1651,7 @@
 
                         <div class="form-group">
 
-                            <label for="projectTitle">
+                            <label>
                                 Project Title
                             </label>
 
@@ -1613,7 +1666,7 @@
 
                         <div class="form-group">
 
-                            <label for="projectDescription">
+                            <label>
                                 Description
                             </label>
 
@@ -1627,7 +1680,7 @@
 
                         <div class="form-group">
 
-                            <label for="projectLink">
+                            <label>
                                 Project Link
                             </label>
 
@@ -1673,20 +1726,14 @@
                     <div
                         class="items-list"
                         id="projectList"
-                    >
-                        <div class="loading">
-                            Loading projects...
-                        </div>
-                    </div>
+                    ></div>
 
                 </div>
 
             </section>
 
 
-            <!-- =========================
-                 HOBBIES
-            ========================= -->
+            <!-- HOBBIES -->
 
             <section
                 class="page"
@@ -1717,14 +1764,13 @@
 
                         <div class="form-group">
 
-                            <label for="hobbyTitle">
+                            <label>
                                 Hobby Title
                             </label>
 
                             <input
                                 type="text"
                                 id="hobbyTitle"
-                                placeholder="🏀 Basketball"
                                 required
                             >
 
@@ -1733,7 +1779,7 @@
 
                         <div class="form-group">
 
-                            <label for="hobbyDescription">
+                            <label>
                                 Description
                             </label>
 
@@ -1778,20 +1824,14 @@
                     <div
                         class="items-list"
                         id="hobbyList"
-                    >
-                        <div class="loading">
-                            Loading hobbies...
-                        </div>
-                    </div>
+                    ></div>
 
                 </div>
 
             </section>
 
 
-            <!-- =========================
-                 SKILLS
-            ========================= -->
+            <!-- SKILLS -->
 
             <section
                 class="page"
@@ -1822,7 +1862,7 @@
 
                         <div class="form-group">
 
-                            <label for="skillTitle">
+                            <label>
                                 Skill Title
                             </label>
 
@@ -1837,7 +1877,7 @@
 
                         <div class="form-group">
 
-                            <label for="skillDescription">
+                            <label>
                                 Description
                             </label>
 
@@ -1882,20 +1922,14 @@
                     <div
                         class="items-list"
                         id="skillList"
-                    >
-                        <div class="loading">
-                            Loading skills...
-                        </div>
-                    </div>
+                    ></div>
 
                 </div>
 
             </section>
 
 
-            <!-- =========================
-                 PRIVATE DIARY
-            ========================= -->
+            <!-- DIARY -->
 
             <section
                 class="page"
@@ -1907,8 +1941,7 @@
                 </h2>
 
                 <p class="page-subtitle">
-                    Keep personal diary entries inside your protected
-                    Firebase database.
+                    Manage your private diary entries.
                 </p>
 
 
@@ -1929,7 +1962,7 @@
 
                             <div class="form-group">
 
-                                <label for="diaryDate">
+                                <label>
                                     Date
                                 </label>
 
@@ -1944,7 +1977,7 @@
 
                             <div class="form-group">
 
-                                <label for="diaryTitle">
+                                <label>
                                     Title
                                 </label>
 
@@ -1959,7 +1992,7 @@
 
                             <div class="form-group full">
 
-                                <label for="diaryHappened">
+                                <label>
                                     What Happened?
                                 </label>
 
@@ -1972,7 +2005,7 @@
 
                             <div class="form-group full">
 
-                                <label for="diaryFeelings">
+                                <label>
                                     Feelings
                                 </label>
 
@@ -1985,7 +2018,7 @@
 
                             <div class="form-group full">
 
-                                <label for="diaryNotes">
+                                <label>
                                     Notes
                                 </label>
 
@@ -1998,7 +2031,7 @@
 
                             <div class="form-group full">
 
-                                <label for="diaryPhoto">
+                                <label>
                                     Photo Path / URL
                                 </label>
 
@@ -2046,11 +2079,7 @@
                     <div
                         class="items-list"
                         id="diaryList"
-                    >
-                        <div class="loading">
-                            Loading diary...
-                        </div>
-                    </div>
+                    ></div>
 
                 </div>
 
@@ -2066,875 +2095,764 @@
 <div id="toastContainer"></div>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
-
 <script type="module">
 
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    import {
-        getAuth,
-        onAuthStateChanged,
-        signInWithEmailAndPassword,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    import {
-        getDatabase,
-        ref,
-        get,
-        set,
-        push,
-        remove
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
-
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
-
-    const firebaseConfig = {
-
-        apiKey:
-            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
-
-        authDomain:
-            "clinton-ncube-website.firebaseapp.com",
-
-        databaseURL:
-            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-
-        projectId:
-            "clinton-ncube-website",
-
-        storageBucket:
-            "clinton-ncube-website.firebasestorage.app",
-
-        messagingSenderId:
-            "946671700613",
-
-        appId:
-            "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-        measurementId:
-            "G-K1S62MHHXP"
-
-    };
+import {
+    getDatabase,
+    ref,
+    get,
+    set,
+    push,
+    remove
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-    const app = initializeApp(firebaseConfig);
+/* FIREBASE */
 
-    const auth = getAuth(app);
+const firebaseConfig = {
 
-    const db = getDatabase(app);
+    apiKey:
+        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
+    authDomain:
+        "clinton-ncube-website.firebaseapp.com",
 
-    /* =========================
-       GLOBAL HELPERS
-    ========================= */
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-    const $ = id => document.getElementById(id);
+    projectId:
+        "clinton-ncube-website",
 
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
 
-    function escapeHTML(value) {
+    messagingSenderId:
+        "946671700613",
 
-        return String(value ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-    }
+    measurementId:
+        "G-K1S62MHHXP"
 
-
-    window.showToast = function(message, type = "info") {
-
-        const container = $("toastContainer");
-
-        const toast = document.createElement("div");
-
-        toast.className = `toast ${type}`;
-
-        toast.textContent = message;
-
-        container.appendChild(toast);
-
-        setTimeout(() => {
-
-            toast.remove();
-
-        }, 3500);
-
-    };
+};
 
 
-    function formatDateTime(date = new Date()) {
+const app =
+    initializeApp(firebaseConfig);
 
-        return date.toLocaleString([], {
-            dateStyle: "medium",
-            timeStyle: "short"
+const auth =
+    getAuth(app);
+
+const db =
+    getDatabase(app);
+
+
+/* HELPERS */
+
+const $ = id =>
+    document.getElementById(id);
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function showToast(message,type="info"){
+
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        "toast " + type;
+
+    toast.textContent =
+        message;
+
+    $("toastContainer")
+        .appendChild(toast);
+
+    setTimeout(
+        () => toast.remove(),
+        3500
+    );
+
+}
+
+
+function formatDateTime(){
+
+    return new Date()
+        .toLocaleString([],{
+            dateStyle:"medium",
+            timeStyle:"short"
         });
 
-    }
+}
 
 
-    function updateRefreshTime() {
+/* LOGIN */
 
-        $("lastRefresh").textContent =
-            "Last dashboard refresh: " + formatDateTime();
+$("loginForm").addEventListener(
+    "submit",
+    async event => {
 
-    }
+        event.preventDefault();
 
+        const email =
+            $("loginEmail").value.trim();
 
-    /* =========================
-       AUTH
-    ========================= */
+        const password =
+            $("loginPassword").value;
 
-    $("loginForm").addEventListener(
-        "submit",
-        async event => {
+        $("loginError").textContent =
+            "";
 
-            event.preventDefault();
+        $("loginButton").disabled =
+            true;
 
-            const email =
-                $("loginEmail").value.trim();
+        $("loginButton").textContent =
+            "Logging in...";
 
-            const password =
-                $("loginPassword").value;
+        try{
 
-            const button =
-                $("loginButton");
-
-            $("loginError").textContent = "";
-
-            button.disabled = true;
-
-            button.textContent = "Logging in...";
-
-            try {
-
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-                showToast(
-                    "Login successful!",
-                    "success"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                $("loginError").textContent =
-                    "Login failed. Please check your email and password.";
-
-            } finally {
-
-                button.disabled = false;
-
-                button.textContent = "Login";
-
-            }
-
-        }
-    );
-
-
-    $("logoutSide").addEventListener(
-        "click",
-        async () => {
-
-            try {
-
-                await signOut(auth);
-
-                showToast(
-                    "You have been logged out.",
-                    "success"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Logout failed.",
-                    "error"
-                );
-
-            }
-
-        }
-    );
-
-
-    onAuthStateChanged(
-        auth,
-        async user => {
-
-            if (user) {
-
-                $("loginScreen").style.display =
-                    "none";
-
-                $("adminApp").style.display =
-                    "block";
-
-                $("adminEmail").textContent =
-                    user.email || "";
-
-                await loadEverything();
-
-            } else {
-
-                $("loginScreen").style.display =
-                    "flex";
-
-                $("adminApp").style.display =
-                    "none";
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       MOBILE SIDEBAR
-    ========================= */
-
-    $("menuToggle").addEventListener(
-        "click",
-        () => {
-
-            $("sidebar").classList.toggle("open");
-
-            $("sidebarOverlay").classList.toggle("open");
-
-        }
-    );
-
-
-    $("sidebarOverlay").addEventListener(
-        "click",
-        closeSidebar
-    );
-
-
-    function closeSidebar() {
-
-        $("sidebar").classList.remove("open");
-
-        $("sidebarOverlay").classList.remove("open");
-
-    }
-
-
-    /* =========================
-       PAGE NAVIGATION
-    ========================= */
-
-    const pageTitles = {
-
-        dashboard: "Dashboard",
-
-        home: "Home Manager",
-
-        gallery: "Gallery",
-
-        achievements: "Achievements",
-
-        projects: "Projects",
-
-        hobbies: "Hobbies",
-
-        skills: "Skills",
-
-        diary: "Private Diary"
-
-    };
-
-
-    window.showPage = function(pageName) {
-
-        document
-            .querySelectorAll(".page")
-            .forEach(page => {
-
-                page.classList.remove("active");
-
-            });
-
-
-        document
-            .querySelectorAll(".nav-btn")
-            .forEach(button => {
-
-                button.classList.remove("active");
-
-            });
-
-
-        const page =
-            $("page-" + pageName);
-
-        if (page) {
-
-            page.classList.add("active");
-
-        }
-
-
-        const navButton =
-            document.querySelector(
-                `.nav-btn[data-page="${pageName}"]`
-            );
-
-        if (navButton) {
-
-            navButton.classList.add("active");
-
-        }
-
-
-        $("topbarTitle").textContent =
-            pageTitles[pageName] || "Dashboard";
-
-
-        closeSidebar();
-
-    };
-
-
-    document
-        .querySelectorAll(".nav-btn[data-page]")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    showPage(
-                        button.dataset.page
-                    );
-
-                }
-            );
-
-        });
-
-
-    /* =========================
-       LOAD EVERYTHING
-    ========================= */
-
-    async function loadEverything() {
-
-        try {
-
-            await Promise.all([
-
-                loadHome(),
-
-                loadGallery(),
-
-                loadAchievements(),
-
-                loadProjects(),
-
-                loadHobbies(),
-
-                loadSkills(),
-
-                loadDiary()
-
-            ]);
-
-            await updateDashboardStats();
-
-            updateRefreshTime();
-
-        } catch (error) {
-
-            console.error(
-                "Loading error:",
-                error
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
             showToast(
-                "Some dashboard information could not be loaded.",
-                "error"
+                "Login successful!",
+                "success"
             );
 
-        }
+        }catch(error){
 
-    }
+            console.error(error);
 
+            $("loginError").textContent =
+                "Login failed. Check your email and password.";
 
-    $("refreshDashboardBtn").addEventListener(
-        "click",
-        async () => {
+        }finally{
 
-            const button =
-                $("refreshDashboardBtn");
+            $("loginButton").disabled =
+                false;
 
-            button.disabled = true;
-
-            button.textContent =
-                "🔄 Refreshing...";
-
-            try {
-
-                await loadEverything();
-
-                showToast(
-                    "Dashboard refreshed successfully.",
-                    "success"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not refresh dashboard.",
-                    "error"
-                );
-
-            } finally {
-
-                button.disabled = false;
-
-                button.textContent =
-                    "🔄 Refresh Dashboard";
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       DASHBOARD STATS
-    ========================= */
-
-    async function countChildren(path) {
-
-        const snapshot =
-            await get(ref(db, path));
-
-        if (!snapshot.exists()) {
-
-            return 0;
+            $("loginButton").textContent =
+                "Login";
 
         }
 
-        return Object.keys(
-            snapshot.val() || {}
-        ).length;
+    }
+);
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(user){
+
+            $("loginScreen").style.display =
+                "none";
+
+            $("adminApp").style.display =
+                "block";
+
+            $("adminEmail").textContent =
+                user.email || "";
+
+            await loadEverything();
+
+        }else{
+
+            $("loginScreen").style.display =
+                "flex";
+
+            $("adminApp").style.display =
+                "none";
+
+        }
 
     }
+);
 
 
-    async function updateDashboardStats() {
+/* LOGOUT */
 
-        const counts =
-            await Promise.all([
+$("logoutSide").addEventListener(
+    "click",
+    async () => {
 
-                countChildren("gallery"),
+        try{
 
-                countChildren("achievements"),
+            await signOut(auth);
 
-                countChildren("projects"),
+            showToast(
+                "Logged out successfully.",
+                "success"
+            );
 
-                countChildren("hobbies"),
-
-                countChildren("skills")
-
-            ]);
-
-
-        $("galleryCount").textContent =
-            counts[0];
-
-        $("achievementCount").textContent =
-            counts[1];
-
-        $("projectCount").textContent =
-            counts[2];
-
-        $("hobbyCount").textContent =
-            counts[3];
-
-        $("skillCount").textContent =
-            counts[4];
-
-    }
-
-
-    /* =========================
-       HOME
-    ========================= */
-
-    window.loadHome = async function() {
-
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "websiteData")
-                );
-
-            const data =
-                snapshot.exists()
-                    ? snapshot.val()
-                    : {};
-
-            $("homeName").value =
-                data.name || "Clinton Ncube";
-
-            $("homeWelcome").value =
-                data.welcome || "";
-
-            $("homeGoal").value =
-                data.goal || "";
-
-            $("homeAbout").value =
-                data.about || "";
-
-            $("homeUpdated").value =
-                data.lastUpdated || "2026";
-
-
-            $("dashboardName").textContent =
-                data.name || "Clinton Ncube";
-
-            $("dashboardGoal").textContent =
-                data.goal || "Not set";
-
-            $("dashboardUpdated").textContent =
-                data.lastUpdated || "Not set";
-
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
             showToast(
-                "Could not load home information.",
+                "Logout failed.",
                 "error"
             );
 
         }
 
-    };
+    }
+);
 
 
-    $("homeForm").addEventListener(
-        "submit",
-        async event => {
+/* MOBILE MENU */
 
-            event.preventDefault();
+$("menuToggle").addEventListener(
+    "click",
+    () => {
 
-            const data = {
+        $("sidebar")
+            .classList.toggle("open");
 
-                name:
-                    $("homeName").value.trim(),
+        $("sidebarOverlay")
+            .classList.toggle("open");
 
-                welcome:
-                    $("homeWelcome").value.trim(),
-
-                goal:
-                    $("homeGoal").value.trim(),
-
-                about:
-                    $("homeAbout").value.trim(),
-
-                lastUpdated:
-                    $("homeUpdated").value.trim()
-
-            };
+    }
+);
 
 
-            try {
+$("sidebarOverlay").addEventListener(
+    "click",
+    () => {
 
-                await set(
-                    ref(db, "websiteData"),
-                    data
-                );
+        $("sidebar")
+            .classList.remove("open");
 
-                await loadHome();
+        $("sidebarOverlay")
+            .classList.remove("open");
 
-                showToast(
-                    "Home information saved successfully!",
-                    "success"
-                );
+    }
+);
 
-            } catch (error) {
 
-                console.error(error);
+/* PAGE NAVIGATION */
 
-                showToast(
-                    "Could not save home information.",
-                    "error"
-                );
+const pageTitles = {
 
-            }
+    dashboard:"Dashboard",
+    home:"Home Manager",
+    gallery:"Gallery",
+    achievements:"Achievements",
+    projects:"Projects",
+    hobbies:"Hobbies",
+    skills:"Skills",
+    diary:"Private Diary"
+
+};
+
+
+window.showPage = function(page){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p =>
+            p.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    const target =
+        $("page-" + page);
+
+    if(target)
+        target.classList.add("active");
+
+    const nav =
+        document.querySelector(
+            `.nav-btn[data-page="${page}"]`
+        );
+
+    if(nav)
+        nav.classList.add("active");
+
+    $("topbarTitle").textContent =
+        pageTitles[page] || "Dashboard";
+
+    $("sidebar").classList.remove("open");
+
+    $("sidebarOverlay").classList.remove("open");
+
+};
+
+
+document
+    .querySelectorAll(".nav-btn[data-page]")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => showPage(
+                button.dataset.page
+            )
+        );
+
+    });
+
+
+/* LOAD EVERYTHING */
+
+async function loadEverything(){
+
+    await Promise.all([
+
+        loadHome(),
+        loadGallery(),
+        loadAchievements(),
+        loadProjects(),
+        loadHobbies(),
+        loadSkills(),
+        loadDiary()
+
+    ]);
+
+    await updateDashboardStats();
+
+    $("lastRefresh").textContent =
+        "Last dashboard refresh: " +
+        formatDateTime();
+
+}
+
+
+/* REFRESH */
+
+$("refreshDashboardBtn").addEventListener(
+    "click",
+    async () => {
+
+        $("refreshDashboardBtn").disabled =
+            true;
+
+        $("refreshDashboardBtn").textContent =
+            "🔄 Refreshing...";
+
+        try{
+
+            await loadEverything();
+
+            showToast(
+                "Dashboard refreshed!",
+                "success"
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Refresh failed.",
+                "error"
+            );
+
+        }finally{
+
+            $("refreshDashboardBtn").disabled =
+                false;
+
+            $("refreshDashboardBtn").textContent =
+                "🔄 Refresh Dashboard";
 
         }
-    );
+
+    }
+);
 
 
-    /* =========================
-       GALLERY
-    ========================= */
+/* STATS */
 
-    window.selectGalleryImage = function() {
+async function countChildren(path){
 
-        const selected =
-            $("gallerySelector").value;
+    const snapshot =
+        await get(ref(db,path));
 
-        if (!selected) {
+    if(!snapshot.exists())
+        return 0;
 
-            return;
+    return Object.keys(
+        snapshot.val() || {}
+    ).length;
 
-        }
-
-        $("galleryFile").value =
-            selected;
-
-        previewGalleryURL();
-
-    };
+}
 
 
-    window.previewGalleryURL = function() {
+async function updateDashboardStats(){
 
-        const path =
-            $("galleryFile").value.trim();
+    const counts =
+        await Promise.all([
 
-        const preview =
-            $("galleryPreview");
+            countChildren("gallery"),
+            countChildren("achievements"),
+            countChildren("projects"),
+            countChildren("hobbies"),
+            countChildren("skills")
 
-        if (!path) {
+        ]);
 
-            preview.style.display =
-                "none";
+    $("galleryCount").textContent =
+        counts[0];
 
-            preview.removeAttribute("src");
+    $("achievementCount").textContent =
+        counts[1];
 
-            return;
+    $("projectCount").textContent =
+        counts[2];
 
-        }
+    $("hobbyCount").textContent =
+        counts[3];
 
-        preview.src = path;
+    $("skillCount").textContent =
+        counts[4];
 
-        preview.style.display =
-            "block";
+}
 
-        preview.onerror = function() {
 
-            preview.style.display =
-                "none";
+/* HOME */
+
+window.loadHome = async function(){
+
+    try{
+
+        const snapshot =
+            await get(
+                ref(db,"websiteData")
+            );
+
+        const data =
+            snapshot.exists()
+                ? snapshot.val()
+                : {};
+
+        $("homeName").value =
+            data.name || "Clinton Ncube";
+
+        $("homeWelcome").value =
+            data.welcome || "";
+
+        $("homeGoal").value =
+            data.goal || "";
+
+        $("homeAbout").value =
+            data.about || "";
+
+        $("homeUpdated").value =
+            data.lastUpdated || "2026";
+
+        $("dashboardName").textContent =
+            data.name || "Clinton Ncube";
+
+        $("dashboardGoal").textContent =
+            data.goal || "Not set";
+
+        $("dashboardUpdated").textContent =
+            data.lastUpdated || "Not set";
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Could not load home information.",
+            "error"
+        );
+
+    }
+
+};
+
+
+$("homeForm").addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        const data = {
+
+            name:
+                $("homeName").value.trim(),
+
+            welcome:
+                $("homeWelcome").value.trim(),
+
+            goal:
+                $("homeGoal").value.trim(),
+
+            about:
+                $("homeAbout").value.trim(),
+
+            lastUpdated:
+                $("homeUpdated").value.trim()
 
         };
 
-    };
+        try{
 
+            await set(
+                ref(db,"websiteData"),
+                data
+            );
 
-    window.previewLocalImage = function(event) {
+            await loadHome();
 
-        const file =
-            event.target.files[0];
+            showToast(
+                "Home information saved!",
+                "success"
+            );
 
-        if (!file) {
+        }catch(error){
 
-            return;
+            console.error(error);
+
+            showToast(
+                "Could not save home information.",
+                "error"
+            );
 
         }
 
-        const preview =
-            $("galleryPreview");
+    }
+);
 
-        const reader =
-            new FileReader();
 
-        reader.onload = function(event) {
+/* GALLERY */
 
-            preview.src =
+window.selectGalleryImage = function(){
+
+    const value =
+        $("gallerySelector").value;
+
+    if(!value)
+        return;
+
+    $("galleryFile").value =
+        value;
+
+    previewGalleryURL();
+
+};
+
+
+window.previewGalleryURL = function(){
+
+    const path =
+        $("galleryFile").value.trim();
+
+    const preview =
+        $("galleryPreview");
+
+    if(!path){
+
+        preview.style.display =
+            "none";
+
+        return;
+
+    }
+
+    preview.src =
+        path;
+
+    preview.style.display =
+        "block";
+
+};
+
+
+window.previewLocalImage = function(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file)
+        return;
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        event => {
+
+            $("galleryPreview").src =
                 event.target.result;
 
-            preview.style.display =
+            $("galleryPreview").style.display =
                 "block";
 
         };
 
-        reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
-    };
-
-
-    $("galleryForm").addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-            const id =
-                $("galleryEditId").value;
-
-            const title =
-                $("galleryTitle").value.trim();
-
-            const file =
-                $("galleryFile").value.trim();
-
-            const description =
-                $("galleryDescription").value.trim();
+};
 
 
-            if (!title || !file) {
+$("galleryForm").addEventListener(
+    "submit",
+    async event => {
 
-                showToast(
-                    "Please enter an image title and image path.",
-                    "error"
-                );
+        event.preventDefault();
 
-                return;
+        const id =
+            $("galleryEditId").value;
 
-            }
+        const data = {
 
+            title:
+                $("galleryTitle").value.trim(),
 
-            const data = {
+            file:
+                $("galleryFile").value.trim(),
 
-                title,
+            description:
+                $("galleryDescription")
+                    .value
+                    .trim()
 
-                file,
+        };
 
-                description
+        if(!data.title || !data.file){
 
-            };
+            showToast(
+                "Enter an image title and path.",
+                "error"
+            );
 
-
-            try {
-
-                if (id) {
-
-                    await set(
-                        ref(db, "gallery/" + id),
-                        data
-                    );
-
-                    showToast(
-                        "Gallery image updated successfully!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "gallery"),
-                        data
-                    );
-
-                    showToast(
-                        "Gallery image added successfully!",
-                        "success"
-                    );
-
-                }
-
-
-                clearGalleryForm();
-
-                await loadGallery();
-
-                await updateDashboardStats();
-
-            } catch (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not save gallery image.",
-                    "error"
-                );
-
-            }
+            return;
 
         }
-    );
 
+        try{
 
-    window.loadGallery = async function() {
+            if(id){
 
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "gallery")
+                await set(
+                    ref(db,"gallery/"+id),
+                    data
                 );
 
-            const list =
-                $("galleryList");
+                showToast(
+                    "Gallery image updated!",
+                    "success"
+                );
 
-            list.innerHTML = "";
+            }else{
 
+                await push(
+                    ref(db,"gallery"),
+                    data
+                );
 
-            if (!snapshot.exists()) {
-
-                list.innerHTML =
-                    `<div class="empty">
-                        No gallery images yet.
-                    </div>`;
-
-                return;
+                showToast(
+                    "Gallery image added!",
+                    "success"
+                );
 
             }
 
+            clearGalleryForm();
 
-            const data =
-                snapshot.val();
+            await loadGallery();
 
+            await updateDashboardStats();
 
-            Object.entries(data)
-                .forEach(([id, item]) => {
+        }catch(error){
 
-                    const wrapper =
-                        document.createElement("div");
+            console.error(error);
 
-                    wrapper.className =
-                        "item gallery-item";
+            showToast(
+                "Could not save gallery image.",
+                "error"
+            );
 
-                    const image =
-                        document.createElement("img");
+        }
 
-                    image.src =
-                        item.file || "";
-
-                    image.alt =
-                        item.title || "Gallery image";
-
-                    image.onerror =
-                        function() {
-
-                            this.style.opacity =
-                                "0.4";
-
-                        };
+    }
+);
 
 
-                    const details =
-                        document.createElement("div");
+window.loadGallery = async function(){
 
-                    details.innerHTML = `
+    try{
+
+        const snapshot =
+            await get(
+                ref(db,"gallery")
+            );
+
+        const list =
+            $("galleryList");
+
+        list.innerHTML =
+            "";
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
+                `<div class="empty">
+                    No gallery images yet.
+                </div>`;
+
+            return;
+
+        }
+
+        Object.entries(
+            snapshot.val()
+        ).forEach(
+            ([id,item]) => {
+
+                const wrapper =
+                    document.createElement("div");
+
+                wrapper.className =
+                    "item gallery-item";
+
+                wrapper.innerHTML = `
+
+                    <img
+                        src="${escapeHTML(item.file || "")}"
+                        alt="${escapeHTML(item.title || "Gallery image")}"
+                    >
+
+                    <div>
 
                         <h4>
                             ${escapeHTML(item.title)}
@@ -2948,277 +2866,356 @@
                             ${escapeHTML(item.file || "")}
                         </p>
 
-                    `;
+                    </div>
+
+                    <div class="item-actions">
+
+                        <button
+                            class="small-btn edit-btn"
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            class="small-btn delete-btn"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+
+                wrapper
+                    .querySelector(".edit-btn")
+                    .onclick =
+                    () => editGallery(id,item);
+
+                wrapper
+                    .querySelector(".delete-btn")
+                    .onclick =
+                    () => deleteGallery(id);
+
+                list.appendChild(wrapper);
+
+            }
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        $("galleryList").innerHTML =
+            `<div class="empty">
+                Could not load gallery.
+            </div>`;
+
+    }
+
+};
 
 
-                    const actions =
-                        document.createElement("div");
+window.editGallery = function(id,item){
 
-                    actions.className =
-                        "item-actions";
+    $("galleryEditId").value =
+        id;
 
+    $("galleryTitle").value =
+        item.title || "";
 
-                    const edit =
-                        document.createElement("button");
+    $("galleryFile").value =
+        item.file || "";
 
-                    edit.className =
-                        "small-btn edit-btn";
+    $("galleryDescription").value =
+        item.description || "";
 
-                    edit.textContent =
-                        "Edit";
+    $("gallerySelector").value =
+        item.file || "";
 
-                    edit.onclick =
-                        () => editGallery(id, item);
+    $("galleryFormTitle").textContent =
+        "Edit Gallery Image";
 
+    previewGalleryURL();
 
-                    const del =
-                        document.createElement("button");
+    showPage("gallery");
 
-                    del.className =
-                        "small-btn delete-btn";
-
-                    del.textContent =
-                        "Delete";
-
-                    del.onclick =
-                        () => deleteGallery(id);
+};
 
 
-                    actions.appendChild(edit);
+window.deleteGallery = async function(id){
 
-                    actions.appendChild(del);
+    if(!confirm(
+        "Delete this gallery image?"
+    ))
+        return;
+
+    try{
+
+        await remove(
+            ref(db,"gallery/"+id)
+        );
+
+        showToast(
+            "Gallery image deleted.",
+            "success"
+        );
+
+        await loadGallery();
+
+        await updateDashboardStats();
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Could not delete image.",
+            "error"
+        );
+
+    }
+
+};
 
 
-                    wrapper.appendChild(image);
+window.clearGalleryForm = function(){
 
-                    wrapper.appendChild(details);
+    $("galleryForm").reset();
 
-                    wrapper.appendChild(actions);
+    $("galleryEditId").value =
+        "";
 
-                    list.appendChild(wrapper);
+    $("galleryFormTitle").textContent =
+        "Add Gallery Image";
 
-                });
+    $("galleryPreview").style.display =
+        "none";
 
-        } catch (error) {
+};
 
-            console.error(error);
 
-            $("galleryList").innerHTML =
+/* SIMPLE MANAGERS */
+
+async function loadSimple(
+    path,
+    listId,
+    emptyText,
+    editFn,
+    deleteFn,
+    showLink=false
+){
+
+    try{
+
+        const snapshot =
+            await get(
+                ref(db,path)
+            );
+
+        const list =
+            $(listId);
+
+        list.innerHTML =
+            "";
+
+        if(!snapshot.exists()){
+
+            list.innerHTML =
                 `<div class="empty">
-                    Could not load gallery.
+                    ${emptyText}
                 </div>`;
-
-        }
-
-    };
-
-
-    window.editGallery = function(id, item) {
-
-        $("galleryEditId").value =
-            id;
-
-        $("galleryTitle").value =
-            item.title || "";
-
-        $("galleryFile").value =
-            item.file || "";
-
-        $("galleryDescription").value =
-            item.description || "";
-
-        $("galleryFormTitle").textContent =
-            "Edit Gallery Image";
-
-
-        $("gallerySelector").value =
-            item.file || "";
-
-
-        previewGalleryURL();
-
-        showPage("gallery");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    };
-
-
-    window.deleteGallery = async function(id) {
-
-        if (!confirm(
-            "Are you sure you want to delete this gallery image?"
-        )) {
 
             return;
 
         }
 
-        try {
+        Object.entries(
+            snapshot.val()
+        ).forEach(
+            ([id,item]) => {
 
-            await remove(
-                ref(db, "gallery/" + id)
-            );
+                const wrapper =
+                    document.createElement("div");
 
-            showToast(
-                "Gallery image deleted.",
-                "success"
-            );
+                wrapper.className =
+                    "item";
 
-            await loadGallery();
+                let link = "";
+
+                if(showLink && item.link){
+
+                    link = `
+
+                        <p style="margin-top:7px;">
+
+                            <a
+                                href="${escapeHTML(item.link)}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                🔗 Open Project Link
+                            </a>
+
+                        </p>
+
+                    `;
+
+                }
+
+                wrapper.innerHTML = `
+
+                    <div class="item-header">
+
+                        <div>
+
+                            <h4>
+                                ${escapeHTML(item.title)}
+                            </h4>
+
+                            <p>
+                                ${escapeHTML(item.description || "")}
+                            </p>
+
+                            ${link}
+
+                        </div>
+
+                        <div class="item-actions">
+
+                            <button
+                                class="small-btn edit-btn"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="small-btn delete-btn"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                wrapper
+                    .querySelector(".edit-btn")
+                    .onclick =
+                    () => editFn(id,item);
+
+                wrapper
+                    .querySelector(".delete-btn")
+                    .onclick =
+                    () => deleteFn(id);
+
+                list.appendChild(wrapper);
+
+            }
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        $(listId).innerHTML =
+            `<div class="empty">
+                Could not load information.
+            </div>`;
+
+    }
+
+}
+
+
+/* ACHIEVEMENTS */
+
+$("achievementForm").addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        const id =
+            $("achievementEditId").value;
+
+        const data = {
+
+            title:
+                $("achievementTitle")
+                    .value
+                    .trim(),
+
+            description:
+                $("achievementDescription")
+                    .value
+                    .trim()
+
+        };
+
+        try{
+
+            if(id){
+
+                await set(
+                    ref(db,"achievements/"+id),
+                    data
+                );
+
+                showToast(
+                    "Achievement updated!",
+                    "success"
+                );
+
+            }else{
+
+                await push(
+                    ref(db,"achievements"),
+                    data
+                );
+
+                showToast(
+                    "Achievement added!",
+                    "success"
+                );
+
+            }
+
+            clearAchievementForm();
+
+            await loadAchievements();
 
             await updateDashboardStats();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
             showToast(
-                "Could not delete gallery image.",
+                "Could not save achievement.",
                 "error"
             );
 
         }
 
-    };
+    }
+);
 
 
-    window.clearGalleryForm = function() {
-
-        $("galleryForm").reset();
-
-        $("galleryEditId").value =
-            "";
-
-        $("galleryFormTitle").textContent =
-            "Add Gallery Image";
-
-        $("galleryPreview").style.display =
-            "none";
-
-        $("galleryPreview").removeAttribute(
-            "src"
+window.loadAchievements =
+    () =>
+        loadSimple(
+            "achievements",
+            "achievementList",
+            "No achievements yet.",
+            editAchievement,
+            deleteAchievement
         );
 
-    };
 
-
-    /* =========================
-       ACHIEVEMENTS
-    ========================= */
-
-    $("achievementForm").addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-            const id =
-                $("achievementEditId").value;
-
-            const data = {
-
-                title:
-                    $("achievementTitle")
-                        .value
-                        .trim(),
-
-                description:
-                    $("achievementDescription")
-                        .value
-                        .trim()
-
-            };
-
-
-            try {
-
-                if (id) {
-
-                    await set(
-                        ref(
-                            db,
-                            "achievements/" + id
-                        ),
-                        data
-                    );
-
-                    showToast(
-                        "Achievement updated!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "achievements"),
-                        data
-                    );
-
-                    showToast(
-                        "Achievement added!",
-                        "success"
-                    );
-
-                }
-
-
-                clearAchievementForm();
-
-                await loadAchievements();
-
-                await updateDashboardStats();
-
-            } catch (error) {
-
-                console.error(error);
-
-                showToast(
-                    "Could not save achievement.",
-                    "error"
-                );
-
-            }
-
-        }
-    );
-
-
-    window.loadAchievements = async function() {
-
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "achievements")
-                );
-
-            renderSimpleItems(
-                $("achievementList"),
-                snapshot,
-                "No achievements yet.",
-                editAchievement,
-                deleteAchievement
-            );
-
-        } catch (error) {
-
-            console.error(error);
-
-            $("achievementList").innerHTML =
-                `<div class="empty">
-                    Could not load achievements.
-                </div>`;
-
-        }
-
-    };
-
-
-    window.editAchievement = function(id, item) {
+window.editAchievement =
+    function(id,item){
 
         $("achievementEditId").value =
             id;
@@ -3234,28 +3231,21 @@
 
         showPage("achievements");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
     };
 
 
-    window.deleteAchievement = async function(id) {
+window.deleteAchievement =
+    async function(id){
 
-        if (!confirm(
+        if(!confirm(
             "Delete this achievement?"
-        )) {
-
+        ))
             return;
 
-        }
-
-        try {
+        try{
 
             await remove(
-                ref(db, "achievements/" + id)
+                ref(db,"achievements/"+id)
             );
 
             showToast(
@@ -3267,7 +3257,7 @@
 
             await updateDashboardStats();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -3281,7 +3271,8 @@
     };
 
 
-    window.clearAchievementForm = function() {
+window.clearAchievementForm =
+    function(){
 
         $("achievementForm").reset();
 
@@ -3294,125 +3285,95 @@
     };
 
 
-    /* =========================
-       PROJECTS
-    ========================= */
+/* PROJECTS */
 
-    $("projectForm").addEventListener(
-        "submit",
-        async event => {
+$("projectForm").addEventListener(
+    "submit",
+    async event => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const id =
-                $("projectEditId").value;
+        const id =
+            $("projectEditId").value;
 
-            const data = {
+        const data = {
 
-                title:
-                    $("projectTitle")
-                        .value
-                        .trim(),
+            title:
+                $("projectTitle").value.trim(),
 
-                description:
-                    $("projectDescription")
-                        .value
-                        .trim(),
+            description:
+                $("projectDescription")
+                    .value
+                    .trim(),
 
-                link:
-                    $("projectLink")
-                        .value
-                        .trim()
+            link:
+                $("projectLink").value.trim()
 
-            };
+        };
 
+        try{
 
-            try {
+            if(id){
 
-                if (id) {
-
-                    await set(
-                        ref(
-                            db,
-                            "projects/" + id
-                        ),
-                        data
-                    );
-
-                    showToast(
-                        "Project updated!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "projects"),
-                        data
-                    );
-
-                    showToast(
-                        "Project added!",
-                        "success"
-                    );
-
-                }
-
-
-                clearProjectForm();
-
-                await loadProjects();
-
-                await updateDashboardStats();
-
-            } catch (error) {
-
-                console.error(error);
+                await set(
+                    ref(db,"projects/"+id),
+                    data
+                );
 
                 showToast(
-                    "Could not save project.",
-                    "error"
+                    "Project updated!",
+                    "success"
+                );
+
+            }else{
+
+                await push(
+                    ref(db,"projects"),
+                    data
+                );
+
+                showToast(
+                    "Project added!",
+                    "success"
                 );
 
             }
 
-        }
-    );
+            clearProjectForm();
 
+            await loadProjects();
 
-    window.loadProjects = async function() {
+            await updateDashboardStats();
 
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "projects")
-                );
-
-            renderSimpleItems(
-                $("projectList"),
-                snapshot,
-                "No projects yet.",
-                editProject,
-                deleteProject,
-                true
-            );
-
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
-            $("projectList").innerHTML =
-                `<div class="empty">
-                    Could not load projects.
-                </div>`;
+            showToast(
+                "Could not save project.",
+                "error"
+            );
 
         }
 
-    };
+    }
+);
 
 
-    window.editProject = function(id, item) {
+window.loadProjects =
+    () =>
+        loadSimple(
+            "projects",
+            "projectList",
+            "No projects yet.",
+            editProject,
+            deleteProject,
+            true
+        );
+
+
+window.editProject =
+    function(id,item){
 
         $("projectEditId").value =
             id;
@@ -3431,28 +3392,21 @@
 
         showPage("projects");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
     };
 
 
-    window.deleteProject = async function(id) {
+window.deleteProject =
+    async function(id){
 
-        if (!confirm(
+        if(!confirm(
             "Delete this project?"
-        )) {
-
+        ))
             return;
 
-        }
-
-        try {
+        try{
 
             await remove(
-                ref(db, "projects/" + id)
+                ref(db,"projects/"+id)
             );
 
             showToast(
@@ -3464,7 +3418,7 @@
 
             await updateDashboardStats();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -3478,7 +3432,8 @@
     };
 
 
-    window.clearProjectForm = function() {
+window.clearProjectForm =
+    function(){
 
         $("projectForm").reset();
 
@@ -3491,119 +3446,91 @@
     };
 
 
-    /* =========================
-       HOBBIES
-    ========================= */
+/* HOBBIES */
 
-    $("hobbyForm").addEventListener(
-        "submit",
-        async event => {
+$("hobbyForm").addEventListener(
+    "submit",
+    async event => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const id =
-                $("hobbyEditId").value;
+        const id =
+            $("hobbyEditId").value;
 
-            const data = {
+        const data = {
 
-                title:
-                    $("hobbyTitle")
-                        .value
-                        .trim(),
+            title:
+                $("hobbyTitle").value.trim(),
 
-                description:
-                    $("hobbyDescription")
-                        .value
-                        .trim()
+            description:
+                $("hobbyDescription")
+                    .value
+                    .trim()
 
-            };
+        };
 
+        try{
 
-            try {
+            if(id){
 
-                if (id) {
-
-                    await set(
-                        ref(
-                            db,
-                            "hobbies/" + id
-                        ),
-                        data
-                    );
-
-                    showToast(
-                        "Hobby updated!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "hobbies"),
-                        data
-                    );
-
-                    showToast(
-                        "Hobby added!",
-                        "success"
-                    );
-
-                }
-
-
-                clearHobbyForm();
-
-                await loadHobbies();
-
-                await updateDashboardStats();
-
-            } catch (error) {
-
-                console.error(error);
+                await set(
+                    ref(db,"hobbies/"+id),
+                    data
+                );
 
                 showToast(
-                    "Could not save hobby.",
-                    "error"
+                    "Hobby updated!",
+                    "success"
+                );
+
+            }else{
+
+                await push(
+                    ref(db,"hobbies"),
+                    data
+                );
+
+                showToast(
+                    "Hobby added!",
+                    "success"
                 );
 
             }
 
-        }
-    );
+            clearHobbyForm();
 
+            await loadHobbies();
 
-    window.loadHobbies = async function() {
+            await updateDashboardStats();
 
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "hobbies")
-                );
-
-            renderSimpleItems(
-                $("hobbyList"),
-                snapshot,
-                "No hobbies yet.",
-                editHobby,
-                deleteHobby
-            );
-
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
-            $("hobbyList").innerHTML =
-                `<div class="empty">
-                    Could not load hobbies.
-                </div>`;
+            showToast(
+                "Could not save hobby.",
+                "error"
+            );
 
         }
 
-    };
+    }
+);
 
 
-    window.editHobby = function(id, item) {
+window.loadHobbies =
+    () =>
+        loadSimple(
+            "hobbies",
+            "hobbyList",
+            "No hobbies yet.",
+            editHobby,
+            deleteHobby
+        );
+
+
+window.editHobby =
+    function(id,item){
 
         $("hobbyEditId").value =
             id;
@@ -3619,28 +3546,21 @@
 
         showPage("hobbies");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
     };
 
 
-    window.deleteHobby = async function(id) {
+window.deleteHobby =
+    async function(id){
 
-        if (!confirm(
+        if(!confirm(
             "Delete this hobby?"
-        )) {
-
+        ))
             return;
 
-        }
-
-        try {
+        try{
 
             await remove(
-                ref(db, "hobbies/" + id)
+                ref(db,"hobbies/"+id)
             );
 
             showToast(
@@ -3652,7 +3572,7 @@
 
             await updateDashboardStats();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -3666,7 +3586,8 @@
     };
 
 
-    window.clearHobbyForm = function() {
+window.clearHobbyForm =
+    function(){
 
         $("hobbyForm").reset();
 
@@ -3679,119 +3600,91 @@
     };
 
 
-    /* =========================
-       SKILLS
-    ========================= */
+/* SKILLS */
 
-    $("skillForm").addEventListener(
-        "submit",
-        async event => {
+$("skillForm").addEventListener(
+    "submit",
+    async event => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const id =
-                $("skillEditId").value;
+        const id =
+            $("skillEditId").value;
 
-            const data = {
+        const data = {
 
-                title:
-                    $("skillTitle")
-                        .value
-                        .trim(),
+            title:
+                $("skillTitle").value.trim(),
 
-                description:
-                    $("skillDescription")
-                        .value
-                        .trim()
+            description:
+                $("skillDescription")
+                    .value
+                    .trim()
 
-            };
+        };
 
+        try{
 
-            try {
+            if(id){
 
-                if (id) {
-
-                    await set(
-                        ref(
-                            db,
-                            "skills/" + id
-                        ),
-                        data
-                    );
-
-                    showToast(
-                        "Skill updated!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "skills"),
-                        data
-                    );
-
-                    showToast(
-                        "Skill added!",
-                        "success"
-                    );
-
-                }
-
-
-                clearSkillForm();
-
-                await loadSkills();
-
-                await updateDashboardStats();
-
-            } catch (error) {
-
-                console.error(error);
+                await set(
+                    ref(db,"skills/"+id),
+                    data
+                );
 
                 showToast(
-                    "Could not save skill.",
-                    "error"
+                    "Skill updated!",
+                    "success"
+                );
+
+            }else{
+
+                await push(
+                    ref(db,"skills"),
+                    data
+                );
+
+                showToast(
+                    "Skill added!",
+                    "success"
                 );
 
             }
 
-        }
-    );
+            clearSkillForm();
 
+            await loadSkills();
 
-    window.loadSkills = async function() {
+            await updateDashboardStats();
 
-        try {
-
-            const snapshot =
-                await get(
-                    ref(db, "skills")
-                );
-
-            renderSimpleItems(
-                $("skillList"),
-                snapshot,
-                "No skills yet.",
-                editSkill,
-                deleteSkill
-            );
-
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
-            $("skillList").innerHTML =
-                `<div class="empty">
-                    Could not load skills.
-                </div>`;
+            showToast(
+                "Could not save skill.",
+                "error"
+            );
 
         }
 
-    };
+    }
+);
 
 
-    window.editSkill = function(id, item) {
+window.loadSkills =
+    () =>
+        loadSimple(
+            "skills",
+            "skillList",
+            "No skills yet.",
+            editSkill,
+            deleteSkill
+        );
+
+
+window.editSkill =
+    function(id,item){
 
         $("skillEditId").value =
             id;
@@ -3807,28 +3700,21 @@
 
         showPage("skills");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
     };
 
 
-    window.deleteSkill = async function(id) {
+window.deleteSkill =
+    async function(id){
 
-        if (!confirm(
+        if(!confirm(
             "Delete this skill?"
-        )) {
-
+        ))
             return;
 
-        }
-
-        try {
+        try{
 
             await remove(
-                ref(db, "skills/" + id)
+                ref(db,"skills/"+id)
             );
 
             showToast(
@@ -3840,7 +3726,7 @@
 
             await updateDashboardStats();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -3854,7 +3740,8 @@
     };
 
 
-    window.clearSkillForm = function() {
+window.clearSkillForm =
+    function(){
 
         $("skillForm").reset();
 
@@ -3867,119 +3754,111 @@
     };
 
 
-    /* =========================
-       DIARY
-    ========================= */
+/* DIARY */
 
-    $("diaryForm").addEventListener(
-        "submit",
-        async event => {
+$("diaryForm").addEventListener(
+    "submit",
+    async event => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const id =
-                $("diaryEditId").value;
+        const id =
+            $("diaryEditId").value;
 
-            const data = {
+        const data = {
 
-                date:
-                    $("diaryDate").value,
+            date:
+                $("diaryDate").value,
 
-                title:
-                    $("diaryTitle")
-                        .value
-                        .trim(),
+            title:
+                $("diaryTitle").value.trim(),
 
-                happened:
-                    $("diaryHappened")
-                        .value
-                        .trim(),
+            happened:
+                $("diaryHappened")
+                    .value
+                    .trim(),
 
-                feelings:
-                    $("diaryFeelings")
-                        .value
-                        .trim(),
+            feelings:
+                $("diaryFeelings")
+                    .value
+                    .trim(),
 
-                notes:
-                    $("diaryNotes")
-                        .value
-                        .trim(),
+            notes:
+                $("diaryNotes")
+                    .value
+                    .trim(),
 
-                photo:
-                    $("diaryPhoto")
-                        .value
-                        .trim()
+            photo:
+                $("diaryPhoto")
+                    .value
+                    .trim()
 
-            };
+        };
 
+        try{
 
-            try {
+            if(id){
 
-                if (id) {
-
-                    await set(
-                        ref(
-                            db,
-                            "diary/" + id
-                        ),
-                        data
-                    );
-
-                    showToast(
-                        "Diary entry updated!",
-                        "success"
-                    );
-
-                } else {
-
-                    await push(
-                        ref(db, "diary"),
-                        data
-                    );
-
-                    showToast(
-                        "Diary entry added!",
-                        "success"
-                    );
-
-                }
-
-
-                clearDiaryForm();
-
-                await loadDiary();
-
-            } catch (error) {
-
-                console.error(error);
+                await set(
+                    ref(db,"diary/"+id),
+                    data
+                );
 
                 showToast(
-                    "Could not save diary entry.",
-                    "error"
+                    "Diary entry updated!",
+                    "success"
+                );
+
+            }else{
+
+                await push(
+                    ref(db,"diary"),
+                    data
+                );
+
+                showToast(
+                    "Diary entry added!",
+                    "success"
                 );
 
             }
 
+            clearDiaryForm();
+
+            await loadDiary();
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Could not save diary entry.",
+                "error"
+            );
+
         }
-    );
+
+    }
+);
 
 
-    window.loadDiary = async function() {
+window.loadDiary =
+    async function(){
 
-        try {
+        try{
 
             const snapshot =
                 await get(
-                    ref(db, "diary")
+                    ref(db,"diary")
                 );
 
             const list =
                 $("diaryList");
 
-            list.innerHTML = "";
+            list.innerHTML =
+                "";
 
-
-            if (!snapshot.exists()) {
+            if(!snapshot.exists()){
 
                 list.innerHTML =
                     `<div class="empty">
@@ -3990,33 +3869,24 @@
 
             }
 
-
-            const data =
-                snapshot.val();
-
-
-            const entries =
-                Object.entries(data)
-                    .sort((a, b) => {
-
-                        return String(
-                            b[1].date || ""
-                        ).localeCompare(
+            Object.entries(
+                snapshot.val()
+            )
+            .sort(
+                (a,b) =>
+                    String(b[1].date || "")
+                        .localeCompare(
                             String(a[1].date || "")
-                        );
-
-                    });
-
-
-            entries.forEach(
-                ([id, item]) => {
+                        )
+            )
+            .forEach(
+                ([id,item]) => {
 
                     const wrapper =
                         document.createElement("div");
 
                     wrapper.className =
                         "item";
-
 
                     wrapper.innerHTML = `
 
@@ -4047,31 +3917,18 @@
                                     ${escapeHTML(item.notes || "")}
                                 </p>
 
-                                ${
-                                    item.photo
-                                    ? `
-                                    <p style="margin-top:8px;">
-                                        <strong>Photo:</strong>
-                                        ${escapeHTML(item.photo)}
-                                    </p>
-                                    `
-                                    : ""
-                                }
-
                             </div>
 
                             <div class="item-actions">
 
                                 <button
                                     class="small-btn edit-btn"
-                                    data-action="edit"
                                 >
                                     Edit
                                 </button>
 
                                 <button
                                     class="small-btn delete-btn"
-                                    data-action="delete"
                                 >
                                     Delete
                                 </button>
@@ -4082,29 +3939,22 @@
 
                     `;
 
-
                     wrapper
-                        .querySelector(
-                            '[data-action="edit"]'
-                        )
+                        .querySelector(".edit-btn")
                         .onclick =
-                        () => editDiary(id, item);
-
+                        () => editDiary(id,item);
 
                     wrapper
-                        .querySelector(
-                            '[data-action="delete"]'
-                        )
+                        .querySelector(".delete-btn")
                         .onclick =
                         () => deleteDiary(id);
-
 
                     list.appendChild(wrapper);
 
                 }
             );
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -4118,7 +3968,8 @@
     };
 
 
-    window.editDiary = function(id, item) {
+window.editDiary =
+    function(id,item){
 
         $("diaryEditId").value =
             id;
@@ -4146,28 +3997,21 @@
 
         showPage("diary");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
     };
 
 
-    window.deleteDiary = async function(id) {
+window.deleteDiary =
+    async function(id){
 
-        if (!confirm(
+        if(!confirm(
             "Delete this diary entry?"
-        )) {
-
+        ))
             return;
 
-        }
-
-        try {
+        try{
 
             await remove(
-                ref(db, "diary/" + id)
+                ref(db,"diary/"+id)
             );
 
             showToast(
@@ -4177,7 +4021,7 @@
 
             await loadDiary();
 
-        } catch (error) {
+        }catch(error){
 
             console.error(error);
 
@@ -4191,7 +4035,8 @@
     };
 
 
-    window.clearDiaryForm = function() {
+window.clearDiaryForm =
+    function(){
 
         $("diaryForm").reset();
 
@@ -4204,153 +4049,84 @@
     };
 
 
-    /* =========================
-       GENERIC ITEM RENDERER
-    ========================= */
+/* LIVE WEBSITE PREVIEW */
 
-    function renderSimpleItems(
-        container,
-        snapshot,
-        emptyText,
-        editFunction,
-        deleteFunction,
-        showLink = false
-    ) {
-
-        container.innerHTML = "";
+const WEBSITE_URL =
+    "https://clinton23-sudo.github.io/my-personal-website/";
 
 
-        if (!snapshot.exists()) {
+window.previewWebsite =
+    function(){
 
-            container.innerHTML =
-                `<div class="empty">
-                    ${emptyText}
-                </div>`;
+        const frame =
+            $("previewFrame");
+
+        frame.src =
+            WEBSITE_URL +
+            "?preview=" +
+            Date.now();
+
+        frame.style.display =
+            "block";
+
+        showPage("dashboard");
+
+        setTimeout(
+            () => {
+
+                frame.scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
+
+            },
+            100
+        );
+
+    };
+
+
+$("previewWebsiteBtn").addEventListener(
+    "click",
+    previewWebsite
+);
+
+
+$("loadPreviewBtn").addEventListener(
+    "click",
+    previewWebsite
+);
+
+
+$("refreshPreviewBtn").addEventListener(
+    "click",
+    () => {
+
+        const frame =
+            $("previewFrame");
+
+        if(
+            frame.style.display === "none"
+        ){
+
+            previewWebsite();
 
             return;
 
         }
 
+        frame.src =
+            WEBSITE_URL +
+            "?preview=" +
+            Date.now();
 
-        const data =
-            snapshot.val();
-
-
-        Object.entries(data)
-            .forEach(([id, item]) => {
-
-                const wrapper =
-                    document.createElement("div");
-
-                wrapper.className =
-                    "item";
-
-
-                const safeTitle =
-                    escapeHTML(
-                        item.title || ""
-                    );
-
-                const safeDescription =
-                    escapeHTML(
-                        item.description || ""
-                    );
-
-
-                let linkHTML = "";
-
-
-                if (
-                    showLink &&
-                    item.link
-                ) {
-
-                    const safeLink =
-                        escapeHTML(item.link);
-
-                    linkHTML = `
-
-                        <p style="margin-top:7px;">
-                            <a
-                                href="${safeLink}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                🔗 Open Project Link
-                            </a>
-                        </p>
-
-                    `;
-
-                }
-
-
-                wrapper.innerHTML = `
-
-                    <div class="item-header">
-
-                        <div>
-
-                            <h4>
-                                ${safeTitle}
-                            </h4>
-
-                            <p>
-                                ${safeDescription}
-                            </p>
-
-                            ${linkHTML}
-
-                        </div>
-
-                        <div class="item-actions">
-
-                            <button
-                                class="small-btn edit-btn"
-                                data-action="edit"
-                            >
-                                Edit
-                            </button>
-
-                            <button
-                                class="small-btn delete-btn"
-                                data-action="delete"
-                            >
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-
-                wrapper
-                    .querySelector(
-                        '[data-action="edit"]'
-                    )
-                    .onclick =
-                    () => editFunction(
-                        id,
-                        item
-                    );
-
-
-                wrapper
-                    .querySelector(
-                        '[data-action="delete"]'
-                    )
-                    .onclick =
-                    () => deleteFunction(id);
-
-
-                container.appendChild(wrapper);
-
-            });
+        showToast(
+            "Website preview refreshed.",
+            "success"
+        );
 
     }
-
+);
 
 </script>
 
