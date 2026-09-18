@@ -13,13 +13,20 @@
     padding:0;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f6f9;
-    color:#222;
+html{
+    scroll-behavior:smooth;
 }
 
-button,input,textarea,select{
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f4f6;
+    color:#111827;
+}
+
+button,
+input,
+textarea,
+select{
     font:inherit;
 }
 
@@ -35,33 +42,36 @@ button{
     align-items:center;
     justify-content:center;
     padding:20px;
-    background:linear-gradient(135deg,#111827,#1f2937);
+    background:linear-gradient(135deg,#111827,#1d4ed8);
 }
 
 .login-box{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:white;
     padding:35px;
-    border-radius:16px;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    border-radius:18px;
+    box-shadow:0 25px 60px rgba(0,0,0,.3);
 }
 
-.login-box h1{
+.login-logo{
     text-align:center;
-    margin-bottom:10px;
-}
-
-.login-box p{
-    text-align:center;
-    color:#666;
     margin-bottom:25px;
+}
+
+.login-logo h1{
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.login-logo p{
+    color:#6b7280;
 }
 
 .login-box input{
     width:100%;
     padding:13px;
-    border:1px solid #ccc;
+    border:1px solid #d1d5db;
     border-radius:8px;
     margin-bottom:15px;
     outline:none;
@@ -69,16 +79,26 @@ button{
 
 .login-box input:focus{
     border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
 .login-btn{
     width:100%;
     padding:13px;
-    border:none;
+    border:0;
     border-radius:8px;
     background:#2563eb;
     color:white;
     font-weight:bold;
+}
+
+.login-btn:hover{
+    background:#1d4ed8;
+}
+
+.login-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 .login-error{
@@ -97,9 +117,9 @@ button{
 
 .sidebar{
     position:fixed;
-    left:0;
     top:0;
     bottom:0;
+    left:0;
     width:250px;
     background:#111827;
     color:white;
@@ -111,7 +131,7 @@ button{
 .sidebar-logo{
     text-align:center;
     padding:10px 5px 25px;
-    border-bottom:1px solid rgba(255,255,255,.12);
+    border-bottom:1px solid rgba(255,255,255,.1);
     margin-bottom:15px;
 }
 
@@ -130,7 +150,7 @@ button{
     width:100%;
     background:transparent;
     color:#d1d5db;
-    border:none;
+    border:0;
     text-align:left;
     padding:12px 14px;
     border-radius:8px;
@@ -165,8 +185,8 @@ button{
     background:white;
     border-bottom:1px solid #e5e7eb;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     padding:0 25px;
     position:sticky;
     top:0;
@@ -181,11 +201,11 @@ button{
 
 .menu-toggle{
     display:none;
-    border:none;
+    border:0;
     background:#111827;
     color:white;
     border-radius:7px;
-    padding:9px 12px;
+    padding:8px 12px;
     font-size:20px;
 }
 
@@ -196,7 +216,7 @@ button{
 .topbar-right{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
 }
 
 .admin-email{
@@ -217,9 +237,9 @@ button{
 /* ================= CONTENT ================= */
 
 .content{
-    padding:25px;
     max-width:1500px;
     margin:auto;
+    padding:25px;
 }
 
 .page{
@@ -275,10 +295,19 @@ button{
 }
 
 .btn{
-    border:none;
+    border:0;
     border-radius:7px;
     padding:10px 15px;
     font-weight:bold;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
 }
 
 .btn-primary{
@@ -325,16 +354,21 @@ button{
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
+.stat-card .icon{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
 .stat-card .number{
     font-size:30px;
     font-weight:bold;
     color:#2563eb;
-    margin-bottom:5px;
 }
 
 .stat-card .label{
     color:#6b7280;
     font-size:14px;
+    margin-top:4px;
 }
 
 .dashboard-grid{
@@ -352,7 +386,7 @@ button{
 }
 
 .info-row:last-child{
-    border-bottom:none;
+    border-bottom:0;
 }
 
 .info-label{
@@ -368,6 +402,27 @@ button{
     color:#dbeafe;
     font-size:13px;
     margin-top:10px;
+}
+
+/* ================= SECURITY CARD ================= */
+
+.security-card{
+    border-left:5px solid #16a34a;
+}
+
+.security-status{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#166534;
+    font-weight:bold;
+}
+
+.security-dot{
+    width:11px;
+    height:11px;
+    background:#16a34a;
+    border-radius:50%;
 }
 
 /* ================= FORMS ================= */
@@ -458,7 +513,7 @@ textarea{
 }
 
 .small-btn{
-    border:none;
+    border:0;
     padding:7px 10px;
     border-radius:6px;
     color:white;
@@ -514,7 +569,7 @@ textarea{
     background:#eee;
 }
 
-/* ================= LIVE PREVIEW ================= */
+/* ================= PREVIEW ================= */
 
 .preview-box{
     background:#f8fafc;
@@ -524,40 +579,11 @@ textarea{
     margin-top:20px;
 }
 
-.preview-box h3{
-    margin-bottom:8px;
-}
-
-.preview-frame-wrapper{
-    width:100%;
-    overflow:auto;
-    margin-top:15px;
-    display:flex;
-    justify-content:center;
-    background:#e5e7eb;
-    padding:15px;
-    border-radius:10px;
-}
-
-.preview-frame{
-    width:100%;
-    height:600px;
-    border:1px solid #d1d5db;
-    border-radius:10px;
-    background:white;
-    transition:.25s;
-}
-
-.preview-frame.mobile{
-    width:390px;
-    max-width:390px;
-}
-
 .preview-controls{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-top:12px;
+    margin-top:15px;
 }
 
 .preview-note{
@@ -566,7 +592,31 @@ textarea{
     margin-top:10px;
 }
 
-/* ================= CONTENT PREVIEW ================= */
+.preview-frame-wrapper{
+    width:100%;
+    overflow:auto;
+    display:flex;
+    justify-content:center;
+    background:#e5e7eb;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.preview-frame{
+    width:100%;
+    height:600px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    background:white;
+}
+
+.preview-frame.mobile{
+    width:390px;
+    max-width:390px;
+}
+
+/* ================= LIVE FORM PREVIEW ================= */
 
 .content-preview{
     background:#eff6ff;
@@ -608,7 +658,7 @@ textarea{
     color:#991b1b;
 }
 
-/* ================= EMPTY ================= */
+/* ================= EMPTY / LOADING ================= */
 
 .empty{
     text-align:center;
@@ -655,7 +705,7 @@ textarea{
     background:#2563eb;
 }
 
-/* ================= MOBILE ================= */
+/* ================= OVERLAY ================= */
 
 .sidebar-overlay{
     display:none;
@@ -664,6 +714,8 @@ textarea{
     background:rgba(0,0,0,.45);
     z-index:950;
 }
+
+/* ================= MOBILE ================= */
 
 @media(max-width:1100px){
 
@@ -779,8 +831,19 @@ textarea{
         width:100%;
     }
 
+    .form-actions .btn{
+        width:100%;
+    }
+
     .preview-frame{
         height:400px;
+    }
+
+    #toastContainer{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        max-width:none;
     }
 
 }
@@ -796,11 +859,15 @@ textarea{
 
     <div class="login-box">
 
-        <h1>Admin Dashboard</h1>
+        <div class="login-logo">
 
-        <p>
-            Login to manage Clinton Ncube's website.
-        </p>
+            <h1>Clinton Ncube</h1>
+
+            <p>
+                Secure Admin Dashboard
+            </p>
+
+        </div>
 
         <form id="loginForm">
 
@@ -808,6 +875,7 @@ textarea{
                 type="email"
                 id="loginEmail"
                 placeholder="Email address"
+                autocomplete="username"
                 required
             >
 
@@ -815,13 +883,14 @@ textarea{
                 type="password"
                 id="loginPassword"
                 placeholder="Password"
+                autocomplete="current-password"
                 required
             >
 
             <button
+                type="submit"
                 class="login-btn"
                 id="loginButton"
-                type="submit"
             >
                 Login
             </button>
@@ -838,7 +907,7 @@ textarea{
 </div>
 
 
-<!-- ================= ADMIN ================= -->
+<!-- ================= ADMIN APP ================= -->
 
 <div id="adminApp">
 
@@ -959,6 +1028,7 @@ textarea{
                     class="website-btn"
                     href="https://clinton23-sudo.github.io/my-personal-website/"
                     target="_blank"
+                    rel="noopener"
                 >
                     🌐 View Website
                 </a>
@@ -983,7 +1053,7 @@ textarea{
     </h2>
 
     <p class="page-subtitle">
-        Manage, edit and preview your personal website.
+        Manage and monitor your personal website.
     </p>
 
 
@@ -994,7 +1064,7 @@ textarea{
         </h2>
 
         <p>
-            Your advanced website control panel is ready.
+            Your website management system is ready.
         </p>
 
         <div class="dashboard-actions">
@@ -1017,6 +1087,7 @@ textarea{
                 class="btn btn-light"
                 href="https://clinton23-sudo.github.io/my-personal-website/"
                 target="_blank"
+                rel="noopener"
                 style="text-decoration:none;"
             >
                 🌐 Open Website
@@ -1038,6 +1109,8 @@ textarea{
 
         <div class="stat-card">
 
+            <div class="icon">🖼️</div>
+
             <div
                 class="number"
                 id="galleryCount"
@@ -1053,6 +1126,8 @@ textarea{
 
 
         <div class="stat-card">
+
+            <div class="icon">🏆</div>
 
             <div
                 class="number"
@@ -1070,6 +1145,8 @@ textarea{
 
         <div class="stat-card">
 
+            <div class="icon">📚</div>
+
             <div
                 class="number"
                 id="projectCount"
@@ -1086,6 +1163,8 @@ textarea{
 
         <div class="stat-card">
 
+            <div class="icon">🏀</div>
+
             <div
                 class="number"
                 id="hobbyCount"
@@ -1101,6 +1180,8 @@ textarea{
 
 
         <div class="stat-card">
+
+            <div class="icon">💡</div>
 
             <div
                 class="number"
@@ -1141,7 +1222,6 @@ textarea{
 
             </div>
 
-
             <div class="info-row">
 
                 <span class="info-label">
@@ -1156,7 +1236,6 @@ textarea{
                 </span>
 
             </div>
-
 
             <div class="info-row">
 
@@ -1176,80 +1255,107 @@ textarea{
         </div>
 
 
-        <div class="card">
+        <div class="card security-card">
 
             <h3>
-                ⚡ Quick Actions
+                🔐 Security Status
             </h3>
 
-            <div class="dashboard-actions">
+            <div class="security-status">
 
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('home')"
-                >
-                    🏡 Edit Home
-                </button>
+                <span class="security-dot"></span>
 
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('gallery')"
-                >
-                    🖼️ Gallery
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('projects')"
-                >
-                    📚 Projects
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('achievements')"
-                >
-                    🏆 Achievements
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('hobbies')"
-                >
-                    🏀 Hobbies
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showPage('skills')"
-                >
-                    💡 Skills
-                </button>
+                Admin authentication is active
 
             </div>
+
+            <p
+                style="margin-top:12px;color:#6b7280;line-height:1.6;"
+            >
+                Your dashboard requires Firebase authentication.
+                Private diary information is protected by your
+                Firebase database rules.
+            </p>
 
         </div>
 
     </div>
 
 
-    <!-- LIVE WEBSITE PREVIEW -->
+    <!-- QUICK ACTIONS -->
+
+    <div class="card">
+
+        <h3>
+            ⚡ Quick Actions
+        </h3>
+
+        <div class="dashboard-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('home')"
+            >
+                🏡 Edit Home
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('gallery')"
+            >
+                🖼️ Manage Gallery
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('projects')"
+            >
+                📚 Manage Projects
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('achievements')"
+            >
+                🏆 Manage Achievements
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('hobbies')"
+            >
+                🏀 Manage Hobbies
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="showPage('skills')"
+            >
+                💡 Manage Skills
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- WEBSITE PREVIEW -->
 
     <div class="preview-box">
 
         <h3>
-            👁️ Live Website Preview
+            👁️ Website Preview
         </h3>
 
         <p>
-            Preview the real website directly inside the dashboard.
+            Check how your live website looks after saving changes.
         </p>
 
         <div class="preview-controls">
 
             <button
                 class="btn btn-primary"
-                onclick="previewWebsite()"
+                onclick="previewPage('index.html')"
             >
                 🏠 Home
             </button>
@@ -1300,14 +1406,14 @@ textarea{
                 class="btn btn-warning"
                 onclick="mobilePreview()"
             >
-                📱 Mobile Preview
+                📱 Mobile
             </button>
 
             <button
                 class="btn btn-light"
                 onclick="desktopPreview()"
             >
-                🖥️ Desktop Preview
+                🖥️ Desktop
             </button>
 
             <button
@@ -1317,23 +1423,11 @@ textarea{
                 🔄 Refresh
             </button>
 
-            <a
-                class="btn btn-success"
-                href="https://clinton23-sudo.github.io/my-personal-website/"
-                target="_blank"
-                style="text-decoration:none;"
-            >
-                🌐 New Tab
-            </a>
-
         </div>
 
-
         <p class="preview-note">
-            After changing information, save it first and then refresh
-            the preview.
+            Save your changes before refreshing the website preview.
         </p>
-
 
         <div
             class="preview-frame-wrapper"
@@ -1366,9 +1460,8 @@ textarea{
     </h2>
 
     <p class="page-subtitle">
-        Update the information displayed on your homepage.
+        Update your homepage information.
     </p>
-
 
     <div
         id="homeStatus"
@@ -1384,25 +1477,19 @@ textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        Name
-                    </label>
+                    <label>Name</label>
 
                     <input
                         type="text"
                         id="homeName"
-                        value="Clinton Ncube"
                         required
                     >
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
-                        Last Updated
-                    </label>
+                    <label>Last Updated</label>
 
                     <input
                         type="text"
@@ -1412,12 +1499,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Welcome Message
-                    </label>
+                    <label>Welcome Message</label>
 
                     <textarea
                         id="homeWelcome"
@@ -1425,12 +1509,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Goal
-                    </label>
+                    <label>Goal</label>
 
                     <textarea
                         id="homeGoal"
@@ -1438,12 +1519,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        About
-                    </label>
+                    <label>About</label>
 
                     <textarea
                         id="homeAbout"
@@ -1476,15 +1554,7 @@ textarea{
                     class="btn btn-primary"
                     onclick="showHomeLivePreview()"
                 >
-                    👁️ Live Form Preview
-                </button>
-
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    onclick="previewPage('index.html')"
-                >
-                    🌐 Website Preview
+                    👁️ Live Draft Preview
                 </button>
 
             </div>
@@ -1498,39 +1568,31 @@ textarea{
         >
 
             <h4>
-                ✨ Live Home Content Preview
+                ✨ Draft Preview — Not Yet Saved
             </h4>
 
             <p
                 id="homePreviewName"
                 class="live-text"
-            >
-                Clinton Ncube
-            </p>
+            ></p>
 
             <p
                 id="homePreviewWelcome"
                 class="live-text"
                 style="margin-top:10px;"
-            >
-                Your welcome message will appear here.
-            </p>
+            ></p>
 
             <p
                 id="homePreviewGoal"
                 class="live-text"
                 style="margin-top:10px;"
-            >
-                Your goal will appear here.
-            </p>
+            ></p>
 
             <p
                 id="homePreviewAbout"
                 class="live-text"
                 style="margin-top:10px;"
-            >
-                Your about information will appear here.
-            </p>
+            ></p>
 
         </div>
 
@@ -1551,7 +1613,7 @@ textarea{
     </h2>
 
     <p class="page-subtitle">
-        Add, edit, preview and manage your gallery.
+        Add, edit and manage your gallery images.
     </p>
 
 
@@ -1563,17 +1625,12 @@ textarea{
 
         <br>
 
-        Choose an image that already exists in your website's
-        <strong>images</strong> folder.
+        Your gallery uses image files already placed in your
+        GitHub <strong>images</strong> folder.
 
         <br>
 
-        Gallery information is saved through Firebase Realtime Database.
-
-        <br>
-
-        New image files still need to be placed inside your GitHub
-        <strong>images</strong> folder.
+        Firebase Realtime Database stores the gallery information.
 
     </div>
 
@@ -1606,7 +1663,6 @@ textarea{
                     >
 
                 </div>
-
 
                 <div class="form-group full">
 
@@ -1663,7 +1719,6 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
                     <label>
@@ -1685,7 +1740,6 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
                     <label>
@@ -1699,7 +1753,6 @@ textarea{
                     >
 
                 </div>
-
 
                 <div class="form-group full">
 
@@ -1799,9 +1852,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Title
-                </label>
+                <label>Title</label>
 
                 <input
                     type="text"
@@ -1811,12 +1862,9 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Description
-                </label>
+                <label>Description</label>
 
                 <textarea
                     id="achievementDescription"
@@ -1824,7 +1872,6 @@ textarea{
                 ></textarea>
 
             </div>
-
 
             <div class="form-actions">
 
@@ -1905,9 +1952,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Project Title
-                </label>
+                <label>Project Title</label>
 
                 <input
                     type="text"
@@ -1917,12 +1962,9 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Description
-                </label>
+                <label>Description</label>
 
                 <textarea
                     id="projectDescription"
@@ -1931,12 +1973,9 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Project Link
-                </label>
+                <label>Project Link</label>
 
                 <input
                     type="text"
@@ -1945,7 +1984,6 @@ textarea{
                 >
 
             </div>
-
 
             <div class="form-actions">
 
@@ -2026,9 +2064,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Hobby Title
-                </label>
+                <label>Hobby Title</label>
 
                 <input
                     type="text"
@@ -2038,12 +2074,9 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Description
-                </label>
+                <label>Description</label>
 
                 <textarea
                     id="hobbyDescription"
@@ -2051,7 +2084,6 @@ textarea{
                 ></textarea>
 
             </div>
-
 
             <div class="form-actions">
 
@@ -2132,9 +2164,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Skill Title
-                </label>
+                <label>Skill Title</label>
 
                 <input
                     type="text"
@@ -2144,12 +2174,9 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Description
-                </label>
+                <label>Description</label>
 
                 <textarea
                     id="skillDescription"
@@ -2157,7 +2184,6 @@ textarea{
                 ></textarea>
 
             </div>
-
 
             <div class="form-actions">
 
@@ -2240,9 +2266,7 @@ textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        Date
-                    </label>
+                    <label>Date</label>
 
                     <input
                         type="date"
@@ -2252,12 +2276,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>
-                        Title
-                    </label>
+                    <label>Title</label>
 
                     <input
                         type="text"
@@ -2267,12 +2288,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        What Happened?
-                    </label>
+                    <label>What Happened?</label>
 
                     <textarea
                         id="diaryHappened"
@@ -2280,12 +2298,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Feelings
-                    </label>
+                    <label>Feelings</label>
 
                     <textarea
                         id="diaryFeelings"
@@ -2293,12 +2308,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Notes
-                    </label>
+                    <label>Notes</label>
 
                     <textarea
                         id="diaryNotes"
@@ -2306,12 +2318,9 @@ textarea{
 
                 </div>
 
-
                 <div class="form-group full">
 
-                    <label>
-                        Photo Path / URL
-                    </label>
+                    <label>Photo Path / URL</label>
 
                     <input
                         type="text"
@@ -2501,10 +2510,13 @@ $("loginForm").addEventListener(
         event.preventDefault();
 
         const email =
-            $("loginEmail").value.trim();
+            $("loginEmail")
+                .value
+                .trim();
 
         const password =
-            $("loginPassword").value;
+            $("loginPassword")
+                .value;
 
         $("loginError").textContent =
             "";
@@ -2528,7 +2540,7 @@ $("loginForm").addEventListener(
             console.error(error);
 
             $("loginError").textContent =
-                "Login failed. Check your email and password.";
+                "Login failed. Please check your email and password.";
 
         }finally{
 
@@ -2561,7 +2573,20 @@ onAuthStateChanged(
             $("adminEmail").textContent =
                 user.email || "";
 
-            await loadEverything();
+            try{
+
+                await loadEverything();
+
+            }catch(error){
+
+                console.error(error);
+
+                showToast(
+                    "Some dashboard information could not be loaded.",
+                    "error"
+                );
+
+            }
 
         }else{
 
@@ -2583,14 +2608,17 @@ $("logoutSide").addEventListener(
     "click",
     async () => {
 
+        const confirmed =
+            confirm(
+                "Are you sure you want to logout?"
+            );
+
+        if(!confirmed)
+            return;
+
         try{
 
             await signOut(auth);
-
-            showToast(
-                "Logged out successfully.",
-                "success"
-            );
 
         }catch(error){
 
@@ -2637,7 +2665,7 @@ $("sidebarOverlay").addEventListener(
 );
 
 
-/* ================= PAGE NAVIGATION ================= */
+/* ================= NAVIGATION ================= */
 
 const pageTitles = {
 
@@ -2659,15 +2687,19 @@ window.showPage =
         document
             .querySelectorAll(".page")
             .forEach(
-                p =>
-                    p.classList.remove("active")
+                pageElement =>
+                    pageElement
+                        .classList
+                        .remove("active")
             );
 
         document
             .querySelectorAll(".nav-btn")
             .forEach(
-                b =>
-                    b.classList.remove("active")
+                button =>
+                    button
+                        .classList
+                        .remove("active")
             );
 
         const target =
@@ -2676,22 +2708,29 @@ window.showPage =
         if(target)
             target.classList.add("active");
 
-        const nav =
+        const navButton =
             document.querySelector(
                 `.nav-btn[data-page="${page}"]`
             );
 
-        if(nav)
-            nav.classList.add("active");
+        if(navButton)
+            navButton.classList.add("active");
 
         $("topbarTitle").textContent =
             pageTitles[page] || "Dashboard";
 
         $("sidebar")
-            .classList.remove("open");
+            .classList
+            .remove("open");
 
         $("sidebarOverlay")
-            .classList.remove("open");
+            .classList
+            .remove("open");
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
     };
 
@@ -2738,7 +2777,7 @@ async function loadEverything(){
 }
 
 
-/* ================= DASHBOARD REFRESH ================= */
+/* ================= DASHBOARD ================= */
 
 $("refreshDashboardBtn").addEventListener(
     "click",
@@ -2758,7 +2797,7 @@ $("refreshDashboardBtn").addEventListener(
             await loadEverything();
 
             showToast(
-                "Dashboard refreshed!",
+                "Dashboard refreshed successfully.",
                 "success"
             );
 
@@ -2784,8 +2823,6 @@ $("refreshDashboardBtn").addEventListener(
     }
 );
 
-
-/* ================= STATS ================= */
 
 async function countChildren(path){
 
@@ -2853,28 +2890,36 @@ window.loadHome =
                     : {};
 
             $("homeName").value =
-                data.name || "Clinton Ncube";
+                data.name ||
+                "Clinton Ncube";
 
             $("homeWelcome").value =
-                data.welcome || "";
+                data.welcome ||
+                "";
 
             $("homeGoal").value =
-                data.goal || "";
+                data.goal ||
+                "";
 
             $("homeAbout").value =
-                data.about || "";
+                data.about ||
+                "";
 
             $("homeUpdated").value =
-                data.lastUpdated || "2026";
+                data.lastUpdated ||
+                "2026";
 
             $("dashboardName").textContent =
-                data.name || "Clinton Ncube";
+                data.name ||
+                "Clinton Ncube";
 
             $("dashboardGoal").textContent =
-                data.goal || "Not set";
+                data.goal ||
+                "Not set";
 
             $("dashboardUpdated").textContent =
-                data.lastUpdated || "Not set";
+                data.lastUpdated ||
+                "Not set";
 
             updateHomeLivePreview();
 
@@ -2901,19 +2946,29 @@ $("homeForm").addEventListener(
         const data = {
 
             name:
-                $("homeName").value.trim(),
+                $("homeName")
+                    .value
+                    .trim(),
 
             welcome:
-                $("homeWelcome").value.trim(),
+                $("homeWelcome")
+                    .value
+                    .trim(),
 
             goal:
-                $("homeGoal").value.trim(),
+                $("homeGoal")
+                    .value
+                    .trim(),
 
             about:
-                $("homeAbout").value.trim(),
+                $("homeAbout")
+                    .value
+                    .trim(),
 
             lastUpdated:
-                $("homeUpdated").value.trim()
+                $("homeUpdated")
+                    .value
+                    .trim()
 
         };
 
@@ -2927,7 +2982,7 @@ $("homeForm").addEventListener(
             await loadHome();
 
             showToast(
-                "Home information saved!",
+                "Home information saved successfully.",
                 "success"
             );
 
@@ -2945,8 +3000,6 @@ $("homeForm").addEventListener(
     }
 );
 
-
-/* HOME LIVE FORM PREVIEW */
 
 function updateHomeLivePreview(){
 
@@ -3006,14 +3059,14 @@ window.showHomeLivePreview =
 window.selectGalleryImage =
     function(){
 
-        const value =
+        const selected =
             $("gallerySelector").value;
 
-        if(!value)
+        if(!selected)
             return;
 
         $("galleryFile").value =
-            value;
+            selected;
 
         previewGalleryURL();
 
@@ -3045,6 +3098,19 @@ window.previewGalleryURL =
 
         preview.style.display =
             "block";
+
+        preview.onerror =
+            () => {
+
+                preview.style.display =
+                    "none";
+
+                showToast(
+                    "The selected image could not be found.",
+                    "error"
+                );
+
+            };
 
     };
 
@@ -3110,12 +3176,15 @@ $("galleryForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"gallery/"+id),
+                    ref(
+                        db,
+                        "gallery/"+id
+                    ),
                     data
                 );
 
                 showToast(
-                    "Gallery image updated!",
+                    "Gallery image updated.",
                     "success"
                 );
 
@@ -3127,7 +3196,7 @@ $("galleryForm").addEventListener(
                 );
 
                 showToast(
-                    "Gallery image added!",
+                    "Gallery image added.",
                     "success"
                 );
 
@@ -3202,14 +3271,16 @@ window.loadGallery =
                         <div>
 
                             <h4>
-                                ${escapeHTML(item.title)}
+                                ${escapeHTML(item.title || "")}
                             </h4>
 
                             <p>
                                 ${escapeHTML(item.description || "")}
                             </p>
 
-                            <p style="font-size:12px;margin-top:5px;">
+                            <p
+                                style="font-size:12px;margin-top:5px;"
+                            >
                                 ${escapeHTML(item.file || "")}
                             </p>
 
@@ -3308,11 +3379,6 @@ window.editGallery =
 
         showPage("gallery");
 
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
     };
 
 
@@ -3320,14 +3386,17 @@ window.deleteGallery =
     async function(id){
 
         if(!confirm(
-            "Delete this gallery image?"
+            "Delete this gallery image? This action cannot be undone."
         ))
             return;
 
         try{
 
             await remove(
-                ref(db,"gallery/"+id)
+                ref(
+                    db,
+                    "gallery/"+id
+                )
             );
 
             showToast(
@@ -3419,11 +3488,16 @@ async function loadSimple(
 
                 let link = "";
 
-                if(showLink && item.link){
+                if(
+                    showLink &&
+                    item.link
+                ){
 
                     link = `
 
-                        <p style="margin-top:7px;">
+                        <p
+                            style="margin-top:7px;"
+                        >
 
                             <a
                                 href="${escapeHTML(item.link)}"
@@ -3446,7 +3520,7 @@ async function loadSimple(
                         <div>
 
                             <h4>
-                                ${escapeHTML(item.title)}
+                                ${escapeHTML(item.title || "")}
                             </h4>
 
                             <p>
@@ -3565,7 +3639,7 @@ $("achievementForm").addEventListener(
                 );
 
                 showToast(
-                    "Achievement updated!",
+                    "Achievement updated.",
                     "success"
                 );
 
@@ -3577,7 +3651,7 @@ $("achievementForm").addEventListener(
                 );
 
                 showToast(
-                    "Achievement added!",
+                    "Achievement added.",
                     "success"
                 );
 
@@ -3640,7 +3714,7 @@ window.deleteAchievement =
     async function(id){
 
         if(!confirm(
-            "Delete this achievement?"
+            "Delete this achievement? This action cannot be undone."
         ))
             return;
 
@@ -3733,7 +3807,7 @@ $("projectForm").addEventListener(
                 );
 
                 showToast(
-                    "Project updated!",
+                    "Project updated.",
                     "success"
                 );
 
@@ -3745,7 +3819,7 @@ $("projectForm").addEventListener(
                 );
 
                 showToast(
-                    "Project added!",
+                    "Project added.",
                     "success"
                 );
 
@@ -3812,7 +3886,7 @@ window.deleteProject =
     async function(id){
 
         if(!confirm(
-            "Delete this project?"
+            "Delete this project? This action cannot be undone."
         ))
             return;
 
@@ -3900,7 +3974,7 @@ $("hobbyForm").addEventListener(
                 );
 
                 showToast(
-                    "Hobby updated!",
+                    "Hobby updated.",
                     "success"
                 );
 
@@ -3912,7 +3986,7 @@ $("hobbyForm").addEventListener(
                 );
 
                 showToast(
-                    "Hobby added!",
+                    "Hobby added.",
                     "success"
                 );
 
@@ -3975,7 +4049,7 @@ window.deleteHobby =
     async function(id){
 
         if(!confirm(
-            "Delete this hobby?"
+            "Delete this hobby? This action cannot be undone."
         ))
             return;
 
@@ -4063,7 +4137,7 @@ $("skillForm").addEventListener(
                 );
 
                 showToast(
-                    "Skill updated!",
+                    "Skill updated.",
                     "success"
                 );
 
@@ -4075,7 +4149,7 @@ $("skillForm").addEventListener(
                 );
 
                 showToast(
-                    "Skill added!",
+                    "Skill added.",
                     "success"
                 );
 
@@ -4138,7 +4212,7 @@ window.deleteSkill =
     async function(id){
 
         if(!confirm(
-            "Delete this skill?"
+            "Delete this skill? This action cannot be undone."
         ))
             return;
 
@@ -4244,7 +4318,7 @@ $("diaryForm").addEventListener(
                 );
 
                 showToast(
-                    "Diary entry updated!",
+                    "Diary entry updated.",
                     "success"
                 );
 
@@ -4256,7 +4330,7 @@ $("diaryForm").addEventListener(
                 );
 
                 showToast(
-                    "Diary entry added!",
+                    "Diary entry added.",
                     "success"
                 );
 
@@ -4334,7 +4408,7 @@ window.loadDiary =
                             <div>
 
                                 <h4>
-                                    ${escapeHTML(item.title)}
+                                    ${escapeHTML(item.title || "")}
                                 </h4>
 
                                 <p>
@@ -4342,16 +4416,22 @@ window.loadDiary =
                                     ${escapeHTML(item.date || "")}
                                 </p>
 
-                                <p style="margin-top:8px;">
+                                <p
+                                    style="margin-top:8px;"
+                                >
                                     ${escapeHTML(item.happened || "")}
                                 </p>
 
-                                <p style="margin-top:8px;">
+                                <p
+                                    style="margin-top:8px;"
+                                >
                                     <strong>Feelings:</strong>
                                     ${escapeHTML(item.feelings || "")}
                                 </p>
 
-                                <p style="margin-top:8px;">
+                                <p
+                                    style="margin-top:8px;"
+                                >
                                     <strong>Notes:</strong>
                                     ${escapeHTML(item.notes || "")}
                                 </p>
@@ -4450,7 +4530,7 @@ window.deleteDiary =
     async function(id){
 
         if(!confirm(
-            "Delete this diary entry?"
+            "Delete this diary entry? This action cannot be undone."
         ))
             return;
 
@@ -4513,10 +4593,6 @@ window.previewPage =
         const wrapper =
             $("previewWrapper");
 
-        frame.classList.remove(
-            "mobile"
-        );
-
         frame.src =
             WEBSITE_URL +
             page +
@@ -4526,19 +4602,12 @@ window.previewPage =
         wrapper.style.display =
             "flex";
 
+        frame.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
         showPage("dashboard");
-
-        setTimeout(
-            () => {
-
-                wrapper.scrollIntoView({
-                    behavior:"smooth",
-                    block:"start"
-                });
-
-            },
-            100
-        );
 
     };
 
@@ -4634,11 +4703,11 @@ window.refreshPreview =
 
         }
 
-        const current =
+        const base =
             frame.src.split("?")[0];
 
         frame.src =
-            current +
+            base +
             "?refresh=" +
             Date.now();
 
