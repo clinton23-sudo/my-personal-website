@@ -13,187 +13,198 @@
 
         body {
             margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background: #f4f1ea;
-            color: #333;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
         }
 
         header {
-            background: #20242b;
+            background: #111827;
             color: white;
+            padding: 25px 20px;
             text-align: center;
-            padding: 40px 20px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 38px;
+            margin: 0 0 8px;
         }
 
         header p {
-            margin-top: 10px;
-            color: #d5d5d5;
+            margin: 0;
+            color: #d1d5db;
         }
 
         nav {
-            background: #303640;
-            padding: 14px;
-            text-align: center;
+            background: #1f2937;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 12px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 8px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            background: #374151;
         }
 
         .container {
-            width: 92%;
-            max-width: 850px;
-            margin: 45px auto;
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
         }
 
-        .lock-card {
-            background: #fffdf8;
-            max-width: 500px;
-            margin: auto;
-            padding: 40px 30px;
-            text-align: center;
+        .login-card {
+            max-width: 450px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         .lock-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
+            font-size: 55px;
+            margin-bottom: 10px;
         }
 
-        .lock-card h2 {
-            margin-top: 0;
-            font-size: 28px;
+        .login-card h2 {
+            margin-bottom: 10px;
         }
 
-        .lock-card p {
+        .login-card p {
             color: #666;
-            line-height: 1.6;
         }
 
-        .login-input {
+        input {
             width: 100%;
             padding: 13px;
-            margin-top: 15px;
+            margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 16px;
         }
 
-        .login-button {
+        button {
             width: 100%;
             padding: 13px;
-            margin-top: 15px;
+            margin-top: 10px;
             border: none;
             border-radius: 8px;
-            background: #303640;
+            background: #111827;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
 
-        .login-button:hover {
-            background: #20242b;
+        button:hover {
+            background: #374151;
+        }
+
+        .logout-btn {
+            max-width: 180px;
+            margin: 20px auto;
+            display: block;
+            background: #b91c1c;
+        }
+
+        .logout-btn:hover {
+            background: #991b1b;
         }
 
         .error {
-            color: #b42318;
-            margin-top: 15px;
+            color: #b91c1c;
+            margin-top: 12px;
             display: none;
         }
 
-        #diaryContent {
-            display: none;
-        }
-
-        .diary-title {
+        .loading {
             text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .diary-title h2 {
-            font-size: 32px;
+            color: #666;
         }
 
         .diary-entry {
-            background: #fffdf8;
-            padding: 30px;
+            background: white;
+            padding: 25px;
             margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        .diary-entry h3 {
+        .diary-entry h2 {
             margin-top: 0;
-            font-size: 25px;
+            color: #111827;
         }
 
         .date {
-            color: #777;
-            font-family: Arial, sans-serif;
+            color: #6b7280;
             font-size: 14px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
-        .diary-entry p {
-            line-height: 1.8;
-        }
-
-        .feeling-box {
+        .section {
             margin-top: 20px;
-            padding: 18px;
-            background: #f0eee8;
-            border-radius: 8px;
         }
 
-        .photo-placeholder {
-            margin-top: 20px;
-            padding: 40px 20px;
-            text-align: center;
-            border: 2px dashed #bbb;
+        .section h3 {
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .section p {
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .private-note {
+            background: #f3f4f6;
+            padding: 15px;
             border-radius: 10px;
-            color: #777;
+        }
+
+        .diary-photo {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            color: #666;
         }
 
         footer {
-            background: #20242b;
-            color: white;
             text-align: center;
-            padding: 22px;
-            margin-top: 60px;
-            font-family: Arial, sans-serif;
+            padding: 25px;
+            margin-top: 40px;
+            background: #111827;
+            color: white;
         }
 
         @media (max-width: 600px) {
-
-            header h1 {
-                font-size: 30px;
+            nav {
+                flex-direction: column;
+                align-items: center;
             }
 
-            nav a {
-                display: inline-block;
-                margin: 5px;
+            .container {
+                width: 94%;
             }
 
-            .lock-card {
-                padding: 30px 20px;
-            }
-
-            .diary-entry {
-                padding: 22px;
+            .login-card {
+                margin-top: 30px;
             }
         }
     </style>
@@ -214,147 +225,365 @@
     <a href="skills.html">Skills</a>
     <a href="gallery.html">Gallery</a>
     <a href="achievements.html">Achievements</a>
-    <a href="my-diary.html">My Diary</a>
     <a href="contact.html">Contact</a>
 </nav>
 
 <div class="container">
 
-    <!-- LOCK SCREEN -->
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login-card">
 
-    <div id="lockScreen" class="lock-card">
-
-        <div class="lock-icon">
-            🔒
-        </div>
+        <div class="lock-icon">🔒</div>
 
         <h2>Private Diary</h2>
 
         <p>
-            This is my private diary. It contains personal
-            thoughts, memories, feelings and pictures.
-        </p>
-
-        <p>
-            Please enter the password to continue.
+            This diary is private. Sign in with your authorised
+            Firebase account to continue.
         </p>
 
         <input
-            type="password"
-            id="diaryPassword"
-            class="login-input"
-            placeholder="Enter password"
+            type="email"
+            id="email"
+            placeholder="Email address"
+            autocomplete="username"
         >
 
-        <button
-            class="login-button"
-            onclick="unlockDiary()"
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
         >
-            Unlock Diary
+
+        <button id="loginButton">
+            🔓 Sign In
         </button>
 
-        <div id="errorMessage" class="error">
-            Incorrect password.
-        </div>
+        <div id="loginError" class="error"></div>
 
     </div>
 
 
     <!-- DIARY CONTENT -->
+    <div id="diaryScreen" style="display:none;">
 
-    <div id="diaryContent">
+        <h2>📖 My Memories</h2>
 
-        <div class="diary-title">
+        <p class="loading" id="loadingMessage">
+            Loading your private diary...
+        </p>
 
-            <h2>📔 My Diary</h2>
+        <div id="diaryContainer"></div>
 
-            <p>
-                My thoughts, memories and personal moments.
-            </p>
-
-        </div>
-
-
-        <!-- EXAMPLE ENTRY -->
-
-        <div class="diary-entry">
-
-            <h3>My First Diary Entry</h3>
-
-            <div class="date">
-                📅 Add your date here
-            </div>
-
-            <p>
-                This is where I will write about what happened
-                during my day and the things that are important
-                to me.
-            </p>
-
-            <div class="feeling-box">
-
-                <strong>💭 How I felt</strong>
-
-                <p>
-                    I can write honestly about how I felt on
-                    this particular day.
-                </p>
-
-            </div>
-
-            <div class="photo-placeholder">
-                📸 My private picture will appear here.
-            </div>
-
-        </div>
+        <button class="logout-btn" id="logoutButton">
+            🔒 Lock Diary
+        </button>
 
     </div>
 
 </div>
 
 <footer>
-    <p>© 2026 Clinton Ncube. Private Diary.</p>
+    <p>© 2026 Clinton Ncube | Private Diary</p>
 </footer>
 
 
-<script>
+<script type="module">
 
-    function unlockDiary() {
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    import {
+        getDatabase,
+        ref,
+        onValue
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+    // FIREBASE CONFIG
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+        authDomain: "clinton-ncube-website.firebaseapp.com",
+        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+        projectId: "clinton-ncube-website",
+        storageBucket: "clinton-ncube-website.firebasestorage.app",
+        messagingSenderId: "946671700613",
+        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
+        measurementId: "G-K1S62MHHXP"
+    };
+
+
+    // START FIREBASE
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const db = getDatabase(app);
+
+
+    // ELEMENTS
+
+    const loginScreen =
+        document.getElementById("loginScreen");
+
+    const diaryScreen =
+        document.getElementById("diaryScreen");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const loginError =
+        document.getElementById("loginError");
+
+    const diaryContainer =
+        document.getElementById("diaryContainer");
+
+    const loadingMessage =
+        document.getElementById("loadingMessage");
+
+
+    // ESCAPE HTML
+
+    function escapeHTML(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    // LOGIN
+
+    loginButton.addEventListener("click", async () => {
+
+        const email =
+            document.getElementById("email").value.trim();
 
         const password =
-            document.getElementById(
-                "diaryPassword"
-            ).value;
+            document.getElementById("password").value;
 
-        const error =
-            document.getElementById(
-                "errorMessage"
+        loginError.style.display = "none";
+
+        if (!email || !password) {
+
+            loginError.textContent =
+                "Please enter your email and password.";
+
+            loginError.style.display = "block";
+
+            return;
+        }
+
+        loginButton.disabled = true;
+
+        loginButton.textContent = "Signing in...";
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
             );
 
-        /*
-         * TEMPORARY TEST PASSWORD
-         *
-         * We will remove this when we connect
-         * the diary to Firebase Authentication.
-         */
+        } catch (error) {
 
-        if (password === "1234") {
+            console.error(error);
 
-            document.getElementById(
-                "lockScreen"
-            ).style.display = "none";
+            loginError.textContent =
+                "Sign in failed. Please check your email and password.";
 
-            document.getElementById(
-                "diaryContent"
-            ).style.display = "block";
+            loginError.style.display = "block";
 
-            error.style.display = "none";
+        } finally {
+
+            loginButton.disabled = false;
+
+            loginButton.textContent = "🔓 Sign In";
+
+        }
+
+    });
+
+
+    // LOGOUT
+
+    logoutButton.addEventListener("click", async () => {
+
+        await signOut(auth);
+
+    });
+
+
+    // AUTH STATE
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (user) {
+
+            loginScreen.style.display = "none";
+
+            diaryScreen.style.display = "block";
+
+            loadDiary();
 
         } else {
 
-            error.style.display = "block";
+            loginScreen.style.display = "block";
+
+            diaryScreen.style.display = "none";
+
+            diaryContainer.innerHTML = "";
 
         }
+
+    });
+
+
+    // LOAD DIARY
+
+    function loadDiary() {
+
+        loadingMessage.style.display = "block";
+
+        const diaryRef =
+            ref(db, "diary");
+
+        onValue(diaryRef, (snapshot) => {
+
+            diaryContainer.innerHTML = "";
+
+            loadingMessage.style.display = "none";
+
+            if (!snapshot.exists()) {
+
+                diaryContainer.innerHTML = `
+                    <div class="empty">
+                        <h3>📖 Your diary is empty</h3>
+                        <p>
+                            Your private diary entries will appear here.
+                        </p>
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            const entries = [];
+
+            snapshot.forEach((child) => {
+
+                entries.push({
+                    id: child.key,
+                    ...child.val()
+                });
+
+            });
+
+
+            // NEWEST FIRST
+
+            entries.reverse();
+
+
+            entries.forEach((entry) => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "diary-entry";
+
+                card.innerHTML = `
+
+                    <h2>
+                        ${escapeHTML(entry.title || "Untitled Memory")}
+                    </h2>
+
+                    <div class="date">
+                        📅 ${escapeHTML(entry.date || "")}
+                    </div>
+
+                    <div class="section">
+
+                        <h3>📝 What happened?</h3>
+
+                        <p>
+                            ${escapeHTML(entry.happened || "")}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h3>💭 How I felt</h3>
+
+                        <p>
+                            ${escapeHTML(entry.feelings || "")}
+                        </p>
+
+                    </div>
+
+                    <div class="section">
+
+                        <h3>📌 Personal notes</h3>
+
+                        <div class="private-note">
+
+                            <p>
+                                ${escapeHTML(entry.notes || "")}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    ${
+                        entry.photo
+                        ?
+                        `
+                        <div class="section">
+
+                            <h3>📷 Memory Photo</h3>
+
+                            <img
+                                class="diary-photo"
+                                src="${escapeHTML(entry.photo)}"
+                                alt="Private diary memory"
+                                onerror="this.style.display='none';"
+                            >
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                `;
+
+                diaryContainer.appendChild(card);
+
+            });
+
+        });
 
     }
 
