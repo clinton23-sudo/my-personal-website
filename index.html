@@ -6,379 +6,321 @@
 
     <title>Clinton Ncube | Personal Website</title>
 
+    <link rel="stylesheet" href="css/style.css">
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* Homepage-specific styling */
+
+        .home-about {
+            background: white;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 25px;
+        .home-about-content {
+            max-width: 850px;
+            margin: auto;
             text-align: center;
         }
 
-        header h1 {
-            font-size: 34px;
+        .home-about-content p {
+            color: #4b5563;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .goal-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .goal-box h3 {
+            color: #1e3a8a;
             margin-bottom: 8px;
         }
 
-        header p {
-            color: #d1d5db;
+        .explore-section {
+            background: #f4f7fb;
         }
 
-        nav {
-            margin-top: 20px;
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 9px;
-            font-weight: bold;
-            display: inline-block;
-            padding: 5px;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-        }
-
-        .hero {
-            min-height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .explore-card {
+            background: white;
+            padding: 30px 22px;
+            border-radius: 15px;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(
-                135deg,
-                #e0f2fe,
-                #f8fafc
-            );
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s ease;
         }
 
-        .hero-content {
-            max-width: 850px;
+        .explore-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.14);
         }
 
-        .hero h2 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            color: #111827;
+        .explore-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
-        .hero h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #2563eb;
+        .explore-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
         }
 
-        .hero p {
-            font-size: 19px;
-            line-height: 1.7;
-            color: #555;
-            margin-bottom: 25px;
+        .explore-card p {
+            color: #6b7280;
+            margin-bottom: 18px;
         }
 
-        .button {
-            display: inline-block;
-            padding: 13px 24px;
-            background: #111827;
+        .home-cta {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
             color: white;
+            text-align: center;
+        }
+
+        .home-cta h2 {
+            color: white;
+        }
+
+        .home-cta p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 13px 25px;
+            background: white;
+            color: #1e3a8a;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            margin: 5px;
+            transition: 0.3s ease;
         }
 
-        .button:hover {
-            background: #2563eb;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #f3f4f6;
         }
 
-        .section {
-            width: 90%;
-            max-width: 1100px;
-            margin: 60px auto;
-        }
-
-        .section-title {
+        .last-updated {
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: #666;
-        }
-
-        .about-box {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-            text-align: center;
-            line-height: 1.7;
-            color: #555;
-            font-size: 18px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-            transition: transform 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.5;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        footer {
-            margin-top: 70px;
-            padding: 30px;
-            background: #111827;
-            color: white;
-            text-align: center;
-        }
-
-        footer p {
-            margin: 5px;
-        }
-
-        @media (max-width: 600px) {
-
-            header h1 {
-                font-size: 28px;
-            }
-
-            .hero h2 {
-                font-size: 38px;
-            }
-
-            .hero h3 {
-                font-size: 23px;
-            }
-
-            nav a {
-                margin: 4px;
-            }
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 25px;
         }
     </style>
 </head>
 
 <body>
 
-<header>
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
-    <h1 id="headerName">Clinton Ncube</h1>
+<nav>
+    <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <p>My Personal Website</p>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="hobbies.html">Hobbies</a>
-        <a href="skills.html">Skills</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <h1 id="homeName">Clinton Ncube</h1>
+
+        <p id="welcomeText">
+            Welcome to my personal website!
+        </p>
+
+        <a href="#explore" class="btn">
+            Explore My Website
+        </a>
+
+    </div>
 
 </header>
 
 
-<section class="hero">
+<!-- =====================================================
+     ABOUT SECTION
+     ===================================================== -->
 
-    <div class="hero-content">
+<section class="home-about">
 
-        <h2 id="homeName">
-            Clinton Ncube
-        </h2>
-
-        <h3 id="welcomeText">
-            Welcome to my personal website!
-        </h3>
-
-        <p id="goalText">
-            My goal is to continue learning,
-            improving my skills and creating useful
-            and interesting projects.
-        </p>
-
-        <a href="about.html" class="button">
-            Learn More About Me
-        </a>
-
-        <a href="projects.html" class="button">
-            View My Projects
-        </a>
-
-    </div>
-
-</section>
-
-
-<section class="section">
-
-    <div class="section-title">
+    <div class="container">
 
         <h2>About Me</h2>
 
-        <p>A little information about me</p>
+        <div class="home-about-content">
 
-    </div>
+            <p id="aboutText">
+                I am Clinton Ncube. I am a student who enjoys learning,
+                developing new skills and working on creative projects.
+            </p>
 
+            <div class="goal-box">
 
-    <div class="about-box">
+                <h3>🎯 My Goal</h3>
 
-        <p id="aboutText">
-            I am Clinton Ncube. I am a student who enjoys
-            learning, developing new skills and working
-            on creative projects.
-        </p>
+                <p id="goalText">
+                    My goal is to continue learning, improving my skills
+                    and creating useful and interesting projects.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<section class="section">
+<!-- =====================================================
+     EXPLORE SECTION
+     ===================================================== -->
 
-    <div class="section-title">
+<section class="explore-section" id="explore">
+
+    <div class="container">
 
         <h2>Explore My Website</h2>
 
-        <p>
-            Take a look at some of the sections of my
-            personal website.
+        <p class="section-intro">
+            Discover my projects, achievements, skills, hobbies
+            and memories.
         </p>
 
-    </div>
+        <div class="explore-grid">
 
+            <a href="projects.html" class="explore-card">
 
-    <div class="cards">
+                <div class="explore-icon">📚</div>
 
-        <div class="card">
+                <h3>Projects</h3>
 
-            <div class="card-icon">📚</div>
+                <p>
+                    Explore educational, creative and personal
+                    projects that I have worked on.
+                </p>
 
-            <h3>Projects</h3>
+                <span class="btn">
+                    View Projects
+                </span>
 
-            <p>
-                School and personal projects that
-                I have worked on.
-            </p>
-
-            <br>
-
-            <a href="projects.html" class="button">
-                View
             </a>
 
-        </div>
 
+            <a href="achievements.html" class="explore-card">
 
-        <div class="card">
+                <div class="explore-icon">🏆</div>
 
-            <div class="card-icon">🏆</div>
+                <h3>Achievements</h3>
 
-            <h3>Achievements</h3>
+                <p>
+                    See some of my academic achievements and
+                    activities.
+                </p>
 
-            <p>
-                My academic and personal achievements.
-            </p>
+                <span class="btn">
+                    View Achievements
+                </span>
 
-            <br>
-
-            <a href="achievements.html" class="button">
-                View
             </a>
 
-        </div>
 
+            <a href="skills.html" class="explore-card">
 
-        <div class="card">
+                <div class="explore-icon">💻</div>
 
-            <div class="card-icon">💻</div>
+                <h3>Skills</h3>
 
-            <h3>Skills</h3>
+                <p>
+                    Discover the skills I am developing through
+                    learning and practice.
+                </p>
 
-            <p>
-                Skills I have developed through
-                learning and practice.
-            </p>
+                <span class="btn">
+                    View Skills
+                </span>
 
-            <br>
-
-            <a href="skills.html" class="button">
-                View
             </a>
 
-        </div>
+
+            <a href="hobbies.html" class="explore-card">
+
+                <div class="explore-icon">🏀</div>
+
+                <h3>Hobbies</h3>
+
+                <p>
+                    Learn about the activities I enjoy in my
+                    free time.
+                </p>
+
+                <span class="btn">
+                    View Hobbies
+                </span>
+
+            </a>
 
 
-        <div class="card">
+            <a href="gallery.html" class="explore-card">
 
-            <div class="card-icon">🖼️</div>
+                <div class="explore-icon">🖼️</div>
 
-            <h3>Gallery</h3>
+                <h3>Gallery</h3>
 
-            <p>
-                Photos, memories and activities
-                from my journey.
-            </p>
+                <p>
+                    Browse pictures and memories from my
+                    experiences.
+                </p>
 
-            <br>
+                <span class="btn">
+                    View Gallery
+                </span>
 
-            <a href="gallery.html" class="button">
-                View
+            </a>
+
+
+            <a href="contact.html" class="explore-card">
+
+                <div class="explore-icon">📩</div>
+
+                <h3>Contact</h3>
+
+                <p>
+                    Find out how to get in touch with me.
+                </p>
+
+                <span class="btn">
+                    Contact Me
+                </span>
+
             </a>
 
         </div>
@@ -388,126 +330,163 @@
 </section>
 
 
+<!-- =====================================================
+     CALL TO ACTION
+     ===================================================== -->
+
+<section class="home-cta">
+
+    <div class="container">
+
+        <h2>Thanks for Visiting!</h2>
+
+        <p>
+            This website is a place where I can share my
+            learning journey, projects, achievements,
+            interests and experiences.
+        </p>
+
+        <a href="about.html" class="cta-button">
+            Learn More About Me
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
 <footer>
 
-    <p id="footerName">
-        © 2026 Clinton Ncube
+    <p>
+        © <span id="footerYear">2026</span>
+        <span id="footerName">Clinton Ncube</span>.
+        All rights reserved.
     </p>
 
     <p>
-        My Personal Website
+        Personal Portfolio Website
+    </p>
+
+    <p class="last-updated">
+        Last updated: <span id="lastUpdated">2026</span>
     </p>
 
 </footer>
 
 
+<!-- =====================================================
+     FIREBASE
+     ===================================================== -->
+
 <script type="module">
 
-    import { initializeApp }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-    import {
-        getDatabase,
-        ref,
-        onValue
-    }
-    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+const firebaseConfig = {
+
+    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+    authDomain: "clinton-ncube-website.firebaseapp.com",
+
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId: "clinton-ncube-website",
+
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId: "946671700613",
+
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId: "G-K1S62MHHXP"
+
+};
 
 
-    const firebaseConfig = {
+const app = initializeApp(firebaseConfig);
 
-        apiKey:
-            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
-
-        authDomain:
-            "clinton-ncube-website.firebaseapp.com",
-
-        databaseURL:
-            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-
-        projectId:
-            "clinton-ncube-website",
-
-        storageBucket:
-            "clinton-ncube-website.firebasestorage.app",
-
-        messagingSenderId:
-            "946671700613",
-
-        appId:
-            "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-        measurementId:
-            "G-K1S62MHHXP"
-    };
+const db = getDatabase(app);
 
 
-    const app = initializeApp(firebaseConfig);
-
-    const db = getDatabase(app);
-
-    const websiteDataRef =
-        ref(db, "websiteData");
+const websiteDataRef = ref(db, "websiteData");
 
 
-    onValue(websiteDataRef, (snapshot) => {
+onValue(
+    websiteDataRef,
+    (snapshot) => {
 
-        if (!snapshot.exists()) {
+        const data = snapshot.val();
+
+        if (!data) {
             return;
         }
 
 
-        const data = snapshot.val();
+        if (data.name) {
+
+            document.getElementById("homeName").textContent =
+                data.name;
+
+            document.getElementById("footerName").textContent =
+                data.name;
+        }
 
 
-        const name =
-            data.name || "Clinton Ncube";
+        if (data.welcome) {
+
+            document.getElementById("welcomeText").textContent =
+                data.welcome;
+        }
 
 
-        const welcome =
-            data.welcome ||
-            "Welcome to my personal website!";
+        if (data.about) {
+
+            document.getElementById("aboutText").textContent =
+                data.about;
+        }
 
 
-        const goal =
-            data.goal ||
-            "My goal is to continue learning, improving my skills and creating useful and interesting projects.";
+        if (data.goal) {
+
+            document.getElementById("goalText").textContent =
+                data.goal;
+        }
 
 
-        const about =
-            data.about ||
-            "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.";
+        if (data.lastUpdated) {
 
+            document.getElementById("lastUpdated").textContent =
+                data.lastUpdated;
 
-        document.getElementById("headerName")
-            .textContent = name;
+        }
 
+    },
 
-        document.getElementById("homeName")
-            .textContent = name;
+    (error) => {
 
+        console.error(
+            "Unable to load website data:",
+            error
+        );
 
-        document.getElementById("welcomeText")
-            .textContent = welcome;
-
-
-        document.getElementById("goalText")
-            .textContent = goal;
-
-
-        document.getElementById("aboutText")
-            .textContent = about;
-
-
-        document.getElementById("footerName")
-            .textContent =
-            "© " +
-            (data.lastUpdated || "2026") +
-            " " +
-            name;
-
-    });
+    }
+);
 
 </script>
 
