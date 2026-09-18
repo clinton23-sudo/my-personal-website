@@ -7,6 +7,7 @@
 <title>Admin Dashboard | Clinton Ncube</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -89,6 +90,12 @@ body {
     z-index: 900;
 }
 
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .topbar h1 {
     font-size: 23px;
 }
@@ -99,9 +106,16 @@ body {
     margin-top: 4px;
 }
 
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .admin-email {
     color: #555;
     font-size: 14px;
+    margin-right: 8px;
 }
 
 .menu-toggle {
@@ -113,6 +127,33 @@ body {
     border-radius: 6px;
     font-size: 20px;
     cursor: pointer;
+}
+
+.topbar-btn {
+    border: none;
+    padding: 9px 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.refresh-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.refresh-btn:hover {
+    background: #1d4ed8;
+}
+
+.website-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.website-btn:hover {
+    background: #15803d;
 }
 
 /* ================= CONTENT ================= */
@@ -155,6 +196,11 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    transition: transform .2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
 }
 
 .stat-card h3 {
@@ -173,6 +219,21 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,.07);
     margin-bottom: 20px;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.last-refresh {
+    margin-top: 15px;
+    color: #777;
+    font-size: 13px;
 }
 
 /* ================= FORMS ================= */
@@ -226,14 +287,26 @@ body {
     color: white;
 }
 
+.btn-success:hover {
+    background: #15803d;
+}
+
 .btn-danger {
     background: #dc2626;
     color: white;
 }
 
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
 .btn-secondary {
     background: #6b7280;
     color: white;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
 }
 
 /* ================= ITEMS ================= */
@@ -314,6 +387,28 @@ body {
     color: #9a3412;
 }
 
+/* ================= TOAST ================= */
+
+#toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    min-width: 260px;
+    max-width: 380px;
+    padding: 15px 18px;
+    border-radius: 8px;
+    color: white;
+    background: #16a34a;
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+    z-index: 5000;
+    display: none;
+    font-weight: bold;
+}
+
+#toast.error-toast {
+    background: #dc2626;
+}
+
 /* ================= LOGIN ================= */
 
 #loginScreen {
@@ -353,10 +448,16 @@ body {
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+
     .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
+
+    .admin-email {
+        display: none;
+    }
+
 }
 
 @media (max-width: 800px) {
@@ -379,22 +480,49 @@ body {
     }
 
     .topbar {
-        gap: 15px;
+        gap: 10px;
+        padding: 15px;
     }
 
-    .admin-email {
-        display: none;
+    .topbar-right {
+        gap: 5px;
+    }
+
+    .topbar-btn {
+        padding: 8px 10px;
+        font-size: 12px;
     }
 
     .content {
         padding: 15px;
     }
+
 }
 
 @media (max-width: 600px) {
 
     .stats {
         grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .topbar h1 {
+        font-size: 19px;
+    }
+
+    .topbar p {
+        font-size: 12px;
+    }
+
+    .topbar-right {
+        flex-direction: column;
+    }
+
+    .topbar-btn {
+        width: 100%;
     }
 
     .gallery-item {
@@ -405,7 +533,16 @@ body {
         width: 100%;
         height: 180px;
     }
+
+    #toast {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        min-width: auto;
+    }
+
 }
+
 </style>
 </head>
 
@@ -422,21 +559,27 @@ body {
         <p>Login to manage your personal website.</p>
 
         <div class="form-group">
+
             <label>Email</label>
+
             <input
                 type="email"
                 id="loginEmail"
                 placeholder="Enter your email"
             >
+
         </div>
 
         <div class="form-group">
+
             <label>Password</label>
+
             <input
                 type="password"
                 id="loginPassword"
                 placeholder="Enter your password"
             >
+
         </div>
 
         <button
@@ -458,7 +601,7 @@ body {
 
 <div id="adminApp" style="display:none;">
 
-    <!-- SIDEBAR -->
+    <!-- ================= SIDEBAR ================= -->
 
     <aside class="sidebar" id="sidebar">
 
@@ -496,20 +639,23 @@ body {
             📔 Private Diary
         </a>
 
-        <button class="logout-btn" id="logoutBtn">
+        <button
+            class="logout-btn"
+            id="logoutBtn"
+        >
             🚪 Logout
         </button>
 
     </aside>
 
 
-    <!-- MAIN -->
+    <!-- ================= MAIN ================= -->
 
     <main class="main">
 
         <header class="topbar">
 
-            <div style="display:flex;align-items:center;gap:12px;">
+            <div class="topbar-left">
 
                 <button
                     class="menu-toggle"
@@ -532,10 +678,29 @@ body {
 
             </div>
 
-            <div
-                class="admin-email"
-                id="adminEmail"
-            ></div>
+
+            <div class="topbar-right">
+
+                <div
+                    class="admin-email"
+                    id="adminEmail"
+                ></div>
+
+                <button
+                    class="topbar-btn refresh-btn"
+                    onclick="refreshDashboard()"
+                >
+                    🔄 Refresh
+                </button>
+
+                <button
+                    class="topbar-btn website-btn"
+                    onclick="openWebsite()"
+                >
+                    🌐 Website
+                </button>
+
+            </div>
 
         </header>
 
@@ -643,6 +808,13 @@ body {
 
                     </p>
 
+                    <p
+                        class="last-refresh"
+                        id="lastRefresh"
+                    >
+                        Last refreshed: Not yet
+                    </p>
+
                 </div>
 
 
@@ -650,33 +822,84 @@ body {
 
                     <h2>Quick Actions</h2>
 
-                    <button
-                        class="btn btn-primary"
-                        onclick="showSection('home')"
-                    >
-                        Edit Home
-                    </button>
+                    <div class="dashboard-actions">
 
-                    <button
-                        class="btn btn-primary"
-                        onclick="showSection('gallery')"
-                    >
-                        Manage Gallery
-                    </button>
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('home')"
+                        >
+                            📝 Edit Home
+                        </button>
 
-                    <button
-                        class="btn btn-primary"
-                        onclick="showSection('projects')"
-                    >
-                        Manage Projects
-                    </button>
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('gallery')"
+                        >
+                            🖼️ Manage Gallery
+                        </button>
 
-                    <button
-                        class="btn btn-primary"
-                        onclick="showSection('achievements')"
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('projects')"
+                        >
+                            📚 Manage Projects
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('achievements')"
+                        >
+                            🏆 Manage Achievements
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('hobbies')"
+                        >
+                            🏀 Manage Hobbies
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="showSection('skills')"
+                        >
+                            💡 Manage Skills
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h2>Website Controls</h2>
+
+                    <p
+                        style="margin-top:10px;color:#555;"
                     >
-                        Manage Achievements
-                    </button>
+                        Use these buttons to quickly check
+                        your live website or reload information
+                        from Firebase.
+                    </p>
+
+                    <div class="dashboard-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="refreshDashboard()"
+                        >
+                            🔄 Refresh All Data
+                        </button>
+
+                        <button
+                            class="btn btn-success"
+                            onclick="openWebsite()"
+                        >
+                            🌐 Open Live Website
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -834,7 +1057,6 @@ body {
 
                     <br>
 
-
                     <div class="form-group">
 
                         <label>
@@ -849,8 +1071,6 @@ body {
 
                     </div>
 
-
-                    <!-- IMAGE SELECTOR -->
 
                     <div class="form-group">
 
@@ -1486,6 +1706,11 @@ body {
 </div>
 
 
+<!-- ================= TOAST ================= -->
+
+<div id="toast"></div>
+
+
 <!-- ================= FIREBASE ================= -->
 
 <script type="module">
@@ -1557,16 +1782,41 @@ const db =
 let currentUser = null;
 
 let editingGalleryId = null;
-
 let editingAchievementId = null;
-
 let editingProjectId = null;
-
 let editingHobbyId = null;
-
 let editingSkillId = null;
-
 let editingDiaryId = null;
+
+
+/* ================= TOAST ================= */
+
+let toastTimer = null;
+
+function showToast(message, type = "success") {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.remove("error-toast");
+
+    if (type === "error") {
+        toast.classList.add("error-toast");
+    }
+
+    toast.style.display = "block";
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.style.display = "none";
+
+    }, 3000);
+
+}
 
 
 /* ================= LOGIN ================= */
@@ -1623,6 +1873,23 @@ document
     });
 
 
+/* ================= ENTER KEY LOGIN ================= */
+
+document
+    .getElementById("loginPassword")
+    .addEventListener("keydown", event => {
+
+        if (event.key === "Enter") {
+
+            document
+                .getElementById("loginBtn")
+                .click();
+
+        }
+
+    });
+
+
 /* ================= AUTH STATE ================= */
 
 onAuthStateChanged(
@@ -1644,14 +1911,16 @@ onAuthStateChanged(
             document
                 .getElementById("adminEmail")
                 .textContent =
-                user.email;
+                user.email || "";
 
             document
                 .getElementById("dashboardEmail")
                 .textContent =
-                user.email;
+                user.email || "";
 
             await loadEverything();
+
+            updateLastRefresh();
 
         } else {
 
@@ -1679,7 +1948,20 @@ document
         "click",
         async () => {
 
-            await signOut(auth);
+            try {
+
+                await signOut(auth);
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    "Could not log out.",
+                    "error"
+                );
+
+            }
 
         }
     );
@@ -1762,23 +2044,84 @@ window.toggleSidebar = function() {
 };
 
 
+/* ================= OPEN WEBSITE ================= */
+
+window.openWebsite = function() {
+
+    window.open(
+        "https://clinton23-sudo.github.io/my-personal-website/",
+        "_blank"
+    );
+
+};
+
+
+/* ================= REFRESH DASHBOARD ================= */
+
+window.refreshDashboard = async function() {
+
+    if (!currentUser) return;
+
+    showToast("Refreshing website data...");
+
+    try {
+
+        await loadEverything();
+
+        updateLastRefresh();
+
+        showToast(
+            "Dashboard refreshed successfully!"
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not refresh dashboard.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* ================= LAST REFRESH ================= */
+
+function updateLastRefresh() {
+
+    const element =
+        document.getElementById("lastRefresh");
+
+    if (!element) return;
+
+    const now =
+        new Date();
+
+    element.textContent =
+        "Last refreshed: " +
+        now.toLocaleTimeString();
+
+}
+
+
 /* ================= LOAD EVERYTHING ================= */
 
 async function loadEverything() {
 
-    await loadHome();
+    await Promise.all([
 
-    await loadGallery();
+        loadHome(),
+        loadGallery(),
+        loadAchievements(),
+        loadProjects(),
+        loadHobbies(),
+        loadSkills(),
+        loadDiary()
 
-    await loadAchievements();
-
-    await loadProjects();
-
-    await loadHobbies();
-
-    await loadSkills();
-
-    await loadDiary();
+    ]);
 
 }
 
@@ -1831,7 +2174,10 @@ async function loadHome() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Home loading error:",
+            error
+        );
 
     }
 
@@ -1849,43 +2195,51 @@ window.saveHome = async function() {
                 name:
                     document
                         .getElementById("homeName")
-                        .value,
+                        .value
+                        .trim(),
 
                 welcome:
                     document
                         .getElementById("homeWelcome")
-                        .value,
+                        .value
+                        .trim(),
 
                 goal:
                     document
                         .getElementById("homeGoal")
-                        .value,
+                        .value
+                        .trim(),
 
                 about:
                     document
                         .getElementById("homeAbout")
-                        .value,
+                        .value
+                        .trim(),
 
                 lastUpdated:
                     document
                         .getElementById("homeUpdated")
                         .value
+                        .trim()
 
             }
         );
 
 
-        alert(
+        showToast(
             "Home information saved!"
         );
 
+        await loadHome();
+
     } catch (error) {
 
-        alert(
-            "Could not save home information."
-        );
-
         console.error(error);
+
+        showToast(
+            "Could not save home information.",
+            "error"
+        );
 
     }
 
@@ -2034,20 +2388,18 @@ async function loadGallery() {
 window.selectGalleryImage = function() {
 
     const selector =
-        document
-            .getElementById(
-                "gallerySelector"
-            );
+        document.getElementById(
+            "gallerySelector"
+        );
 
     const selected =
         selector.value;
 
 
     const fileInput =
-        document
-            .getElementById(
-                "galleryFile"
-            );
+        document.getElementById(
+            "galleryFile"
+        );
 
 
     fileInput.value =
@@ -2065,18 +2417,15 @@ window.previewGalleryURL = function() {
 
     const url =
         document
-            .getElementById(
-                "galleryFile"
-            )
+            .getElementById("galleryFile")
             .value
             .trim();
 
 
     const preview =
-        document
-            .getElementById(
-                "galleryPreview"
-            );
+        document.getElementById(
+            "galleryPreview"
+        );
 
 
     if (url) {
@@ -2106,10 +2455,9 @@ window.previewLocalImage = function(event) {
 
 
     const preview =
-        document
-            .getElementById(
-                "galleryPreview"
-            );
+        document.getElementById(
+            "galleryPreview"
+        );
 
 
     const reader =
@@ -2139,35 +2487,30 @@ window.saveGallery = async function() {
 
     const title =
         document
-            .getElementById(
-                "galleryTitle"
-            )
+            .getElementById("galleryTitle")
             .value
             .trim();
 
 
     const file =
         document
-            .getElementById(
-                "galleryFile"
-            )
+            .getElementById("galleryFile")
             .value
             .trim();
 
 
     const description =
         document
-            .getElementById(
-                "galleryDescription"
-            )
+            .getElementById("galleryDescription")
             .value
             .trim();
 
 
     if (!title) {
 
-        alert(
-            "Please enter an image title."
+        showToast(
+            "Please enter an image title.",
+            "error"
         );
 
         return;
@@ -2177,8 +2520,9 @@ window.saveGallery = async function() {
 
     if (!file) {
 
-        alert(
-            "Please choose an image or enter an image path."
+        showToast(
+            "Please choose an image or enter an image path.",
+            "error"
         );
 
         return;
@@ -2188,48 +2532,38 @@ window.saveGallery = async function() {
 
     try {
 
-        let id =
-            editingGalleryId;
+        const data = {
+            title,
+            file,
+            description
+        };
 
 
-        if (id) {
+        if (editingGalleryId) {
 
             await set(
                 ref(
                     db,
-                    "gallery/" + id
+                    "gallery/" +
+                    editingGalleryId
                 ),
-                {
-                    title,
-                    file,
-                    description
-                }
+                data
             );
 
-
-            alert(
+            showToast(
                 "Gallery image updated!"
             );
 
         } else {
 
-            const newRef =
+            await set(
                 push(
                     ref(db, "gallery")
-                );
-
-
-            await set(
-                newRef,
-                {
-                    title,
-                    file,
-                    description
-                }
+                ),
+                data
             );
 
-
-            alert(
+            showToast(
                 "Gallery image added!"
             );
 
@@ -2242,11 +2576,12 @@ window.saveGallery = async function() {
 
     } catch (error) {
 
-        alert(
-            "Could not save gallery image."
-        );
-
         console.error(error);
+
+        showToast(
+            "Could not save gallery image.",
+            "error"
+        );
 
     }
 
@@ -2364,7 +2699,7 @@ window.deleteGallery = async function(id) {
         );
 
 
-        alert(
+        showToast(
             "Gallery image deleted!"
         );
 
@@ -2373,11 +2708,12 @@ window.deleteGallery = async function(id) {
 
     } catch (error) {
 
-        alert(
-            "Could not delete gallery image."
-        );
-
         console.error(error);
+
+        showToast(
+            "Could not delete gallery image.",
+            "error"
+        );
 
     }
 
@@ -2449,10 +2785,9 @@ window.cancelGalleryEdit = function() {
 async function loadAchievements() {
 
     const list =
-        document
-            .getElementById(
-                "achievementList"
-            );
+        document.getElementById(
+            "achievementList"
+        );
 
 
     try {
@@ -2556,8 +2891,7 @@ async function loadAchievements() {
 }
 
 
-window.saveAchievement =
-async function() {
+window.saveAchievement = async function() {
 
     const title =
         document
@@ -2579,8 +2913,9 @@ async function() {
 
     if (!title) {
 
-        alert(
-            "Please enter an achievement title."
+        showToast(
+            "Please enter an achievement title.",
+            "error"
         );
 
         return;
@@ -2590,6 +2925,12 @@ async function() {
 
     try {
 
+        const data = {
+            title,
+            description
+        };
+
+
         if (editingAchievementId) {
 
             await set(
@@ -2598,32 +2939,22 @@ async function() {
                     "achievements/" +
                     editingAchievementId
                 ),
-                {
-                    title,
-                    description
-                }
+                data
             );
 
         } else {
 
-            const newRef =
+            await set(
                 push(
                     ref(db, "achievements")
-                );
-
-
-            await set(
-                newRef,
-                {
-                    title,
-                    description
-                }
+                ),
+                data
             );
 
         }
 
 
-        alert(
+        showToast(
             "Achievement saved!"
         );
 
@@ -2634,59 +2965,67 @@ async function() {
 
     } catch (error) {
 
-        alert(
-            "Could not save achievement."
-        );
-
         console.error(error);
+
+        showToast(
+            "Could not save achievement.",
+            "error"
+        );
 
     }
 
 };
 
 
-window.editAchievement =
-async function(id) {
+window.editAchievement = async function(id) {
 
-    const snapshot =
-        await get(
-            ref(
-                db,
-                "achievements/" + id
+    try {
+
+        const snapshot =
+            await get(
+                ref(
+                    db,
+                    "achievements/" + id
+                )
+            );
+
+
+        const item =
+            snapshot.val();
+
+
+        if (!item) return;
+
+
+        editingAchievementId =
+            id;
+
+
+        document
+            .getElementById(
+                "achievementTitle"
             )
+            .value =
+            item.title || "";
+
+
+        document
+            .getElementById(
+                "achievementDescription"
+            )
+            .value =
+            item.description || "";
+
+
+        showSection(
+            "achievements"
         );
 
+    } catch (error) {
 
-    const item =
-        snapshot.val();
+        console.error(error);
 
-
-    if (!item) return;
-
-
-    editingAchievementId =
-        id;
-
-
-    document
-        .getElementById(
-            "achievementTitle"
-        )
-        .value =
-        item.title || "";
-
-
-    document
-        .getElementById(
-            "achievementDescription"
-        )
-        .value =
-        item.description || "";
-
-
-    showSection(
-        "achievements"
-    );
+    }
 
 };
 
@@ -2701,15 +3040,33 @@ async function(id) {
     ) return;
 
 
-    await remove(
-        ref(
-            db,
-            "achievements/" + id
-        )
-    );
+    try {
+
+        await remove(
+            ref(
+                db,
+                "achievements/" + id
+            )
+        );
 
 
-    await loadAchievements();
+        showToast(
+            "Achievement deleted!"
+        );
+
+
+        await loadAchievements();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not delete achievement.",
+            "error"
+        );
+
+    }
 
 };
 
@@ -2717,8 +3074,7 @@ async function(id) {
 window.clearAchievementForm =
 function() {
 
-    editingAchievementId =
-        null;
+    editingAchievementId = null;
 
 
     document
@@ -2742,10 +3098,9 @@ function() {
 async function loadProjects() {
 
     const list =
-        document
-            .getElementById(
-                "projectList"
-            );
+        document.getElementById(
+            "projectList"
+        );
 
 
     try {
@@ -2823,6 +3178,7 @@ async function loadProjects() {
                                     item.link
                                 )}"
                                 target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 View Project
                             </a>
@@ -2898,8 +3254,9 @@ async function() {
 
     if (!title) {
 
-        alert(
-            "Please enter a project title."
+        showToast(
+            "Please enter a project title.",
+            "error"
         );
 
         return;
@@ -2907,44 +3264,57 @@ async function() {
     }
 
 
-    const data = {
-        title,
-        description,
-        link
-    };
+    try {
+
+        const data = {
+            title,
+            description,
+            link
+        };
 
 
-    if (editingProjectId) {
+        if (editingProjectId) {
 
-        await set(
-            ref(
-                db,
-                "projects/" +
-                editingProjectId
-            ),
-            data
+            await set(
+                ref(
+                    db,
+                    "projects/" +
+                    editingProjectId
+                ),
+                data
+            );
+
+        } else {
+
+            await set(
+                push(
+                    ref(db, "projects")
+                ),
+                data
+            );
+
+        }
+
+
+        showToast(
+            "Project saved!"
         );
 
-    } else {
 
-        await set(
-            push(
-                ref(db, "projects")
-            ),
-            data
+        clearProjectForm();
+
+        await loadProjects();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not save project.",
+            "error"
         );
 
     }
-
-
-    alert(
-        "Project saved!"
-    );
-
-
-    clearProjectForm();
-
-    await loadProjects();
 
 };
 
@@ -2952,53 +3322,61 @@ async function() {
 window.editProject =
 async function(id) {
 
-    const snapshot =
-        await get(
-            ref(
-                db,
-                "projects/" + id
+    try {
+
+        const snapshot =
+            await get(
+                ref(
+                    db,
+                    "projects/" + id
+                )
+            );
+
+
+        const item =
+            snapshot.val();
+
+
+        if (!item) return;
+
+
+        editingProjectId =
+            id;
+
+
+        document
+            .getElementById(
+                "projectTitle"
             )
+            .value =
+            item.title || "";
+
+
+        document
+            .getElementById(
+                "projectDescription"
+            )
+            .value =
+            item.description || "";
+
+
+        document
+            .getElementById(
+                "projectLink"
+            )
+            .value =
+            item.link || "";
+
+
+        showSection(
+            "projects"
         );
 
+    } catch (error) {
 
-    const item =
-        snapshot.val();
+        console.error(error);
 
-
-    if (!item) return;
-
-
-    editingProjectId =
-        id;
-
-
-    document
-        .getElementById(
-            "projectTitle"
-        )
-        .value =
-        item.title || "";
-
-
-    document
-        .getElementById(
-            "projectDescription"
-        )
-        .value =
-        item.description || "";
-
-
-    document
-        .getElementById(
-            "projectLink"
-        )
-        .value =
-        item.link || "";
-
-
-    showSection(
-        "projects"
-    );
+    }
 
 };
 
@@ -3013,15 +3391,33 @@ async function(id) {
     ) return;
 
 
-    await remove(
-        ref(
-            db,
-            "projects/" + id
-        )
-    );
+    try {
+
+        await remove(
+            ref(
+                db,
+                "projects/" + id
+            )
+        );
 
 
-    await loadProjects();
+        showToast(
+            "Project deleted!"
+        );
+
+
+        await loadProjects();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not delete project.",
+            "error"
+        );
+
+    }
 
 };
 
@@ -3029,8 +3425,7 @@ async function(id) {
 window.clearProjectForm =
 function() {
 
-    editingProjectId =
-        null;
+    editingProjectId = null;
 
 
     document
@@ -3061,10 +3456,9 @@ function() {
 async function loadHobbies() {
 
     const list =
-        document
-            .getElementById(
-                "hobbyList"
-            );
+        document.getElementById(
+            "hobbyList"
+        );
 
 
     try {
@@ -3191,8 +3585,9 @@ async function() {
 
     if (!title) {
 
-        alert(
-            "Please enter a hobby title."
+        showToast(
+            "Please enter a hobby title.",
+            "error"
         );
 
         return;
@@ -3200,43 +3595,56 @@ async function() {
     }
 
 
-    const data = {
-        title,
-        description
-    };
+    try {
+
+        const data = {
+            title,
+            description
+        };
 
 
-    if (editingHobbyId) {
+        if (editingHobbyId) {
 
-        await set(
-            ref(
-                db,
-                "hobbies/" +
-                editingHobbyId
-            ),
-            data
+            await set(
+                ref(
+                    db,
+                    "hobbies/" +
+                    editingHobbyId
+                ),
+                data
+            );
+
+        } else {
+
+            await set(
+                push(
+                    ref(db, "hobbies")
+                ),
+                data
+            );
+
+        }
+
+
+        showToast(
+            "Hobby saved!"
         );
 
-    } else {
 
-        await set(
-            push(
-                ref(db, "hobbies")
-            ),
-            data
+        clearHobbyForm();
+
+        await loadHobbies();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not save hobby.",
+            "error"
         );
 
     }
-
-
-    alert(
-        "Hobby saved!"
-    );
-
-
-    clearHobbyForm();
-
-    await loadHobbies();
 
 };
 
@@ -3244,45 +3652,53 @@ async function() {
 window.editHobby =
 async function(id) {
 
-    const snapshot =
-        await get(
-            ref(
-                db,
-                "hobbies/" + id
+    try {
+
+        const snapshot =
+            await get(
+                ref(
+                    db,
+                    "hobbies/" + id
+                )
+            );
+
+
+        const item =
+            snapshot.val();
+
+
+        if (!item) return;
+
+
+        editingHobbyId =
+            id;
+
+
+        document
+            .getElementById(
+                "hobbyTitle"
             )
+            .value =
+            item.title || "";
+
+
+        document
+            .getElementById(
+                "hobbyDescription"
+            )
+            .value =
+            item.description || "";
+
+
+        showSection(
+            "hobbies"
         );
 
+    } catch (error) {
 
-    const item =
-        snapshot.val();
+        console.error(error);
 
-
-    if (!item) return;
-
-
-    editingHobbyId =
-        id;
-
-
-    document
-        .getElementById(
-            "hobbyTitle"
-        )
-        .value =
-        item.title || "";
-
-
-    document
-        .getElementById(
-            "hobbyDescription"
-        )
-        .value =
-        item.description || "";
-
-
-    showSection(
-        "hobbies"
-    );
+    }
 
 };
 
@@ -3297,15 +3713,33 @@ async function(id) {
     ) return;
 
 
-    await remove(
-        ref(
-            db,
-            "hobbies/" + id
-        )
-    );
+    try {
+
+        await remove(
+            ref(
+                db,
+                "hobbies/" + id
+            )
+        );
 
 
-    await loadHobbies();
+        showToast(
+            "Hobby deleted!"
+        );
+
+
+        await loadHobbies();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not delete hobby.",
+            "error"
+        );
+
+    }
 
 };
 
@@ -3313,8 +3747,7 @@ async function(id) {
 window.clearHobbyForm =
 function() {
 
-    editingHobbyId =
-        null;
+    editingHobbyId = null;
 
 
     document
@@ -3338,10 +3771,9 @@ function() {
 async function loadSkills() {
 
     const list =
-        document
-            .getElementById(
-                "skillList"
-            );
+        document.getElementById(
+            "skillList"
+        );
 
 
     try {
@@ -3468,8 +3900,9 @@ async function() {
 
     if (!title) {
 
-        alert(
-            "Please enter a skill title."
+        showToast(
+            "Please enter a skill title.",
+            "error"
         );
 
         return;
@@ -3477,43 +3910,56 @@ async function() {
     }
 
 
-    const data = {
-        title,
-        description
-    };
+    try {
+
+        const data = {
+            title,
+            description
+        };
 
 
-    if (editingSkillId) {
+        if (editingSkillId) {
 
-        await set(
-            ref(
-                db,
-                "skills/" +
-                editingSkillId
-            ),
-            data
+            await set(
+                ref(
+                    db,
+                    "skills/" +
+                    editingSkillId
+                ),
+                data
+            );
+
+        } else {
+
+            await set(
+                push(
+                    ref(db, "skills")
+                ),
+                data
+            );
+
+        }
+
+
+        showToast(
+            "Skill saved!"
         );
 
-    } else {
 
-        await set(
-            push(
-                ref(db, "skills")
-            ),
-            data
+        clearSkillForm();
+
+        await loadSkills();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not save skill.",
+            "error"
         );
 
     }
-
-
-    alert(
-        "Skill saved!"
-    );
-
-
-    clearSkillForm();
-
-    await loadSkills();
 
 };
 
@@ -3521,45 +3967,53 @@ async function() {
 window.editSkill =
 async function(id) {
 
-    const snapshot =
-        await get(
-            ref(
-                db,
-                "skills/" + id
+    try {
+
+        const snapshot =
+            await get(
+                ref(
+                    db,
+                    "skills/" + id
+                )
+            );
+
+
+        const item =
+            snapshot.val();
+
+
+        if (!item) return;
+
+
+        editingSkillId =
+            id;
+
+
+        document
+            .getElementById(
+                "skillTitle"
             )
+            .value =
+            item.title || "";
+
+
+        document
+            .getElementById(
+                "skillDescription"
+            )
+            .value =
+            item.description || "";
+
+
+        showSection(
+            "skills"
         );
 
+    } catch (error) {
 
-    const item =
-        snapshot.val();
+        console.error(error);
 
-
-    if (!item) return;
-
-
-    editingSkillId =
-        id;
-
-
-    document
-        .getElementById(
-            "skillTitle"
-        )
-        .value =
-        item.title || "";
-
-
-    document
-        .getElementById(
-            "skillDescription"
-        )
-        .value =
-        item.description || "";
-
-
-    showSection(
-        "skills"
-    );
+    }
 
 };
 
@@ -3574,15 +4028,33 @@ async function(id) {
     ) return;
 
 
-    await remove(
-        ref(
-            db,
-            "skills/" + id
-        )
-    );
+    try {
+
+        await remove(
+            ref(
+                db,
+                "skills/" + id
+            )
+        );
 
 
-    await loadSkills();
+        showToast(
+            "Skill deleted!"
+        );
+
+
+        await loadSkills();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not delete skill.",
+            "error"
+        );
+
+    }
 
 };
 
@@ -3590,8 +4062,7 @@ async function(id) {
 window.clearSkillForm =
 function() {
 
-    editingSkillId =
-        null;
+    editingSkillId = null;
 
 
     document
@@ -3615,10 +4086,9 @@ function() {
 async function loadDiary() {
 
     const list =
-        document
-            .getElementById(
-                "diaryList"
-            );
+        document.getElementById(
+            "diaryList"
+        );
 
 
     try {
@@ -3730,8 +4200,9 @@ async function loadDiary() {
                         <button
                             class="btn btn-danger"
                             onclick="
-                                deleteDiary('${id}')
-                            "
+                                deleteDiary('${id}'
+                            )
+                        "
                         >
                             Delete
                         </button>
@@ -3813,8 +4284,9 @@ async function() {
 
     if (!data.title) {
 
-        alert(
-            "Please enter a diary title."
+        showToast(
+            "Please enter a diary title.",
+            "error"
         );
 
         return;
@@ -3847,7 +4319,7 @@ async function() {
         }
 
 
-        alert(
+        showToast(
             "Diary entry saved!"
         );
 
@@ -3858,11 +4330,12 @@ async function() {
 
     } catch (error) {
 
-        alert(
-            "Could not save diary entry."
-        );
-
         console.error(error);
+
+        showToast(
+            "Could not save diary entry.",
+            "error"
+        );
 
     }
 
@@ -3872,77 +4345,85 @@ async function() {
 window.editDiary =
 async function(id) {
 
-    const snapshot =
-        await get(
-            ref(
-                db,
-                "diary/" + id
+    try {
+
+        const snapshot =
+            await get(
+                ref(
+                    db,
+                    "diary/" + id
+                )
+            );
+
+
+        const item =
+            snapshot.val();
+
+
+        if (!item) return;
+
+
+        editingDiaryId =
+            id;
+
+
+        document
+            .getElementById(
+                "diaryDate"
             )
+            .value =
+            item.date || "";
+
+
+        document
+            .getElementById(
+                "diaryTitle"
+            )
+            .value =
+            item.title || "";
+
+
+        document
+            .getElementById(
+                "diaryHappened"
+            )
+            .value =
+            item.happened || "";
+
+
+        document
+            .getElementById(
+                "diaryFeelings"
+            )
+            .value =
+            item.feelings || "";
+
+
+        document
+            .getElementById(
+                "diaryNotes"
+            )
+            .value =
+            item.notes || "";
+
+
+        document
+            .getElementById(
+                "diaryPhoto"
+            )
+            .value =
+            item.photo || "";
+
+
+        showSection(
+            "diary"
         );
 
+    } catch (error) {
 
-    const item =
-        snapshot.val();
+        console.error(error);
 
-
-    if (!item) return;
-
-
-    editingDiaryId =
-        id;
-
-
-    document
-        .getElementById(
-            "diaryDate"
-        )
-        .value =
-        item.date || "";
-
-
-    document
-        .getElementById(
-            "diaryTitle"
-        )
-        .value =
-        item.title || "";
-
-
-    document
-        .getElementById(
-            "diaryHappened"
-        )
-        .value =
-        item.happened || "";
-
-
-    document
-        .getElementById(
-            "diaryFeelings"
-        )
-        .value =
-        item.feelings || "";
-
-
-    document
-        .getElementById(
-            "diaryNotes"
-        )
-        .value =
-        item.notes || "";
-
-
-    document
-        .getElementById(
-            "diaryPhoto"
-        )
-        .value =
-        item.photo || "";
-
-
-    showSection(
-        "diary"
-    );
+    }
 
 };
 
@@ -3957,15 +4438,33 @@ async function(id) {
     ) return;
 
 
-    await remove(
-        ref(
-            db,
-            "diary/" + id
-        )
-    );
+    try {
+
+        await remove(
+            ref(
+                db,
+                "diary/" + id
+            )
+        );
 
 
-    await loadDiary();
+        showToast(
+            "Diary entry deleted!"
+        );
+
+
+        await loadDiary();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "Could not delete diary entry.",
+            "error"
+        );
+
+    }
 
 };
 
@@ -3973,8 +4472,7 @@ async function(id) {
 window.clearDiaryForm =
 function() {
 
-    editingDiaryId =
-        null;
+    editingDiaryId = null;
 
 
     document
