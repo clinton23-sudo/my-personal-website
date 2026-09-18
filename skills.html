@@ -1,230 +1,326 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>My Skills</title>
+    <title>Skills | Clinton Ncube</title>
 
-<link rel="stylesheet" href="css/style.css">
-```
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #d1d5db;
+        }
+
+        nav {
+            background: #1f2937;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #555;
+        }
+
+        #skills-container {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(250px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .skill-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .empty {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+                font-size: 14px;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-```
-<!-- HEADER -->
-
 <header>
-
-    <h1>My Skills</h1>
-
-    <p>Skills I am developing</p>
-
-    <nav>
-
-        <a href="index.html">Home</a>
-
-        <a href="about.html">About Me</a>
-
-        <a href="projects.html">Projects</a>
-
-        <a href="hobbies.html">Hobbies</a>
-
-        <a class="active" href="skills.html">Skills</a>
-
-        <a href="gallery.html">Gallery</a>
-
-        <a href="contact.html">Contact</a>
-
-    </nav>
-
+    <h1>Clinton Ncube</h1>
+    <p>My Personal Website</p>
 </header>
 
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="hobbies.html">Hobbies</a>
+    <a href="skills.html">Skills</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="contact.html">Contact</a>
+</nav>
 
-<!-- MAIN CONTENT -->
+<div class="container">
 
-<main>
-
-    <!-- INTRODUCTION -->
-
-    <section>
-
+    <div class="intro">
         <h2>My Skills</h2>
-
         <p>
-            I am continuously learning and developing
-            different skills through school, personal
-            projects and everyday experiences.
+            Here are some of the skills I have developed
+            through learning, school projects and personal activities.
         </p>
+    </div>
 
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>💻 Web Development</h3>
-
-                <p>
-                    I am learning how to create and design
-                    websites using HTML and CSS.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🧠 Problem Solving</h3>
-
-                <p>
-                    I enjoy analysing problems, thinking of
-                    solutions and trying different ways to
-                    complete tasks.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🎨 Creativity</h3>
-
-                <p>
-                    I enjoy developing new ideas and turning
-                    those ideas into useful projects.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>📚 Learning</h3>
-
-                <p>
-                    I am willing to learn new things and
-                    improve my knowledge through practice
-                    and experience.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🤝 Teamwork</h3>
-
-                <p>
-                    I can work with others, share ideas and
-                    contribute towards completing group
-                    activities and projects.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🗣️ Communication</h3>
-
-                <p>
-                    I am developing my ability to explain
-                    ideas clearly and communicate with
-                    other people.
-                </p>
-
-            </div>
-
+    <div id="skills-container">
+        <div class="empty">
+            Loading skills...
         </div>
+    </div>
 
-    </section>
-
-
-    <!-- TECHNOLOGY SKILLS -->
-
-    <section>
-
-        <h2>Technology Skills</h2>
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>HTML</h3>
-
-                <p>
-                    Creating the structure and content of
-                    webpages.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>CSS</h3>
-
-                <p>
-                    Styling webpages and creating clean,
-                    responsive layouts.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>GitHub</h3>
-
-                <p>
-                    Managing website files and publishing
-                    projects online using GitHub Pages.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FUTURE GOALS -->
-
-    <section>
-
-        <h2>Skills I Want to Improve</h2>
-
-        <p>
-            I want to continue improving my web development
-            skills and learn more about programming,
-            website design and other areas of technology.
-        </p>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
+</div>
 
 <footer>
-
-    <p>
-        &copy; 2026 My Personal Website
-    </p>
-
-    <p>
-        Built with HTML & CSS | My Personal Portfolio
-    </p>
-
+    <p>© 2026 Clinton Ncube. All rights reserved.</p>
 </footer>
-```
+
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getDatabase,
+        ref,
+        onValue
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+
+        authDomain:
+            "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId:
+            "clinton-ncube-website",
+
+        storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId:
+            "946671700613",
+
+        appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId:
+            "G-K1S62MHHXP"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+
+    function escapeHTML(value) {
+
+        if (
+            value === undefined ||
+            value === null
+        ) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    const skillsContainer =
+        document.getElementById(
+            "skills-container"
+        );
+
+
+    onValue(
+        ref(db, "skills"),
+        (snapshot) => {
+
+            skillsContainer.innerHTML = "";
+
+            if (!snapshot.exists()) {
+
+                skillsContainer.innerHTML = `
+                    <div class="empty">
+                        <h3>No skills have been added yet.</h3>
+                        <p>
+                            Skills added from the Admin Dashboard
+                            will appear here.
+                        </p>
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            const skills = snapshot.val();
+
+
+            Object.values(skills).forEach(
+                (skill) => {
+
+                    const card =
+                        document.createElement("div");
+
+                    card.className = "skill-card";
+
+                    card.innerHTML = `
+
+                        <h3>
+                            ${escapeHTML(skill.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                skill.description
+                            )}
+                        </p>
+
+                    `;
+
+                    skillsContainer.appendChild(card);
+
+                }
+            );
+
+        },
+        (error) => {
+
+            console.error(
+                "Firebase error:",
+                error
+            );
+
+            skillsContainer.innerHTML = `
+                <div class="empty">
+                    <h3>Unable to load skills</h3>
+                    <p>
+                        Please try again later.
+                    </p>
+                </div>
+            `;
+
+        }
+    );
+
+</script>
 
 </body>
-
 </html>
