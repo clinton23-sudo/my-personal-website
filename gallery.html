@@ -6,225 +6,179 @@
 
     <title>Gallery | Clinton Ncube</title>
 
+    <link rel="stylesheet" href="css/style.css">
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 25px;
+        .gallery-intro {
+            max-width: 750px;
+            margin: 0 auto 35px;
             text-align: center;
-        }
-
-        header h1 {
-            margin-bottom: 10px;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 40px auto;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .intro h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .intro p {
-            color: #666;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            color: #6b7280;
         }
 
         .gallery-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-            transition: transform 0.25s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s ease;
         }
 
         .gallery-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.14);
         }
 
         .gallery-card img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
             display: block;
-            background: #ddd;
         }
 
-        .gallery-content {
-            padding: 18px;
+        .gallery-card-content {
+            padding: 20px;
         }
 
-        .gallery-content h3 {
+        .gallery-card-content h3 {
+            color: #1e3a8a;
             margin-bottom: 8px;
-            font-size: 20px;
         }
 
-        .gallery-content p {
-            color: #666;
-            line-height: 1.5;
+        .gallery-card-content p {
+            color: #6b7280;
         }
 
-        .loading {
+        .gallery-error {
+            padding: 20px;
             text-align: center;
-            padding: 40px;
-            font-size: 18px;
-            color: #666;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            color: #666;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 25px;
-            background: #111827;
-            color: white;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            nav a {
-                display: inline-block;
-                margin: 5px;
-            }
-
-            .intro h2 {
-                font-size: 26px;
-            }
+            color: #6b7280;
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Clinton Ncube</h1>
-    <p>My Personal Gallery</p>
+<nav>
+    <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="hobbies.html">Hobbies</a>
-        <a href="skills.html">Skills</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<header class="page-header">
+    <h1>🖼️ My Gallery</h1>
+    <p>A collection of my pictures and memories</p>
 </header>
 
-<div class="container">
+<section>
 
-    <div class="intro">
-        <h2>My Gallery</h2>
-        <p>Photos and memories from my school life, projects and activities.</p>
-    </div>
+    <div class="container">
 
-    <div id="gallery" class="gallery">
+        <p class="gallery-intro">
+            Welcome to my gallery. Here I share pictures and
+            memories from my experiences, activities and projects.
+        </p>
 
-        <div class="loading">
-            Loading gallery...
+        <div id="galleryContainer" class="gallery-grid">
+
+            <div class="loading">
+                Loading gallery...
+            </div>
+
         </div>
 
     </div>
 
-</div>
+</section>
 
 <footer>
     <p>© 2026 Clinton Ncube. All rights reserved.</p>
+    <p>Personal Portfolio Website</p>
 </footer>
 
 
 <script type="module">
 
-    import { initializeApp }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    import {
-        getDatabase,
-        ref,
-        onValue
-    }
-    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
-        authDomain: "clinton-ncube-website.firebaseapp.com",
-        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-        projectId: "clinton-ncube-website",
-        storageBucket: "clinton-ncube-website.firebasestorage.app",
-        messagingSenderId: "946671700613",
-        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-        measurementId: "G-K1S62MHHXP"
-    };
+import {
+    getDatabase,
+    ref,
+    onValue
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-    const app = initializeApp(firebaseConfig);
+const firebaseConfig = {
 
-    const db = getDatabase(app);
+    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-    const galleryRef = ref(db, "gallery");
+    authDomain: "clinton-ncube-website.firebaseapp.com",
 
-    const galleryContainer = document.getElementById("gallery");
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId: "clinton-ncube-website",
+
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId: "946671700613",
+
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId: "G-K1S62MHHXP"
+};
 
 
-    onValue(galleryRef, (snapshot) => {
+const app = initializeApp(firebaseConfig);
 
-        galleryContainer.innerHTML = "";
+const db = getDatabase(app);
 
-        if (!snapshot.exists()) {
+const galleryRef = ref(db, "gallery");
 
-            galleryContainer.innerHTML = `
+const container =
+    document.getElementById("galleryContainer");
+
+
+function escapeHTML(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent = value || "";
+
+    return div.innerHTML;
+}
+
+
+onValue(
+    galleryRef,
+    (snapshot) => {
+
+        const data = snapshot.val();
+
+        container.innerHTML = "";
+
+        if (!data) {
+
+            container.innerHTML = `
                 <div class="empty">
-                    <h3>No gallery items yet.</h3>
-                    <p>Gallery photos will appear here when they are added from the Admin Dashboard.</p>
+                    <h3>No gallery items yet</h3>
+                    <p>
+                        Pictures added through the Admin Dashboard
+                        will appear here.
+                    </p>
                 </div>
             `;
 
@@ -232,60 +186,82 @@
         }
 
 
-        const items = snapshot.val();
+        Object.values(data).forEach(item => {
 
-
-        Object.entries(items).forEach(([id, item]) => {
-
-            const card = document.createElement("div");
+            const card =
+                document.createElement("div");
 
             card.className = "gallery-card";
 
 
-            const image = document.createElement("img");
-
-            image.src = item.file || "";
-
-            image.alt = item.title || "Gallery image";
-
-            image.onerror = function () {
-
-                this.style.display = "none";
-
-            };
-
-
             const content = document.createElement("div");
 
-            content.className = "gallery-content";
+            content.className =
+                "gallery-card-content";
 
 
-            const title = document.createElement("h3");
+            const title =
+                document.createElement("h3");
 
-            title.textContent = item.title || "Untitled";
+            title.textContent =
+                item.title || "Gallery Item";
 
 
-            const description = document.createElement("p");
+            const description =
+                document.createElement("p");
 
             description.textContent =
                 item.description || "";
 
 
             content.appendChild(title);
-
             content.appendChild(description);
 
 
-            card.appendChild(image);
+            if (item.file) {
+
+                const image =
+                    document.createElement("img");
+
+                image.src = item.file;
+
+                image.alt =
+                    item.title || "Gallery image";
+
+                image.loading = "lazy";
+
+
+                image.onerror = function() {
+
+                    image.style.display = "none";
+
+                };
+
+
+                card.appendChild(image);
+            }
+
 
             card.appendChild(content);
 
-
-            galleryContainer.appendChild(card);
+            container.appendChild(card);
 
         });
 
-    });
+    },
+
+    error => {
+
+        container.innerHTML = `
+            <div class="gallery-error">
+                Unable to load the gallery.
+            </div>
+        `;
+
+        console.error(error);
+
+    }
+);
 
 </script>
 
