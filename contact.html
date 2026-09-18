@@ -1,92 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Contact | Clinton Ncube</title>
 
     <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        .contact-section {
-            min-height: 60vh;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(280px, 1fr)
-            );
-            gap: 25px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.13);
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .contact-card h3 {
-            color: #1e3a8a;
-            margin-bottom: 10px;
-        }
-
-        .contact-card p {
-            color: #6b7280;
-            margin-bottom: 18px;
-        }
-
-        .contact-link {
-            display: inline-block;
-            padding: 11px 20px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s ease;
-        }
-
-        .contact-link:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
-
-        .contact-note {
-            max-width: 700px;
-            margin: 35px auto 0;
-            padding: 20px;
-            background: #eff6ff;
-            border-left: 5px solid #2563eb;
-            border-radius: 10px;
-            text-align: center;
-            color: #374151;
-        }
-    </style>
 </head>
 
 <body>
 
 <nav>
-    <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <ul>
+    <a href="index.html" class="logo">
+        Clinton Ncube
+    </a>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false">
+        ☰
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -95,72 +41,81 @@
         <li><a href="hobbies.html">Hobbies</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
+
     </ul>
+
 </nav>
 
 <header class="page-header">
-    <h1>📩 Contact Me</h1>
-    <p>Get in touch with Clinton Ncube</p>
+
+    <h1>Contact Me</h1>
+
+    <p>
+        Get in touch with Clinton Ncube.
+    </p>
+
 </header>
 
-<section class="contact-section">
+<section>
 
     <div class="container">
 
-        <div class="contact-grid">
+        <div class="cards">
 
-            <div class="contact-card">
+            <div class="card">
 
-                <div class="contact-icon">📧</div>
-
-                <h3>Email</h3>
+                <h3>📧 Email</h3>
 
                 <p>
-                    Send me an email if you would like
-                    to get in touch.
+                    You can contact me through email.
                 </p>
 
                 <a
                     href="mailto:thabangncube78@gmail.com"
-                    class="contact-link"
-                >
+                    class="btn"
+                    style="margin-top:15px;">
                     Send Email
                 </a>
 
             </div>
 
+            <div class="card">
 
-            <div class="contact-card">
-
-                <div class="contact-icon">🌐</div>
-
-                <h3>My Website</h3>
+                <h3>🌐 Website</h3>
 
                 <p>
-                    Explore my projects, achievements,
-                    skills, hobbies and gallery.
+                    Return to the homepage and explore
+                    the rest of my website.
                 </p>
 
                 <a
                     href="index.html"
-                    class="contact-link"
-                >
-                    Visit Home
+                    class="btn"
+                    style="margin-top:15px;">
+                    Visit Homepage
                 </a>
 
             </div>
 
         </div>
 
+    </div>
 
-        <div class="contact-note">
+</section>
 
-            <strong>Thank you for visiting my website!</strong>
+<section>
 
-            <br>
+    <div class="container">
 
-            I appreciate your interest in my work,
-            projects and learning journey.
+        <div class="card">
+
+            <h3>💬 Thank You</h3>
+
+            <p>
+                Thank you for visiting my personal website.
+                I appreciate your interest in my projects,
+                achievements, skills and hobbies.
+            </p>
 
         </div>
 
@@ -169,9 +124,60 @@
 </section>
 
 <footer>
-    <p>© 2026 Clinton Ncube. All rights reserved.</p>
-    <p>Personal Portfolio Website</p>
+
+    <p>
+        © 2026 Clinton Ncube. All rights reserved.
+    </p>
+
+    <p>
+        Personal Portfolio Website
+    </p>
+
 </footer>
+
+<script>
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    const isOpen =
+        navMenu.classList.contains("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuToggle.textContent =
+        isOpen ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
+            menuToggle.textContent = "☰";
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
