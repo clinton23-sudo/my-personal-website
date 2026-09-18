@@ -1,289 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Hobbies</title>
+    <title>Hobbies | Clinton Ncube</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #666;
+        }
+
+        .hobbies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+            transition: transform 0.25s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hobby-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hobby-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .hobby-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .intro h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
-    <h1>My Hobbies</h1>
+    <h1>Clinton Ncube</h1>
 
-    <p>Things I enjoy doing in my free time</p>
+    <p>My Hobbies</p>
 
     <nav>
-
         <a href="index.html">Home</a>
-
-        <a href="about.html">About Me</a>
-
+        <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
-
-        <a class="active" href="hobbies.html">Hobbies</a>
-
+        <a href="hobbies.html">Hobbies</a>
         <a href="skills.html">Skills</a>
-
-        <a href="gallery.html">Gallery</a>
-
-        <a href="contact.html">Contact</a>
-
         <a href="achievements.html">Achievements</a>
-
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
 </header>
 
 
-<!-- MAIN CONTENT -->
+<div class="container">
 
-<main>
+    <div class="intro">
 
-    <section>
-
-        <h2>My Favourite Hobbies</h2>
+        <h2>My Hobbies</h2>
 
         <p>
-            I enjoy taking part in different activities
-            during my free time. These hobbies help me
-            stay active, learn new things and have fun.
+            Some of the activities I enjoy doing
+            during my free time.
         </p>
 
-        <!-- Firebase Hobbies -->
+    </div>
 
-        <div class="card-container" id="hobbies-container">
 
-            <p>Loading hobbies...</p>
+    <div id="hobbies" class="hobbies">
 
+        <div class="loading">
+            Loading hobbies...
         </div>
 
-    </section>
+    </div>
 
+</div>
 
-    <!-- WHY I ENJOY MY HOBBIES -->
-
-    <section>
-
-        <h2>Why I Enjoy My Hobbies</h2>
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>💪 Staying Active</h3>
-
-                <p>
-                    Basketball, swimming and athletics give
-                    me opportunities to stay active and
-                    practise physical skills.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🧠 Learning</h3>
-
-                <p>
-                    Reading helps me discover new
-                    information, ideas and knowledge.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🤝 Teamwork</h3>
-
-                <p>
-                    Sports such as basketball and athletics
-                    can help me learn cooperation,
-                    communication and teamwork.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MY FREE TIME -->
-
-    <section>
-
-        <h2>My Free Time</h2>
-
-        <p>
-            When I have free time, I enjoy choosing
-            activities that allow me to stay active,
-            relax, learn and develop new skills.
-        </p>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
 
 <footer>
 
-    <p>
-        &copy; 2026 My Personal Website
-    </p>
-
-    <p>
-        Built with HTML & CSS | My Personal Portfolio
-    </p>
+    <p>© 2026 Clinton Ncube. All rights reserved.</p>
 
 </footer>
 
-
-<!-- FIREBASE -->
 
 <script type="module">
 
     import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
+
     import {
         getDatabase,
         ref,
         onValue
     }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-
-    // Firebase configuration
 
     const firebaseConfig = {
 
-        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+        apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-        authDomain: "clinton-ncube-website.firebaseapp.com",
+        authDomain:
+            "clinton-ncube-website.firebaseapp.com",
 
         databaseURL:
             "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-        projectId: "clinton-ncube-website",
+        projectId:
+            "clinton-ncube-website",
 
         storageBucket:
             "clinton-ncube-website.firebasestorage.app",
 
-        messagingSenderId: "946671700613",
+        messagingSenderId:
+            "946671700613",
 
         appId:
             "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-        measurementId: "G-K1S62MHHXP"
-
+        measurementId:
+            "G-K1S62MHHXP"
     };
 
-
-    // Initialize Firebase
 
     const app = initializeApp(firebaseConfig);
 
     const db = getDatabase(app);
 
-
-    // Hobby container
-
-    const hobbiesContainer =
-        document.getElementById("hobbies-container");
+    const hobbiesRef =
+        ref(db, "hobbies");
 
 
-    // Protect displayed text from HTML injection
-
-    function escapeHTML(text) {
-
-        if (!text) return "";
-
-        return String(text)
-
-            .replace(/&/g, "&amp;")
-
-            .replace(/</g, "&lt;")
-
-            .replace(/>/g, "&gt;")
-
-            .replace(/"/g, "&quot;")
-
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    // Load hobbies from Firebase
-
-    const hobbiesRef = ref(db, "hobbies");
+    const container =
+        document.getElementById("hobbies");
 
 
     onValue(hobbiesRef, (snapshot) => {
 
-        const hobbies = snapshot.val();
-
-        hobbiesContainer.innerHTML = "";
+        container.innerHTML = "";
 
 
-        // If there are no hobbies
+        if (!snapshot.exists()) {
 
-        if (!hobbies) {
+            container.innerHTML = `
 
-            hobbiesContainer.innerHTML = `
+                <div class="empty">
 
-                <p>
-                    No hobbies have been added yet.
-                </p>
+                    <h3>No hobbies yet.</h3>
+
+                    <p>
+                        Hobbies added from the
+                        Admin Dashboard will appear here.
+                    </p>
+
+                </div>
 
             `;
 
             return;
-
         }
 
 
-        // Display hobbies
-
-        Object.values(hobbies).forEach((hobby) => {
-
-            const card = document.createElement("div");
-
-            card.className = "card";
+        const hobbies = snapshot.val();
 
 
-            card.innerHTML = `
+        Object.entries(hobbies).forEach(
+            ([id, hobby]) => {
 
-                <h3>
-                    ${escapeHTML(hobby.title)}
-                </h3>
+                const card =
+                    document.createElement("div");
 
-                <p>
-                    ${escapeHTML(hobby.description)}
-                </p>
-
-            `;
+                card.className =
+                    "hobby-card";
 
 
-            hobbiesContainer.appendChild(card);
+                const icon =
+                    document.createElement("div");
 
-        });
+                icon.className =
+                    "hobby-icon";
+
+                icon.textContent = "🏀";
+
+
+                const title =
+                    document.createElement("h3");
+
+                title.textContent =
+                    hobby.title ||
+                    "Hobby";
+
+
+                const description =
+                    document.createElement("p");
+
+                description.textContent =
+                    hobby.description ||
+                    "";
+
+
+                card.appendChild(icon);
+
+                card.appendChild(title);
+
+                card.appendChild(description);
+
+
+                container.appendChild(card);
+
+            }
+        );
 
     });
 
 </script>
 
 </body>
-
 </html>
