@@ -6,318 +6,178 @@
 
     <title>Skills | Clinton Ncube</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
-
-        header {
-            background: #111827;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin-bottom: 10px;
-        }
-
-        nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .intro h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .intro p {
-            color: #666;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
-            transition: transform 0.25s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .skill-card h3 {
-            font-size: 21px;
-            margin-bottom: 10px;
-        }
-
-        .skill-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 18px;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            color: #666;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 25px;
-            background: #111827;
-            color: white;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            nav a {
-                display: inline-block;
-                margin: 5px;
-            }
-
-            .intro h2 {
-                font-size: 27px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header>
+<nav>
+    <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <h1>Clinton Ncube</h1>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
-    <p>My Skills</p>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="hobbies.html">Hobbies</a>
-        <a href="skills.html">Skills</a>
-        <a href="achievements.html">Achievements</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-
+<header class="page-header">
+    <h1>💻 My Skills</h1>
+    <p>Skills I am developing through learning and practice</p>
 </header>
 
+<section>
 
-<div class="container">
+    <div class="container">
 
-    <div class="intro">
+        <div id="skillsContainer" class="cards">
 
-        <h2>My Skills</h2>
+            <div class="loading">
+                Loading skills...
+            </div>
 
-        <p>
-            Skills and abilities that I have developed
-            through school, projects and personal learning.
-        </p>
-
-    </div>
-
-
-    <div id="skills" class="skills">
-
-        <div class="loading">
-            Loading skills...
         </div>
 
     </div>
 
-</div>
-
+</section>
 
 <footer>
-
     <p>© 2026 Clinton Ncube. All rights reserved.</p>
-
+    <p>Personal Portfolio Website</p>
 </footer>
 
 
 <script type="module">
 
-    import { initializeApp }
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-    import {
-        getDatabase,
-        ref,
-        onValue
-    }
-    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+const firebaseConfig = {
+
+    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+    authDomain: "clinton-ncube-website.firebaseapp.com",
+
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId: "clinton-ncube-website",
+
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId: "946671700613",
+
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId: "G-K1S62MHHXP"
+};
 
 
-    const firebaseConfig = {
+const app = initializeApp(firebaseConfig);
 
-        apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+const db = getDatabase(app);
 
-        authDomain:
-            "clinton-ncube-website.firebaseapp.com",
+const skillsRef =
+    ref(db, "skills");
 
-        databaseURL:
-            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-
-        projectId:
-            "clinton-ncube-website",
-
-        storageBucket:
-            "clinton-ncube-website.firebasestorage.app",
-
-        messagingSenderId:
-            "946671700613",
-
-        appId:
-            "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-        measurementId:
-            "G-K1S62MHHXP"
-    };
+const container =
+    document.getElementById("skillsContainer");
 
 
-    const app = initializeApp(firebaseConfig);
+function escapeHTML(value) {
 
-    const db = getDatabase(app);
+    const div = document.createElement("div");
 
-    const skillsRef =
-        ref(db, "skills");
+    div.textContent = value || "";
 
-
-    const container =
-        document.getElementById("skills");
+    return div.innerHTML;
+}
 
 
-    onValue(skillsRef, (snapshot) => {
+onValue(
+    skillsRef,
+    (snapshot) => {
+
+        const data = snapshot.val();
 
         container.innerHTML = "";
 
-
-        if (!snapshot.exists()) {
+        if (!data) {
 
             container.innerHTML = `
-
                 <div class="empty">
-
-                    <h3>No skills yet.</h3>
-
+                    <h3>No skills yet</h3>
                     <p>
-                        Skills added from the
+                        Skills added through the
                         Admin Dashboard will appear here.
                     </p>
-
                 </div>
-
             `;
 
             return;
         }
 
 
-        const skills = snapshot.val();
+        Object.values(data).forEach(skill => {
 
+            const card =
+                document.createElement("div");
 
-        Object.entries(skills).forEach(
-            ([id, skill]) => {
+            card.className = "card";
 
-                const card =
-                    document.createElement("div");
+            card.innerHTML = `
 
-                card.className =
-                    "skill-card";
+                <div style="
+                    font-size:2.8rem;
+                    margin-bottom:12px;
+                ">
+                    💻
+                </div>
 
+                <h3>
+                    ${escapeHTML(skill.title)}
+                </h3>
 
-                const icon =
-                    document.createElement("div");
+                <p>
+                    ${escapeHTML(skill.description)}
+                </p>
 
-                icon.className =
-                    "skill-icon";
+            `;
 
-                icon.textContent = "💻";
+            container.appendChild(card);
 
+        });
 
-                const title =
-                    document.createElement("h3");
+    },
 
-                title.textContent =
-                    skill.title ||
-                    "Skill";
+    error => {
 
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load skills.
+            </div>
+        `;
 
-                const description =
-                    document.createElement("p");
+        console.error(error);
 
-                description.textContent =
-                    skill.description ||
-                    "";
-
-
-                card.appendChild(icon);
-
-                card.appendChild(title);
-
-                card.appendChild(description);
-
-
-                container.appendChild(card);
-
-            }
-        );
-
-    });
+    }
+);
 
 </script>
 
