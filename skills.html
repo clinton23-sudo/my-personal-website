@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Skills | Clinton Ncube</title>
+    <title>About | Clinton Ncube</title>
 
     <style>
         * {
@@ -54,61 +54,44 @@
 
         .container {
             width: 92%;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 40px auto;
         }
 
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .intro h2 {
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        .intro p {
-            color: #555;
-        }
-
-        #skills-container {
-            display: grid;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(250px, 1fr)
-            );
-            gap: 20px;
-        }
-
-        .skill-card {
+        .about-card {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 35px;
+            border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
+        .about-card h2 {
+            margin-top: 0;
+            color: #111827;
+            font-size: 30px;
         }
 
-        .skill-card h3 {
+        .about-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f9fafb;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
             margin-top: 0;
             color: #111827;
         }
 
-        .skill-card p {
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .empty {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            color: #666;
+        .info-box p {
+            margin-bottom: 0;
         }
 
         footer {
@@ -131,8 +114,8 @@
                 font-size: 14px;
             }
 
-            .container {
-                width: 90%;
+            .about-card {
+                padding: 22px;
             }
         }
     </style>
@@ -141,7 +124,7 @@
 <body>
 
 <header>
-    <h1>Clinton Ncube</h1>
+    <h1 id="about-name">Clinton Ncube</h1>
     <p>My Personal Website</p>
 </header>
 
@@ -158,18 +141,24 @@
 
 <div class="container">
 
-    <div class="intro">
-        <h2>My Skills</h2>
-        <p>
-            Here are some of the skills I have developed
-            through learning, school projects and personal activities.
-        </p>
-    </div>
+    <div class="about-card">
 
-    <div id="skills-container">
-        <div class="empty">
-            Loading skills...
+        <h2>About Me</h2>
+
+        <p id="about-text">
+            Loading...
+        </p>
+
+        <div class="info-box">
+
+            <h3>My Goal</h3>
+
+            <p id="about-goal">
+                Loading...
+            </p>
+
         </div>
+
     </div>
 
 </div>
@@ -224,81 +213,42 @@
     const db = getDatabase(app);
 
 
-    function escapeHTML(value) {
-
-        if (
-            value === undefined ||
-            value === null
-        ) {
-            return "";
-        }
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-
-    const skillsContainer =
-        document.getElementById(
-            "skills-container"
-        );
-
-
     onValue(
-        ref(db, "skills"),
+        ref(db, "websiteData"),
         (snapshot) => {
 
-            skillsContainer.innerHTML = "";
-
             if (!snapshot.exists()) {
-
-                skillsContainer.innerHTML = `
-                    <div class="empty">
-                        <h3>No skills have been added yet.</h3>
-                        <p>
-                            Skills added from the Admin Dashboard
-                            will appear here.
-                        </p>
-                    </div>
-                `;
-
                 return;
             }
 
+            const data = snapshot.val();
 
-            const skills = snapshot.val();
+
+            if (data.name) {
+
+                document.getElementById(
+                    "about-name"
+                ).textContent = data.name;
+
+            }
 
 
-            Object.values(skills).forEach(
-                (skill) => {
+            if (data.about) {
 
-                    const card =
-                        document.createElement("div");
+                document.getElementById(
+                    "about-text"
+                ).textContent = data.about;
 
-                    card.className = "skill-card";
+            }
 
-                    card.innerHTML = `
 
-                        <h3>
-                            ${escapeHTML(skill.title)}
-                        </h3>
+            if (data.goal) {
 
-                        <p>
-                            ${escapeHTML(
-                                skill.description
-                            )}
-                        </p>
+                document.getElementById(
+                    "about-goal"
+                ).textContent = data.goal;
 
-                    `;
-
-                    skillsContainer.appendChild(card);
-
-                }
-            );
+            }
 
         },
         (error) => {
@@ -308,14 +258,15 @@
                 error
             );
 
-            skillsContainer.innerHTML = `
-                <div class="empty">
-                    <h3>Unable to load skills</h3>
-                    <p>
-                        Please try again later.
-                    </p>
-                </div>
-            `;
+            document.getElementById(
+                "about-text"
+            ).textContent =
+                "Unable to load information.";
+
+            document.getElementById(
+                "about-goal"
+            ).textContent =
+                "Unable to load goal.";
 
         }
     );
