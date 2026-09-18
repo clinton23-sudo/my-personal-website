@@ -4,207 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Private Diary | Clinton Ncube</title>
+    <title>Private Diary | Clinton Ncube</title>
 
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f6f8;
+            background: #f4f7fb;
             color: #222;
         }
 
         header {
             background: #111827;
             color: white;
-            padding: 25px 20px;
+            padding: 25px;
             text-align: center;
         }
 
         header h1 {
-            margin: 0 0 8px;
-        }
-
-        header p {
-            margin: 0;
-            color: #d1d5db;
+            margin-bottom: 8px;
         }
 
         nav {
-            background: #1f2937;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 12px;
+            margin-top: 18px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            margin: 0 8px;
+            font-weight: bold;
         }
 
         nav a:hover {
-            background: #374151;
+            color: #60a5fa;
         }
 
         .container {
             width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 40px auto;
         }
 
-        .login-card {
-            max-width: 450px;
-            margin: 60px auto;
+        .login-box,
+        .diary-box {
             background: white;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
-        .lock-icon {
-            font-size: 55px;
-            margin-bottom: 10px;
+        .login-box {
+            max-width: 500px;
+            margin: 60px auto;
         }
 
-        .login-card h2 {
-            margin-bottom: 10px;
+        h2 {
+            margin-bottom: 15px;
         }
 
-        .login-card p {
+        .subtitle {
             color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
-        input {
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
             width: 100%;
-            padding: 13px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
+            padding: 12px;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
-            font-size: 16px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 10px;
             border: none;
+            padding: 12px 20px;
             border-radius: 8px;
             background: #111827;
             color: white;
-            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 18px;
         }
 
         button:hover {
-            background: #374151;
+            background: #2563eb;
         }
 
-        .logout-btn {
-            max-width: 180px;
-            margin: 20px auto;
-            display: block;
+        .logout {
+            background: #dc2626;
+            float: right;
+            margin-top: 0;
+        }
+
+        .logout:hover {
             background: #b91c1c;
         }
 
-        .logout-btn:hover {
-            background: #991b1b;
-        }
-
-        .error {
-            color: #b91c1c;
-            margin-top: 12px;
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
             display: none;
         }
 
-        .loading {
-            text-align: center;
-            color: #666;
+        .success {
+            background: #dcfce7;
+            color: #166534;
         }
 
-        .diary-entry {
-            background: white;
-            padding: 25px;
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .diary-header {
+            overflow: hidden;
             margin-bottom: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        .diary-entry h2 {
-            margin-top: 0;
-            color: #111827;
-        }
-
-        .date {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .section {
-            margin-top: 20px;
-        }
-
-        .section h3 {
-            margin-bottom: 8px;
-            color: #374151;
-        }
-
-        .section p {
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
-
-        .private-note {
-            background: #f3f4f6;
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        .diary-photo {
-            width: 100%;
-            max-height: 500px;
-            object-fit: cover;
-            border-radius: 12px;
+        .diary-header h2 {
+            float: left;
             margin-top: 10px;
         }
 
-        .empty {
+        .entry {
+            background: #f9fafb;
+            border-left: 5px solid #2563eb;
+            padding: 22px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .entry h3 {
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .entry-section {
+            margin-top: 14px;
+        }
+
+        .entry-section strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .entry-section p {
+            color: #555;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .entry img {
+            max-width: 100%;
+            max-height: 400px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .delete-button {
+            background: #dc2626;
+            margin-right: 8px;
+        }
+
+        .edit-button {
+            background: #2563eb;
+        }
+
+        .no-entries {
             text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 35px;
             color: #666;
         }
 
+        .hidden {
+            display: none;
+        }
+
         footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
+            margin-top: 60px;
             background: #111827;
             color: white;
+            text-align: center;
+            padding: 25px;
         }
 
         @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                align-items: center;
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
             }
 
-            .container {
-                width: 94%;
+            .diary-header h2 {
+                float: none;
             }
 
-            .login-card {
-                margin-top: 30px;
+            .logout {
+                float: none;
+                margin-top: 10px;
             }
         }
     </style>
@@ -213,117 +237,238 @@
 <body>
 
 <header>
-    <h1>🔐 My Private Diary</h1>
-    <p>My personal space</p>
+
+    <h1>Clinton Ncube</h1>
+
+    <p>Private Diary</p>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="skills.html">Skills</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
+
 </header>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="hobbies.html">Hobbies</a>
-    <a href="skills.html">Skills</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="achievements.html">Achievements</a>
-    <a href="contact.html">Contact</a>
-</nav>
 
 <div class="container">
 
-    <!-- LOGIN SCREEN -->
-    <div id="loginScreen" class="login-card">
+    <!-- LOGIN -->
 
-        <div class="lock-icon">🔒</div>
+    <div id="loginSection" class="login-box">
 
-        <h2>Private Diary</h2>
+        <h2>🔐 Private Diary</h2>
 
-        <p>
-            This diary is private. Sign in with your authorised
-            Firebase account to continue.
+        <p class="subtitle">
+            Sign in with your authorized account to access
+            your private diary.
         </p>
+
+        <label for="email">Email Address</label>
 
         <input
             type="email"
             id="email"
-            placeholder="Email address"
-            autocomplete="username"
+            placeholder="Enter your email"
         >
+
+        <label for="password">Password</label>
 
         <input
             type="password"
             id="password"
-            placeholder="Password"
-            autocomplete="current-password"
+            placeholder="Enter your password"
         >
 
         <button id="loginButton">
-            🔓 Sign In
+            Sign In
         </button>
 
-        <div id="loginError" class="error"></div>
+        <div id="loginMessage" class="message"></div>
 
     </div>
 
 
-    <!-- DIARY CONTENT -->
-    <div id="diaryScreen" style="display:none;">
+    <!-- DIARY -->
 
-        <h2>📖 My Memories</h2>
+    <div id="diarySection" class="diary-box hidden">
 
-        <p class="loading" id="loadingMessage">
-            Loading your private diary...
+        <div class="diary-header">
+
+            <h2>📔 My Private Diary</h2>
+
+            <button id="logoutButton" class="logout">
+                Logout
+            </button>
+
+        </div>
+
+
+        <p class="subtitle">
+            Your private diary entries are stored securely
+            in your Firebase database.
         </p>
 
-        <div id="diaryContainer"></div>
 
-        <button class="logout-btn" id="logoutButton">
-            🔒 Lock Diary
+        <hr>
+
+
+        <h2 style="margin-top:25px;">
+            Add Diary Entry
+        </h2>
+
+
+        <label for="date">Date</label>
+
+        <input
+            type="date"
+            id="date"
+        >
+
+
+        <label for="title">Title</label>
+
+        <input
+            type="text"
+            id="title"
+            placeholder="Entry title"
+        >
+
+
+        <label for="happened">What happened?</label>
+
+        <textarea
+            id="happened"
+            placeholder="Write what happened..."
+        ></textarea>
+
+
+        <label for="feelings">How did you feel?</label>
+
+        <textarea
+            id="feelings"
+            placeholder="Write about your feelings..."
+        ></textarea>
+
+
+        <label for="notes">Notes</label>
+
+        <textarea
+            id="notes"
+            placeholder="Additional notes..."
+        ></textarea>
+
+
+        <label for="photo">
+            Photo URL (optional)
+        </label>
+
+        <input
+            type="url"
+            id="photo"
+            placeholder="https://example.com/photo.jpg"
+        >
+
+
+        <button id="saveButton">
+            Save Diary Entry
         </button>
+
+        <button
+            id="cancelButton"
+            class="hidden"
+        >
+            Cancel Edit
+        </button>
+
+
+        <div id="diaryMessage" class="message"></div>
+
+
+        <h2 style="margin-top:40px;">
+            My Entries
+        </h2>
+
+
+        <div id="entries">
+
+            <div class="no-entries">
+                Loading diary entries...
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
+
 <footer>
-    <p>© 2026 Clinton Ncube | Private Diary</p>
+
+    <p>
+        © 2026 Clinton Ncube — Private Diary
+    </p>
+
 </footer>
 
 
 <script type="module">
 
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
     import {
         getAuth,
         onAuthStateChanged,
         signInWithEmailAndPassword,
         signOut
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 
     import {
         getDatabase,
         ref,
+        push,
+        set,
+        remove,
         onValue
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+    }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-
-    // FIREBASE CONFIG
 
     const firebaseConfig = {
-        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
-        authDomain: "clinton-ncube-website.firebaseapp.com",
-        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-        projectId: "clinton-ncube-website",
-        storageBucket: "clinton-ncube-website.firebasestorage.app",
-        messagingSenderId: "946671700613",
-        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-        measurementId: "G-K1S62MHHXP"
+
+        apiKey:
+            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+        authDomain:
+            "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId:
+            "clinton-ncube-website",
+
+        storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId:
+            "946671700613",
+
+        appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId:
+            "G-K1S62MHHXP"
     };
 
-
-    // START FIREBASE
 
     const app = initializeApp(firebaseConfig);
 
@@ -332,13 +477,11 @@
     const db = getDatabase(app);
 
 
-    // ELEMENTS
+    const loginSection =
+        document.getElementById("loginSection");
 
-    const loginScreen =
-        document.getElementById("loginScreen");
-
-    const diaryScreen =
-        document.getElementById("diaryScreen");
+    const diarySection =
+        document.getElementById("diarySection");
 
     const loginButton =
         document.getElementById("loginButton");
@@ -346,31 +489,69 @@
     const logoutButton =
         document.getElementById("logoutButton");
 
-    const loginError =
-        document.getElementById("loginError");
+    const saveButton =
+        document.getElementById("saveButton");
 
-    const diaryContainer =
-        document.getElementById("diaryContainer");
+    const cancelButton =
+        document.getElementById("cancelButton");
 
-    const loadingMessage =
-        document.getElementById("loadingMessage");
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+    const diaryMessage =
+        document.getElementById("diaryMessage");
+
+    const entriesContainer =
+        document.getElementById("entries");
 
 
-    // ESCAPE HTML
+    let editingId = null;
 
-    function escapeHTML(value) {
 
-        return String(value ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+    function showMessage(element, text, type) {
+
+        element.textContent = text;
+
+        element.className =
+            "message " + type;
+
+        element.style.display = "block";
 
     }
 
 
-    // LOGIN
+    function clearMessage(element) {
+
+        element.style.display = "none";
+
+        element.textContent = "";
+
+    }
+
+
+    function clearForm() {
+
+        document.getElementById("date").value = "";
+
+        document.getElementById("title").value = "";
+
+        document.getElementById("happened").value = "";
+
+        document.getElementById("feelings").value = "";
+
+        document.getElementById("notes").value = "";
+
+        document.getElementById("photo").value = "";
+
+        editingId = null;
+
+        saveButton.textContent =
+            "Save Diary Entry";
+
+        cancelButton.classList.add("hidden");
+
+    }
+
 
     loginButton.addEventListener("click", async () => {
 
@@ -380,23 +561,25 @@
         const password =
             document.getElementById("password").value;
 
-        loginError.style.display = "none";
 
         if (!email || !password) {
 
-            loginError.textContent =
-                "Please enter your email and password.";
-
-            loginError.style.display = "block";
+            showMessage(
+                loginMessage,
+                "Please enter your email and password.",
+                "error"
+            );
 
             return;
         }
 
-        loginButton.disabled = true;
-
-        loginButton.textContent = "Signing in...";
 
         try {
+
+            loginButton.disabled = true;
+
+            loginButton.textContent = "Signing in...";
+
 
             await signInWithEmailAndPassword(
                 auth,
@@ -404,27 +587,27 @@
                 password
             );
 
+
+            clearMessage(loginMessage);
+
         } catch (error) {
 
-            console.error(error);
-
-            loginError.textContent =
-                "Sign in failed. Please check your email and password.";
-
-            loginError.style.display = "block";
+            showMessage(
+                loginMessage,
+                "Login failed. Please check your email and password.",
+                "error"
+            );
 
         } finally {
 
             loginButton.disabled = false;
 
-            loginButton.textContent = "🔓 Sign In";
+            loginButton.textContent = "Sign In";
 
         }
 
     });
 
-
-    // LOGOUT
 
     logoutButton.addEventListener("click", async () => {
 
@@ -433,159 +616,456 @@
     });
 
 
-    // AUTH STATE
+    saveButton.addEventListener("click", async () => {
 
-    onAuthStateChanged(auth, (user) => {
+        const date =
+            document.getElementById("date").value;
 
-        if (user) {
+        const title =
+            document.getElementById("title").value.trim();
 
-            loginScreen.style.display = "none";
+        const happened =
+            document.getElementById("happened").value.trim();
 
-            diaryScreen.style.display = "block";
+        const feelings =
+            document.getElementById("feelings").value.trim();
 
-            loadDiary();
+        const notes =
+            document.getElementById("notes").value.trim();
 
-        } else {
+        const photo =
+            document.getElementById("photo").value.trim();
 
-            loginScreen.style.display = "block";
 
-            diaryScreen.style.display = "none";
+        if (!date || !title || !happened) {
 
-            diaryContainer.innerHTML = "";
+            showMessage(
+                diaryMessage,
+                "Please enter the date, title and what happened.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        try {
+
+            saveButton.disabled = true;
+
+            saveButton.textContent = "Saving...";
+
+
+            const entry = {
+
+                date: date,
+
+                title: title,
+
+                happened: happened,
+
+                feelings: feelings,
+
+                notes: notes,
+
+                photo: photo
+
+            };
+
+
+            if (editingId) {
+
+                await set(
+                    ref(db, "diary/" + editingId),
+                    entry
+                );
+
+                showMessage(
+                    diaryMessage,
+                    "Diary entry updated successfully.",
+                    "success"
+                );
+
+            } else {
+
+                const newEntry =
+                    push(ref(db, "diary"));
+
+                await set(
+                    newEntry,
+                    entry
+                );
+
+                showMessage(
+                    diaryMessage,
+                    "Diary entry saved successfully.",
+                    "success"
+                );
+
+            }
+
+
+            clearForm();
+
+
+        } catch (error) {
+
+            showMessage(
+                diaryMessage,
+                "Could not save the diary entry. Please try again.",
+                "error"
+            );
+
+        } finally {
+
+            saveButton.disabled = false;
+
+            if (!editingId) {
+                saveButton.textContent =
+                    "Save Diary Entry";
+            }
 
         }
 
     });
 
 
-    // LOAD DIARY
+    cancelButton.addEventListener("click", () => {
+
+        clearForm();
+
+        clearMessage(diaryMessage);
+
+    });
+
 
     function loadDiary() {
-
-        loadingMessage.style.display = "block";
 
         const diaryRef =
             ref(db, "diary");
 
+
         onValue(diaryRef, (snapshot) => {
 
-            diaryContainer.innerHTML = "";
+            entriesContainer.innerHTML = "";
 
-            loadingMessage.style.display = "none";
 
             if (!snapshot.exists()) {
 
-                diaryContainer.innerHTML = `
-                    <div class="empty">
-                        <h3>📖 Your diary is empty</h3>
+                entriesContainer.innerHTML = `
+
+                    <div class="no-entries">
+                        <h3>No diary entries yet.</h3>
                         <p>
-                            Your private diary entries will appear here.
+                            Your diary entries will appear here.
                         </p>
                     </div>
+
                 `;
 
                 return;
             }
 
 
-            const entries = [];
-
-            snapshot.forEach((child) => {
-
-                entries.push({
-                    id: child.key,
-                    ...child.val()
-                });
-
-            });
+            const data =
+                snapshot.val();
 
 
-            // NEWEST FIRST
+            const entries =
+                Object.entries(data).sort(
+                    (a, b) => {
 
-            entries.reverse();
+                        const dateA =
+                            new Date(
+                                a[1].date || "1900-01-01"
+                            );
+
+                        const dateB =
+                            new Date(
+                                b[1].date || "1900-01-01"
+                            );
+
+                        return dateB - dateA;
+
+                    }
+                );
 
 
-            entries.forEach((entry) => {
+            entries.forEach(
+                ([id, entry]) => {
 
-                const card =
-                    document.createElement("div");
+                    const article =
+                        document.createElement("article");
 
-                card.className = "diary-entry";
+                    article.className = "entry";
 
-                card.innerHTML = `
 
-                    <h2>
-                        ${escapeHTML(entry.title || "Untitled Memory")}
-                    </h2>
+                    const heading =
+                        document.createElement("h3");
 
-                    <div class="date">
-                        📅 ${escapeHTML(entry.date || "")}
-                    </div>
+                    heading.textContent =
+                        entry.title || "Diary Entry";
 
-                    <div class="section">
 
-                        <h3>📝 What happened?</h3>
+                    const date =
+                        document.createElement("div");
 
-                        <p>
-                            ${escapeHTML(entry.happened || "")}
-                        </p>
+                    date.className = "date";
 
-                    </div>
+                    date.textContent =
+                        entry.date || "";
 
-                    <div class="section">
 
-                        <h3>💭 How I felt</h3>
+                    article.appendChild(heading);
 
-                        <p>
-                            ${escapeHTML(entry.feelings || "")}
-                        </p>
+                    article.appendChild(date);
 
-                    </div>
 
-                    <div class="section">
+                    addSection(
+                        article,
+                        "What happened",
+                        entry.happened
+                    );
 
-                        <h3>📌 Personal notes</h3>
 
-                        <div class="private-note">
+                    addSection(
+                        article,
+                        "Feelings",
+                        entry.feelings
+                    );
 
-                            <p>
-                                ${escapeHTML(entry.notes || "")}
-                            </p>
 
-                        </div>
+                    addSection(
+                        article,
+                        "Notes",
+                        entry.notes
+                    );
 
-                    </div>
 
-                    ${
-                        entry.photo
-                        ?
-                        `
-                        <div class="section">
+                    if (entry.photo) {
 
-                            <h3>📷 Memory Photo</h3>
+                        const image =
+                            document.createElement("img");
 
-                            <img
-                                class="diary-photo"
-                                src="${escapeHTML(entry.photo)}"
-                                alt="Private diary memory"
-                                onerror="this.style.display='none';"
-                            >
+                        image.src =
+                            entry.photo;
 
-                        </div>
-                        `
-                        :
-                        ""
+                        image.alt =
+                            "Diary photo";
+
+                        article.appendChild(image);
+
                     }
 
-                `;
 
-                diaryContainer.appendChild(card);
+                    const edit =
+                        document.createElement("button");
 
-            });
+                    edit.textContent = "Edit";
+
+                    edit.className =
+                        "edit-button";
+
+
+                    edit.addEventListener(
+                        "click",
+                        () => {
+
+                            document.getElementById(
+                                "date"
+                            ).value =
+                                entry.date || "";
+
+
+                            document.getElementById(
+                                "title"
+                            ).value =
+                                entry.title || "";
+
+
+                            document.getElementById(
+                                "happened"
+                            ).value =
+                                entry.happened || "";
+
+
+                            document.getElementById(
+                                "feelings"
+                            ).value =
+                                entry.feelings || "";
+
+
+                            document.getElementById(
+                                "notes"
+                            ).value =
+                                entry.notes || "";
+
+
+                            document.getElementById(
+                                "photo"
+                            ).value =
+                                entry.photo || "";
+
+
+                            editingId = id;
+
+                            saveButton.textContent =
+                                "Update Diary Entry";
+
+                            cancelButton.classList.remove(
+                                "hidden"
+                            );
+
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            });
+
+                        }
+                    );
+
+
+                    const deleteButton =
+                        document.createElement("button");
+
+                    deleteButton.textContent =
+                        "Delete";
+
+                    deleteButton.className =
+                        "delete-button";
+
+
+                    deleteButton.addEventListener(
+                        "click",
+                        async () => {
+
+                            const confirmed =
+                                confirm(
+                                    "Delete this diary entry?"
+                                );
+
+
+                            if (!confirmed) {
+                                return;
+                            }
+
+
+                            try {
+
+                                await remove(
+                                    ref(
+                                        db,
+                                        "diary/" + id
+                                    )
+                                );
+
+
+                                showMessage(
+                                    diaryMessage,
+                                    "Diary entry deleted.",
+                                    "success"
+                                );
+
+                            } catch (error) {
+
+                                showMessage(
+                                    diaryMessage,
+                                    "Could not delete the entry.",
+                                    "error"
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    article.appendChild(edit);
+
+                    article.appendChild(deleteButton);
+
+
+                    entriesContainer.appendChild(article);
+
+                }
+            );
 
         });
 
     }
+
+
+    function addSection(
+        parent,
+        heading,
+        value
+    ) {
+
+        if (!value) {
+            return;
+        }
+
+
+        const section =
+            document.createElement("div");
+
+        section.className =
+            "entry-section";
+
+
+        const strong =
+            document.createElement("strong");
+
+        strong.textContent =
+            heading;
+
+
+        const paragraph =
+            document.createElement("p");
+
+        paragraph.textContent =
+            value;
+
+
+        section.appendChild(strong);
+
+        section.appendChild(paragraph);
+
+        parent.appendChild(section);
+
+    }
+
+
+    onAuthStateChanged(
+        auth,
+        (user) => {
+
+            if (user) {
+
+                loginSection.classList.add(
+                    "hidden"
+                );
+
+                diarySection.classList.remove(
+                    "hidden"
+                );
+
+                loadDiary();
+
+            } else {
+
+                loginSection.classList.remove(
+                    "hidden"
+                );
+
+                diarySection.classList.add(
+                    "hidden"
+                );
+
+            }
+
+        }
+    );
 
 </script>
 
