@@ -9,127 +9,45 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Homepage-specific styling */
-
-        .home-about {
-            background: white;
-        }
-
-        .home-about-content {
-            max-width: 850px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .home-about-content p {
-            color: #4b5563;
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-        }
-
-        .goal-box {
-            margin-top: 30px;
-            padding: 25px;
-            background: #eff6ff;
-            border-left: 5px solid #2563eb;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        .goal-box h3 {
-            color: #1e3a8a;
-            margin-bottom: 8px;
-        }
-
-        .explore-section {
-            background: #f4f7fb;
-        }
-
-        .explore-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+        .home-explore {
+            background: #eef4ff;
         }
 
         .explore-card {
-            background: white;
-            padding: 30px 22px;
-            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: 0.3s ease;
-        }
-
-        .explore-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.14);
         }
 
         .explore-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .explore-card h3 {
-            color: #1e3a8a;
-            margin-bottom: 10px;
-        }
-
-        .explore-card p {
-            color: #6b7280;
-            margin-bottom: 18px;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
         }
 
         .home-cta {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
             text-align: center;
-        }
-
-        .home-cta h2 {
-            color: white;
+            background: #e5e7eb;
         }
 
         .home-cta p {
             max-width: 700px;
             margin: 0 auto 25px;
         }
-
-        .cta-button {
-            display: inline-block;
-            padding: 13px 25px;
-            background: white;
-            color: #1e3a8a;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            background: #f3f4f6;
-        }
-
-        .last-updated {
-            text-align: center;
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-top: 25px;
-        }
     </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     NAVIGATION
-     ===================================================== -->
-
 <nav>
     <a href="index.html" class="logo">Clinton Ncube</a>
 
-    <ul>
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false">
+        ☰
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -141,13 +59,7 @@
     </ul>
 </nav>
 
-
-<!-- =====================================================
-     HERO
-     ===================================================== -->
-
 <header class="hero">
-
     <div class="hero-content">
 
         <h1 id="homeName">Clinton Ncube</h1>
@@ -156,41 +68,115 @@
             Welcome to my personal website!
         </p>
 
-        <a href="#explore" class="btn">
-            Explore My Website
+        <a href="about.html" class="btn">
+            Learn More About Me
         </a>
 
     </div>
-
 </header>
 
-
-<!-- =====================================================
-     ABOUT SECTION
-     ===================================================== -->
-
-<section class="home-about">
-
+<section>
     <div class="container">
 
         <h2>About Me</h2>
 
-        <div class="home-about-content">
+        <p
+            id="aboutText"
+            class="section-intro">
+            I am Clinton Ncube. I am a student who enjoys learning,
+            developing new skills and working on creative projects.
+        </p>
 
-            <p id="aboutText">
-                I am Clinton Ncube. I am a student who enjoys learning,
-                developing new skills and working on creative projects.
-            </p>
+    </div>
+</section>
 
-            <div class="goal-box">
+<section>
+    <div class="container">
 
-                <h3>🎯 My Goal</h3>
+        <h2>My Goal</h2>
 
-                <p id="goalText">
-                    My goal is to continue learning, improving my skills
-                    and creating useful and interesting projects.
+        <p
+            id="goalText"
+            class="section-intro">
+            My goal is to continue learning, improving my skills
+            and creating useful and interesting projects.
+        </p>
+
+    </div>
+</section>
+
+<section class="home-explore">
+
+    <div class="container">
+
+        <h2>Explore My Website</h2>
+
+        <div class="cards">
+
+            <div class="card explore-card">
+                <div class="explore-icon">📚</div>
+                <h3>Projects</h3>
+                <p>
+                    View my school, creative and personal projects.
                 </p>
+                <a href="projects.html" class="btn">
+                    View Projects
+                </a>
+            </div>
 
+            <div class="card explore-card">
+                <div class="explore-icon">🏆</div>
+                <h3>Achievements</h3>
+                <p>
+                    Explore some of my achievements and activities.
+                </p>
+                <a href="achievements.html" class="btn">
+                    View Achievements
+                </a>
+            </div>
+
+            <div class="card explore-card">
+                <div class="explore-icon">💻</div>
+                <h3>Skills</h3>
+                <p>
+                    Discover the skills I am developing.
+                </p>
+                <a href="skills.html" class="btn">
+                    View Skills
+                </a>
+            </div>
+
+            <div class="card explore-card">
+                <div class="explore-icon">🏀</div>
+                <h3>Hobbies</h3>
+                <p>
+                    See some of the activities I enjoy.
+                </p>
+                <a href="hobbies.html" class="btn">
+                    View Hobbies
+                </a>
+            </div>
+
+            <div class="card explore-card">
+                <div class="explore-icon">🖼️</div>
+                <h3>Gallery</h3>
+                <p>
+                    Browse pictures and memories.
+                </p>
+                <a href="gallery.html" class="btn">
+                    Open Gallery
+                </a>
+            </div>
+
+            <div class="card explore-card">
+                <div class="explore-icon">📩</div>
+                <h3>Contact</h3>
+                <p>
+                    Find ways to get in touch with me.
+                </p>
+                <a href="contact.html" class="btn">
+                    Contact Me
+                </a>
             </div>
 
         </div>
@@ -199,170 +185,29 @@
 
 </section>
 
-
-<!-- =====================================================
-     EXPLORE SECTION
-     ===================================================== -->
-
-<section class="explore-section" id="explore">
-
-    <div class="container">
-
-        <h2>Explore My Website</h2>
-
-        <p class="section-intro">
-            Discover my projects, achievements, skills, hobbies
-            and memories.
-        </p>
-
-        <div class="explore-grid">
-
-            <a href="projects.html" class="explore-card">
-
-                <div class="explore-icon">📚</div>
-
-                <h3>Projects</h3>
-
-                <p>
-                    Explore educational, creative and personal
-                    projects that I have worked on.
-                </p>
-
-                <span class="btn">
-                    View Projects
-                </span>
-
-            </a>
-
-
-            <a href="achievements.html" class="explore-card">
-
-                <div class="explore-icon">🏆</div>
-
-                <h3>Achievements</h3>
-
-                <p>
-                    See some of my academic achievements and
-                    activities.
-                </p>
-
-                <span class="btn">
-                    View Achievements
-                </span>
-
-            </a>
-
-
-            <a href="skills.html" class="explore-card">
-
-                <div class="explore-icon">💻</div>
-
-                <h3>Skills</h3>
-
-                <p>
-                    Discover the skills I am developing through
-                    learning and practice.
-                </p>
-
-                <span class="btn">
-                    View Skills
-                </span>
-
-            </a>
-
-
-            <a href="hobbies.html" class="explore-card">
-
-                <div class="explore-icon">🏀</div>
-
-                <h3>Hobbies</h3>
-
-                <p>
-                    Learn about the activities I enjoy in my
-                    free time.
-                </p>
-
-                <span class="btn">
-                    View Hobbies
-                </span>
-
-            </a>
-
-
-            <a href="gallery.html" class="explore-card">
-
-                <div class="explore-icon">🖼️</div>
-
-                <h3>Gallery</h3>
-
-                <p>
-                    Browse pictures and memories from my
-                    experiences.
-                </p>
-
-                <span class="btn">
-                    View Gallery
-                </span>
-
-            </a>
-
-
-            <a href="contact.html" class="explore-card">
-
-                <div class="explore-icon">📩</div>
-
-                <h3>Contact</h3>
-
-                <p>
-                    Find out how to get in touch with me.
-                </p>
-
-                <span class="btn">
-                    Contact Me
-                </span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CALL TO ACTION
-     ===================================================== -->
-
 <section class="home-cta">
 
     <div class="container">
 
-        <h2>Thanks for Visiting!</h2>
+        <h2>Thanks for Visiting</h2>
 
         <p>
-            This website is a place where I can share my
-            learning journey, projects, achievements,
-            interests and experiences.
+            This website is a collection of my interests,
+            projects, skills, achievements and memories.
         </p>
 
-        <a href="about.html" class="cta-button">
-            Learn More About Me
+        <a href="gallery.html" class="btn">
+            Explore My Gallery
         </a>
 
     </div>
 
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
 <footer>
 
     <p>
-        © <span id="footerYear">2026</span>
+        © <span id="lastUpdated">2026</span>
         <span id="footerName">Clinton Ncube</span>.
         All rights reserved.
     </p>
@@ -371,61 +216,52 @@
         Personal Portfolio Website
     </p>
 
-    <p class="last-updated">
-        Last updated: <span id="lastUpdated">2026</span>
-    </p>
-
 </footer>
-
-
-<!-- =====================================================
-     FIREBASE
-     ===================================================== -->
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
     getDatabase,
     ref,
     onValue
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 const firebaseConfig = {
 
     apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-    authDomain: "clinton-ncube-website.firebaseapp.com",
+    authDomain:
+        "clinton-ncube-website.firebaseapp.com",
 
     databaseURL:
         "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-    projectId: "clinton-ncube-website",
+    projectId:
+        "clinton-ncube-website",
 
     storageBucket:
         "clinton-ncube-website.firebasestorage.app",
 
-    messagingSenderId: "946671700613",
+    messagingSenderId:
+        "946671700613",
 
     appId:
         "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-    measurementId: "G-K1S62MHHXP"
-
+    measurementId:
+        "G-K1S62MHHXP"
 };
-
 
 const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
 
-
-const websiteDataRef = ref(db, "websiteData");
-
+const websiteDataRef =
+    ref(db, "websiteData");
 
 onValue(
     websiteDataRef,
@@ -433,13 +269,9 @@ onValue(
 
         const data = snapshot.val();
 
-        if (!data) {
-            return;
-        }
-
+        if (!data) return;
 
         if (data.name) {
-
             document.getElementById("homeName").textContent =
                 data.name;
 
@@ -447,46 +279,71 @@ onValue(
                 data.name;
         }
 
-
         if (data.welcome) {
-
             document.getElementById("welcomeText").textContent =
                 data.welcome;
         }
 
-
-        if (data.about) {
-
-            document.getElementById("aboutText").textContent =
-                data.about;
-        }
-
-
         if (data.goal) {
-
             document.getElementById("goalText").textContent =
                 data.goal;
         }
 
-
-        if (data.lastUpdated) {
-
-            document.getElementById("lastUpdated").textContent =
-                data.lastUpdated;
-
+        if (data.about) {
+            document.getElementById("aboutText").textContent =
+                data.about;
         }
 
-    },
-
-    (error) => {
-
-        console.error(
-            "Unable to load website data:",
-            error
-        );
-
+        if (data.lastUpdated) {
+            document.getElementById("lastUpdated").textContent =
+                data.lastUpdated;
+        }
     }
 );
+
+</script>
+
+<script>
+
+const menuToggle =
+    document.getElementById("menuToggle");
+
+const navMenu =
+    document.getElementById("navMenu");
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("active");
+
+    const isOpen =
+        navMenu.classList.contains("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen
+    );
+
+    menuToggle.textContent =
+        isOpen ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-menu a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
+            menuToggle.textContent = "☰";
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
 
 </script>
 
