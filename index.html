@@ -1,602 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Clinton Ncube | Personal Website</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #d1d5db;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 9px;
+            font-weight: bold;
+            display: inline-block;
+            padding: 5px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(
+                135deg,
+                #e0f2fe,
+                #f8fafc
+            );
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h2 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .hero h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 24px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background: #2563eb;
+        }
+
+        .section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        .about-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            text-align: center;
+            line-height: 1.7;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: transform 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 70px;
+            padding: 30px;
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .hero h2 {
+                font-size: 38px;
+            }
+
+            .hero h3 {
+                font-size: 23px;
+            }
+
+            nav a {
+                margin: 4px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header>
 
-    <header>
+    <h1 id="headerName">Clinton Ncube</h1>
 
-        <h1>Clinton Ncube</h1>
+    <p>My Personal Website</p>
 
-        <p id="header-welcome">
-            Welcome to my personal portfolio
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="skills.html">Skills</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h2 id="homeName">
+            Clinton Ncube
+        </h2>
+
+        <h3 id="welcomeText">
+            Welcome to my personal website!
+        </h3>
+
+        <p id="goalText">
+            My goal is to continue learning,
+            improving my skills and creating useful
+            and interesting projects.
         </p>
 
-        <nav>
+        <a href="about.html" class="button">
+            Learn More About Me
+        </a>
 
-            <a class="active" href="index.html">
-                Home
-            </a>
+        <a href="projects.html" class="button">
+            View My Projects
+        </a>
 
-            <a href="about.html">
-                About Me
-            </a>
+    </div>
 
-            <a href="projects.html">
-                Projects
-            </a>
+</section>
 
-            <a href="hobbies.html">
-                Hobbies
-            </a>
 
-            <a href="skills.html">
-                Skills
-            </a>
+<section class="section">
 
-            <a href="gallery.html">
-                Gallery
-            </a>
+    <div class="section-title">
 
-            <a href="contact.html">
-                Contact
-            </a>
+        <h2>About Me</h2>
 
-            <a href="admin.html">
-                ⚙️ Dashboard
-            </a>
+        <p>A little information about me</p>
 
-            <a href="achievements.html">
-                Achievements
-            </a>
+    </div>
 
-        </nav>
 
-    </header>
+    <div class="about-box">
 
+        <p id="aboutText">
+            I am Clinton Ncube. I am a student who enjoys
+            learning, developing new skills and working
+            on creative projects.
+        </p>
 
-    <!-- MAIN CONTENT -->
+    </div>
 
-    <main>
+</section>
 
 
-        <!-- HERO SECTION -->
+<section class="section">
 
-        <section class="hero">
+    <div class="section-title">
 
-            <div class="hero-inner">
+        <h2>Explore My Website</h2>
 
-                <img
-                    src="images/IMG_20250802_093252.jpg"
-                    alt="Clinton Ncube"
-                    class="profile-photo"
-                >
+        <p>
+            Take a look at some of the sections of my
+            personal website.
+        </p>
 
-                <h2 id="home-name">
-                    Hello, I'm Clinton Ncube 👋
-                </h2>
+    </div>
 
-                <p id="home-welcome">
 
-                    Welcome to my personal website!
-                    This is my personal portfolio where
-                    I share information about myself,
-                    my projects, hobbies, skills and
-                    favourite memories.
+    <div class="cards">
 
-                </p>
+        <div class="card">
 
+            <div class="card-icon">📚</div>
 
-                <a
-                    href="about.html"
-                    class="button"
-                >
-                    Learn More About Me
-                </a>
+            <h3>Projects</h3>
 
-
-                <a
-                    href="gallery.html"
-                    class="button"
-                >
-                    View My Gallery
-                </a>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- WEBSITE CONTENT -->
-
-        <section>
-
-            <h2>
-                What You Can Find Here
-            </h2>
-
-
-            <div class="card-container">
-
-
-                <!-- ABOUT -->
-
-                <div class="card">
-
-                    <h3>
-                        👤 About Me
-                    </h3>
-
-                    <p>
-
-                        Learn more about me,
-                        my interests, goals
-                        and personal journey.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="about.html"
-                        class="button"
-                    >
-                        Read More
-                    </a>
-
-                </div>
-
-
-
-                <!-- PROJECTS -->
-
-                <div class="card">
-
-                    <h3>
-                        📁 My Projects
-                    </h3>
-
-                    <p>
-
-                        Explore some of the projects
-                        I have worked on and the skills
-                        I have developed.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="projects.html"
-                        class="button"
-                    >
-                        View Projects
-                    </a>
-
-                </div>
-
-
-
-                <!-- HOBBIES -->
-
-                <div class="card">
-
-                    <h3>
-                        🏀 My Hobbies
-                    </h3>
-
-                    <p>
-
-                        Discover the activities I enjoy,
-                        including basketball, swimming,
-                        reading and athletics.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="hobbies.html"
-                        class="button"
-                    >
-                        My Hobbies
-                    </a>
-
-                </div>
-
-
-
-                <!-- SKILLS -->
-
-                <div class="card">
-
-                    <h3>
-                        💻 My Skills
-                    </h3>
-
-                    <p>
-
-                        See the skills I am developing
-                        in technology, web development
-                        and other areas.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="skills.html"
-                        class="button"
-                    >
-                        View Skills
-                    </a>
-
-                </div>
-
-
-
-                <!-- GALLERY -->
-
-                <div class="card">
-
-                    <h3>
-                        🖼️ My Gallery
-                    </h3>
-
-                    <p>
-
-                        View some of my favourite
-                        photos and memories.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="gallery.html"
-                        class="button"
-                    >
-                        Open Gallery
-                    </a>
-
-                </div>
-
-
-
-                <!-- CONTACT -->
-
-                <div class="card">
-
-                    <h3>
-                        📧 Contact
-                    </h3>
-
-                    <p>
-
-                        Visit my contact page to find
-                        out how to get in touch.
-
-                    </p>
-
-                    <br>
-
-                    <a
-                        href="contact.html"
-                        class="button"
-                    >
-                        Contact Me
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- HIGHLIGHTS -->
-
-        <section>
-
-            <h2>
-                My Highlights ⭐
-            </h2>
-
-
-            <div class="card-container">
-
-
-                <!-- STUDENT -->
-
-                <div class="card">
-
-                    <h3>
-                        🎓 Student
-                    </h3>
-
-                    <p>
-
-                        I am focused on my education
-                        and developing useful skills
-                        for my future.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- WEB DEVELOPER -->
-
-                <div class="card">
-
-                    <h3>
-                        💻 Web Developer
-                    </h3>
-
-                    <p>
-
-                        I am learning how to create
-                        websites using HTML, CSS
-                        and GitHub.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- ACHIEVEMENTS -->
-
-                <div class="card">
-
-                    <h3>
-                        🏆 Achievements
-                    </h3>
-
-                    <p>
-
-                        I enjoy taking part in school
-                        activities, projects and
-                        different challenges.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- GOAL -->
-
-        <section>
-
-            <h2>
-                My Goal 🚀
-            </h2>
-
-            <p id="home-goal">
-
-                My goal is to continue learning,
-                improving my skills and creating
-                useful and interesting projects.
-
+            <p>
+                School and personal projects that
+                I have worked on.
             </p>
 
-        </section>
+            <br>
 
-    </main>
+            <a href="projects.html" class="button">
+                View
+            </a>
 
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            &copy; 2026 Clinton Ncube
-        </p>
-
-        <p>
-
-            Built with HTML & CSS |
-            My Personal Portfolio
-
-        </p>
-
-    </footer>
+        </div>
 
 
+        <div class="card">
 
-    <!-- FIREBASE CONNECTION -->
+            <div class="card-icon">🏆</div>
 
-    <script type="module">
+            <h3>Achievements</h3>
 
-        /*
-         * FIREBASE CONFIGURATION
-         */
+            <p>
+                My academic and personal achievements.
+            </p>
 
-        import { initializeApp }
+            <br>
 
+            <a href="achievements.html" class="button">
+                View
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">💻</div>
+
+            <h3>Skills</h3>
+
+            <p>
+                Skills I have developed through
+                learning and practice.
+            </p>
+
+            <br>
+
+            <a href="skills.html" class="button">
+                View
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🖼️</div>
+
+            <h3>Gallery</h3>
+
+            <p>
+                Photos, memories and activities
+                from my journey.
+            </p>
+
+            <br>
+
+            <a href="gallery.html" class="button">
+                View
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p id="footerName">
+        © 2026 Clinton Ncube
+    </p>
+
+    <p>
+        My Personal Website
+    </p>
+
+</footer>
+
+
+<script type="module">
+
+    import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 
-        import {
+    import {
+        getDatabase,
+        ref,
+        onValue
+    }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-            getDatabase,
-            ref,
-            onValue
 
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+        authDomain:
+            "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId:
+            "clinton-ncube-website",
+
+        storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId:
+            "946671700613",
+
+        appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId:
+            "G-K1S62MHHXP"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+    const websiteDataRef =
+        ref(db, "websiteData");
+
+
+    onValue(websiteDataRef, (snapshot) => {
+
+        if (!snapshot.exists()) {
+            return;
         }
 
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+        const data = snapshot.val();
 
 
-
-        const firebaseConfig = {
-
-            apiKey:
-                "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
-
-            authDomain:
-                "clinton-ncube-website.firebaseapp.com",
-
-            databaseURL:
-                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-
-            projectId:
-                "clinton-ncube-website",
-
-            storageBucket:
-                "clinton-ncube-website.firebasestorage.app",
-
-            messagingSenderId:
-                "946671700613",
-
-            appId:
-                "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-            measurementId:
-                "G-K1S62MHHXP"
-
-        };
+        const name =
+            data.name || "Clinton Ncube";
 
 
-
-        /*
-         * START FIREBASE
-         */
-
-        const app =
-            initializeApp(firebaseConfig);
+        const welcome =
+            data.welcome ||
+            "Welcome to my personal website!";
 
 
-        const db =
-            getDatabase(app);
+        const goal =
+            data.goal ||
+            "My goal is to continue learning, improving my skills and creating useful and interesting projects.";
 
 
-
-        /*
-         * GET WEBSITE DATA
-         */
-
-        const websiteDataRef =
-            ref(db, "websiteData");
+        const about =
+            data.about ||
+            "I am Clinton Ncube. I am a student who enjoys learning, developing new skills and working on creative projects.";
 
 
-
-        /*
-         * LISTEN FOR CHANGES
-         *
-         * Whenever you change information
-         * in the Admin Dashboard, Firebase
-         * updates this page automatically.
-         */
-
-        onValue(
-            websiteDataRef,
-            (snapshot) => {
+        document.getElementById("headerName")
+            .textContent = name;
 
 
-                const websiteData =
-                    snapshot.val();
+        document.getElementById("homeName")
+            .textContent = name;
 
 
-
-                /*
-                 * If there is no data,
-                 * keep the default information.
-                 */
-
-                if (!websiteData) {
-
-                    return;
-
-                }
+        document.getElementById("welcomeText")
+            .textContent = welcome;
 
 
-
-                /*
-                 * UPDATE NAME
-                 */
-
-                if (websiteData.name) {
-
-                    document
-                        .getElementById("home-name")
-                        .textContent =
-                        "Hello, I'm "
-                        + websiteData.name
-                        + " 👋";
-
-                }
+        document.getElementById("goalText")
+            .textContent = goal;
 
 
-
-                /*
-                 * UPDATE WELCOME MESSAGE
-                 */
-
-                if (websiteData.welcome) {
-
-                    document
-                        .getElementById("home-welcome")
-                        .textContent =
-                        websiteData.welcome;
+        document.getElementById("aboutText")
+            .textContent = about;
 
 
-                    document
-                        .getElementById("header-welcome")
-                        .textContent =
-                        websiteData.welcome;
+        document.getElementById("footerName")
+            .textContent =
+            "© " +
+            (data.lastUpdated || "2026") +
+            " " +
+            name;
 
-                }
+    });
 
-
-
-                /*
-                 * UPDATE GOAL
-                 */
-
-                if (websiteData.goal) {
-
-                    document
-                        .getElementById("home-goal")
-                        .textContent =
-                        websiteData.goal;
-
-                }
-
-            },
-
-            (error) => {
-
-                console.error(
-                    "Firebase error:",
-                    error
-                );
-
-            }
-
-        );
-
-    </script>
+</script>
 
 </body>
-
 </html>
