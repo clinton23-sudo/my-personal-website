@@ -294,7 +294,7 @@ body {
     flex: 1;
 }
 
-/* ================= NOTICE ================= */
+/* ================= NOTICES ================= */
 
 .notice {
     padding: 14px;
@@ -454,7 +454,7 @@ body {
 </div>
 
 
-<!-- ================= ADMIN ================= -->
+<!-- ================= ADMIN APP ================= -->
 
 <div id="adminApp" style="display:none;">
 
@@ -519,13 +519,23 @@ body {
                 </button>
 
                 <div>
-                    <h1 id="pageTitle">Dashboard</h1>
-                    <p>Welcome back, Clinton!</p>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Welcome back, Clinton!
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="admin-email" id="adminEmail"></div>
+            <div
+                class="admin-email"
+                id="adminEmail"
+            ></div>
 
         </header>
 
@@ -535,38 +545,76 @@ body {
 
             <!-- ================= DASHBOARD ================= -->
 
-            <section id="dashboard" class="section active">
+            <section
+                id="dashboard"
+                class="section active"
+            >
 
                 <div class="section-title">
+
                     <h2>Dashboard</h2>
-                    <p>Manage your personal website from one place.</p>
+
+                    <p>
+                        Manage your personal website from one place.
+                    </p>
+
                 </div>
+
 
                 <div class="stats">
 
                     <div class="stat-card">
-                        <h3 id="galleryCount">0</h3>
+
+                        <h3 id="galleryCount">
+                            0
+                        </h3>
+
                         <p>Gallery</p>
+
                     </div>
 
+
                     <div class="stat-card">
-                        <h3 id="achievementCount">0</h3>
+
+                        <h3 id="achievementCount">
+                            0
+                        </h3>
+
                         <p>Achievements</p>
+
                     </div>
 
+
                     <div class="stat-card">
-                        <h3 id="projectCount">0</h3>
+
+                        <h3 id="projectCount">
+                            0
+                        </h3>
+
                         <p>Projects</p>
+
                     </div>
 
+
                     <div class="stat-card">
-                        <h3 id="hobbyCount">0</h3>
+
+                        <h3 id="hobbyCount">
+                            0
+                        </h3>
+
                         <p>Hobbies</p>
+
                     </div>
 
+
                     <div class="stat-card">
-                        <h3 id="skillCount">0</h3>
+
+                        <h3 id="skillCount">
+                            0
+                        </h3>
+
                         <p>Skills</p>
+
                     </div>
 
                 </div>
@@ -574,15 +622,25 @@ body {
 
                 <div class="card">
 
-                    <h2>Welcome, Clinton! 👋</h2>
+                    <h2>
+                        Welcome, Clinton! 👋
+                    </h2>
 
-                    <p style="margin-top:10px;color:#555;">
-                        You have successfully logged into the Admin Dashboard.
+                    <p
+                        style="margin-top:10px;color:#555;"
+                    >
+                        You have successfully logged into
+                        the Admin Dashboard.
                     </p>
 
                     <p style="margin-top:10px;">
+
                         Logged in as:
-                        <strong id="dashboardEmail"></strong>
+
+                        <strong
+                            id="dashboardEmail"
+                        ></strong>
+
                     </p>
 
                 </div>
@@ -627,39 +685,80 @@ body {
 
             <!-- ================= HOME ================= -->
 
-            <section id="home" class="section">
+            <section
+                id="home"
+                class="section"
+            >
 
                 <div class="section-title">
+
                     <h2>Home Manager</h2>
-                    <p>Edit the information displayed on your homepage.</p>
+
+                    <p>
+                        Edit the information displayed on your homepage.
+                    </p>
+
                 </div>
+
 
                 <div class="card">
 
                     <div class="form-group">
+
                         <label>Name</label>
-                        <input id="homeName" type="text">
+
+                        <input
+                            id="homeName"
+                            type="text"
+                        >
+
                     </div>
 
+
                     <div class="form-group">
+
                         <label>Welcome Message</label>
-                        <textarea id="homeWelcome"></textarea>
+
+                        <textarea
+                            id="homeWelcome"
+                        ></textarea>
+
                     </div>
 
+
                     <div class="form-group">
+
                         <label>Goal</label>
-                        <textarea id="homeGoal"></textarea>
+
+                        <textarea
+                            id="homeGoal"
+                        ></textarea>
+
                     </div>
 
+
                     <div class="form-group">
+
                         <label>About</label>
-                        <textarea id="homeAbout"></textarea>
+
+                        <textarea
+                            id="homeAbout"
+                        ></textarea>
+
                     </div>
 
+
                     <div class="form-group">
+
                         <label>Last Updated</label>
-                        <input id="homeUpdated" type="text">
+
+                        <input
+                            id="homeUpdated"
+                            type="text"
+                        >
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -675,43 +774,54 @@ body {
 
             <!-- ================= GALLERY ================= -->
 
-            <section id="gallery" class="section">
+            <section
+                id="gallery"
+                class="section"
+            >
 
                 <div class="section-title">
+
                     <h2>Gallery Manager</h2>
-                    <p>Add and manage pictures displayed on your website.</p>
+
+                    <p>
+                        Add and manage pictures displayed
+                        on your website.
+                    </p>
+
                 </div>
 
 
                 <div class="notice">
 
-                    <strong>No Firebase Storage required.</strong>
-
-                    Add images by entering their path, for example:
-
-                    <br><br>
-
-                    <strong>images/IMG_20250802_093252.jpg</strong>
+                    <strong>
+                        No Firebase Storage required.
+                    </strong>
 
                     <br><br>
 
-                    The image must already exist in your website's
+                    Choose an image that already exists
+                    in your website's
                     <strong>images</strong> folder.
+
+                    <br><br>
+
+                    Your gallery information is saved
+                    through Firebase Realtime Database.
 
                 </div>
 
 
                 <div class="warning">
 
-                    If you add a picture using a file picker below, it will
-                    only be previewed on this computer. It will NOT upload
-                    the image to GitHub or Firebase.
+                    New image files still need to be placed
+                    inside your GitHub
+                    <strong>images</strong> folder.
 
                     <br><br>
 
-                    To permanently use the image, place it inside the
-                    GitHub <strong>images</strong> folder first, then enter
-                    its path here.
+                    The selector below lets you choose from
+                    the images currently configured in this
+                    dashboard.
 
                 </div>
 
@@ -724,9 +834,12 @@ body {
 
                     <br>
 
+
                     <div class="form-group">
 
-                        <label>Image Title</label>
+                        <label>
+                            Image Title
+                        </label>
 
                         <input
                             id="galleryTitle"
@@ -737,9 +850,69 @@ body {
                     </div>
 
 
+                    <!-- IMAGE SELECTOR -->
+
                     <div class="form-group">
 
-                        <label>Image Path / URL</label>
+                        <label>
+                            Choose Existing Website Image
+                        </label>
+
+                        <select
+                            id="gallerySelector"
+                            onchange="selectGalleryImage()"
+                        >
+
+                            <option value="">
+                                -- Select an image --
+                            </option>
+
+                            <option value="images/IMG_20250802_093252.jpg">
+                                IMG_20250802_093252.jpg
+                            </option>
+
+                            <option value="images/IMG_20250802_093305.jpg">
+                                IMG_20250802_093305.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_48_08_Pro.jpg">
+                                WIN_20260814_16_48_08_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_48_27_Pro.jpg">
+                                WIN_20260814_16_48_27_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_48_35_Pro.jpg">
+                                WIN_20260814_16_48_35_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_48_39_Pro.jpg">
+                                WIN_20260814_16_48_39_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_49_03_Pro.jpg">
+                                WIN_20260814_16_49_03_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_49_16_Pro.jpg">
+                                WIN_20260814_16_49_16_Pro.jpg
+                            </option>
+
+                            <option value="images/WIN_20260814_16_49_28_Pro.jpg">
+                                WIN_20260814_16_49_28_Pro.jpg
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Image Path / URL
+                        </label>
 
                         <input
                             id="galleryFile"
@@ -754,7 +927,7 @@ body {
                     <div class="form-group">
 
                         <label>
-                            Or choose an image for a temporary preview
+                            Temporary Local Preview
                         </label>
 
                         <input
@@ -770,13 +943,15 @@ body {
                     <img
                         id="galleryPreview"
                         class="gallery-preview"
-                        alt="Preview"
+                        alt="Gallery Preview"
                     >
 
 
                     <div class="form-group">
 
-                        <label>Description</label>
+                        <label>
+                            Description
+                        </label>
 
                         <textarea
                             id="galleryDescription"
@@ -793,6 +968,7 @@ body {
                         Save Image
                     </button>
 
+
                     <button
                         class="btn btn-secondary"
                         onclick="cancelGalleryEdit()"
@@ -805,7 +981,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Gallery Images</h2>
+                    <h2>
+                        Gallery Images
+                    </h2>
 
                     <br>
 
@@ -820,25 +998,51 @@ body {
 
             <!-- ================= ACHIEVEMENTS ================= -->
 
-            <section id="achievements" class="section">
+            <section
+                id="achievements"
+                class="section"
+            >
 
                 <div class="section-title">
-                    <h2>Achievements Manager</h2>
-                    <p>Manage your achievements.</p>
+
+                    <h2>
+                        Achievements Manager
+                    </h2>
+
+                    <p>
+                        Manage your achievements.
+                    </p>
+
                 </div>
 
 
                 <div class="card">
 
                     <div class="form-group">
-                        <label>Achievement Title</label>
-                        <input id="achievementTitle">
+
+                        <label>
+                            Achievement Title
+                        </label>
+
+                        <input
+                            id="achievementTitle"
+                        >
+
                     </div>
 
+
                     <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="achievementDescription"></textarea>
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="achievementDescription"
+                        ></textarea>
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -846,6 +1050,7 @@ body {
                     >
                         Save Achievement
                     </button>
+
 
                     <button
                         class="btn btn-secondary"
@@ -859,7 +1064,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Achievements</h2>
+                    <h2>
+                        Achievements
+                    </h2>
 
                     <br>
 
@@ -874,33 +1081,65 @@ body {
 
             <!-- ================= PROJECTS ================= -->
 
-            <section id="projects" class="section">
+            <section
+                id="projects"
+                class="section"
+            >
 
                 <div class="section-title">
-                    <h2>Projects Manager</h2>
-                    <p>Manage your projects.</p>
+
+                    <h2>
+                        Projects Manager
+                    </h2>
+
+                    <p>
+                        Manage your projects.
+                    </p>
+
                 </div>
 
 
                 <div class="card">
 
                     <div class="form-group">
-                        <label>Project Title</label>
-                        <input id="projectTitle">
+
+                        <label>
+                            Project Title
+                        </label>
+
+                        <input
+                            id="projectTitle"
+                        >
+
                     </div>
 
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="projectDescription"></textarea>
-                    </div>
 
                     <div class="form-group">
-                        <label>Project Link</label>
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="projectDescription"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Project Link
+                        </label>
+
                         <input
                             id="projectLink"
                             placeholder="https://..."
                         >
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -908,6 +1147,7 @@ body {
                     >
                         Save Project
                     </button>
+
 
                     <button
                         class="btn btn-secondary"
@@ -921,7 +1161,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Projects</h2>
+                    <h2>
+                        Projects
+                    </h2>
 
                     <br>
 
@@ -936,25 +1178,51 @@ body {
 
             <!-- ================= HOBBIES ================= -->
 
-            <section id="hobbies" class="section">
+            <section
+                id="hobbies"
+                class="section"
+            >
 
                 <div class="section-title">
-                    <h2>Hobbies Manager</h2>
-                    <p>Manage your hobbies.</p>
+
+                    <h2>
+                        Hobbies Manager
+                    </h2>
+
+                    <p>
+                        Manage your hobbies.
+                    </p>
+
                 </div>
 
 
                 <div class="card">
 
                     <div class="form-group">
-                        <label>Hobby Title</label>
-                        <input id="hobbyTitle">
+
+                        <label>
+                            Hobby Title
+                        </label>
+
+                        <input
+                            id="hobbyTitle"
+                        >
+
                     </div>
 
+
                     <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="hobbyDescription"></textarea>
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="hobbyDescription"
+                        ></textarea>
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -962,6 +1230,7 @@ body {
                     >
                         Save Hobby
                     </button>
+
 
                     <button
                         class="btn btn-secondary"
@@ -975,7 +1244,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Hobbies</h2>
+                    <h2>
+                        Hobbies
+                    </h2>
 
                     <br>
 
@@ -990,25 +1261,51 @@ body {
 
             <!-- ================= SKILLS ================= -->
 
-            <section id="skills" class="section">
+            <section
+                id="skills"
+                class="section"
+            >
 
                 <div class="section-title">
-                    <h2>Skills Manager</h2>
-                    <p>Manage your skills.</p>
+
+                    <h2>
+                        Skills Manager
+                    </h2>
+
+                    <p>
+                        Manage your skills.
+                    </p>
+
                 </div>
 
 
                 <div class="card">
 
                     <div class="form-group">
-                        <label>Skill Title</label>
-                        <input id="skillTitle">
+
+                        <label>
+                            Skill Title
+                        </label>
+
+                        <input
+                            id="skillTitle"
+                        >
+
                     </div>
 
+
                     <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="skillDescription"></textarea>
+
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea
+                            id="skillDescription"
+                        ></textarea>
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -1016,6 +1313,7 @@ body {
                     >
                         Save Skill
                     </button>
+
 
                     <button
                         class="btn btn-secondary"
@@ -1029,7 +1327,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Skills</h2>
+                    <h2>
+                        Skills
+                    </h2>
 
                     <br>
 
@@ -1044,15 +1344,20 @@ body {
 
             <!-- ================= DIARY ================= -->
 
-            <section id="diary" class="section">
+            <section
+                id="diary"
+                class="section"
+            >
 
                 <div class="section-title">
 
-                    <h2>Private Diary</h2>
+                    <h2>
+                        Private Diary
+                    </h2>
 
                     <p>
-                        Your diary entries are protected by Firebase
-                        database rules.
+                        Your diary entries are protected
+                        by Firebase database rules.
                     </p>
 
                 </div>
@@ -1061,37 +1366,84 @@ body {
                 <div class="card">
 
                     <div class="form-group">
-                        <label>Date</label>
-                        <input id="diaryDate" type="date">
+
+                        <label>
+                            Date
+                        </label>
+
+                        <input
+                            id="diaryDate"
+                            type="date"
+                        >
+
                     </div>
 
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input id="diaryTitle">
-                    </div>
 
                     <div class="form-group">
-                        <label>What Happened?</label>
-                        <textarea id="diaryHappened"></textarea>
+
+                        <label>
+                            Title
+                        </label>
+
+                        <input
+                            id="diaryTitle"
+                        >
+
                     </div>
 
-                    <div class="form-group">
-                        <label>How I Felt</label>
-                        <textarea id="diaryFeelings"></textarea>
-                    </div>
 
                     <div class="form-group">
-                        <label>Notes</label>
-                        <textarea id="diaryNotes"></textarea>
+
+                        <label>
+                            What Happened?
+                        </label>
+
+                        <textarea
+                            id="diaryHappened"
+                        ></textarea>
+
                     </div>
 
+
                     <div class="form-group">
-                        <label>Photo Path / URL (optional)</label>
+
+                        <label>
+                            How I Felt
+                        </label>
+
+                        <textarea
+                            id="diaryFeelings"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Notes
+                        </label>
+
+                        <textarea
+                            id="diaryNotes"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Photo Path / URL
+                        </label>
+
                         <input
                             id="diaryPhoto"
                             placeholder="images/photo.jpg"
                         >
+
                     </div>
+
 
                     <button
                         class="btn btn-success"
@@ -1099,6 +1451,7 @@ body {
                     >
                         Save Diary Entry
                     </button>
+
 
                     <button
                         class="btn btn-secondary"
@@ -1112,7 +1465,9 @@ body {
 
                 <div class="card">
 
-                    <h2>Diary Entries</h2>
+                    <h2>
+                        Diary Entries
+                    </h2>
 
                     <br>
 
@@ -1123,7 +1478,6 @@ body {
                 </div>
 
             </section>
-
 
         </div>
 
@@ -1161,7 +1515,8 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+    apiKey:
+        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
     authDomain:
         "clinton-ncube-website.firebaseapp.com",
@@ -1187,11 +1542,14 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+    getAuth(app);
 
-const db = getDatabase(app);
+const db =
+    getDatabase(app);
 
 
 /* ================= VARIABLES ================= */
@@ -1218,15 +1576,22 @@ document
     .addEventListener("click", async () => {
 
         const email =
-            document.getElementById("loginEmail").value.trim();
+            document
+                .getElementById("loginEmail")
+                .value
+                .trim();
 
         const password =
-            document.getElementById("loginPassword").value;
+            document
+                .getElementById("loginPassword")
+                .value;
 
         const error =
-            document.getElementById("loginError");
+            document
+                .getElementById("loginError");
 
         error.textContent = "";
+
 
         if (!email || !password) {
 
@@ -1234,7 +1599,9 @@ document
                 "Please enter your email and password.";
 
             return;
+
         }
+
 
         try {
 
@@ -1258,56 +1625,64 @@ document
 
 /* ================= AUTH STATE ================= */
 
-onAuthStateChanged(auth, async user => {
+onAuthStateChanged(
+    auth,
+    async user => {
 
-    if (user) {
+        if (user) {
 
-        currentUser = user;
+            currentUser = user;
 
-        document
-            .getElementById("loginScreen")
-            .style.display = "none";
+            document
+                .getElementById("loginScreen")
+                .style.display = "none";
 
-        document
-            .getElementById("adminApp")
-            .style.display = "block";
+            document
+                .getElementById("adminApp")
+                .style.display = "block";
 
-        document
-            .getElementById("adminEmail")
-            .textContent = user.email;
+            document
+                .getElementById("adminEmail")
+                .textContent =
+                user.email;
 
-        document
-            .getElementById("dashboardEmail")
-            .textContent = user.email;
+            document
+                .getElementById("dashboardEmail")
+                .textContent =
+                user.email;
 
-        await loadEverything();
+            await loadEverything();
 
-    } else {
+        } else {
 
-        currentUser = null;
+            currentUser = null;
 
-        document
-            .getElementById("loginScreen")
-            .style.display = "flex";
+            document
+                .getElementById("loginScreen")
+                .style.display = "flex";
 
-        document
-            .getElementById("adminApp")
-            .style.display = "none";
+            document
+                .getElementById("adminApp")
+                .style.display = "none";
+
+        }
 
     }
-
-});
+);
 
 
 /* ================= LOGOUT ================= */
 
 document
     .getElementById("logoutBtn")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        await signOut(auth);
+            await signOut(auth);
 
-    });
+        }
+    );
 
 
 /* ================= NAVIGATION ================= */
@@ -1335,21 +1710,29 @@ window.showSection = function(sectionName) {
 
     const titles = {
 
-        dashboard: "Dashboard",
+        dashboard:
+            "Dashboard",
 
-        home: "Home Manager",
+        home:
+            "Home Manager",
 
-        gallery: "Gallery Manager",
+        gallery:
+            "Gallery Manager",
 
-        achievements: "Achievements Manager",
+        achievements:
+            "Achievements Manager",
 
-        projects: "Projects Manager",
+        projects:
+            "Projects Manager",
 
-        hobbies: "Hobbies Manager",
+        hobbies:
+            "Hobbies Manager",
 
-        skills: "Skills Manager",
+        skills:
+            "Skills Manager",
 
-        diary: "Private Diary"
+        diary:
+            "Private Diary"
 
     };
 
@@ -1357,7 +1740,8 @@ window.showSection = function(sectionName) {
     document
         .getElementById("pageTitle")
         .textContent =
-        titles[sectionName] || "Admin Dashboard";
+        titles[sectionName] ||
+        "Admin Dashboard";
 
 
     document
@@ -1406,24 +1790,44 @@ async function loadHome() {
     try {
 
         const snapshot =
-            await get(ref(db, "websiteData"));
+            await get(
+                ref(db, "websiteData")
+            );
 
-        const data = snapshot.val() || {};
+        const data =
+            snapshot.val() || {};
 
-        document.getElementById("homeName").value =
-            data.name || "Clinton Ncube";
 
-        document.getElementById("homeWelcome").value =
+        document
+            .getElementById("homeName")
+            .value =
+            data.name ||
+            "Clinton Ncube";
+
+
+        document
+            .getElementById("homeWelcome")
+            .value =
             data.welcome || "";
 
-        document.getElementById("homeGoal").value =
+
+        document
+            .getElementById("homeGoal")
+            .value =
             data.goal || "";
 
-        document.getElementById("homeAbout").value =
+
+        document
+            .getElementById("homeAbout")
+            .value =
             data.about || "";
 
-        document.getElementById("homeUpdated").value =
-            data.lastUpdated || "2026";
+
+        document
+            .getElementById("homeUpdated")
+            .value =
+            data.lastUpdated ||
+            "2026";
 
     } catch (error) {
 
@@ -1443,28 +1847,43 @@ window.saveHome = async function() {
             {
 
                 name:
-                    document.getElementById("homeName").value,
+                    document
+                        .getElementById("homeName")
+                        .value,
 
                 welcome:
-                    document.getElementById("homeWelcome").value,
+                    document
+                        .getElementById("homeWelcome")
+                        .value,
 
                 goal:
-                    document.getElementById("homeGoal").value,
+                    document
+                        .getElementById("homeGoal")
+                        .value,
 
                 about:
-                    document.getElementById("homeAbout").value,
+                    document
+                        .getElementById("homeAbout")
+                        .value,
 
                 lastUpdated:
-                    document.getElementById("homeUpdated").value
+                    document
+                        .getElementById("homeUpdated")
+                        .value
 
             }
         );
 
-        alert("Home information saved!");
+
+        alert(
+            "Home information saved!"
+        );
 
     } catch (error) {
 
-        alert("Could not save home information.");
+        alert(
+            "Could not save home information."
+        );
 
         console.error(error);
 
@@ -1478,12 +1897,16 @@ window.saveHome = async function() {
 async function loadGallery() {
 
     const list =
-        document.getElementById("galleryList");
+        document
+            .getElementById("galleryList");
+
 
     try {
 
         const snapshot =
-            await get(ref(db, "gallery"));
+            await get(
+                ref(db, "gallery")
+            );
 
         const data =
             snapshot.val() || {};
@@ -1491,9 +1914,11 @@ async function loadGallery() {
         const entries =
             Object.entries(data);
 
+
         document
             .getElementById("galleryCount")
-            .textContent = entries.length;
+            .textContent =
+            entries.length;
 
 
         if (!entries.length) {
@@ -1509,60 +1934,88 @@ async function loadGallery() {
         list.innerHTML = "";
 
 
-        entries.reverse().forEach(([id, item]) => {
+        entries
+            .reverse()
+            .forEach(
+                ([id, item]) => {
 
-            const div =
-                document.createElement("div");
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
 
-            div.className = "item gallery-item";
+                    div.className =
+                        "item gallery-item";
 
 
-            div.innerHTML = `
+                    div.innerHTML = `
 
-                <img
-                    src="${escapeHTML(item.file || "")}"
-                    alt="${escapeHTML(item.title || "Gallery image")}"
-                    onerror="this.style.display='none'"
-                >
-
-                <div class="gallery-info">
-
-                    <h3>
-                        ${escapeHTML(item.title || "Untitled")}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(item.description || "")}
-                    </p>
-
-                    <small>
-                        ${escapeHTML(item.file || "No image path")}
-                    </small>
-
-                    <div class="item-actions">
-
-                        <button
-                            class="btn btn-primary"
-                            onclick="editGallery('${id}')"
+                        <img
+                            src="${escapeHTML(
+                                item.file || ""
+                            )}"
+                            alt="${escapeHTML(
+                                item.title ||
+                                "Gallery image"
+                            )}"
+                            onerror="
+                                this.style.display='none'
+                            "
                         >
-                            Edit
-                        </button>
 
-                        <button
-                            class="btn btn-danger"
-                            onclick="deleteGallery('${id}')"
-                        >
-                            Delete
-                        </button>
+                        <div class="gallery-info">
 
-                    </div>
+                            <h3>
+                                ${escapeHTML(
+                                    item.title ||
+                                    "Untitled"
+                                )}
+                            </h3>
 
-                </div>
-            `;
+                            <p>
+                                ${escapeHTML(
+                                    item.description ||
+                                    ""
+                                )}
+                            </p>
 
-            list.appendChild(div);
+                            <small>
+                                ${escapeHTML(
+                                    item.file ||
+                                    "No image path"
+                                )}
+                            </small>
 
-        });
+                            <div class="item-actions">
+
+                                <button
+                                    class="btn btn-primary"
+                                    onclick="
+                                        editGallery('${id}')
+                                    "
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    class="btn btn-danger"
+                                    onclick="
+                                        deleteGallery('${id}')
+                                    "
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+                    `;
+
+
+                    list.appendChild(div);
+
+                }
+            );
 
     } catch (error) {
 
@@ -1576,25 +2029,67 @@ async function loadGallery() {
 }
 
 
+/* ================= SELECT IMAGE ================= */
+
+window.selectGalleryImage = function() {
+
+    const selector =
+        document
+            .getElementById(
+                "gallerySelector"
+            );
+
+    const selected =
+        selector.value;
+
+
+    const fileInput =
+        document
+            .getElementById(
+                "galleryFile"
+            );
+
+
+    fileInput.value =
+        selected;
+
+
+    previewGalleryURL();
+
+};
+
+
 /* ================= GALLERY PREVIEW ================= */
 
 window.previewGalleryURL = function() {
 
     const url =
-        document.getElementById("galleryFile").value.trim();
+        document
+            .getElementById(
+                "galleryFile"
+            )
+            .value
+            .trim();
+
 
     const preview =
-        document.getElementById("galleryPreview");
+        document
+            .getElementById(
+                "galleryPreview"
+            );
+
 
     if (url) {
 
         preview.src = url;
 
-        preview.style.display = "block";
+        preview.style.display =
+            "block";
 
     } else {
 
-        preview.style.display = "none";
+        preview.style.display =
+            "none";
 
     }
 
@@ -1606,21 +2101,32 @@ window.previewLocalImage = function(event) {
     const file =
         event.target.files[0];
 
+
     if (!file) return;
 
+
     const preview =
-        document.getElementById("galleryPreview");
+        document
+            .getElementById(
+                "galleryPreview"
+            );
+
 
     const reader =
         new FileReader();
 
-    reader.onload = function(e) {
 
-        preview.src = e.target.result;
+    reader.onload =
+        function(e) {
 
-        preview.style.display = "block";
+            preview.src =
+                e.target.result;
 
-    };
+            preview.style.display =
+                "block";
+
+        };
+
 
     reader.readAsDataURL(file);
 
@@ -1632,27 +2138,47 @@ window.previewLocalImage = function(event) {
 window.saveGallery = async function() {
 
     const title =
-        document.getElementById("galleryTitle").value.trim();
+        document
+            .getElementById(
+                "galleryTitle"
+            )
+            .value
+            .trim();
+
 
     const file =
-        document.getElementById("galleryFile").value.trim();
+        document
+            .getElementById(
+                "galleryFile"
+            )
+            .value
+            .trim();
+
 
     const description =
-        document.getElementById("galleryDescription").value.trim();
+        document
+            .getElementById(
+                "galleryDescription"
+            )
+            .value
+            .trim();
 
 
     if (!title) {
 
-        alert("Please enter an image title.");
+        alert(
+            "Please enter an image title."
+        );
 
         return;
 
     }
 
+
     if (!file) {
 
         alert(
-            "Please enter the image path or URL."
+            "Please choose an image or enter an image path."
         );
 
         return;
@@ -1662,12 +2188,17 @@ window.saveGallery = async function() {
 
     try {
 
-        let id = editingGalleryId;
+        let id =
+            editingGalleryId;
+
 
         if (id) {
 
             await set(
-                ref(db, "gallery/" + id),
+                ref(
+                    db,
+                    "gallery/" + id
+                ),
                 {
                     title,
                     file,
@@ -1675,12 +2206,18 @@ window.saveGallery = async function() {
                 }
             );
 
-            alert("Gallery image updated!");
+
+            alert(
+                "Gallery image updated!"
+            );
 
         } else {
 
             const newRef =
-                push(ref(db, "gallery"));
+                push(
+                    ref(db, "gallery")
+                );
+
 
             await set(
                 newRef,
@@ -1691,7 +2228,10 @@ window.saveGallery = async function() {
                 }
             );
 
-            alert("Gallery image added!");
+
+            alert(
+                "Gallery image added!"
+            );
 
         }
 
@@ -1702,7 +2242,9 @@ window.saveGallery = async function() {
 
     } catch (error) {
 
-        alert("Could not save gallery image.");
+        alert(
+            "Could not save gallery image."
+        );
 
         console.error(error);
 
@@ -1719,39 +2261,69 @@ window.editGallery = async function(id) {
 
         const snapshot =
             await get(
-                ref(db, "gallery/" + id)
+                ref(
+                    db,
+                    "gallery/" + id
+                )
             );
+
 
         const item =
             snapshot.val();
 
+
         if (!item) return;
 
-        editingGalleryId = id;
+
+        editingGalleryId =
+            id;
+
 
         document
-            .getElementById("galleryFormTitle")
+            .getElementById(
+                "galleryFormTitle"
+            )
             .textContent =
             "Edit Gallery Image";
 
+
         document
-            .getElementById("galleryTitle")
+            .getElementById(
+                "galleryTitle"
+            )
             .value =
             item.title || "";
 
+
         document
-            .getElementById("galleryFile")
+            .getElementById(
+                "galleryFile"
+            )
             .value =
             item.file || "";
 
+
         document
-            .getElementById("galleryDescription")
+            .getElementById(
+                "galleryDescription"
+            )
             .value =
             item.description || "";
 
+
+        document
+            .getElementById(
+                "gallerySelector"
+            )
+            .value =
+            item.file || "";
+
+
         previewGalleryURL();
 
+
         showSection("gallery");
+
 
         window.scrollTo({
             top: 0,
@@ -1771,9 +2343,11 @@ window.editGallery = async function(id) {
 
 window.deleteGallery = async function(id) {
 
-    if (!confirm(
-        "Are you sure you want to delete this gallery item?"
-    )) {
+    if (
+        !confirm(
+            "Are you sure you want to delete this gallery item?"
+        )
+    ) {
 
         return;
 
@@ -1783,16 +2357,25 @@ window.deleteGallery = async function(id) {
     try {
 
         await remove(
-            ref(db, "gallery/" + id)
+            ref(
+                db,
+                "gallery/" + id
+            )
         );
 
-        alert("Gallery image deleted!");
+
+        alert(
+            "Gallery image deleted!"
+        );
+
 
         await loadGallery();
 
     } catch (error) {
 
-        alert("Could not delete gallery image.");
+        alert(
+            "Could not delete gallery image."
+        );
 
         console.error(error);
 
@@ -1807,30 +2390,56 @@ window.cancelGalleryEdit = function() {
 
     editingGalleryId = null;
 
+
     document
-        .getElementById("galleryFormTitle")
+        .getElementById(
+            "galleryFormTitle"
+        )
         .textContent =
         "Add Gallery Image";
 
-    document
-        .getElementById("galleryTitle")
-        .value = "";
 
     document
-        .getElementById("galleryFile")
+        .getElementById(
+            "galleryTitle"
+        )
         .value = "";
 
-    document
-        .getElementById("galleryDescription")
-        .value = "";
 
     document
-        .getElementById("localGalleryImage")
+        .getElementById(
+            "galleryFile"
+        )
         .value = "";
 
+
     document
-        .getElementById("galleryPreview")
-        .style.display = "none";
+        .getElementById(
+            "galleryDescription"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "gallerySelector"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "localGalleryImage"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "galleryPreview"
+        )
+        .style.display =
+        "none";
 
 };
 
@@ -1840,22 +2449,34 @@ window.cancelGalleryEdit = function() {
 async function loadAchievements() {
 
     const list =
-        document.getElementById("achievementList");
+        document
+            .getElementById(
+                "achievementList"
+            );
+
 
     try {
 
         const snapshot =
-            await get(ref(db, "achievements"));
+            await get(
+                ref(db, "achievements")
+            );
+
 
         const data =
             snapshot.val() || {};
 
+
         const entries =
             Object.entries(data);
 
+
         document
-            .getElementById("achievementCount")
-            .textContent = entries.length;
+            .getElementById(
+                "achievementCount"
+            )
+            .textContent =
+            entries.length;
 
 
         if (!entries.length) {
@@ -1871,41 +2492,60 @@ async function loadAchievements() {
         list.innerHTML = "";
 
 
-        entries.forEach(([id, item]) => {
+        entries.forEach(
+            ([id, item]) => {
 
-            const div =
-                document.createElement("div");
+                const div =
+                    document.createElement(
+                        "div"
+                    );
 
-            div.className = "item";
 
-            div.innerHTML = `
+                div.className =
+                    "item";
 
-                <h3>
-                    ${escapeHTML(item.title || "Untitled")}
-                </h3>
 
-                <p>
-                    ${escapeHTML(item.description || "")}
-                </p>
+                div.innerHTML = `
 
-                <button
-                    class="btn btn-primary"
-                    onclick="editAchievement('${id}')"
-                >
-                    Edit
-                </button>
+                    <h3>
+                        ${escapeHTML(
+                            item.title ||
+                            "Untitled"
+                        )}
+                    </h3>
 
-                <button
-                    class="btn btn-danger"
-                    onclick="deleteAchievement('${id}')"
-                >
-                    Delete
-                </button>
-            `;
+                    <p>
+                        ${escapeHTML(
+                            item.description ||
+                            ""
+                        )}
+                    </p>
 
-            list.appendChild(div);
+                    <button
+                        class="btn btn-primary"
+                        onclick="
+                            editAchievement('${id}')
+                        "
+                    >
+                        Edit
+                    </button>
 
-        });
+                    <button
+                        class="btn btn-danger"
+                        onclick="
+                            deleteAchievement('${id}')
+                        "
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            }
+        );
 
     } catch (error) {
 
@@ -1916,24 +2556,32 @@ async function loadAchievements() {
 }
 
 
-window.saveAchievement = async function() {
+window.saveAchievement =
+async function() {
 
     const title =
         document
-            .getElementById("achievementTitle")
+            .getElementById(
+                "achievementTitle"
+            )
             .value
             .trim();
 
+
     const description =
         document
-            .getElementById("achievementDescription")
+            .getElementById(
+                "achievementDescription"
+            )
             .value
             .trim();
 
 
     if (!title) {
 
-        alert("Please enter an achievement title.");
+        alert(
+            "Please enter an achievement title."
+        );
 
         return;
 
@@ -1959,7 +2607,10 @@ window.saveAchievement = async function() {
         } else {
 
             const newRef =
-                push(ref(db, "achievements"));
+                push(
+                    ref(db, "achievements")
+                );
+
 
             await set(
                 newRef,
@@ -1972,7 +2623,10 @@ window.saveAchievement = async function() {
         }
 
 
-        alert("Achievement saved!");
+        alert(
+            "Achievement saved!"
+        );
+
 
         clearAchievementForm();
 
@@ -1980,7 +2634,9 @@ window.saveAchievement = async function() {
 
     } catch (error) {
 
-        alert("Could not save achievement.");
+        alert(
+            "Could not save achievement."
+        );
 
         console.error(error);
 
@@ -1989,58 +2645,93 @@ window.saveAchievement = async function() {
 };
 
 
-window.editAchievement = async function(id) {
+window.editAchievement =
+async function(id) {
 
     const snapshot =
         await get(
-            ref(db, "achievements/" + id)
+            ref(
+                db,
+                "achievements/" + id
+            )
         );
+
 
     const item =
         snapshot.val();
 
+
     if (!item) return;
 
-    editingAchievementId = id;
+
+    editingAchievementId =
+        id;
+
 
     document
-        .getElementById("achievementTitle")
+        .getElementById(
+            "achievementTitle"
+        )
         .value =
         item.title || "";
 
+
     document
-        .getElementById("achievementDescription")
+        .getElementById(
+            "achievementDescription"
+        )
         .value =
         item.description || "";
 
-    showSection("achievements");
+
+    showSection(
+        "achievements"
+    );
 
 };
 
 
-window.deleteAchievement = async function(id) {
+window.deleteAchievement =
+async function(id) {
 
-    if (!confirm("Delete this achievement?")) return;
+    if (
+        !confirm(
+            "Delete this achievement?"
+        )
+    ) return;
+
 
     await remove(
-        ref(db, "achievements/" + id)
+        ref(
+            db,
+            "achievements/" + id
+        )
     );
+
 
     await loadAchievements();
 
 };
 
 
-window.clearAchievementForm = function() {
+window.clearAchievementForm =
+function() {
 
-    editingAchievementId = null;
+    editingAchievementId =
+        null;
+
 
     document
-        .getElementById("achievementTitle")
+        .getElementById(
+            "achievementTitle"
+        )
         .value = "";
 
+
     document
-        .getElementById("achievementDescription")
+        .getElementById(
+            "achievementDescription"
+        )
         .value = "";
 
 };
@@ -2051,108 +2742,165 @@ window.clearAchievementForm = function() {
 async function loadProjects() {
 
     const list =
-        document.getElementById("projectList");
-
-    const snapshot =
-        await get(ref(db, "projects"));
-
-    const data =
-        snapshot.val() || {};
-
-    const entries =
-        Object.entries(data);
-
-    document
-        .getElementById("projectCount")
-        .textContent = entries.length;
+        document
+            .getElementById(
+                "projectList"
+            );
 
 
-    if (!entries.length) {
+    try {
 
-        list.innerHTML =
-            "<p>No projects yet.</p>";
+        const snapshot =
+            await get(
+                ref(db, "projects")
+            );
 
-        return;
+
+        const data =
+            snapshot.val() || {};
+
+
+        const entries =
+            Object.entries(data);
+
+
+        document
+            .getElementById(
+                "projectCount"
+            )
+            .textContent =
+            entries.length;
+
+
+        if (!entries.length) {
+
+            list.innerHTML =
+                "<p>No projects yet.</p>";
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        entries.forEach(
+            ([id, item]) => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "item";
+
+
+                div.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            item.title ||
+                            "Untitled"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            item.description ||
+                            ""
+                        )}
+                    </p>
+
+                    ${
+                        item.link
+                        ?
+                        `<p>
+                            <a
+                                href="${escapeHTML(
+                                    item.link
+                                )}"
+                                target="_blank"
+                            >
+                                View Project
+                            </a>
+                        </p>`
+                        :
+                        ""
+                    }
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="
+                            editProject('${id}')
+                        "
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="
+                            deleteProject('${id}')
+                        "
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
 
     }
-
-
-    list.innerHTML = "";
-
-
-    entries.forEach(([id, item]) => {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
-
-            <h3>
-                ${escapeHTML(item.title || "Untitled")}
-            </h3>
-
-            <p>
-                ${escapeHTML(item.description || "")}
-            </p>
-
-            ${
-                item.link
-                ?
-                `<p>
-                    <a
-                        href="${escapeHTML(item.link)}"
-                        target="_blank"
-                    >
-                        View Project
-                    </a>
-                </p>`
-                :
-                ""
-            }
-
-            <button
-                class="btn btn-primary"
-                onclick="editProject('${id}')"
-            >
-                Edit
-            </button>
-
-            <button
-                class="btn btn-danger"
-                onclick="deleteProject('${id}')"
-            >
-                Delete
-            </button>
-
-        `;
-
-        list.appendChild(div);
-
-    });
 
 }
 
 
-window.saveProject = async function() {
+window.saveProject =
+async function() {
 
     const title =
-        document.getElementById("projectTitle")
-        .value.trim();
+        document
+            .getElementById(
+                "projectTitle"
+            )
+            .value
+            .trim();
+
 
     const description =
-        document.getElementById("projectDescription")
-        .value.trim();
+        document
+            .getElementById(
+                "projectDescription"
+            )
+            .value
+            .trim();
+
 
     const link =
-        document.getElementById("projectLink")
-        .value.trim();
+        document
+            .getElementById(
+                "projectLink"
+            )
+            .value
+            .trim();
 
 
     if (!title) {
 
-        alert("Please enter a project title.");
+        alert(
+            "Please enter a project title."
+        );
 
         return;
 
@@ -2180,14 +2928,19 @@ window.saveProject = async function() {
     } else {
 
         await set(
-            push(ref(db, "projects")),
+            push(
+                ref(db, "projects")
+            ),
             data
         );
 
     }
 
 
-    alert("Project saved!");
+    alert(
+        "Project saved!"
+    );
+
 
     clearProjectForm();
 
@@ -2196,67 +2949,108 @@ window.saveProject = async function() {
 };
 
 
-window.editProject = async function(id) {
+window.editProject =
+async function(id) {
 
     const snapshot =
         await get(
-            ref(db, "projects/" + id)
+            ref(
+                db,
+                "projects/" + id
+            )
         );
+
 
     const item =
         snapshot.val();
 
+
     if (!item) return;
 
-    editingProjectId = id;
+
+    editingProjectId =
+        id;
+
 
     document
-        .getElementById("projectTitle")
+        .getElementById(
+            "projectTitle"
+        )
         .value =
         item.title || "";
 
+
     document
-        .getElementById("projectDescription")
+        .getElementById(
+            "projectDescription"
+        )
         .value =
         item.description || "";
 
+
     document
-        .getElementById("projectLink")
+        .getElementById(
+            "projectLink"
+        )
         .value =
         item.link || "";
 
-    showSection("projects");
+
+    showSection(
+        "projects"
+    );
 
 };
 
 
-window.deleteProject = async function(id) {
+window.deleteProject =
+async function(id) {
 
-    if (!confirm("Delete this project?")) return;
+    if (
+        !confirm(
+            "Delete this project?"
+        )
+    ) return;
+
 
     await remove(
-        ref(db, "projects/" + id)
+        ref(
+            db,
+            "projects/" + id
+        )
     );
+
 
     await loadProjects();
 
 };
 
 
-window.clearProjectForm = function() {
+window.clearProjectForm =
+function() {
 
-    editingProjectId = null;
+    editingProjectId =
+        null;
+
 
     document
-        .getElementById("projectTitle")
+        .getElementById(
+            "projectTitle"
+        )
         .value = "";
 
-    document
-        .getElementById("projectDescription")
-        .value = "";
 
     document
-        .getElementById("projectLink")
+        .getElementById(
+            "projectDescription"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "projectLink"
+        )
         .value = "";
 
 };
@@ -2267,89 +3061,139 @@ window.clearProjectForm = function() {
 async function loadHobbies() {
 
     const list =
-        document.getElementById("hobbyList");
-
-    const snapshot =
-        await get(ref(db, "hobbies"));
-
-    const data =
-        snapshot.val() || {};
-
-    const entries =
-        Object.entries(data);
-
-    document
-        .getElementById("hobbyCount")
-        .textContent = entries.length;
+        document
+            .getElementById(
+                "hobbyList"
+            );
 
 
-    if (!entries.length) {
+    try {
 
-        list.innerHTML =
-            "<p>No hobbies yet.</p>";
+        const snapshot =
+            await get(
+                ref(db, "hobbies")
+            );
 
-        return;
+
+        const data =
+            snapshot.val() || {};
+
+
+        const entries =
+            Object.entries(data);
+
+
+        document
+            .getElementById(
+                "hobbyCount"
+            )
+            .textContent =
+            entries.length;
+
+
+        if (!entries.length) {
+
+            list.innerHTML =
+                "<p>No hobbies yet.</p>";
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        entries.forEach(
+            ([id, item]) => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "item";
+
+
+                div.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            item.title ||
+                            "Untitled"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            item.description ||
+                            ""
+                        )}
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="
+                            editHobby('${id}')
+                        "
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="
+                            deleteHobby('${id}')
+                        "
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
 
     }
-
-
-    list.innerHTML = "";
-
-
-    entries.forEach(([id, item]) => {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
-
-            <h3>
-                ${escapeHTML(item.title || "Untitled")}
-            </h3>
-
-            <p>
-                ${escapeHTML(item.description || "")}
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="editHobby('${id}')"
-            >
-                Edit
-            </button>
-
-            <button
-                class="btn btn-danger"
-                onclick="deleteHobby('${id}')"
-            >
-                Delete
-            </button>
-
-        `;
-
-        list.appendChild(div);
-
-    });
 
 }
 
 
-window.saveHobby = async function() {
+window.saveHobby =
+async function() {
 
     const title =
-        document.getElementById("hobbyTitle")
-        .value.trim();
+        document
+            .getElementById(
+                "hobbyTitle"
+            )
+            .value
+            .trim();
+
 
     const description =
-        document.getElementById("hobbyDescription")
-        .value.trim();
+        document
+            .getElementById(
+                "hobbyDescription"
+            )
+            .value
+            .trim();
 
 
     if (!title) {
 
-        alert("Please enter a hobby title.");
+        alert(
+            "Please enter a hobby title."
+        );
 
         return;
 
@@ -2376,14 +3220,19 @@ window.saveHobby = async function() {
     } else {
 
         await set(
-            push(ref(db, "hobbies")),
+            push(
+                ref(db, "hobbies")
+            ),
             data
         );
 
     }
 
 
-    alert("Hobby saved!");
+    alert(
+        "Hobby saved!"
+    );
+
 
     clearHobbyForm();
 
@@ -2392,58 +3241,93 @@ window.saveHobby = async function() {
 };
 
 
-window.editHobby = async function(id) {
+window.editHobby =
+async function(id) {
 
     const snapshot =
         await get(
-            ref(db, "hobbies/" + id)
+            ref(
+                db,
+                "hobbies/" + id
+            )
         );
+
 
     const item =
         snapshot.val();
 
+
     if (!item) return;
 
-    editingHobbyId = id;
+
+    editingHobbyId =
+        id;
+
 
     document
-        .getElementById("hobbyTitle")
+        .getElementById(
+            "hobbyTitle"
+        )
         .value =
         item.title || "";
 
+
     document
-        .getElementById("hobbyDescription")
+        .getElementById(
+            "hobbyDescription"
+        )
         .value =
         item.description || "";
 
-    showSection("hobbies");
+
+    showSection(
+        "hobbies"
+    );
 
 };
 
 
-window.deleteHobby = async function(id) {
+window.deleteHobby =
+async function(id) {
 
-    if (!confirm("Delete this hobby?")) return;
+    if (
+        !confirm(
+            "Delete this hobby?"
+        )
+    ) return;
+
 
     await remove(
-        ref(db, "hobbies/" + id)
+        ref(
+            db,
+            "hobbies/" + id
+        )
     );
+
 
     await loadHobbies();
 
 };
 
 
-window.clearHobbyForm = function() {
+window.clearHobbyForm =
+function() {
 
-    editingHobbyId = null;
+    editingHobbyId =
+        null;
+
 
     document
-        .getElementById("hobbyTitle")
+        .getElementById(
+            "hobbyTitle"
+        )
         .value = "";
 
+
     document
-        .getElementById("hobbyDescription")
+        .getElementById(
+            "hobbyDescription"
+        )
         .value = "";
 
 };
@@ -2454,89 +3338,139 @@ window.clearHobbyForm = function() {
 async function loadSkills() {
 
     const list =
-        document.getElementById("skillList");
-
-    const snapshot =
-        await get(ref(db, "skills"));
-
-    const data =
-        snapshot.val() || {};
-
-    const entries =
-        Object.entries(data);
-
-    document
-        .getElementById("skillCount")
-        .textContent = entries.length;
+        document
+            .getElementById(
+                "skillList"
+            );
 
 
-    if (!entries.length) {
+    try {
 
-        list.innerHTML =
-            "<p>No skills yet.</p>";
+        const snapshot =
+            await get(
+                ref(db, "skills")
+            );
 
-        return;
+
+        const data =
+            snapshot.val() || {};
+
+
+        const entries =
+            Object.entries(data);
+
+
+        document
+            .getElementById(
+                "skillCount"
+            )
+            .textContent =
+            entries.length;
+
+
+        if (!entries.length) {
+
+            list.innerHTML =
+                "<p>No skills yet.</p>";
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        entries.forEach(
+            ([id, item]) => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "item";
+
+
+                div.innerHTML = `
+
+                    <h3>
+                        ${escapeHTML(
+                            item.title ||
+                            "Untitled"
+                        )}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(
+                            item.description ||
+                            ""
+                        )}
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="
+                            editSkill('${id}')
+                        "
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="
+                            deleteSkill('${id}')
+                        "
+                    >
+                        Delete
+                    </button>
+
+                `;
+
+
+                list.appendChild(div);
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
 
     }
-
-
-    list.innerHTML = "";
-
-
-    entries.forEach(([id, item]) => {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
-
-            <h3>
-                ${escapeHTML(item.title || "Untitled")}
-            </h3>
-
-            <p>
-                ${escapeHTML(item.description || "")}
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="editSkill('${id}')"
-            >
-                Edit
-            </button>
-
-            <button
-                class="btn btn-danger"
-                onclick="deleteSkill('${id}')"
-            >
-                Delete
-            </button>
-
-        `;
-
-        list.appendChild(div);
-
-    });
 
 }
 
 
-window.saveSkill = async function() {
+window.saveSkill =
+async function() {
 
     const title =
-        document.getElementById("skillTitle")
-        .value.trim();
+        document
+            .getElementById(
+                "skillTitle"
+            )
+            .value
+            .trim();
+
 
     const description =
-        document.getElementById("skillDescription")
-        .value.trim();
+        document
+            .getElementById(
+                "skillDescription"
+            )
+            .value
+            .trim();
 
 
     if (!title) {
 
-        alert("Please enter a skill title.");
+        alert(
+            "Please enter a skill title."
+        );
 
         return;
 
@@ -2563,14 +3497,19 @@ window.saveSkill = async function() {
     } else {
 
         await set(
-            push(ref(db, "skills")),
+            push(
+                ref(db, "skills")
+            ),
             data
         );
 
     }
 
 
-    alert("Skill saved!");
+    alert(
+        "Skill saved!"
+    );
+
 
     clearSkillForm();
 
@@ -2579,58 +3518,93 @@ window.saveSkill = async function() {
 };
 
 
-window.editSkill = async function(id) {
+window.editSkill =
+async function(id) {
 
     const snapshot =
         await get(
-            ref(db, "skills/" + id)
+            ref(
+                db,
+                "skills/" + id
+            )
         );
+
 
     const item =
         snapshot.val();
 
+
     if (!item) return;
 
-    editingSkillId = id;
+
+    editingSkillId =
+        id;
+
 
     document
-        .getElementById("skillTitle")
+        .getElementById(
+            "skillTitle"
+        )
         .value =
         item.title || "";
 
+
     document
-        .getElementById("skillDescription")
+        .getElementById(
+            "skillDescription"
+        )
         .value =
         item.description || "";
 
-    showSection("skills");
+
+    showSection(
+        "skills"
+    );
 
 };
 
 
-window.deleteSkill = async function(id) {
+window.deleteSkill =
+async function(id) {
 
-    if (!confirm("Delete this skill?")) return;
+    if (
+        !confirm(
+            "Delete this skill?"
+        )
+    ) return;
+
 
     await remove(
-        ref(db, "skills/" + id)
+        ref(
+            db,
+            "skills/" + id
+        )
     );
+
 
     await loadSkills();
 
 };
 
 
-window.clearSkillForm = function() {
+window.clearSkillForm =
+function() {
 
-    editingSkillId = null;
+    editingSkillId =
+        null;
+
 
     document
-        .getElementById("skillTitle")
+        .getElementById(
+            "skillTitle"
+        )
         .value = "";
 
+
     document
-        .getElementById("skillDescription")
+        .getElementById(
+            "skillDescription"
+        )
         .value = "";
 
 };
@@ -2641,15 +3615,23 @@ window.clearSkillForm = function() {
 async function loadDiary() {
 
     const list =
-        document.getElementById("diaryList");
+        document
+            .getElementById(
+                "diaryList"
+            );
+
 
     try {
 
         const snapshot =
-            await get(ref(db, "diary"));
+            await get(
+                ref(db, "diary")
+            );
+
 
         const data =
             snapshot.val() || {};
+
 
         const entries =
             Object.entries(data);
@@ -2668,56 +3650,99 @@ async function loadDiary() {
         list.innerHTML = "";
 
 
-        entries.reverse().forEach(([id, item]) => {
+        entries
+            .reverse()
+            .forEach(
+                ([id, item]) => {
 
-            const div =
-                document.createElement("div");
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
 
-            div.className = "item";
 
-            div.innerHTML = `
+                    div.className =
+                        "item";
 
-                <h3>
-                    ${escapeHTML(item.title || "Untitled")}
-                </h3>
 
-                <small>
-                    ${escapeHTML(item.date || "")}
-                </small>
+                    div.innerHTML = `
 
-                <p>
-                    ${escapeHTML(item.happened || "")}
-                </p>
+                        <h3>
+                            ${escapeHTML(
+                                item.title ||
+                                "Untitled"
+                            )}
+                        </h3>
 
-                <p>
-                    <strong>Feelings:</strong><br>
-                    ${escapeHTML(item.feelings || "")}
-                </p>
+                        <small>
+                            ${escapeHTML(
+                                item.date ||
+                                ""
+                            )}
+                        </small>
 
-                <p>
-                    <strong>Notes:</strong><br>
-                    ${escapeHTML(item.notes || "")}
-                </p>
+                        <p>
+                            ${escapeHTML(
+                                item.happened ||
+                                ""
+                            )}
+                        </p>
 
-                <button
-                    class="btn btn-primary"
-                    onclick="editDiary('${id}')"
-                >
-                    Edit
-                </button>
+                        <p>
 
-                <button
-                    class="btn btn-danger"
-                    onclick="deleteDiary('${id}')"
-                >
-                    Delete
-                </button>
+                            <strong>
+                                Feelings:
+                            </strong>
 
-            `;
+                            <br>
 
-            list.appendChild(div);
+                            ${escapeHTML(
+                                item.feelings ||
+                                ""
+                            )}
 
-        });
+                        </p>
+
+                        <p>
+
+                            <strong>
+                                Notes:
+                            </strong>
+
+                            <br>
+
+                            ${escapeHTML(
+                                item.notes ||
+                                ""
+                            )}
+
+                        </p>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="
+                                editDiary('${id}')
+                            "
+                        >
+                            Edit
+                        </button>
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="
+                                deleteDiary('${id}')
+                            "
+                        >
+                            Delete
+                        </button>
+
+                    `;
+
+
+                    list.appendChild(div);
+
+                }
+            );
 
     } catch (error) {
 
@@ -2731,34 +3756,66 @@ async function loadDiary() {
 }
 
 
-window.saveDiary = async function() {
+window.saveDiary =
+async function() {
 
     const data = {
 
         date:
-            document.getElementById("diaryDate").value,
+            document
+                .getElementById(
+                    "diaryDate"
+                )
+                .value,
 
         title:
-            document.getElementById("diaryTitle").value.trim(),
+            document
+                .getElementById(
+                    "diaryTitle"
+                )
+                .value
+                .trim(),
 
         happened:
-            document.getElementById("diaryHappened").value.trim(),
+            document
+                .getElementById(
+                    "diaryHappened"
+                )
+                .value
+                .trim(),
 
         feelings:
-            document.getElementById("diaryFeelings").value.trim(),
+            document
+                .getElementById(
+                    "diaryFeelings"
+                )
+                .value
+                .trim(),
 
         notes:
-            document.getElementById("diaryNotes").value.trim(),
+            document
+                .getElementById(
+                    "diaryNotes"
+                )
+                .value
+                .trim(),
 
         photo:
-            document.getElementById("diaryPhoto").value.trim()
+            document
+                .getElementById(
+                    "diaryPhoto"
+                )
+                .value
+                .trim()
 
     };
 
 
     if (!data.title) {
 
-        alert("Please enter a diary title.");
+        alert(
+            "Please enter a diary title."
+        );
 
         return;
 
@@ -2781,14 +3838,19 @@ window.saveDiary = async function() {
         } else {
 
             await set(
-                push(ref(db, "diary")),
+                push(
+                    ref(db, "diary")
+                ),
                 data
             );
 
         }
 
 
-        alert("Diary entry saved!");
+        alert(
+            "Diary entry saved!"
+        );
+
 
         clearDiaryForm();
 
@@ -2796,7 +3858,9 @@ window.saveDiary = async function() {
 
     } catch (error) {
 
-        alert("Could not save diary entry.");
+        alert(
+            "Could not save diary entry."
+        );
 
         console.error(error);
 
@@ -2805,94 +3869,153 @@ window.saveDiary = async function() {
 };
 
 
-window.editDiary = async function(id) {
+window.editDiary =
+async function(id) {
 
     const snapshot =
         await get(
-            ref(db, "diary/" + id)
+            ref(
+                db,
+                "diary/" + id
+            )
         );
+
 
     const item =
         snapshot.val();
 
+
     if (!item) return;
 
-    editingDiaryId = id;
+
+    editingDiaryId =
+        id;
+
 
     document
-        .getElementById("diaryDate")
+        .getElementById(
+            "diaryDate"
+        )
         .value =
         item.date || "";
 
+
     document
-        .getElementById("diaryTitle")
+        .getElementById(
+            "diaryTitle"
+        )
         .value =
         item.title || "";
 
+
     document
-        .getElementById("diaryHappened")
+        .getElementById(
+            "diaryHappened"
+        )
         .value =
         item.happened || "";
 
+
     document
-        .getElementById("diaryFeelings")
+        .getElementById(
+            "diaryFeelings"
+        )
         .value =
         item.feelings || "";
 
+
     document
-        .getElementById("diaryNotes")
+        .getElementById(
+            "diaryNotes"
+        )
         .value =
         item.notes || "";
 
+
     document
-        .getElementById("diaryPhoto")
+        .getElementById(
+            "diaryPhoto"
+        )
         .value =
         item.photo || "";
 
-    showSection("diary");
+
+    showSection(
+        "diary"
+    );
 
 };
 
 
-window.deleteDiary = async function(id) {
+window.deleteDiary =
+async function(id) {
 
-    if (!confirm("Delete this diary entry?")) return;
+    if (
+        !confirm(
+            "Delete this diary entry?"
+        )
+    ) return;
+
 
     await remove(
-        ref(db, "diary/" + id)
+        ref(
+            db,
+            "diary/" + id
+        )
     );
+
 
     await loadDiary();
 
 };
 
 
-window.clearDiaryForm = function() {
+window.clearDiaryForm =
+function() {
 
-    editingDiaryId = null;
+    editingDiaryId =
+        null;
+
 
     document
-        .getElementById("diaryDate")
+        .getElementById(
+            "diaryDate"
+        )
         .value = "";
 
-    document
-        .getElementById("diaryTitle")
-        .value = "";
 
     document
-        .getElementById("diaryHappened")
+        .getElementById(
+            "diaryTitle"
+        )
         .value = "";
 
-    document
-        .getElementById("diaryFeelings")
-        .value = "";
 
     document
-        .getElementById("diaryNotes")
+        .getElementById(
+            "diaryHappened"
+        )
         .value = "";
 
+
     document
-        .getElementById("diaryPhoto")
+        .getElementById(
+            "diaryFeelings"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "diaryNotes"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "diaryPhoto"
+        )
         .value = "";
 
 };
@@ -2903,11 +4026,31 @@ window.clearDiaryForm = function() {
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
