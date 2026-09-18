@@ -1,0 +1,415 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Clinton Ncube</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #2563eb);
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 420px;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        .success {
+            display: block !important;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            display: block !important;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        #dashboard {
+            display: none;
+            text-align: center;
+        }
+
+        #dashboard h2 {
+            color: #0f172a;
+        }
+
+        .logout {
+            margin-top: 20px;
+            background: #dc2626;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <!-- LOGIN -->
+    <div id="loginSection">
+
+        <h1>Clinton Ncube</h1>
+
+        <p class="subtitle">
+            Admin Dashboard
+        </p>
+
+        <label for="email">
+            Email Address
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+        >
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+        >
+
+        <button id="loginButton">
+            Login
+        </button>
+
+        <div id="status"></div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+
+        <h2>Welcome, Clinton!</h2>
+
+        <p>You have successfully logged into the Admin Dashboard.</p>
+
+        <p id="loggedInEmail"></p>
+
+        <button
+            id="logoutButton"
+            class="logout">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+    /* ================================
+       FIREBASE CONFIG
+    ================================= */
+
+    const firebaseConfig = {
+
+        apiKey:
+        "AIzaSyCWqKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+
+        authDomain:
+        "clinton-ncube-website.firebaseapp.com",
+
+        databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+        projectId:
+        "clinton-ncube-website",
+
+        storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+        messagingSenderId:
+        "946671700613",
+
+        appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+        measurementId:
+        "G-K1S62MHHXP"
+    };
+
+
+    /* ================================
+       START FIREBASE
+    ================================= */
+
+    const app =
+        initializeApp(firebaseConfig);
+
+    const auth =
+        getAuth(app);
+
+
+    /* ================================
+       ELEMENTS
+    ================================= */
+
+    const loginSection =
+        document.getElementById("loginSection");
+
+    const dashboard =
+        document.getElementById("dashboard");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const status =
+        document.getElementById("status");
+
+    const loggedInEmail =
+        document.getElementById("loggedInEmail");
+
+
+    /* ================================
+       SHOW STATUS
+    ================================= */
+
+    function showStatus(message, type) {
+
+        status.textContent = message;
+
+        status.className = type;
+
+    }
+
+
+    /* ================================
+       LOGIN
+    ================================= */
+
+    loginButton.addEventListener(
+        "click",
+        async function () {
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showStatus(
+                    "Please enter your email and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "Logging in...";
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Firebase login error:",
+                    error
+                );
+
+                showStatus(
+                    "Login failed: " +
+                    error.code,
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Login";
+            }
+
+        }
+    );
+
+
+    /* ================================
+       LOGOUT
+    ================================= */
+
+    logoutButton.addEventListener(
+        "click",
+        async function () {
+
+            await signOut(auth);
+
+        }
+    );
+
+
+    /* ================================
+       AUTH STATE
+    ================================= */
+
+    onAuthStateChanged(
+        auth,
+        function (user) {
+
+            if (user) {
+
+                loginSection.style.display =
+                    "none";
+
+                dashboard.style.display =
+                    "block";
+
+                loggedInEmail.textContent =
+                    "Logged in as: " +
+                    user.email;
+
+            }
+
+            else {
+
+                loginSection.style.display =
+                    "block";
+
+                dashboard.style.display =
+                    "none";
+
+                loginButton.disabled =
+                    false;
+
+                loginButton.textContent =
+                    "Login";
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
+```
