@@ -84,6 +84,11 @@
             margin-top: 15px;
         }
 
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         .save-btn {
             background: #2563eb;
             color: white;
@@ -149,6 +154,7 @@
         .item p {
             color: #4b5563;
             line-height: 1.5;
+            white-space: pre-wrap;
         }
 
         .item-actions {
@@ -180,7 +186,36 @@
             display: block;
         }
 
+        .diary-manager {
+            border: 2px solid #111827;
+        }
+
+        .diary-entry {
+            border-left: 5px solid #111827;
+        }
+
+        .diary-entry h3 {
+            color: #111827;
+        }
+
+        .private-label {
+            display: inline-block;
+            background: #111827;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .photo-note {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
         @media (max-width: 600px) {
+
             .container {
                 width: 92%;
             }
@@ -211,22 +246,27 @@
 <div class="container">
 
     <!-- LOGIN -->
+
     <div id="loginSection" class="card login-box">
 
         <h2>Admin Login</h2>
 
         <label for="email">Email</label>
+
         <input
             type="email"
             id="email"
             placeholder="Enter your email"
+            autocomplete="username"
         >
 
         <label for="password">Password</label>
+
         <input
             type="password"
             id="password"
             placeholder="Enter your password"
+            autocomplete="current-password"
         >
 
         <button
@@ -243,10 +283,15 @@
 
 
     <!-- ADMIN DASHBOARD -->
+
     <div id="dashboardSection" class="hidden">
 
+        <!-- TOP BAR -->
+
         <div class="card">
+
             <div class="top-bar">
+
                 <div>
                     <h2>Admin Dashboard</h2>
                     <p>You are logged in.</p>
@@ -259,16 +304,20 @@
                 >
                     Logout
                 </button>
+
             </div>
+
         </div>
 
 
         <!-- HOME INFORMATION -->
+
         <div class="card">
 
             <h2>Home Information Manager</h2>
 
             <label for="homeName">Name</label>
+
             <input
                 type="text"
                 id="homeName"
@@ -276,24 +325,28 @@
             >
 
             <label for="homeWelcome">Welcome Message</label>
+
             <textarea
                 id="homeWelcome"
                 placeholder="Enter your welcome message"
             ></textarea>
 
             <label for="homeGoal">Goal</label>
+
             <textarea
                 id="homeGoal"
                 placeholder="Enter your goal"
             ></textarea>
 
             <label for="homeAbout">About</label>
+
             <textarea
                 id="homeAbout"
                 placeholder="Enter a short description about yourself"
             ></textarea>
 
             <label for="lastUpdated">Year</label>
+
             <input
                 type="text"
                 id="lastUpdated"
@@ -314,1248 +367,7 @@
 
 
         <!-- GALLERY -->
+
         <div class="card">
 
-            <h2>Gallery Manager</h2>
-
-            <label for="galleryTitle">Photo Title</label>
-            <input
-                type="text"
-                id="galleryTitle"
-                placeholder="My School Photo"
-            >
-
-            <label for="galleryFile">Image Filename</label>
-            <input
-                type="text"
-                id="galleryFile"
-                placeholder="IMG_20250802_093252.jpg"
-            >
-
-            <label for="galleryDescription">Description</label>
-            <textarea
-                id="galleryDescription"
-                placeholder="Describe the photo"
-            ></textarea>
-
-            <button
-                type="button"
-                class="save-btn"
-                id="addGalleryButton"
-            >
-                Add Photo
-            </button>
-
-            <div id="galleryMessage" class="message"></div>
-
-            <div id="galleryList"></div>
-
-        </div>
-
-
-        <!-- ACHIEVEMENTS -->
-        <div class="card">
-
-            <h2>Achievements Manager</h2>
-
-            <label for="achievementTitle">Achievement Title</label>
-            <input
-                type="text"
-                id="achievementTitle"
-                placeholder="Academic Achievement"
-            >
-
-            <label for="achievementDescription">Description</label>
-            <textarea
-                id="achievementDescription"
-                placeholder="Describe the achievement"
-            ></textarea>
-
-            <button
-                type="button"
-                class="save-btn"
-                id="addAchievementButton"
-            >
-                Add Achievement
-            </button>
-
-            <div id="achievementMessage" class="message"></div>
-
-            <div id="achievementList"></div>
-
-        </div>
-
-
-        <!-- PROJECTS -->
-        <div class="card">
-
-            <h2>Projects Manager</h2>
-
-            <label for="projectTitle">Project Title</label>
-            <input
-                type="text"
-                id="projectTitle"
-                placeholder="My School Project"
-            >
-
-            <label for="projectDescription">Description</label>
-            <textarea
-                id="projectDescription"
-                placeholder="Describe your project"
-            ></textarea>
-
-            <label for="projectLink">Project Link (optional)</label>
-            <input
-                type="text"
-                id="projectLink"
-                placeholder="https://example.com"
-            >
-
-            <button
-                type="button"
-                class="save-btn"
-                id="addProjectButton"
-            >
-                Add Project
-            </button>
-
-            <div id="projectMessage" class="message"></div>
-
-            <div id="projectList"></div>
-
-        </div>
-
-
-        <!-- HOBBIES -->
-        <div class="card">
-
-            <h2>Hobbies Manager</h2>
-
-            <label for="hobbyTitle">Hobby</label>
-            <input
-                type="text"
-                id="hobbyTitle"
-                placeholder="🏀 Basketball"
-            >
-
-            <label for="hobbyDescription">Description</label>
-            <textarea
-                id="hobbyDescription"
-                placeholder="Describe your hobby"
-            ></textarea>
-
-            <button
-                type="button"
-                class="save-btn"
-                id="addHobbyButton"
-            >
-                Add Hobby
-            </button>
-
-            <div id="hobbyMessage" class="message"></div>
-
-            <div id="hobbyList"></div>
-
-        </div>
-
-
-        <!-- SKILLS -->
-        <div class="card">
-
-            <h2>Skills Manager</h2>
-
-            <label for="skillTitle">Skill</label>
-            <input
-                type="text"
-                id="skillTitle"
-                placeholder="Computer Programming"
-            >
-
-            <label for="skillDescription">Description</label>
-            <textarea
-                id="skillDescription"
-                placeholder="Describe your skill"
-            ></textarea>
-
-            <button
-                type="button"
-                class="save-btn"
-                id="addSkillButton"
-            >
-                Add Skill
-            </button>
-
-            <div id="skillMessage" class="message"></div>
-
-            <div id="skillList"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script type="module">
-
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-    import {
-        getAuth,
-        onAuthStateChanged,
-        signInWithEmailAndPassword,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-    import {
-        getDatabase,
-        ref,
-        get,
-        set,
-        push,
-        remove,
-        onValue
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
-
-    /* FIREBASE CONFIG */
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
-        authDomain: "clinton-ncube-website.firebaseapp.com",
-        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-        projectId: "clinton-ncube-website",
-        storageBucket: "clinton-ncube-website.firebasestorage.app",
-        messagingSenderId: "946671700613",
-        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-        measurementId: "G-K1S62MHHXP"
-    };
-
-
-    /* INITIALISE FIREBASE */
-
-    const app = initializeApp(firebaseConfig);
-
-    const auth = getAuth(app);
-
-    const db = getDatabase(app);
-
-
-    /* ELEMENTS */
-
-    const loginSection =
-        document.getElementById("loginSection");
-
-    const dashboardSection =
-        document.getElementById("dashboardSection");
-
-
-    /* ESCAPE HTML */
-
-    function escapeHTML(value) {
-
-        if (value === undefined || value === null) {
-            return "";
-        }
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-
-    /* MESSAGE */
-
-    function showMessage(id, text, success = true) {
-
-        const element = document.getElementById(id);
-
-        element.textContent = text;
-
-        element.className =
-            success
-                ? "message success"
-                : "message error";
-
-        element.style.display = "block";
-
-        setTimeout(() => {
-            element.style.display = "none";
-        }, 4000);
-    }
-
-
-    /* LOGIN */
-
-    document
-        .getElementById("loginButton")
-        .addEventListener("click", async () => {
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            if (!email || !password) {
-
-                showMessage(
-                    "loginMessage",
-                    "Please enter your email and password.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "loginMessage",
-                    "Login failed: " + error.message,
-                    false
-                );
-            }
-
-        });
-
-
-    /* LOGOUT */
-
-    document
-        .getElementById("logoutButton")
-        .addEventListener("click", async () => {
-
-            try {
-
-                await signOut(auth);
-
-            } catch (error) {
-
-                console.error(error);
-
-            }
-
-        });
-
-
-    /* AUTH STATE */
-
-    onAuthStateChanged(auth, async (user) => {
-
-        if (user) {
-
-            loginSection.classList.add("hidden");
-
-            dashboardSection.classList.remove("hidden");
-
-            await loadHomeInformation();
-
-            loadGallery();
-
-            loadAchievements();
-
-            loadProjects();
-
-            loadHobbies();
-
-            loadSkills();
-
-        } else {
-
-            loginSection.classList.remove("hidden");
-
-            dashboardSection.classList.add("hidden");
-
-        }
-
-    });
-
-
-    /* LOAD HOME INFORMATION */
-
-    async function loadHomeInformation() {
-
-        try {
-
-            const snapshot =
-                await get(ref(db, "websiteData"));
-
-            if (snapshot.exists()) {
-
-                const data = snapshot.val();
-
-                document.getElementById("homeName").value =
-                    data.name || "";
-
-                document.getElementById("homeWelcome").value =
-                    data.welcome || "";
-
-                document.getElementById("homeGoal").value =
-                    data.goal || "";
-
-                document.getElementById("homeAbout").value =
-                    data.about || "";
-
-                document.getElementById("lastUpdated").value =
-                    data.lastUpdated || "";
-
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-            showMessage(
-                "homeMessage",
-                "Could not load home information.",
-                false
-            );
-
-        }
-
-    }
-
-
-    /* SAVE HOME */
-
-    document
-        .getElementById("saveHomeButton")
-        .addEventListener("click", async () => {
-
-            const data = {
-
-                name:
-                    document.getElementById("homeName").value.trim(),
-
-                welcome:
-                    document.getElementById("homeWelcome").value.trim(),
-
-                goal:
-                    document.getElementById("homeGoal").value.trim(),
-
-                about:
-                    document.getElementById("homeAbout").value.trim(),
-
-                lastUpdated:
-                    document.getElementById("lastUpdated").value.trim()
-
-            };
-
-            try {
-
-                await set(
-                    ref(db, "websiteData"),
-                    data
-                );
-
-                showMessage(
-                    "homeMessage",
-                    "Home information saved successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "homeMessage",
-                    "Could not save home information: " +
-                    error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* ADD GALLERY */
-
-    document
-        .getElementById("addGalleryButton")
-        .addEventListener("click", async () => {
-
-            const title =
-                document.getElementById("galleryTitle").value.trim();
-
-            const file =
-                document.getElementById("galleryFile").value.trim();
-
-            const description =
-                document.getElementById("galleryDescription").value.trim();
-
-            if (!title || !file) {
-
-                showMessage(
-                    "galleryMessage",
-                    "Please enter a title and image filename.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await push(
-                    ref(db, "gallery"),
-                    {
-                        title,
-                        file,
-                        description
-                    }
-                );
-
-                document.getElementById("galleryTitle").value = "";
-
-                document.getElementById("galleryFile").value = "";
-
-                document.getElementById("galleryDescription").value = "";
-
-                showMessage(
-                    "galleryMessage",
-                    "Photo added successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "galleryMessage",
-                    "Could not add photo: " + error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* LOAD GALLERY */
-
-    function loadGallery() {
-
-        onValue(
-            ref(db, "gallery"),
-            (snapshot) => {
-
-                const list =
-                    document.getElementById("galleryList");
-
-                list.innerHTML = "";
-
-                if (!snapshot.exists()) {
-
-                    list.innerHTML =
-                        "<p>No gallery photos yet.</p>";
-
-                    return;
-                }
-
-                const data = snapshot.val();
-
-                Object.entries(data).forEach(
-                    ([id, item]) => {
-
-                        const div =
-                            document.createElement("div");
-
-                        div.className = "item";
-
-                        div.innerHTML = `
-
-                            <h3>
-                                ${escapeHTML(item.title)}
-                            </h3>
-
-                            <p>
-                                <strong>File:</strong>
-                                ${escapeHTML(item.file)}
-                            </p>
-
-                            <p>
-                                ${escapeHTML(item.description)}
-                            </p>
-
-                            <div class="item-actions">
-
-                                <button
-                                    type="button"
-                                    class="delete-btn"
-                                    data-id="${id}"
-                                >
-                                    Delete
-                                </button>
-
-                            </div>
-
-                        `;
-
-                        div
-                            .querySelector(".delete-btn")
-                            .addEventListener(
-                                "click",
-                                () => deleteItem(
-                                    "gallery",
-                                    id
-                                )
-                            );
-
-                        list.appendChild(div);
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    /* ADD ACHIEVEMENT */
-
-    document
-        .getElementById("addAchievementButton")
-        .addEventListener("click", async () => {
-
-            const title =
-                document
-                    .getElementById("achievementTitle")
-                    .value
-                    .trim();
-
-            const description =
-                document
-                    .getElementById("achievementDescription")
-                    .value
-                    .trim();
-
-            if (!title) {
-
-                showMessage(
-                    "achievementMessage",
-                    "Please enter an achievement title.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await push(
-                    ref(db, "achievements"),
-                    {
-                        title,
-                        description
-                    }
-                );
-
-                document.getElementById(
-                    "achievementTitle"
-                ).value = "";
-
-                document.getElementById(
-                    "achievementDescription"
-                ).value = "";
-
-                showMessage(
-                    "achievementMessage",
-                    "Achievement added successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "achievementMessage",
-                    "Could not add achievement: " +
-                    error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* LOAD ACHIEVEMENTS */
-
-    function loadAchievements() {
-
-        onValue(
-            ref(db, "achievements"),
-            (snapshot) => {
-
-                const list =
-                    document.getElementById(
-                        "achievementList"
-                    );
-
-                list.innerHTML = "";
-
-                if (!snapshot.exists()) {
-
-                    list.innerHTML =
-                        "<p>No achievements yet.</p>";
-
-                    return;
-                }
-
-                const data = snapshot.val();
-
-                Object.entries(data).forEach(
-                    ([id, item]) => {
-
-                        const div =
-                            document.createElement("div");
-
-                        div.className = "item";
-
-                        div.innerHTML = `
-
-                            <h3>
-                                ${escapeHTML(item.title)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(item.description)}
-                            </p>
-
-                            <button
-                                type="button"
-                                class="delete-btn"
-                                data-id="${id}"
-                            >
-                                Delete
-                            </button>
-
-                        `;
-
-                        div
-                            .querySelector(".delete-btn")
-                            .addEventListener(
-                                "click",
-                                () => deleteItem(
-                                    "achievements",
-                                    id
-                                )
-                            );
-
-                        list.appendChild(div);
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    /* ADD PROJECT */
-
-    document
-        .getElementById("addProjectButton")
-        .addEventListener("click", async () => {
-
-            const title =
-                document
-                    .getElementById("projectTitle")
-                    .value
-                    .trim();
-
-            const description =
-                document
-                    .getElementById("projectDescription")
-                    .value
-                    .trim();
-
-            const link =
-                document
-                    .getElementById("projectLink")
-                    .value
-                    .trim();
-
-            if (!title) {
-
-                showMessage(
-                    "projectMessage",
-                    "Please enter a project title.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await push(
-                    ref(db, "projects"),
-                    {
-                        title,
-                        description,
-                        link
-                    }
-                );
-
-                document.getElementById(
-                    "projectTitle"
-                ).value = "";
-
-                document.getElementById(
-                    "projectDescription"
-                ).value = "";
-
-                document.getElementById(
-                    "projectLink"
-                ).value = "";
-
-                showMessage(
-                    "projectMessage",
-                    "Project added successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "projectMessage",
-                    "Could not add project: " +
-                    error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* LOAD PROJECTS */
-
-    function loadProjects() {
-
-        onValue(
-            ref(db, "projects"),
-            (snapshot) => {
-
-                const list =
-                    document.getElementById("projectList");
-
-                list.innerHTML = "";
-
-                if (!snapshot.exists()) {
-
-                    list.innerHTML =
-                        "<p>No projects yet.</p>";
-
-                    return;
-                }
-
-                const data = snapshot.val();
-
-                Object.entries(data).forEach(
-                    ([id, item]) => {
-
-                        const div =
-                            document.createElement("div");
-
-                        div.className = "item";
-
-                        let linkHTML = "";
-
-                        if (item.link) {
-
-                            linkHTML = `
-                                <p>
-                                    <strong>Link:</strong>
-                                    ${escapeHTML(item.link)}
-                                </p>
-                            `;
-
-                        }
-
-                        div.innerHTML = `
-
-                            <h3>
-                                ${escapeHTML(item.title)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(item.description)}
-                            </p>
-
-                            ${linkHTML}
-
-                            <button
-                                type="button"
-                                class="delete-btn"
-                                data-id="${id}"
-                            >
-                                Delete
-                            </button>
-
-                        `;
-
-                        div
-                            .querySelector(".delete-btn")
-                            .addEventListener(
-                                "click",
-                                () => deleteItem(
-                                    "projects",
-                                    id
-                                )
-                            );
-
-                        list.appendChild(div);
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    /* ADD HOBBY */
-
-    document
-        .getElementById("addHobbyButton")
-        .addEventListener("click", async () => {
-
-            const title =
-                document
-                    .getElementById("hobbyTitle")
-                    .value
-                    .trim();
-
-            const description =
-                document
-                    .getElementById("hobbyDescription")
-                    .value
-                    .trim();
-
-            if (!title) {
-
-                showMessage(
-                    "hobbyMessage",
-                    "Please enter a hobby.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await push(
-                    ref(db, "hobbies"),
-                    {
-                        title,
-                        description
-                    }
-                );
-
-                document.getElementById(
-                    "hobbyTitle"
-                ).value = "";
-
-                document.getElementById(
-                    "hobbyDescription"
-                ).value = "";
-
-                showMessage(
-                    "hobbyMessage",
-                    "Hobby added successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "hobbyMessage",
-                    "Could not add hobby: " +
-                    error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* LOAD HOBBIES */
-
-    function loadHobbies() {
-
-        onValue(
-            ref(db, "hobbies"),
-            (snapshot) => {
-
-                const list =
-                    document.getElementById("hobbyList");
-
-                list.innerHTML = "";
-
-                if (!snapshot.exists()) {
-
-                    list.innerHTML =
-                        "<p>No hobbies yet.</p>";
-
-                    return;
-                }
-
-                const data = snapshot.val();
-
-                Object.entries(data).forEach(
-                    ([id, item]) => {
-
-                        const div =
-                            document.createElement("div");
-
-                        div.className = "item";
-
-                        div.innerHTML = `
-
-                            <h3>
-                                ${escapeHTML(item.title)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(item.description)}
-                            </p>
-
-                            <button
-                                type="button"
-                                class="delete-btn"
-                                data-id="${id}"
-                            >
-                                Delete
-                            </button>
-
-                        `;
-
-                        div
-                            .querySelector(".delete-btn")
-                            .addEventListener(
-                                "click",
-                                () => deleteItem(
-                                    "hobbies",
-                                    id
-                                )
-                            );
-
-                        list.appendChild(div);
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    /* ADD SKILL */
-
-    document
-        .getElementById("addSkillButton")
-        .addEventListener("click", async () => {
-
-            const title =
-                document
-                    .getElementById("skillTitle")
-                    .value
-                    .trim();
-
-            const description =
-                document
-                    .getElementById("skillDescription")
-                    .value
-                    .trim();
-
-            if (!title) {
-
-                showMessage(
-                    "skillMessage",
-                    "Please enter a skill.",
-                    false
-                );
-
-                return;
-            }
-
-            try {
-
-                await push(
-                    ref(db, "skills"),
-                    {
-                        title,
-                        description
-                    }
-                );
-
-                document.getElementById(
-                    "skillTitle"
-                ).value = "";
-
-                document.getElementById(
-                    "skillDescription"
-                ).value = "";
-
-                showMessage(
-                    "skillMessage",
-                    "Skill added successfully!"
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "skillMessage",
-                    "Could not add skill: " +
-                    error.message,
-                    false
-                );
-
-            }
-
-        });
-
-
-    /* LOAD SKILLS */
-
-    function loadSkills() {
-
-        onValue(
-            ref(db, "skills"),
-            (snapshot) => {
-
-                const list =
-                    document.getElementById("skillList");
-
-                list.innerHTML = "";
-
-                if (!snapshot.exists()) {
-
-                    list.innerHTML =
-                        "<p>No skills yet.</p>";
-
-                    return;
-                }
-
-                const data = snapshot.val();
-
-                Object.entries(data).forEach(
-                    ([id, item]) => {
-
-                        const div =
-                            document.createElement("div");
-
-                        div.className = "item";
-
-                        div.innerHTML = `
-
-                            <h3>
-                                ${escapeHTML(item.title)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(item.description)}
-                            </p>
-
-                            <button
-                                type="button"
-                                class="delete-btn"
-                                data-id="${id}"
-                            >
-                                Delete
-                            </button>
-
-                        `;
-
-                        div
-                            .querySelector(".delete-btn")
-                            .addEventListener(
-                                "click",
-                                () => deleteItem(
-                                    "skills",
-                                    id
-                                )
-                            );
-
-                        list.appendChild(div);
-
-                    }
-                );
-
-            }
-        );
-
-    }
-
-
-    /* DELETE */
-
-    async function deleteItem(
-        collection,
-        id
-    ) {
-
-        const confirmed =
-            confirm(
-                "Are you sure you want to delete this item?"
-            );
-
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-
-            await remove(
-                ref(
-                    db,
-                    `${collection}/${id}`
-                )
-            );
-
-        } catch (error) {
-
-            console.error(error);
-
-            alert(
-                "Delete failed: " +
-                error.message
-            );
-
-        }
-
-    }
-
-</script>
-
-</body>
-</html>
+            <h
