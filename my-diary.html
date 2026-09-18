@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Private Diary | Clinton Ncube</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f4f1ea;
+            color: #333;
+        }
+
+        header {
+            background: #20242b;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 38px;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #d5d5d5;
+        }
+
+        nav {
+            background: #303640;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        .lock-card {
+            background: #fffdf8;
+            max-width: 500px;
+            margin: auto;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .lock-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .lock-card h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .lock-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #303640;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #20242b;
+        }
+
+        .error {
+            color: #b42318;
+            margin-top: 15px;
+            display: none;
+        }
+
+        #diaryContent {
+            display: none;
+        }
+
+        .diary-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .diary-title h2 {
+            font-size: 32px;
+        }
+
+        .diary-entry {
+            background: #fffdf8;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .diary-entry h3 {
+            margin-top: 0;
+            font-size: 25px;
+        }
+
+        .date {
+            color: #777;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .diary-entry p {
+            line-height: 1.8;
+        }
+
+        .feeling-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f0eee8;
+            border-radius: 8px;
+        }
+
+        .photo-placeholder {
+            margin-top: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 2px dashed #bbb;
+            border-radius: 10px;
+            color: #777;
+        }
+
+        footer {
+            background: #20242b;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            margin-top: 60px;
+            font-family: Arial, sans-serif;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .lock-card {
+                padding: 30px 20px;
+            }
+
+            .diary-entry {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔐 My Private Diary</h1>
+    <p>My personal space</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="hobbies.html">Hobbies</a>
+    <a href="skills.html">Skills</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="my-diary.html">My Diary</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+    <!-- LOCK SCREEN -->
+
+    <div id="lockScreen" class="lock-card">
+
+        <div class="lock-icon">
+            🔒
+        </div>
+
+        <h2>Private Diary</h2>
+
+        <p>
+            This is my private diary. It contains personal
+            thoughts, memories, feelings and pictures.
+        </p>
+
+        <p>
+            Please enter the password to continue.
+        </p>
+
+        <input
+            type="password"
+            id="diaryPassword"
+            class="login-input"
+            placeholder="Enter password"
+        >
+
+        <button
+            class="login-button"
+            onclick="unlockDiary()"
+        >
+            Unlock Diary
+        </button>
+
+        <div id="errorMessage" class="error">
+            Incorrect password.
+        </div>
+
+    </div>
+
+
+    <!-- DIARY CONTENT -->
+
+    <div id="diaryContent">
+
+        <div class="diary-title">
+
+            <h2>📔 My Diary</h2>
+
+            <p>
+                My thoughts, memories and personal moments.
+            </p>
+
+        </div>
+
+
+        <!-- EXAMPLE ENTRY -->
+
+        <div class="diary-entry">
+
+            <h3>My First Diary Entry</h3>
+
+            <div class="date">
+                📅 Add your date here
+            </div>
+
+            <p>
+                This is where I will write about what happened
+                during my day and the things that are important
+                to me.
+            </p>
+
+            <div class="feeling-box">
+
+                <strong>💭 How I felt</strong>
+
+                <p>
+                    I can write honestly about how I felt on
+                    this particular day.
+                </p>
+
+            </div>
+
+            <div class="photo-placeholder">
+                📸 My private picture will appear here.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Clinton Ncube. Private Diary.</p>
+</footer>
+
+
+<script>
+
+    function unlockDiary() {
+
+        const password =
+            document.getElementById(
+                "diaryPassword"
+            ).value;
+
+        const error =
+            document.getElementById(
+                "errorMessage"
+            );
+
+        /*
+         * TEMPORARY TEST PASSWORD
+         *
+         * We will remove this when we connect
+         * the diary to Firebase Authentication.
+         */
+
+        if (password === "1234") {
+
+            document.getElementById(
+                "lockScreen"
+            ).style.display = "none";
+
+            document.getElementById(
+                "diaryContent"
+            ).style.display = "block";
+
+            error.style.display = "none";
+
+        } else {
+
+            error.style.display = "block";
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
