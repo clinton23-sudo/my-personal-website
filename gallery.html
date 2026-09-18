@@ -1,387 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gallery | Clinton Ncube</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #666;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+            transition: transform 0.25s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: #ddd;
+        }
+
+        .gallery-content {
+            padding: 18px;
+        }
+
+        .gallery-content h3 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .gallery-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            background: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .intro h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header>
+    <h1>Clinton Ncube</h1>
+    <p>My Personal Gallery</p>
 
-    <header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="skills.html">Skills</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
 
-        <h1>Clinton Ncube</h1>
+<div class="container">
 
-        <p>
-            My Personal Gallery
-        </p>
+    <div class="intro">
+        <h2>My Gallery</h2>
+        <p>Photos and memories from my school life, projects and activities.</p>
+    </div>
 
-        <nav>
+    <div id="gallery" class="gallery">
 
-            <a href="index.html">
-                Home
-            </a>
+        <div class="loading">
+            Loading gallery...
+        </div>
 
-            <a href="about.html">
-                About Me
-            </a>
+    </div>
 
-            <a href="projects.html">
-                Projects
-            </a>
+</div>
 
-            <a href="hobbies.html">
-                Hobbies
-            </a>
-
-            <a href="skills.html">
-                Skills
-            </a>
-
-            <a class="active" href="gallery.html">
-                Gallery
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-            <a href="admin.html">
-                ⚙️ Dashboard
-            </a>
-
-            <a href="achievements.html">
-                Achievements
-            </a>
-
-        </nav>
-
-    </header>
+<footer>
+    <p>© 2026 Clinton Ncube. All rights reserved.</p>
+</footer>
 
 
-    <!-- MAIN -->
+<script type="module">
 
-    <main>
-
-        <section>
-
-            <h2>
-                My Gallery 📸
-            </h2>
-
-            <p>
-                Welcome to my gallery. Here are some
-                of my favourite photos and memories.
-            </p>
-
-        </section>
-
-
-        <!-- GALLERY -->
-
-        <section>
-
-            <div
-                id="gallery-container"
-                class="card-container"
-            >
-
-                <p>
-                    Loading gallery...
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            &copy; 2026 Clinton Ncube
-        </p>
-
-        <p>
-            Built with HTML & CSS |
-            My Personal Portfolio
-        </p>
-
-    </footer>
-
-
-
-    <!-- FIREBASE -->
-
-    <script type="module">
-
-        import { initializeApp }
-
+    import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
+    import {
+        getDatabase,
+        ref,
+        onValue
+    }
+    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-        import {
 
-            getDatabase,
-            ref,
-            onValue
+    const firebaseConfig = {
+        apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+        authDomain: "clinton-ncube-website.firebaseapp.com",
+        databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+        projectId: "clinton-ncube-website",
+        storageBucket: "clinton-ncube-website.firebasestorage.app",
+        messagingSenderId: "946671700613",
+        appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
+        measurementId: "G-K1S62MHHXP"
+    };
 
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase(app);
+
+    const galleryRef = ref(db, "gallery");
+
+    const galleryContainer = document.getElementById("gallery");
+
+
+    onValue(galleryRef, (snapshot) => {
+
+        galleryContainer.innerHTML = "";
+
+        if (!snapshot.exists()) {
+
+            galleryContainer.innerHTML = `
+                <div class="empty">
+                    <h3>No gallery items yet.</h3>
+                    <p>Gallery photos will appear here when they are added from the Admin Dashboard.</p>
+                </div>
+            `;
+
+            return;
         }
 
-        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
+        const items = snapshot.val();
 
 
-        /*
-         * FIREBASE CONFIGURATION
-         */
+        Object.entries(items).forEach(([id, item]) => {
 
-        const firebaseConfig = {
+            const card = document.createElement("div");
 
-            apiKey:
-                "AIzaSyCWKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+            card.className = "gallery-card";
 
-            authDomain:
-                "clinton-ncube-website.firebaseapp.com",
 
-            databaseURL:
-                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+            const image = document.createElement("img");
 
-            projectId:
-                "clinton-ncube-website",
+            image.src = item.file || "";
 
-            storageBucket:
-                "clinton-ncube-website.firebasestorage.app",
+            image.alt = item.title || "Gallery image";
 
-            messagingSenderId:
-                "946671700613",
+            image.onerror = function () {
 
-            appId:
-                "1:946671700613:web:5d74536df1dbb0d35e77ec",
+                this.style.display = "none";
 
-            measurementId:
-                "G-K1S62MHHXP"
+            };
 
-        };
 
+            const content = document.createElement("div");
 
+            content.className = "gallery-content";
 
-        /*
-         * START FIREBASE
-         */
 
-        const app =
-            initializeApp(firebaseConfig);
+            const title = document.createElement("h3");
 
+            title.textContent = item.title || "Untitled";
 
-        const db =
-            getDatabase(app);
 
+            const description = document.createElement("p");
 
+            description.textContent =
+                item.description || "";
 
-        /*
-         * GALLERY DATABASE
-         */
 
-        const galleryRef =
-            ref(db, "gallery");
+            content.appendChild(title);
 
+            content.appendChild(description);
 
 
-        /*
-         * DISPLAY GALLERY
-         */
+            card.appendChild(image);
 
-        onValue(
+            card.appendChild(content);
 
-            galleryRef,
 
-            (snapshot) => {
+            galleryContainer.appendChild(card);
 
-                const container =
-                    document.getElementById(
-                        "gallery-container"
-                    );
+        });
 
+    });
 
-                container.innerHTML = "";
-
-
-                if (!snapshot.exists()) {
-
-                    container.innerHTML = `
-
-                        <div class="card">
-
-                            <h3>
-                                No Photos Yet
-                            </h3>
-
-                            <p>
-                                Photos added from the
-                                Admin Dashboard will
-                                appear here.
-                            </p>
-
-                        </div>
-
-                    `;
-
-                    return;
-
-                }
-
-
-                const gallery =
-                    snapshot.val();
-
-
-                Object.entries(gallery)
-                    .forEach(
-                        ([id, photo]) => {
-
-
-                            const card =
-                                document.createElement(
-                                    "div"
-                                );
-
-
-                            card.className =
-                                "card";
-
-
-                            /*
-                             * Create image path
-                             */
-
-                            const imagePath =
-                                "images/" +
-                                photo.file;
-
-
-
-                            card.innerHTML = `
-
-                                <img
-                                    src="${escapeHTML(imagePath)}"
-                                    alt="${escapeHTML(photo.title || "Gallery photo")}"
-                                    style="
-                                        width:100%;
-                                        max-width:500px;
-                                        border-radius:10px;
-                                        display:block;
-                                        margin:auto;
-                                    "
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                                >
-
-                                <p
-                                    style="
-                                        display:none;
-                                        color:#b91c1c;
-                                        font-weight:bold;
-                                        text-align:center;
-                                    "
-                                >
-                                    ❌ Image not found:
-                                    images/${escapeHTML(photo.file || "")}
-                                </p>
-
-                                <h3>
-                                    ${escapeHTML(
-                                        photo.title ||
-                                        "Untitled Photo"
-                                    )}
-                                </h3>
-
-                                <p>
-                                    ${escapeHTML(
-                                        photo.description ||
-                                        ""
-                                    )}
-                                </p>
-
-                            `;
-
-
-                            container.appendChild(
-                                card
-                            );
-
-                        }
-                    );
-
-            },
-
-            (error) => {
-
-                console.error(
-                    "Firebase Gallery Error:",
-                    error
-                );
-
-
-                document.getElementById(
-                    "gallery-container"
-                ).innerHTML = `
-
-                    <div class="card">
-
-                        <h3>
-                            Gallery Error
-                        </h3>
-
-                        <p>
-                            The gallery could not
-                            be loaded right now.
-                        </p>
-
-                    </div>
-
-                `;
-
-            }
-
-        );
-
-
-
-        /*
-         * SECURITY FUNCTION
-         *
-         * Prevents HTML entered in the
-         * Admin Dashboard from being
-         * interpreted as website code.
-         */
-
-        function escapeHTML(value) {
-
-            return String(value)
-
-                .replace(/&/g, "&amp;")
-
-                .replace(/</g, "&lt;")
-
-                .replace(/>/g, "&gt;")
-
-                .replace(/"/g, "&quot;")
-
-                .replace(/'/g, "&#039;");
-
-        }
-
-    </script>
+</script>
 
 </body>
-
 </html>
