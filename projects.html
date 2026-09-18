@@ -1,212 +1,196 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>My Projects</title>
+    <title>Projects | Clinton Ncube</title>
 
-<link rel="stylesheet" href="css/style.css">
-```
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-```
-<!-- HEADER -->
+<nav>
+    <a href="index.html" class="logo">Clinton Ncube</a>
 
-<header>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
-    <h1>My Projects</h1>
-
-    <p>Things I have created and worked on</p>
-
-    <nav>
-
-        <a href="index.html">Home</a>
-
-        <a href="about.html">About Me</a>
-
-        <a class="active" href="projects.html">Projects</a>
-
-        <a href="hobbies.html">Hobbies</a>
-
-        <a href="skills.html">Skills</a>
-
-        <a href="gallery.html">Gallery</a>
-
-        <a href="contact.html">Contact</a>
-
-    </nav>
-
+<header class="page-header">
+    <h1>📚 My Projects</h1>
+    <p>Projects, ideas and work I have completed</p>
 </header>
 
+<section>
 
-<!-- MAIN CONTENT -->
+    <div class="container">
 
-<main>
+        <div id="projectsContainer" class="cards">
 
-    <!-- MY WORK -->
-
-    <section>
-
-        <h2>My Work</h2>
-
-        <p>
-            Here are some of the projects I have created,
-            worked on or plan to develop as I continue
-            learning and improving my skills.
-        </p>
-
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>🌐 Personal Website</h3>
-
-                <p>
-                    A personal portfolio website designed
-                    to introduce me, display my interests,
-                    hobbies, skills and projects.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🏫 School Website</h3>
-
-                <p>
-                    A website project designed to present
-                    school information, activities,
-                    achievements and student projects.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>🧪 School Projects</h3>
-
-                <p>
-                    Different school-based projects that
-                    involve research, creativity,
-                    problem solving and presentation.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>💡 Future Project</h3>
-
-                <p>
-                    I plan to create more interesting
-                    websites and technology projects as
-                    I gain more experience.
-                </p>
-
+            <div class="loading">
+                Loading projects...
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-
-    <!-- WHAT I AM LEARNING -->
-
-    <section>
-
-        <h2>What I'm Learning</h2>
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>HTML</h3>
-
-                <p>
-                    Learning how to structure webpages
-                    using headings, paragraphs, images,
-                    links and other HTML elements.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>CSS</h3>
-
-                <p>
-                    Learning how to style websites,
-                    improve layouts, add responsive
-                    designs and create better user
-                    experiences.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>GitHub</h3>
-
-                <p>
-                    Learning how to store projects online,
-                    manage website files and publish
-                    websites using GitHub Pages.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECT GOAL -->
-
-    <section>
-
-        <h2>My Project Goal</h2>
-
-        <p>
-            My goal is to keep building useful projects
-            that help me practise what I learn. Each
-            project gives me an opportunity to improve
-            my creativity, problem-solving and technical
-            skills.
-        </p>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
+</section>
 
 <footer>
-
-    <p>
-        &copy; 2026 My Personal Website
-    </p>
-
-    <p>
-        Built with HTML & CSS | My Personal Portfolio
-    </p>
-
+    <p>© 2026 Clinton Ncube. All rights reserved.</p>
+    <p>Personal Portfolio Website</p>
 </footer>
-```
+
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getDatabase,
+    ref,
+    onValue
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+    authDomain: "clinton-ncube-website.firebaseapp.com",
+
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId: "clinton-ncube-website",
+
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId: "946671700613",
+
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId: "G-K1S62MHHXP"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+const projectsRef = ref(db, "projects");
+
+const container =
+    document.getElementById("projectsContainer");
+
+
+function escapeHTML(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent = value || "";
+
+    return div.innerHTML;
+}
+
+
+onValue(
+    projectsRef,
+    (snapshot) => {
+
+        const data = snapshot.val();
+
+        container.innerHTML = "";
+
+        if (!data) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    <h3>No projects yet</h3>
+                    <p>Projects added through the Admin Dashboard will appear here.</p>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        Object.values(data).forEach(project => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "card";
+
+            let linkHTML = "";
+
+            if (project.link) {
+
+                linkHTML = `
+                    <br>
+                    <a
+                        href="${escapeHTML(project.link)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn"
+                    >
+                        View Project
+                    </a>
+                `;
+            }
+
+
+            card.innerHTML = `
+                <div style="font-size:2.3rem;margin-bottom:12px;">
+                    📚
+                </div>
+
+                <h3>
+                    ${escapeHTML(project.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(project.description)}
+                </p>
+
+                ${linkHTML}
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    },
+
+    error => {
+
+        container.innerHTML = `
+            <div class="empty">
+                Unable to load projects.
+            </div>
+        `;
+
+        console.error(error);
+
+    }
+);
+
+</script>
 
 </body>
-
 </html>
