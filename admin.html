@@ -92,6 +92,7 @@
             border-radius: 8px;
             display: none;
             text-align: center;
+            line-height: 1.5;
         }
 
         .success {
@@ -128,288 +129,396 @@
 
 <body>
 
-<div class="login-box">
+    <div class="login-box">
 
-    <!-- LOGIN -->
-    <div id="loginSection">
+        <!-- LOGIN SECTION -->
+        <div id="loginSection">
 
-        <h1>Clinton Ncube</h1>
+            <h1>Clinton Ncube</h1>
 
-        <p class="subtitle">
-            Admin Dashboard
-        </p>
+            <p class="subtitle">
+                Admin Dashboard
+            </p>
 
-        <label for="email">
-            Email Address
-        </label>
+            <label for="email">
+                Email Address
+            </label>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            autocomplete="email"
-        >
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+            >
 
-        <label for="password">
-            Password
-        </label>
+            <label for="password">
+                Password
+            </label>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-        >
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+            >
 
-        <button id="loginButton">
-            Login
-        </button>
+            <button id="loginButton">
+                Login
+            </button>
 
-        <div id="status"></div>
+            <div id="status"></div>
+
+        </div>
+
+
+        <!-- DASHBOARD SECTION -->
+        <div id="dashboard">
+
+            <h2>
+                Welcome, Clinton!
+            </h2>
+
+            <p>
+                You have successfully logged into
+                the Admin Dashboard.
+            </p>
+
+            <p id="loggedInEmail"></p>
+
+            <button
+                id="logoutButton"
+                class="logout">
+                Logout
+            </button>
+
+        </div>
 
     </div>
 
 
-    <!-- DASHBOARD -->
-    <div id="dashboard">
+    <!-- FIREBASE -->
+    <script type="module">
 
-        <h2>Welcome, Clinton!</h2>
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-        <p>You have successfully logged into the Admin Dashboard.</p>
-
-        <p id="loggedInEmail"></p>
-
-        <button
-            id="logoutButton"
-            class="logout">
-            Logout
-        </button>
-
-    </div>
-
-</div>
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 
-<script type="module">
+        /* =========================================
+           FIREBASE CONFIGURATION
+        ========================================= */
 
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        const firebaseConfig = {
 
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        onAuthStateChanged,
-        signOut
-    }
-    from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+            apiKey:
+            "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
+            authDomain:
+            "clinton-ncube-website.firebaseapp.com",
 
-    /* ================================
-       FIREBASE CONFIG
-    ================================= */
+            databaseURL:
+            "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-    const firebaseConfig = {
+            projectId:
+            "clinton-ncube-website",
 
-        apiKey:
-        "AIzaSyCWqKqho3sPz1W6wGEftS3nNSaJigR-1vd4",
+            storageBucket:
+            "clinton-ncube-website.firebasestorage.app",
 
-        authDomain:
-        "clinton-ncube-website.firebaseapp.com",
+            messagingSenderId:
+            "946671700613",
 
-        databaseURL:
-        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+            appId:
+            "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
-        projectId:
-        "clinton-ncube-website",
-
-        storageBucket:
-        "clinton-ncube-website.firebasestorage.app",
-
-        messagingSenderId:
-        "946671700613",
-
-        appId:
-        "1:946671700613:web:5d74536df1dbb0d35e77ec",
-
-        measurementId:
-        "G-K1S62MHHXP"
-    };
+            measurementId:
+            "G-K1S62MHHXP"
+        };
 
 
-    /* ================================
-       START FIREBASE
-    ================================= */
+        /* =========================================
+           INITIALIZE FIREBASE
+        ========================================= */
 
-    const app =
-        initializeApp(firebaseConfig);
+        const app =
+            initializeApp(firebaseConfig);
 
-    const auth =
-        getAuth(app);
-
-
-    /* ================================
-       ELEMENTS
-    ================================= */
-
-    const loginSection =
-        document.getElementById("loginSection");
-
-    const dashboard =
-        document.getElementById("dashboard");
-
-    const emailInput =
-        document.getElementById("email");
-
-    const passwordInput =
-        document.getElementById("password");
-
-    const loginButton =
-        document.getElementById("loginButton");
-
-    const logoutButton =
-        document.getElementById("logoutButton");
-
-    const status =
-        document.getElementById("status");
-
-    const loggedInEmail =
-        document.getElementById("loggedInEmail");
+        const auth =
+            getAuth(app);
 
 
-    /* ================================
-       SHOW STATUS
-    ================================= */
+        /* =========================================
+           GET HTML ELEMENTS
+        ========================================= */
 
-    function showStatus(message, type) {
+        const loginSection =
+            document.getElementById(
+                "loginSection"
+            );
 
-        status.textContent = message;
+        const dashboard =
+            document.getElementById(
+                "dashboard"
+            );
 
-        status.className = type;
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
 
-    }
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
 
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
 
-    /* ================================
-       LOGIN
-    ================================= */
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
 
-    loginButton.addEventListener(
-        "click",
-        async function () {
+        const status =
+            document.getElementById(
+                "status"
+            );
 
-            const email =
-                emailInput.value.trim();
-
-            const password =
-                passwordInput.value;
-
-
-            if (!email || !password) {
-
-                showStatus(
-                    "Please enter your email and password.",
-                    "error"
-                );
-
-                return;
-            }
-
-
-            loginButton.disabled = true;
-
-            loginButton.textContent =
-                "Logging in...";
+        const loggedInEmail =
+            document.getElementById(
+                "loggedInEmail"
+            );
 
 
-            try {
+        /* =========================================
+           SHOW MESSAGE
+        ========================================= */
 
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+        function showStatus(
+            message,
+            type
+        ) {
 
-            }
+            status.textContent =
+                message;
 
-            catch (error) {
-
-                console.error(
-                    "Firebase login error:",
-                    error
-                );
-
-                showStatus(
-                    "Login failed: " +
-                    error.code,
-                    "error"
-                );
-
-                loginButton.disabled = false;
-
-                loginButton.textContent =
-                    "Login";
-            }
+            status.className =
+                type;
 
         }
-    );
 
 
-    /* ================================
-       LOGOUT
-    ================================= */
+        /* =========================================
+           LOGIN
+        ========================================= */
 
-    logoutButton.addEventListener(
-        "click",
-        async function () {
+        loginButton.addEventListener(
+            "click",
+            async function () {
 
-            await signOut(auth);
+                const email =
+                    emailInput.value.trim();
 
-        }
-    );
+                const password =
+                    passwordInput.value;
 
 
-    /* ================================
-       AUTH STATE
-    ================================= */
+                if (
+                    !email ||
+                    !password
+                ) {
 
-    onAuthStateChanged(
-        auth,
-        function (user) {
+                    showStatus(
+                        "Please enter your email and password.",
+                        "error"
+                    );
 
-            if (user) {
+                    return;
+                }
 
-                loginSection.style.display =
-                    "none";
-
-                dashboard.style.display =
-                    "block";
-
-                loggedInEmail.textContent =
-                    "Logged in as: " +
-                    user.email;
-
-            }
-
-            else {
-
-                loginSection.style.display =
-                    "block";
-
-                dashboard.style.display =
-                    "none";
 
                 loginButton.disabled =
-                    false;
+                    true;
 
                 loginButton.textContent =
-                    "Login";
+                    "Logging in...";
+
+
+                try {
+
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Firebase login error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Login failed.";
+
+
+                    if (
+                        error.code ===
+                        "auth/invalid-credential"
+                    ) {
+
+                        message =
+                            "The email or password is incorrect.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        message =
+                            "No Firebase account was found with this email.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/wrong-password"
+                    ) {
+
+                        message =
+                            "The password is incorrect.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/invalid-api-key"
+                    ) {
+
+                        message =
+                            "Firebase API key is invalid.";
+
+                    }
+
+                    else if (
+                        error.code ===
+                        "auth/api-key-not-valid"
+                    ) {
+
+                        message =
+                            "Firebase API key is not valid.";
+
+                    }
+
+                    else {
+
+                        message =
+                            "Login failed: " +
+                            error.code;
+                    }
+
+
+                    showStatus(
+                        message,
+                        "error"
+                    );
+
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "Login";
+
+                }
+
             }
+        );
 
-        }
-    );
 
-</script>
+        /* =========================================
+           LOGOUT
+        ========================================= */
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                try {
+
+                    await signOut(auth);
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           AUTHENTICATION STATE
+        ========================================= */
+
+        onAuthStateChanged(
+            auth,
+            function (user) {
+
+                if (user) {
+
+                    loginSection.style.display =
+                        "none";
+
+                    dashboard.style.display =
+                        "block";
+
+                    loggedInEmail.textContent =
+                        "Logged in as: " +
+                        user.email;
+
+                }
+
+                else {
+
+                    loginSection.style.display =
+                        "block";
+
+                    dashboard.style.display =
+                        "none";
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "Login";
+
+                }
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
 ```
