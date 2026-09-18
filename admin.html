@@ -27,7 +27,7 @@ button{
     cursor:pointer;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 #loginScreen{
     min-height:100vh;
@@ -88,7 +88,7 @@ button{
     min-height:20px;
 }
 
-/* ADMIN */
+/* ================= ADMIN ================= */
 
 #adminApp{
     display:none;
@@ -158,7 +158,7 @@ button{
     min-height:100vh;
 }
 
-/* TOPBAR */
+/* ================= TOPBAR ================= */
 
 .topbar{
     height:72px;
@@ -214,7 +214,7 @@ button{
     font-weight:bold;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 
 .content{
     padding:25px;
@@ -239,7 +239,7 @@ button{
     margin-bottom:25px;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 
 .card{
     background:white;
@@ -253,7 +253,7 @@ button{
     margin-bottom:15px;
 }
 
-/* DASHBOARD */
+/* ================= DASHBOARD ================= */
 
 .welcome-banner{
     background:linear-gradient(135deg,#2563eb,#1e40af);
@@ -304,6 +304,11 @@ button{
 .btn-light{
     background:#e5e7eb;
     color:#111827;
+}
+
+.btn-warning{
+    background:#d97706;
+    color:white;
 }
 
 .stats-grid{
@@ -365,7 +370,7 @@ button{
     margin-top:10px;
 }
 
-/* FORMS */
+/* ================= FORMS ================= */
 
 .form-grid{
     display:grid;
@@ -415,7 +420,7 @@ textarea{
     flex-wrap:wrap;
 }
 
-/* ITEMS */
+/* ================= ITEMS ================= */
 
 .items-list{
     display:grid;
@@ -448,6 +453,7 @@ textarea{
 .item-actions{
     display:flex;
     gap:7px;
+    flex-wrap:wrap;
     flex-shrink:0;
 }
 
@@ -467,7 +473,11 @@ textarea{
     background:#dc2626;
 }
 
-/* GALLERY */
+.preview-item-btn{
+    background:#16a34a;
+}
+
+/* ================= GALLERY ================= */
 
 .warning-box{
     background:#fff7ed;
@@ -504,7 +514,7 @@ textarea{
     background:#eee;
 }
 
-/* PREVIEW */
+/* ================= LIVE PREVIEW ================= */
 
 .preview-box{
     background:#f8fafc;
@@ -518,13 +528,29 @@ textarea{
     margin-bottom:8px;
 }
 
+.preview-frame-wrapper{
+    width:100%;
+    overflow:auto;
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    background:#e5e7eb;
+    padding:15px;
+    border-radius:10px;
+}
+
 .preview-frame{
     width:100%;
     height:600px;
     border:1px solid #d1d5db;
     border-radius:10px;
     background:white;
-    margin-top:15px;
+    transition:.25s;
+}
+
+.preview-frame.mobile{
+    width:390px;
+    max-width:390px;
 }
 
 .preview-controls{
@@ -540,7 +566,49 @@ textarea{
     margin-top:10px;
 }
 
-/* EMPTY */
+/* ================= CONTENT PREVIEW ================= */
+
+.content-preview{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:10px;
+    padding:18px;
+    margin-top:20px;
+}
+
+.content-preview h4{
+    margin-bottom:10px;
+    color:#1e3a8a;
+}
+
+.live-text{
+    white-space:pre-wrap;
+    line-height:1.6;
+    color:#374151;
+}
+
+/* ================= STATUS ================= */
+
+.status-box{
+    padding:12px 15px;
+    border-radius:8px;
+    margin-bottom:15px;
+    display:none;
+}
+
+.status-box.success{
+    display:block;
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status-box.error{
+    display:block;
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================= EMPTY ================= */
 
 .empty{
     text-align:center;
@@ -554,7 +622,7 @@ textarea{
     color:#777;
 }
 
-/* TOAST */
+/* ================= TOAST ================= */
 
 #toastContainer{
     position:fixed;
@@ -587,7 +655,7 @@ textarea{
     background:#2563eb;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 .sidebar-overlay{
     display:none;
@@ -721,7 +789,8 @@ textarea{
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- ================= LOGIN ================= -->
 
 <div id="loginScreen">
 
@@ -759,60 +828,95 @@ textarea{
 
         </form>
 
-        <div id="loginError" class="login-error"></div>
+        <div
+            id="loginError"
+            class="login-error"
+        ></div>
 
     </div>
 
 </div>
 
 
-<!-- ADMIN -->
+<!-- ================= ADMIN ================= -->
 
 <div id="adminApp">
 
-    <aside class="sidebar" id="sidebar">
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
 
         <div class="sidebar-logo">
 
             <h2>Clinton Ncube</h2>
 
-            <span>Admin Dashboard</span>
+            <span>
+                Admin Dashboard
+            </span>
 
         </div>
 
-        <button class="nav-btn active" data-page="dashboard">
+        <button
+            class="nav-btn active"
+            data-page="dashboard"
+        >
             🏠 Dashboard
         </button>
 
-        <button class="nav-btn" data-page="home">
+        <button
+            class="nav-btn"
+            data-page="home"
+        >
             🏡 Home Manager
         </button>
 
-        <button class="nav-btn" data-page="gallery">
+        <button
+            class="nav-btn"
+            data-page="gallery"
+        >
             🖼️ Gallery
         </button>
 
-        <button class="nav-btn" data-page="achievements">
+        <button
+            class="nav-btn"
+            data-page="achievements"
+        >
             🏆 Achievements
         </button>
 
-        <button class="nav-btn" data-page="projects">
+        <button
+            class="nav-btn"
+            data-page="projects"
+        >
             📚 Projects
         </button>
 
-        <button class="nav-btn" data-page="hobbies">
+        <button
+            class="nav-btn"
+            data-page="hobbies"
+        >
             🏀 Hobbies
         </button>
 
-        <button class="nav-btn" data-page="skills">
+        <button
+            class="nav-btn"
+            data-page="skills"
+        >
             💡 Skills
         </button>
 
-        <button class="nav-btn" data-page="diary">
+        <button
+            class="nav-btn"
+            data-page="diary"
+        >
             📔 Private Diary
         </button>
 
-        <button class="nav-btn logout-side" id="logoutSide">
+        <button
+            class="nav-btn logout-side"
+            id="logoutSide"
+        >
             🚪 Logout
         </button>
 
@@ -867,1223 +971,1398 @@ textarea{
         <div class="content">
 
 
-            <!-- DASHBOARD -->
+<!-- ================= DASHBOARD ================= -->
 
-            <section
-                class="page active"
-                id="page-dashboard"
+<section
+    class="page active"
+    id="page-dashboard"
+>
+
+    <h2 class="page-title">
+        Dashboard
+    </h2>
+
+    <p class="page-subtitle">
+        Manage, edit and preview your personal website.
+    </p>
+
+
+    <div class="welcome-banner">
+
+        <h2>
+            Welcome back, Clinton! 👋
+        </h2>
+
+        <p>
+            Your advanced website control panel is ready.
+        </p>
+
+        <div class="dashboard-actions">
+
+            <button
+                class="btn btn-light"
+                id="refreshDashboardBtn"
             >
+                🔄 Refresh Dashboard
+            </button>
 
-                <h2 class="page-title">
-                    Dashboard
-                </h2>
+            <button
+                class="btn btn-light"
+                onclick="previewWebsite()"
+            >
+                👁️ Live Preview
+            </button>
 
-                <p class="page-subtitle">
-                    Manage and preview your personal website.
-                </p>
+            <a
+                class="btn btn-light"
+                href="https://clinton23-sudo.github.io/my-personal-website/"
+                target="_blank"
+                style="text-decoration:none;"
+            >
+                🌐 Open Website
+            </a>
+
+        </div>
+
+        <div
+            id="lastRefresh"
+            class="refresh-info"
+        >
+            Last dashboard refresh: Not yet refreshed
+        </div>
+
+    </div>
 
 
-                <div class="welcome-banner">
+    <div class="stats-grid">
 
-                    <h2>
-                        Welcome back, Clinton! 👋
-                    </h2>
+        <div class="stat-card">
 
-                    <p>
-                        Your website administration centre is ready.
-                    </p>
+            <div
+                class="number"
+                id="galleryCount"
+            >
+                0
+            </div>
 
-                    <div class="dashboard-actions">
+            <div class="label">
+                Gallery Images
+            </div>
 
-                        <button
-                            class="btn btn-light"
-                            id="refreshDashboardBtn"
-                        >
-                            🔄 Refresh Dashboard
-                        </button>
+        </div>
 
-                        <button
-                            class="btn btn-light"
-                            id="previewWebsiteBtn"
-                        >
-                            👁️ Live Preview
-                        </button>
 
-                        <a
-                            class="btn btn-light"
-                            href="https://clinton23-sudo.github.io/my-personal-website/"
-                            target="_blank"
-                            style="text-decoration:none;"
-                        >
-                            🌐 Open Website
-                        </a>
+        <div class="stat-card">
 
-                    </div>
+            <div
+                class="number"
+                id="achievementCount"
+            >
+                0
+            </div>
 
-                    <div
-                        id="lastRefresh"
-                        class="refresh-info"
+            <div class="label">
+                Achievements
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="projectCount"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Projects
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="hobbyCount"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Hobbies
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="number"
+                id="skillCount"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Skills
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+
+            <h3>
+                🌐 Website Information
+            </h3>
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Name
+                </span>
+
+                <span
+                    class="info-value"
+                    id="dashboardName"
+                >
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Goal
+                </span>
+
+                <span
+                    class="info-value"
+                    id="dashboardGoal"
+                >
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Last Updated
+                </span>
+
+                <span
+                    class="info-value"
+                    id="dashboardUpdated"
+                >
+                    Loading...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                ⚡ Quick Actions
+            </h3>
+
+            <div class="dashboard-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('home')"
+                >
+                    🏡 Edit Home
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('gallery')"
+                >
+                    🖼️ Gallery
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('projects')"
+                >
+                    📚 Projects
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('achievements')"
+                >
+                    🏆 Achievements
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('hobbies')"
+                >
+                    🏀 Hobbies
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="showPage('skills')"
+                >
+                    💡 Skills
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LIVE WEBSITE PREVIEW -->
+
+    <div class="preview-box">
+
+        <h3>
+            👁️ Live Website Preview
+        </h3>
+
+        <p>
+            Preview the real website directly inside the dashboard.
+        </p>
+
+        <div class="preview-controls">
+
+            <button
+                class="btn btn-primary"
+                onclick="previewWebsite()"
+            >
+                🏠 Home
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('about.html')"
+            >
+                👤 About
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('projects.html')"
+            >
+                📚 Projects
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('gallery.html')"
+            >
+                🖼️ Gallery
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('achievements.html')"
+            >
+                🏆 Achievements
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('hobbies.html')"
+            >
+                🏀 Hobbies
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="previewPage('skills.html')"
+            >
+                💡 Skills
+            </button>
+
+            <button
+                class="btn btn-warning"
+                onclick="mobilePreview()"
+            >
+                📱 Mobile Preview
+            </button>
+
+            <button
+                class="btn btn-light"
+                onclick="desktopPreview()"
+            >
+                🖥️ Desktop Preview
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="refreshPreview()"
+            >
+                🔄 Refresh
+            </button>
+
+            <a
+                class="btn btn-success"
+                href="https://clinton23-sudo.github.io/my-personal-website/"
+                target="_blank"
+                style="text-decoration:none;"
+            >
+                🌐 New Tab
+            </a>
+
+        </div>
+
+
+        <p class="preview-note">
+            After changing information, save it first and then refresh
+            the preview.
+        </p>
+
+
+        <div
+            class="preview-frame-wrapper"
+            id="previewWrapper"
+            style="display:none;"
+        >
+
+            <iframe
+                id="previewFrame"
+                class="preview-frame"
+                title="Website Preview"
+            ></iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOME ================= -->
+
+<section
+    class="page"
+    id="page-home"
+>
+
+    <h2 class="page-title">
+        Home Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Update the information displayed on your homepage.
+    </p>
+
+
+    <div
+        id="homeStatus"
+        class="status-box"
+    ></div>
+
+
+    <div class="card">
+
+        <form id="homeForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="homeName"
+                        value="Clinton Ncube"
+                        required
                     >
-                        Last dashboard refresh: Not yet refreshed
-                    </div>
 
                 </div>
 
 
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-
-                        <div
-                            class="number"
-                            id="galleryCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="label">
-                            Gallery Images
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div
-                            class="number"
-                            id="achievementCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="label">
-                            Achievements
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div
-                            class="number"
-                            id="projectCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="label">
-                            Projects
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div
-                            class="number"
-                            id="hobbyCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="label">
-                            Hobbies
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div
-                            class="number"
-                            id="skillCount"
-                        >
-                            0
-                        </div>
-
-                        <div class="label">
-                            Skills
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-grid">
-
-                    <div class="card">
-
-                        <h3>
-                            🌐 Website Information
-                        </h3>
-
-                        <div class="info-row">
-
-                            <span class="info-label">
-                                Name
-                            </span>
-
-                            <span
-                                class="info-value"
-                                id="dashboardName"
-                            >
-                                Loading...
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-row">
-
-                            <span class="info-label">
-                                Goal
-                            </span>
-
-                            <span
-                                class="info-value"
-                                id="dashboardGoal"
-                            >
-                                Loading...
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-row">
-
-                            <span class="info-label">
-                                Last Updated
-                            </span>
-
-                            <span
-                                class="info-value"
-                                id="dashboardUpdated"
-                            >
-                                Loading...
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="card">
-
-                        <h3>
-                            ⚡ Quick Actions
-                        </h3>
-
-                        <div class="dashboard-actions">
-
-                            <button
-                                class="btn btn-primary"
-                                onclick="showPage('home')"
-                            >
-                                🏡 Edit Home
-                            </button>
-
-                            <button
-                                class="btn btn-primary"
-                                onclick="showPage('gallery')"
-                            >
-                                🖼️ Gallery
-                            </button>
-
-                            <button
-                                class="btn btn-primary"
-                                onclick="showPage('projects')"
-                            >
-                                📚 Projects
-                            </button>
-
-                            <button
-                                class="btn btn-primary"
-                                onclick="showPage('diary')"
-                            >
-                                📔 Diary
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- LIVE PREVIEW -->
-
-                <div class="preview-box">
-
-                    <h3>
-                        👁️ Live Website Preview
-                    </h3>
-
-                    <p>
-                        This preview opens your actual GitHub Pages website.
-                    </p>
-
-                    <div class="preview-controls">
-
-                        <button
-                            class="btn btn-primary"
-                            id="loadPreviewBtn"
-                        >
-                            👁️ Load Preview
-                        </button>
-
-                        <button
-                            class="btn btn-light"
-                            id="refreshPreviewBtn"
-                        >
-                            🔄 Refresh Preview
-                        </button>
-
-                        <a
-                            class="btn btn-success"
-                            href="https://clinton23-sudo.github.io/my-personal-website/"
-                            target="_blank"
-                            style="text-decoration:none;"
-                        >
-                            🌐 Open Full Website
-                        </a>
-
-                    </div>
-
-                    <p class="preview-note">
-                        If you have just committed a change to GitHub,
-                        give GitHub Pages a little time to publish it before
-                        refreshing this preview.
-                    </p>
-
-                    <iframe
-                        id="previewFrame"
-                        class="preview-frame"
-                        title="Website Preview"
-                        style="display:none;"
-                    ></iframe>
-
-                </div>
-
-            </section>
-
-
-            <!-- HOME -->
-
-            <section
-                class="page"
-                id="page-home"
-            >
-
-                <h2 class="page-title">
-                    Home Manager
-                </h2>
-
-                <p class="page-subtitle">
-                    Update the information displayed on your homepage.
-                </p>
-
-
-                <div class="card">
-
-                    <form id="homeForm">
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label>
-                                    Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="homeName"
-                                    value="Clinton Ncube"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label>
-                                    Last Updated
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="homeUpdated"
-                                    placeholder="2026"
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Welcome Message
-                                </label>
-
-                                <textarea
-                                    id="homeWelcome"
-                                ></textarea>
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Goal
-                                </label>
-
-                                <textarea
-                                    id="homeGoal"
-                                ></textarea>
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    About
-                                </label>
-
-                                <textarea
-                                    id="homeAbout"
-                                ></textarea>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Home Information
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="loadHome()"
-                            >
-                                🔄 Reload
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                onclick="previewWebsite()"
-                            >
-                                👁️ Preview Website
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- GALLERY -->
-
-            <section
-                class="page"
-                id="page-gallery"
-            >
-
-                <h2 class="page-title">
-                    Gallery Manager
-                </h2>
-
-                <p class="page-subtitle">
-                    Add and manage pictures displayed on your website.
-                </p>
-
-
-                <div class="warning-box">
-
-                    <strong>
-                        No Firebase Storage required.
-                    </strong>
-
-                    <br>
-
-                    Choose an image that already exists in your website's
-                    <strong>images</strong> folder.
-
-                    <br>
-
-                    Gallery information is saved through Firebase
-                    Realtime Database.
-
-                    <br>
-
-                    New image files still need to be placed inside your
-                    GitHub <strong>images</strong> folder.
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3 id="galleryFormTitle">
-                        Add Gallery Image
-                    </h3>
-
-                    <form id="galleryForm">
-
-                        <input
-                            type="hidden"
-                            id="galleryEditId"
-                        >
-
-                        <div class="form-grid">
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Image Title
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="galleryTitle"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Choose Existing Website Image
-                                </label>
-
-                                <select
-                                    id="gallerySelector"
-                                    onchange="selectGalleryImage()"
-                                >
-
-                                    <option value="">
-                                        -- Select an image --
-                                    </option>
-
-                                    <option value="images/IMG_20250802_093252.jpg">
-                                        IMG_20250802_093252.jpg
-                                    </option>
-
-                                    <option value="images/IMG_20250802_093305.jpg">
-                                        IMG_20250802_093305.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_48_08_Pro.jpg">
-                                        WIN_20260814_16_48_08_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_48_27_Pro.jpg">
-                                        WIN_20260814_16_48_27_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_48_35_Pro.jpg">
-                                        WIN_20260814_16_48_35_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_48_39_Pro.jpg">
-                                        WIN_20260814_16_48_39_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_49_03_Pro.jpg">
-                                        WIN_20260814_16_49_03_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_49_16_Pro.jpg">
-                                        WIN_20260814_16_49_16_Pro.jpg
-                                    </option>
-
-                                    <option value="images/WIN_20260814_16_49_28_Pro.jpg">
-                                        WIN_20260814_16_49_28_Pro.jpg
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Image Path / URL
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="galleryFile"
-                                    oninput="previewGalleryURL()"
-                                    required
-                                >
-
-                                <img
-                                    id="galleryPreview"
-                                    class="gallery-preview"
-                                    alt="Gallery preview"
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Temporary Local Preview
-                                </label>
-
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onchange="previewLocalImage(event)"
-                                >
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Description
-                                </label>
-
-                                <textarea
-                                    id="galleryDescription"
-                                ></textarea>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Image
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearGalleryForm()"
-                            >
-                                Clear
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h3>
-                        Gallery Images
-                    </h3>
-
-                    <div
-                        class="items-list"
-                        id="galleryList"
+                <div class="form-group">
+
+                    <label>
+                        Last Updated
+                    </label>
+
+                    <input
+                        type="text"
+                        id="homeUpdated"
+                        placeholder="2026"
                     >
-                        <div class="loading">
-                            Loading gallery...
-                        </div>
-                    </div>
 
                 </div>
 
-            </section>
+
+                <div class="form-group full">
+
+                    <label>
+                        Welcome Message
+                    </label>
+
+                    <textarea
+                        id="homeWelcome"
+                    ></textarea>
+
+                </div>
 
 
-            <!-- ACHIEVEMENTS -->
+                <div class="form-group full">
 
-            <section
-                class="page"
-                id="page-achievements"
+                    <label>
+                        Goal
+                    </label>
+
+                    <textarea
+                        id="homeGoal"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        About
+                    </label>
+
+                    <textarea
+                        id="homeAbout"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Home Information
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="loadHome()"
+                >
+                    🔄 Reload
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="showHomeLivePreview()"
+                >
+                    👁️ Live Form Preview
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="previewPage('index.html')"
+                >
+                    🌐 Website Preview
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <div
+            id="homeLivePreview"
+            class="content-preview"
+        >
+
+            <h4>
+                ✨ Live Home Content Preview
+            </h4>
+
+            <p
+                id="homePreviewName"
+                class="live-text"
+            >
+                Clinton Ncube
+            </p>
+
+            <p
+                id="homePreviewWelcome"
+                class="live-text"
+                style="margin-top:10px;"
+            >
+                Your welcome message will appear here.
+            </p>
+
+            <p
+                id="homePreviewGoal"
+                class="live-text"
+                style="margin-top:10px;"
+            >
+                Your goal will appear here.
+            </p>
+
+            <p
+                id="homePreviewAbout"
+                class="live-text"
+                style="margin-top:10px;"
+            >
+                Your about information will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section
+    class="page"
+    id="page-gallery"
+>
+
+    <h2 class="page-title">
+        Gallery Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Add, edit, preview and manage your gallery.
+    </p>
+
+
+    <div class="warning-box">
+
+        <strong>
+            No Firebase Storage required.
+        </strong>
+
+        <br>
+
+        Choose an image that already exists in your website's
+        <strong>images</strong> folder.
+
+        <br>
+
+        Gallery information is saved through Firebase Realtime Database.
+
+        <br>
+
+        New image files still need to be placed inside your GitHub
+        <strong>images</strong> folder.
+
+    </div>
+
+
+    <div class="card">
+
+        <h3 id="galleryFormTitle">
+            Add Gallery Image
+        </h3>
+
+        <form id="galleryForm">
+
+            <input
+                type="hidden"
+                id="galleryEditId"
             >
 
-                <h2 class="page-title">
-                    Achievements Manager
-                </h2>
+            <div class="form-grid">
 
-                <p class="page-subtitle">
-                    Manage achievements displayed on your website.
-                </p>
+                <div class="form-group full">
 
+                    <label>
+                        Image Title
+                    </label>
 
-                <div class="card">
-
-                    <h3 id="achievementFormTitle">
-                        Add Achievement
-                    </h3>
-
-                    <form id="achievementForm">
-
-                        <input
-                            type="hidden"
-                            id="achievementEditId"
-                        >
-
-                        <div class="form-group">
-
-                            <label>
-                                Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="achievementTitle"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Description
-                            </label>
-
-                            <textarea
-                                id="achievementDescription"
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Achievement
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearAchievementForm()"
-                            >
-                                Clear
-                            </button>
-
-                        </div>
-
-                    </form>
+                    <input
+                        type="text"
+                        id="galleryTitle"
+                        required
+                    >
 
                 </div>
 
 
-                <div class="card">
+                <div class="form-group full">
 
-                    <h3>
-                        Achievements
-                    </h3>
+                    <label>
+                        Choose Existing Website Image
+                    </label>
 
-                    <div
-                        class="items-list"
-                        id="achievementList"
-                    ></div>
+                    <select
+                        id="gallerySelector"
+                        onchange="selectGalleryImage()"
+                    >
+
+                        <option value="">
+                            -- Select an image --
+                        </option>
+
+                        <option value="images/IMG_20250802_093252.jpg">
+                            IMG_20250802_093252.jpg
+                        </option>
+
+                        <option value="images/IMG_20250802_093305.jpg">
+                            IMG_20250802_093305.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_48_08_Pro.jpg">
+                            WIN_20260814_16_48_08_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_48_27_Pro.jpg">
+                            WIN_20260814_16_48_27_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_48_35_Pro.jpg">
+                            WIN_20260814_16_48_35_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_48_39_Pro.jpg">
+                            WIN_20260814_16_48_39_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_49_03_Pro.jpg">
+                            WIN_20260814_16_49_03_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_49_16_Pro.jpg">
+                            WIN_20260814_16_49_16_Pro.jpg
+                        </option>
+
+                        <option value="images/WIN_20260814_16_49_28_Pro.jpg">
+                            WIN_20260814_16_49_28_Pro.jpg
+                        </option>
+
+                    </select>
 
                 </div>
 
-            </section>
+
+                <div class="form-group full">
+
+                    <label>
+                        Image Path / URL
+                    </label>
+
+                    <input
+                        type="text"
+                        id="galleryFile"
+                        oninput="previewGalleryURL()"
+                        required
+                    >
+
+                    <img
+                        id="galleryPreview"
+                        class="gallery-preview"
+                        alt="Gallery preview"
+                    >
+
+                </div>
 
 
-            <!-- PROJECTS -->
+                <div class="form-group full">
 
-            <section
-                class="page"
-                id="page-projects"
+                    <label>
+                        Temporary Local Preview
+                    </label>
+
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onchange="previewLocalImage(event)"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="galleryDescription"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Image
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearGalleryForm()"
+                >
+                    Clear
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="previewPage('gallery.html')"
+                >
+                    👁️ Preview Gallery
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Gallery Images
+        </h3>
+
+        <div
+            class="items-list"
+            id="galleryList"
+        >
+            <div class="loading">
+                Loading gallery...
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section
+    class="page"
+    id="page-achievements"
+>
+
+    <h2 class="page-title">
+        Achievements Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Manage your achievements.
+    </p>
+
+
+    <div class="card">
+
+        <h3 id="achievementFormTitle">
+            Add Achievement
+        </h3>
+
+        <form id="achievementForm">
+
+            <input
+                type="hidden"
+                id="achievementEditId"
             >
 
-                <h2 class="page-title">
-                    Projects Manager
-                </h2>
+            <div class="form-group">
 
-                <p class="page-subtitle">
-                    Manage your projects.
-                </p>
+                <label>
+                    Title
+                </label>
 
+                <input
+                    type="text"
+                    id="achievementTitle"
+                    required
+                >
 
-                <div class="card">
-
-                    <h3 id="projectFormTitle">
-                        Add Project
-                    </h3>
-
-                    <form id="projectForm">
-
-                        <input
-                            type="hidden"
-                            id="projectEditId"
-                        >
-
-                        <div class="form-group">
-
-                            <label>
-                                Project Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="projectTitle"
-                                required
-                            >
-
-                        </div>
+            </div>
 
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <label>
-                                Description
-                            </label>
+                <label>
+                    Description
+                </label>
 
-                            <textarea
-                                id="projectDescription"
-                                required
-                            ></textarea>
+                <textarea
+                    id="achievementDescription"
+                    required
+                ></textarea>
 
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Project Link
-                            </label>
-
-                            <input
-                                type="text"
-                                id="projectLink"
-                                placeholder="https://..."
-                            >
-
-                        </div>
+            </div>
 
 
-                        <div class="form-actions">
+            <div class="form-actions">
 
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Project
-                            </button>
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Achievement
+                </button>
 
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearProjectForm()"
-                            >
-                                Clear
-                            </button>
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearAchievementForm()"
+                >
+                    Clear
+                </button>
 
-                        </div>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="previewPage('achievements.html')"
+                >
+                    👁️ Preview
+                </button>
 
-                    </form>
+            </div>
 
-                </div>
+        </form>
 
-
-                <div class="card">
-
-                    <h3>
-                        Projects
-                    </h3>
-
-                    <div
-                        class="items-list"
-                        id="projectList"
-                    ></div>
-
-                </div>
-
-            </section>
+    </div>
 
 
-            <!-- HOBBIES -->
+    <div class="card">
 
-            <section
-                class="page"
-                id="page-hobbies"
+        <h3>
+            Achievements
+        </h3>
+
+        <div
+            class="items-list"
+            id="achievementList"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section
+    class="page"
+    id="page-projects"
+>
+
+    <h2 class="page-title">
+        Projects Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Manage your projects and links.
+    </p>
+
+
+    <div class="card">
+
+        <h3 id="projectFormTitle">
+            Add Project
+        </h3>
+
+        <form id="projectForm">
+
+            <input
+                type="hidden"
+                id="projectEditId"
             >
 
-                <h2 class="page-title">
-                    Hobbies Manager
-                </h2>
+            <div class="form-group">
 
-                <p class="page-subtitle">
-                    Manage your hobbies.
-                </p>
+                <label>
+                    Project Title
+                </label>
 
+                <input
+                    type="text"
+                    id="projectTitle"
+                    required
+                >
 
-                <div class="card">
-
-                    <h3 id="hobbyFormTitle">
-                        Add Hobby
-                    </h3>
-
-                    <form id="hobbyForm">
-
-                        <input
-                            type="hidden"
-                            id="hobbyEditId"
-                        >
-
-                        <div class="form-group">
-
-                            <label>
-                                Hobby Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="hobbyTitle"
-                                required
-                            >
-
-                        </div>
+            </div>
 
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <label>
-                                Description
-                            </label>
+                <label>
+                    Description
+                </label>
 
-                            <textarea
-                                id="hobbyDescription"
-                                required
-                            ></textarea>
+                <textarea
+                    id="projectDescription"
+                    required
+                ></textarea>
 
-                        </div>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Hobby
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearHobbyForm()"
-                            >
-                                Clear
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
+            </div>
 
 
-                <div class="card">
+            <div class="form-group">
 
-                    <h3>
-                        Hobbies
-                    </h3>
+                <label>
+                    Project Link
+                </label>
 
-                    <div
-                        class="items-list"
-                        id="hobbyList"
-                    ></div>
+                <input
+                    type="text"
+                    id="projectLink"
+                    placeholder="https://..."
+                >
 
-                </div>
-
-            </section>
+            </div>
 
 
-            <!-- SKILLS -->
+            <div class="form-actions">
 
-            <section
-                class="page"
-                id="page-skills"
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Project
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearProjectForm()"
+                >
+                    Clear
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="previewPage('projects.html')"
+                >
+                    👁️ Preview Projects
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Projects
+        </h3>
+
+        <div
+            class="items-list"
+            id="projectList"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOBBIES ================= -->
+
+<section
+    class="page"
+    id="page-hobbies"
+>
+
+    <h2 class="page-title">
+        Hobbies Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Manage your hobbies.
+    </p>
+
+
+    <div class="card">
+
+        <h3 id="hobbyFormTitle">
+            Add Hobby
+        </h3>
+
+        <form id="hobbyForm">
+
+            <input
+                type="hidden"
+                id="hobbyEditId"
             >
 
-                <h2 class="page-title">
-                    Skills Manager
-                </h2>
+            <div class="form-group">
 
-                <p class="page-subtitle">
-                    Manage your skills.
-                </p>
+                <label>
+                    Hobby Title
+                </label>
 
+                <input
+                    type="text"
+                    id="hobbyTitle"
+                    required
+                >
 
-                <div class="card">
-
-                    <h3 id="skillFormTitle">
-                        Add Skill
-                    </h3>
-
-                    <form id="skillForm">
-
-                        <input
-                            type="hidden"
-                            id="skillEditId"
-                        >
-
-                        <div class="form-group">
-
-                            <label>
-                                Skill Title
-                            </label>
-
-                            <input
-                                type="text"
-                                id="skillTitle"
-                                required
-                            >
-
-                        </div>
+            </div>
 
 
-                        <div class="form-group">
+            <div class="form-group">
 
-                            <label>
-                                Description
-                            </label>
+                <label>
+                    Description
+                </label>
 
-                            <textarea
-                                id="skillDescription"
-                                required
-                            ></textarea>
+                <textarea
+                    id="hobbyDescription"
+                    required
+                ></textarea>
 
-                        </div>
-
-
-                        <div class="form-actions">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Skill
-                            </button>
-
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearSkillForm()"
-                            >
-                                Clear
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
+            </div>
 
 
-                <div class="card">
+            <div class="form-actions">
 
-                    <h3>
-                        Skills
-                    </h3>
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Hobby
+                </button>
 
-                    <div
-                        class="items-list"
-                        id="skillList"
-                    ></div>
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearHobbyForm()"
+                >
+                    Clear
+                </button>
 
-                </div>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="previewPage('hobbies.html')"
+                >
+                    👁️ Preview Hobbies
+                </button>
 
-            </section>
+            </div>
+
+        </form>
+
+    </div>
 
 
-            <!-- DIARY -->
+    <div class="card">
 
-            <section
-                class="page"
-                id="page-diary"
+        <h3>
+            Hobbies
+        </h3>
+
+        <div
+            class="items-list"
+            id="hobbyList"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section
+    class="page"
+    id="page-skills"
+>
+
+    <h2 class="page-title">
+        Skills Manager
+    </h2>
+
+    <p class="page-subtitle">
+        Manage your skills.
+    </p>
+
+
+    <div class="card">
+
+        <h3 id="skillFormTitle">
+            Add Skill
+        </h3>
+
+        <form id="skillForm">
+
+            <input
+                type="hidden"
+                id="skillEditId"
             >
 
-                <h2 class="page-title">
-                    Private Diary
-                </h2>
+            <div class="form-group">
 
-                <p class="page-subtitle">
-                    Manage your private diary entries.
-                </p>
+                <label>
+                    Skill Title
+                </label>
 
+                <input
+                    type="text"
+                    id="skillTitle"
+                    required
+                >
 
-                <div class="card">
-
-                    <h3 id="diaryFormTitle">
-                        Add Diary Entry
-                    </h3>
-
-                    <form id="diaryForm">
-
-                        <input
-                            type="hidden"
-                            id="diaryEditId"
-                        >
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label>
-                                    Date
-                                </label>
-
-                                <input
-                                    type="date"
-                                    id="diaryDate"
-                                    required
-                                >
-
-                            </div>
+            </div>
 
 
-                            <div class="form-group">
+            <div class="form-group">
 
-                                <label>
-                                    Title
-                                </label>
+                <label>
+                    Description
+                </label>
 
-                                <input
-                                    type="text"
-                                    id="diaryTitle"
-                                    required
-                                >
+                <textarea
+                    id="skillDescription"
+                    required
+                ></textarea>
 
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    What Happened?
-                                </label>
-
-                                <textarea
-                                    id="diaryHappened"
-                                ></textarea>
-
-                            </div>
+            </div>
 
 
-                            <div class="form-group full">
+            <div class="form-actions">
 
-                                <label>
-                                    Feelings
-                                </label>
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Skill
+                </button>
 
-                                <textarea
-                                    id="diaryFeelings"
-                                ></textarea>
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearSkillForm()"
+                >
+                    Clear
+                </button>
 
-                            </div>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="previewPage('skills.html')"
+                >
+                    👁️ Preview Skills
+                </button>
 
+            </div>
 
-                            <div class="form-group full">
+        </form>
 
-                                <label>
-                                    Notes
-                                </label>
-
-                                <textarea
-                                    id="diaryNotes"
-                                ></textarea>
-
-                            </div>
-
-
-                            <div class="form-group full">
-
-                                <label>
-                                    Photo Path / URL
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="diaryPhoto"
-                                    placeholder="images/example.jpg"
-                                >
-
-                            </div>
-
-                        </div>
+    </div>
 
 
-                        <div class="form-actions">
+    <div class="card">
 
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                            >
-                                💾 Save Diary Entry
-                            </button>
+        <h3>
+            Skills
+        </h3>
 
-                            <button
-                                type="button"
-                                class="btn btn-light"
-                                onclick="clearDiaryForm()"
-                            >
-                                Clear
-                            </button>
+        <div
+            class="items-list"
+            id="skillList"
+        ></div>
 
-                        </div>
+    </div>
 
-                    </form>
+</section>
+
+
+<!-- ================= DIARY ================= -->
+
+<section
+    class="page"
+    id="page-diary"
+>
+
+    <h2 class="page-title">
+        Private Diary
+    </h2>
+
+    <p class="page-subtitle">
+        Manage your private diary entries.
+    </p>
+
+
+    <div class="card">
+
+        <h3 id="diaryFormTitle">
+            Add Diary Entry
+        </h3>
+
+        <form id="diaryForm">
+
+            <input
+                type="hidden"
+                id="diaryEditId"
+            >
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="diaryDate"
+                        required
+                    >
 
                 </div>
 
 
-                <div class="card">
+                <div class="form-group">
 
-                    <h3>
-                        Diary Entries
-                    </h3>
+                    <label>
+                        Title
+                    </label>
 
-                    <div
-                        class="items-list"
-                        id="diaryList"
-                    ></div>
+                    <input
+                        type="text"
+                        id="diaryTitle"
+                        required
+                    >
 
                 </div>
 
-            </section>
+
+                <div class="form-group full">
+
+                    <label>
+                        What Happened?
+                    </label>
+
+                    <textarea
+                        id="diaryHappened"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Feelings
+                    </label>
+
+                    <textarea
+                        id="diaryFeelings"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="diaryNotes"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Photo Path / URL
+                    </label>
+
+                    <input
+                        type="text"
+                        id="diaryPhoto"
+                        placeholder="images/example.jpg"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    💾 Save Diary Entry
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    onclick="clearDiaryForm()"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Diary Entries
+        </h3>
+
+        <div
+            class="items-list"
+            id="diaryList"
+        ></div>
+
+    </div>
+
+</section>
+
 
         </div>
 
@@ -2118,7 +2397,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 
-/* FIREBASE */
+/* ================= FIREBASE ================= */
 
 const firebaseConfig = {
 
@@ -2159,10 +2438,10 @@ const db =
     getDatabase(app);
 
 
-/* HELPERS */
+/* ================= HELPERS ================= */
 
-const $ = id =>
-    document.getElementById(id);
+const $ =
+    id => document.getElementById(id);
 
 
 function escapeHTML(value){
@@ -2177,7 +2456,10 @@ function escapeHTML(value){
 }
 
 
-function showToast(message,type="info"){
+function showToast(
+    message,
+    type="info"
+){
 
     const toast =
         document.createElement("div");
@@ -2210,7 +2492,7 @@ function formatDateTime(){
 }
 
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 $("loginForm").addEventListener(
     "submit",
@@ -2241,11 +2523,6 @@ $("loginForm").addEventListener(
                 password
             );
 
-            showToast(
-                "Login successful!",
-                "success"
-            );
-
         }catch(error){
 
             console.error(error);
@@ -2267,7 +2544,7 @@ $("loginForm").addEventListener(
 );
 
 
-/* AUTH STATE */
+/* ================= AUTH ================= */
 
 onAuthStateChanged(
     auth,
@@ -2300,7 +2577,7 @@ onAuthStateChanged(
 );
 
 
-/* LOGOUT */
+/* ================= LOGOUT ================= */
 
 $("logoutSide").addEventListener(
     "click",
@@ -2330,7 +2607,7 @@ $("logoutSide").addEventListener(
 );
 
 
-/* MOBILE MENU */
+/* ================= MOBILE MENU ================= */
 
 $("menuToggle").addEventListener(
     "click",
@@ -2360,7 +2637,7 @@ $("sidebarOverlay").addEventListener(
 );
 
 
-/* PAGE NAVIGATION */
+/* ================= PAGE NAVIGATION ================= */
 
 const pageTitles = {
 
@@ -2376,59 +2653,67 @@ const pageTitles = {
 };
 
 
-window.showPage = function(page){
+window.showPage =
+    function(page){
 
-    document
-        .querySelectorAll(".page")
-        .forEach(p =>
-            p.classList.remove("active")
-        );
+        document
+            .querySelectorAll(".page")
+            .forEach(
+                p =>
+                    p.classList.remove("active")
+            );
 
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(b =>
-            b.classList.remove("active")
-        );
+        document
+            .querySelectorAll(".nav-btn")
+            .forEach(
+                b =>
+                    b.classList.remove("active")
+            );
 
-    const target =
-        $("page-" + page);
+        const target =
+            $("page-" + page);
 
-    if(target)
-        target.classList.add("active");
+        if(target)
+            target.classList.add("active");
 
-    const nav =
-        document.querySelector(
-            `.nav-btn[data-page="${page}"]`
-        );
+        const nav =
+            document.querySelector(
+                `.nav-btn[data-page="${page}"]`
+            );
 
-    if(nav)
-        nav.classList.add("active");
+        if(nav)
+            nav.classList.add("active");
 
-    $("topbarTitle").textContent =
-        pageTitles[page] || "Dashboard";
+        $("topbarTitle").textContent =
+            pageTitles[page] || "Dashboard";
 
-    $("sidebar").classList.remove("open");
+        $("sidebar")
+            .classList.remove("open");
 
-    $("sidebarOverlay").classList.remove("open");
+        $("sidebarOverlay")
+            .classList.remove("open");
 
-};
+    };
 
 
 document
     .querySelectorAll(".nav-btn[data-page]")
-    .forEach(button => {
+    .forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => showPage(
-                button.dataset.page
-            )
-        );
+            button.addEventListener(
+                "click",
+                () =>
+                    showPage(
+                        button.dataset.page
+                    )
+            );
 
-    });
+        }
+    );
 
 
-/* LOAD EVERYTHING */
+/* ================= LOAD EVERYTHING ================= */
 
 async function loadEverything(){
 
@@ -2453,16 +2738,19 @@ async function loadEverything(){
 }
 
 
-/* REFRESH */
+/* ================= DASHBOARD REFRESH ================= */
 
 $("refreshDashboardBtn").addEventListener(
     "click",
     async () => {
 
-        $("refreshDashboardBtn").disabled =
+        const button =
+            $("refreshDashboardBtn");
+
+        button.disabled =
             true;
 
-        $("refreshDashboardBtn").textContent =
+        button.textContent =
             "🔄 Refreshing...";
 
         try{
@@ -2479,16 +2767,16 @@ $("refreshDashboardBtn").addEventListener(
             console.error(error);
 
             showToast(
-                "Refresh failed.",
+                "Dashboard refresh failed.",
                 "error"
             );
 
         }finally{
 
-            $("refreshDashboardBtn").disabled =
+            button.disabled =
                 false;
 
-            $("refreshDashboardBtn").textContent =
+            button.textContent =
                 "🔄 Refresh Dashboard";
 
         }
@@ -2497,12 +2785,14 @@ $("refreshDashboardBtn").addEventListener(
 );
 
 
-/* STATS */
+/* ================= STATS ================= */
 
 async function countChildren(path){
 
     const snapshot =
-        await get(ref(db,path));
+        await get(
+            ref(db,path)
+        );
 
     if(!snapshot.exists())
         return 0;
@@ -2545,58 +2835,61 @@ async function updateDashboardStats(){
 }
 
 
-/* HOME */
+/* ================= HOME ================= */
 
-window.loadHome = async function(){
+window.loadHome =
+    async function(){
 
-    try{
+        try{
 
-        const snapshot =
-            await get(
-                ref(db,"websiteData")
+            const snapshot =
+                await get(
+                    ref(db,"websiteData")
+                );
+
+            const data =
+                snapshot.exists()
+                    ? snapshot.val()
+                    : {};
+
+            $("homeName").value =
+                data.name || "Clinton Ncube";
+
+            $("homeWelcome").value =
+                data.welcome || "";
+
+            $("homeGoal").value =
+                data.goal || "";
+
+            $("homeAbout").value =
+                data.about || "";
+
+            $("homeUpdated").value =
+                data.lastUpdated || "2026";
+
+            $("dashboardName").textContent =
+                data.name || "Clinton Ncube";
+
+            $("dashboardGoal").textContent =
+                data.goal || "Not set";
+
+            $("dashboardUpdated").textContent =
+                data.lastUpdated || "Not set";
+
+            updateHomeLivePreview();
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Could not load home information.",
+                "error"
             );
 
-        const data =
-            snapshot.exists()
-                ? snapshot.val()
-                : {};
+        }
 
-        $("homeName").value =
-            data.name || "Clinton Ncube";
-
-        $("homeWelcome").value =
-            data.welcome || "";
-
-        $("homeGoal").value =
-            data.goal || "";
-
-        $("homeAbout").value =
-            data.about || "";
-
-        $("homeUpdated").value =
-            data.lastUpdated || "2026";
-
-        $("dashboardName").textContent =
-            data.name || "Clinton Ncube";
-
-        $("dashboardGoal").textContent =
-            data.goal || "Not set";
-
-        $("dashboardUpdated").textContent =
-            data.lastUpdated || "Not set";
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Could not load home information.",
-            "error"
-        );
-
-    }
-
-};
+    };
 
 
 $("homeForm").addEventListener(
@@ -2653,75 +2946,135 @@ $("homeForm").addEventListener(
 );
 
 
-/* GALLERY */
+/* HOME LIVE FORM PREVIEW */
 
-window.selectGalleryImage = function(){
+function updateHomeLivePreview(){
 
-    const value =
-        $("gallerySelector").value;
+    $("homePreviewName").textContent =
+        $("homeName").value ||
+        "Clinton Ncube";
 
-    if(!value)
-        return;
+    $("homePreviewWelcome").textContent =
+        $("homeWelcome").value ||
+        "Your welcome message will appear here.";
 
-    $("galleryFile").value =
-        value;
+    $("homePreviewGoal").textContent =
+        $("homeGoal").value ||
+        "Your goal will appear here.";
 
-    previewGalleryURL();
+    $("homePreviewAbout").textContent =
+        $("homeAbout").value ||
+        "Your about information will appear here.";
 
-};
+}
 
 
-window.previewGalleryURL = function(){
+window.showHomeLivePreview =
+    function(){
 
-    const path =
-        $("galleryFile").value.trim();
+        updateHomeLivePreview();
 
-    const preview =
-        $("galleryPreview");
+        $("homeLivePreview")
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
 
-    if(!path){
+    };
 
-        preview.style.display =
-            "none";
 
-        return;
+[
+    "homeName",
+    "homeWelcome",
+    "homeGoal",
+    "homeAbout"
+]
+.forEach(
+    id => {
+
+        $(id).addEventListener(
+            "input",
+            updateHomeLivePreview
+        );
 
     }
-
-    preview.src =
-        path;
-
-    preview.style.display =
-        "block";
-
-};
+);
 
 
-window.previewLocalImage = function(event){
+/* ================= GALLERY ================= */
 
-    const file =
-        event.target.files[0];
+window.selectGalleryImage =
+    function(){
 
-    if(!file)
-        return;
+        const value =
+            $("gallerySelector").value;
 
-    const reader =
-        new FileReader();
+        if(!value)
+            return;
 
-    reader.onload =
-        event => {
+        $("galleryFile").value =
+            value;
 
-            $("galleryPreview").src =
-                event.target.result;
+        previewGalleryURL();
 
-            $("galleryPreview").style.display =
-                "block";
+    };
 
-        };
 
-    reader.readAsDataURL(file);
+window.previewGalleryURL =
+    function(){
 
-};
+        const path =
+            $("galleryFile")
+                .value
+                .trim();
+
+        const preview =
+            $("galleryPreview");
+
+        if(!path){
+
+            preview.style.display =
+                "none";
+
+            return;
+
+        }
+
+        preview.src =
+            path;
+
+        preview.style.display =
+            "block";
+
+    };
+
+
+window.previewLocalImage =
+    function(event){
+
+        const file =
+            event.target.files[0];
+
+        if(!file)
+            return;
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            event => {
+
+                $("galleryPreview").src =
+                    event.target.result;
+
+                $("galleryPreview").style.display =
+                    "block";
+
+            };
+
+        reader.readAsDataURL(file);
+
+    };
 
 
 $("galleryForm").addEventListener(
@@ -2736,10 +3089,14 @@ $("galleryForm").addEventListener(
         const data = {
 
             title:
-                $("galleryTitle").value.trim(),
+                $("galleryTitle")
+                    .value
+                    .trim(),
 
             file:
-                $("galleryFile").value.trim(),
+                $("galleryFile")
+                    .value
+                    .trim(),
 
             description:
                 $("galleryDescription")
@@ -2747,17 +3104,6 @@ $("galleryForm").addEventListener(
                     .trim()
 
         };
-
-        if(!data.title || !data.file){
-
-            showToast(
-                "Enter an image title and path.",
-                "error"
-            );
-
-            return;
-
-        }
 
         try{
 
@@ -2808,193 +3154,223 @@ $("galleryForm").addEventListener(
 );
 
 
-window.loadGallery = async function(){
+window.loadGallery =
+    async function(){
 
-    try{
+        try{
 
-        const snapshot =
-            await get(
-                ref(db,"gallery")
-            );
+            const snapshot =
+                await get(
+                    ref(db,"gallery")
+                );
 
-        const list =
-            $("galleryList");
-
-        list.innerHTML =
-            "";
-
-        if(!snapshot.exists()){
+            const list =
+                $("galleryList");
 
             list.innerHTML =
-                `<div class="empty">
-                    No gallery images yet.
-                </div>`;
+                "";
 
-            return;
+            if(!snapshot.exists()){
+
+                list.innerHTML =
+                    `<div class="empty">
+                        No gallery images yet.
+                    </div>`;
+
+                return;
+
+            }
+
+            Object.entries(
+                snapshot.val()
+            ).forEach(
+                ([id,item]) => {
+
+                    const wrapper =
+                        document.createElement("div");
+
+                    wrapper.className =
+                        "item gallery-item";
+
+                    wrapper.innerHTML = `
+
+                        <img
+                            src="${escapeHTML(item.file || "")}"
+                            alt="${escapeHTML(item.title || "Gallery image")}"
+                        >
+
+                        <div>
+
+                            <h4>
+                                ${escapeHTML(item.title)}
+                            </h4>
+
+                            <p>
+                                ${escapeHTML(item.description || "")}
+                            </p>
+
+                            <p style="font-size:12px;margin-top:5px;">
+                                ${escapeHTML(item.file || "")}
+                            </p>
+
+                        </div>
+
+                        <div class="item-actions">
+
+                            <button
+                                class="small-btn edit-btn"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                class="small-btn preview-item-btn"
+                            >
+                                Preview
+                            </button>
+
+                            <button
+                                class="small-btn delete-btn"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    `;
+
+                    wrapper
+                        .querySelector(".edit-btn")
+                        .onclick =
+                        () =>
+                            editGallery(
+                                id,
+                                item
+                            );
+
+                    wrapper
+                        .querySelector(".preview-item-btn")
+                        .onclick =
+                        () =>
+                            previewPage(
+                                "gallery.html"
+                            );
+
+                    wrapper
+                        .querySelector(".delete-btn")
+                        .onclick =
+                        () =>
+                            deleteGallery(id);
+
+                    list.appendChild(
+                        wrapper
+                    );
+
+                }
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            $("galleryList").innerHTML =
+                `<div class="empty">
+                    Could not load gallery.
+                </div>`;
 
         }
 
-        Object.entries(
-            snapshot.val()
-        ).forEach(
-            ([id,item]) => {
-
-                const wrapper =
-                    document.createElement("div");
-
-                wrapper.className =
-                    "item gallery-item";
-
-                wrapper.innerHTML = `
-
-                    <img
-                        src="${escapeHTML(item.file || "")}"
-                        alt="${escapeHTML(item.title || "Gallery image")}"
-                    >
-
-                    <div>
-
-                        <h4>
-                            ${escapeHTML(item.title)}
-                        </h4>
-
-                        <p>
-                            ${escapeHTML(item.description || "")}
-                        </p>
-
-                        <p style="font-size:12px;margin-top:5px;">
-                            ${escapeHTML(item.file || "")}
-                        </p>
-
-                    </div>
-
-                    <div class="item-actions">
-
-                        <button
-                            class="small-btn edit-btn"
-                        >
-                            Edit
-                        </button>
-
-                        <button
-                            class="small-btn delete-btn"
-                        >
-                            Delete
-                        </button>
-
-                    </div>
-
-                `;
-
-                wrapper
-                    .querySelector(".edit-btn")
-                    .onclick =
-                    () => editGallery(id,item);
-
-                wrapper
-                    .querySelector(".delete-btn")
-                    .onclick =
-                    () => deleteGallery(id);
-
-                list.appendChild(wrapper);
-
-            }
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        $("galleryList").innerHTML =
-            `<div class="empty">
-                Could not load gallery.
-            </div>`;
-
-    }
-
-};
+    };
 
 
-window.editGallery = function(id,item){
+window.editGallery =
+    function(id,item){
 
-    $("galleryEditId").value =
-        id;
+        $("galleryEditId").value =
+            id;
 
-    $("galleryTitle").value =
-        item.title || "";
+        $("galleryTitle").value =
+            item.title || "";
 
-    $("galleryFile").value =
-        item.file || "";
+        $("galleryFile").value =
+            item.file || "";
 
-    $("galleryDescription").value =
-        item.description || "";
+        $("galleryDescription").value =
+            item.description || "";
 
-    $("gallerySelector").value =
-        item.file || "";
+        $("gallerySelector").value =
+            item.file || "";
 
-    $("galleryFormTitle").textContent =
-        "Edit Gallery Image";
+        $("galleryFormTitle").textContent =
+            "Edit Gallery Image";
 
-    previewGalleryURL();
+        previewGalleryURL();
 
-    showPage("gallery");
+        showPage("gallery");
 
-};
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
-
-window.deleteGallery = async function(id){
-
-    if(!confirm(
-        "Delete this gallery image?"
-    ))
-        return;
-
-    try{
-
-        await remove(
-            ref(db,"gallery/"+id)
-        );
-
-        showToast(
-            "Gallery image deleted.",
-            "success"
-        );
-
-        await loadGallery();
-
-        await updateDashboardStats();
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Could not delete image.",
-            "error"
-        );
-
-    }
-
-};
+    };
 
 
-window.clearGalleryForm = function(){
+window.deleteGallery =
+    async function(id){
 
-    $("galleryForm").reset();
+        if(!confirm(
+            "Delete this gallery image?"
+        ))
+            return;
 
-    $("galleryEditId").value =
-        "";
+        try{
 
-    $("galleryFormTitle").textContent =
-        "Add Gallery Image";
+            await remove(
+                ref(db,"gallery/"+id)
+            );
 
-    $("galleryPreview").style.display =
-        "none";
+            showToast(
+                "Gallery image deleted.",
+                "success"
+            );
 
-};
+            await loadGallery();
+
+            await updateDashboardStats();
+
+        }catch(error){
+
+            console.error(error);
+
+            showToast(
+                "Could not delete gallery image.",
+                "error"
+            );
+
+        }
+
+    };
 
 
-/* SIMPLE MANAGERS */
+window.clearGalleryForm =
+    function(){
+
+        $("galleryForm").reset();
+
+        $("galleryEditId").value =
+            "";
+
+        $("galleryFormTitle").textContent =
+            "Add Gallery Image";
+
+        $("galleryPreview").style.display =
+            "none";
+
+    };
+
+
+/* ================= SIMPLE MANAGER ================= */
 
 async function loadSimple(
     path,
@@ -3002,6 +3378,7 @@ async function loadSimple(
     emptyText,
     editFn,
     deleteFn,
+    previewPageName,
     showLink=false
 ){
 
@@ -3089,6 +3466,12 @@ async function loadSimple(
                             </button>
 
                             <button
+                                class="small-btn preview-item-btn"
+                            >
+                                Preview
+                            </button>
+
+                            <button
                                 class="small-btn delete-btn"
                             >
                                 Delete
@@ -3103,14 +3486,29 @@ async function loadSimple(
                 wrapper
                     .querySelector(".edit-btn")
                     .onclick =
-                    () => editFn(id,item);
+                    () =>
+                        editFn(
+                            id,
+                            item
+                        );
+
+                wrapper
+                    .querySelector(".preview-item-btn")
+                    .onclick =
+                    () =>
+                        previewPage(
+                            previewPageName
+                        );
 
                 wrapper
                     .querySelector(".delete-btn")
                     .onclick =
-                    () => deleteFn(id);
+                    () =>
+                        deleteFn(id);
 
-                list.appendChild(wrapper);
+                list.appendChild(
+                    wrapper
+                );
 
             }
         );
@@ -3129,7 +3527,7 @@ async function loadSimple(
 }
 
 
-/* ACHIEVEMENTS */
+/* ================= ACHIEVEMENTS ================= */
 
 $("achievementForm").addEventListener(
     "submit",
@@ -3159,7 +3557,10 @@ $("achievementForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"achievements/"+id),
+                    ref(
+                        db,
+                        "achievements/"+id
+                    ),
                     data
                 );
 
@@ -3210,7 +3611,8 @@ window.loadAchievements =
             "achievementList",
             "No achievements yet.",
             editAchievement,
-            deleteAchievement
+            deleteAchievement,
+            "achievements.html"
         );
 
 
@@ -3245,7 +3647,10 @@ window.deleteAchievement =
         try{
 
             await remove(
-                ref(db,"achievements/"+id)
+                ref(
+                    db,
+                    "achievements/"+id
+                )
             );
 
             showToast(
@@ -3285,7 +3690,7 @@ window.clearAchievementForm =
     };
 
 
-/* PROJECTS */
+/* ================= PROJECTS ================= */
 
 $("projectForm").addEventListener(
     "submit",
@@ -3299,7 +3704,9 @@ $("projectForm").addEventListener(
         const data = {
 
             title:
-                $("projectTitle").value.trim(),
+                $("projectTitle")
+                    .value
+                    .trim(),
 
             description:
                 $("projectDescription")
@@ -3307,7 +3714,9 @@ $("projectForm").addEventListener(
                     .trim(),
 
             link:
-                $("projectLink").value.trim()
+                $("projectLink")
+                    .value
+                    .trim()
 
         };
 
@@ -3316,7 +3725,10 @@ $("projectForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"projects/"+id),
+                    ref(
+                        db,
+                        "projects/"+id
+                    ),
                     data
                 );
 
@@ -3368,6 +3780,7 @@ window.loadProjects =
             "No projects yet.",
             editProject,
             deleteProject,
+            "projects.html",
             true
         );
 
@@ -3406,7 +3819,10 @@ window.deleteProject =
         try{
 
             await remove(
-                ref(db,"projects/"+id)
+                ref(
+                    db,
+                    "projects/"+id
+                )
             );
 
             showToast(
@@ -3446,7 +3862,7 @@ window.clearProjectForm =
     };
 
 
-/* HOBBIES */
+/* ================= HOBBIES ================= */
 
 $("hobbyForm").addEventListener(
     "submit",
@@ -3460,7 +3876,9 @@ $("hobbyForm").addEventListener(
         const data = {
 
             title:
-                $("hobbyTitle").value.trim(),
+                $("hobbyTitle")
+                    .value
+                    .trim(),
 
             description:
                 $("hobbyDescription")
@@ -3474,7 +3892,10 @@ $("hobbyForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"hobbies/"+id),
+                    ref(
+                        db,
+                        "hobbies/"+id
+                    ),
                     data
                 );
 
@@ -3525,7 +3946,8 @@ window.loadHobbies =
             "hobbyList",
             "No hobbies yet.",
             editHobby,
-            deleteHobby
+            deleteHobby,
+            "hobbies.html"
         );
 
 
@@ -3560,7 +3982,10 @@ window.deleteHobby =
         try{
 
             await remove(
-                ref(db,"hobbies/"+id)
+                ref(
+                    db,
+                    "hobbies/"+id
+                )
             );
 
             showToast(
@@ -3600,7 +4025,7 @@ window.clearHobbyForm =
     };
 
 
-/* SKILLS */
+/* ================= SKILLS ================= */
 
 $("skillForm").addEventListener(
     "submit",
@@ -3614,7 +4039,9 @@ $("skillForm").addEventListener(
         const data = {
 
             title:
-                $("skillTitle").value.trim(),
+                $("skillTitle")
+                    .value
+                    .trim(),
 
             description:
                 $("skillDescription")
@@ -3628,7 +4055,10 @@ $("skillForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"skills/"+id),
+                    ref(
+                        db,
+                        "skills/"+id
+                    ),
                     data
                 );
 
@@ -3679,7 +4109,8 @@ window.loadSkills =
             "skillList",
             "No skills yet.",
             editSkill,
-            deleteSkill
+            deleteSkill,
+            "skills.html"
         );
 
 
@@ -3714,7 +4145,10 @@ window.deleteSkill =
         try{
 
             await remove(
-                ref(db,"skills/"+id)
+                ref(
+                    db,
+                    "skills/"+id
+                )
             );
 
             showToast(
@@ -3754,7 +4188,7 @@ window.clearSkillForm =
     };
 
 
-/* DIARY */
+/* ================= DIARY ================= */
 
 $("diaryForm").addEventListener(
     "submit",
@@ -3771,7 +4205,9 @@ $("diaryForm").addEventListener(
                 $("diaryDate").value,
 
             title:
-                $("diaryTitle").value.trim(),
+                $("diaryTitle")
+                    .value
+                    .trim(),
 
             happened:
                 $("diaryHappened")
@@ -3800,7 +4236,10 @@ $("diaryForm").addEventListener(
             if(id){
 
                 await set(
-                    ref(db,"diary/"+id),
+                    ref(
+                        db,
+                        "diary/"+id
+                    ),
                     data
                 );
 
@@ -3942,14 +4381,21 @@ window.loadDiary =
                     wrapper
                         .querySelector(".edit-btn")
                         .onclick =
-                        () => editDiary(id,item);
+                        () =>
+                            editDiary(
+                                id,
+                                item
+                            );
 
                     wrapper
                         .querySelector(".delete-btn")
                         .onclick =
-                        () => deleteDiary(id);
+                        () =>
+                            deleteDiary(id);
 
-                    list.appendChild(wrapper);
+                    list.appendChild(
+                        wrapper
+                    );
 
                 }
             );
@@ -4011,7 +4457,10 @@ window.deleteDiary =
         try{
 
             await remove(
-                ref(db,"diary/"+id)
+                ref(
+                    db,
+                    "diary/"+id
+                )
             );
 
             showToast(
@@ -4049,32 +4498,40 @@ window.clearDiaryForm =
     };
 
 
-/* LIVE WEBSITE PREVIEW */
+/* ================= WEBSITE PREVIEW ================= */
 
 const WEBSITE_URL =
     "https://clinton23-sudo.github.io/my-personal-website/";
 
 
-window.previewWebsite =
-    function(){
+window.previewPage =
+    function(page){
 
         const frame =
             $("previewFrame");
 
+        const wrapper =
+            $("previewWrapper");
+
+        frame.classList.remove(
+            "mobile"
+        );
+
         frame.src =
             WEBSITE_URL +
+            page +
             "?preview=" +
             Date.now();
 
-        frame.style.display =
-            "block";
+        wrapper.style.display =
+            "flex";
 
         showPage("dashboard");
 
         setTimeout(
             () => {
 
-                frame.scrollIntoView({
+                wrapper.scrollIntoView({
                     behavior:"smooth",
                     block:"start"
                 });
@@ -4086,27 +4543,89 @@ window.previewWebsite =
     };
 
 
-$("previewWebsiteBtn").addEventListener(
-    "click",
-    previewWebsite
-);
+window.previewWebsite =
+    function(){
+
+        previewPage(
+            "index.html"
+        );
+
+    };
 
 
-$("loadPreviewBtn").addEventListener(
-    "click",
-    previewWebsite
-);
+window.mobilePreview =
+    function(){
+
+        const frame =
+            $("previewFrame");
+
+        const wrapper =
+            $("previewWrapper");
+
+        if(!frame.src){
+
+            frame.src =
+                WEBSITE_URL +
+                "index.html";
+
+        }
+
+        frame.classList.add(
+            "mobile"
+        );
+
+        wrapper.style.display =
+            "flex";
+
+        showToast(
+            "Mobile preview enabled.",
+            "info"
+        );
+
+    };
 
 
-$("refreshPreviewBtn").addEventListener(
-    "click",
-    () => {
+window.desktopPreview =
+    function(){
+
+        const frame =
+            $("previewFrame");
+
+        const wrapper =
+            $("previewWrapper");
+
+        if(!frame.src){
+
+            frame.src =
+                WEBSITE_URL +
+                "index.html";
+
+        }
+
+        frame.classList.remove(
+            "mobile"
+        );
+
+        wrapper.style.display =
+            "flex";
+
+        showToast(
+            "Desktop preview enabled.",
+            "info"
+        );
+
+    };
+
+
+window.refreshPreview =
+    function(){
 
         const frame =
             $("previewFrame");
 
         if(
-            frame.style.display === "none"
+            !frame.src ||
+            frame.src === "about:blank"
         ){
 
             previewWebsite();
@@ -4115,9 +4634,12 @@ $("refreshPreviewBtn").addEventListener(
 
         }
 
+        const current =
+            frame.src.split("?")[0];
+
         frame.src =
-            WEBSITE_URL +
-            "?preview=" +
+            current +
+            "?refresh=" +
             Date.now();
 
         showToast(
@@ -4125,8 +4647,8 @@ $("refreshPreviewBtn").addEventListener(
             "success"
         );
 
-    }
-);
+    };
+
 
 </script>
 
