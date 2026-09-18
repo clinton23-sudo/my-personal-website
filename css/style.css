@@ -36,7 +36,6 @@ nav {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
 
-nav .logo,
 .logo {
     color: white;
     text-decoration: none;
@@ -44,14 +43,14 @@ nav .logo,
     font-weight: bold;
 }
 
-nav ul {
+.nav-menu {
     list-style: none;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
 }
 
-nav ul li a {
+.nav-menu li a {
     color: white;
     text-decoration: none;
     padding: 9px 12px;
@@ -60,8 +59,18 @@ nav ul li a {
     font-size: 0.95rem;
 }
 
-nav ul li a:hover {
+.nav-menu li a:hover {
     background: #2563eb;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
 }
 
 /* =========================================================
@@ -75,7 +84,7 @@ nav ul li a:hover {
 }
 
 /* =========================================================
-   HERO SECTION
+   HERO
    ========================================================= */
 
 .hero {
@@ -137,10 +146,6 @@ button:hover {
     background: #374151;
 }
 
-.btn-secondary:hover {
-    background: #1f2937;
-}
-
 /* =========================================================
    SECTIONS
    ========================================================= */
@@ -171,7 +176,10 @@ section h2 {
 .card-grid,
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
     gap: 25px;
 }
 
@@ -198,18 +206,23 @@ section h2 {
 }
 
 /* =========================================================
-   EXPLORE CARDS
+   PAGE HEADER
    ========================================================= */
 
-.explore-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+.page-header {
+    background: #1e3a8a;
+    color: white;
+    padding: 65px 20px;
+    text-align: center;
 }
 
-.explore-card .icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+.page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    opacity: 0.9;
 }
 
 /* =========================================================
@@ -218,7 +231,10 @@ section h2 {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
     gap: 22px;
 }
 
@@ -285,26 +301,6 @@ label {
 }
 
 /* =========================================================
-   PAGE HEADER
-   ========================================================= */
-
-.page-header {
-    background: #1e3a8a;
-    color: white;
-    padding: 65px 20px;
-    text-align: center;
-}
-
-.page-header h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 10px;
-}
-
-.page-header p {
-    opacity: 0.9;
-}
-
-/* =========================================================
    FOOTER
    ========================================================= */
 
@@ -325,12 +321,8 @@ footer a {
     text-decoration: none;
 }
 
-footer a:hover {
-    text-decoration: underline;
-}
-
 /* =========================================================
-   EMPTY / LOADING STATES
+   LOADING / EMPTY
    ========================================================= */
 
 .loading {
@@ -346,25 +338,42 @@ footer a:hover {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN
+   MOBILE NAVIGATION
    ========================================================= */
 
 @media (max-width: 800px) {
 
     nav {
-        flex-direction: column;
-        gap: 12px;
-        padding: 15px;
-    }
-
-    nav ul {
+        padding: 14px 20px;
         flex-wrap: wrap;
-        justify-content: center;
     }
 
-    nav ul li a {
-        font-size: 0.85rem;
-        padding: 7px 9px;
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3px;
+        padding-top: 12px;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu li a {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
     }
 
     .hero {
@@ -375,17 +384,37 @@ footer a:hover {
     section {
         padding: 50px 0;
     }
+
+    .cards,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 }
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
 
 @media (max-width: 500px) {
 
-    nav ul {
-        gap: 4px;
+    .container {
+        width: 94%;
     }
 
-    nav ul li a {
-        font-size: 0.78rem;
-        padding: 6px 7px;
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .page-header {
+        padding: 50px 15px;
+    }
+
+    .page-header h1 {
+        font-size: 2.2rem;
     }
 
     .card {
@@ -393,10 +422,10 @@ footer a:hover {
     }
 
     .gallery-card img {
-        height: 200px;
+        height: 210px;
     }
 
-    .hero h1 {
-        font-size: 2.4rem;
+    footer {
+        padding: 25px 15px;
     }
 }
