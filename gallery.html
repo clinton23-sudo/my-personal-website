@@ -1,280 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Gallery | Clinton Ncube</title>
 
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        .gallery-intro {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 35px;
+        }
+
+        .gallery-intro h2 {
+            margin-bottom: 10px;
+        }
+
+        .gallery-intro p {
+            line-height: 1.6;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
+        }
+
+        .gallery-image-container {
+            width: 100%;
+            height: 230px;
+            background: #eeeeee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-error {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+            font-size: 0.95rem;
+        }
+
+        .gallery-content {
+            padding: 20px;
+        }
+
+        .gallery-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .gallery-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+        }
+
+        .empty-gallery {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-gallery h3 {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-image-container {
+                height: 240px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<nav>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            Clinton Ncube
+        </div>
 
-    <a href="index.html" class="logo">
-        Clinton Ncube
-    </a>
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()"
+            aria-label="Open navigation menu">
+            ☰
+        </button>
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false">
-        ☰
-    </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="achievements.html">Achievements</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-    <ul class="nav-menu" id="navMenu">
 
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="hobbies.html">Hobbies</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <h1>My Gallery</h1>
+            <p>
+                A collection of pictures and memories from my personal gallery.
+            </p>
+        </div>
+    </header>
 
-    </ul>
 
-</nav>
+    <!-- GALLERY -->
+    <section>
+        <div class="container">
 
-<header class="page-header">
+            <div class="gallery-intro">
+                <h2>My Pictures</h2>
 
-    <h1>My Gallery</h1>
+                <p>
+                    Here you can see pictures from my personal gallery,
+                    activities and memorable moments.
+                </p>
+            </div>
 
-    <p>
-        A collection of pictures and memories.
-    </p>
+            <div id="galleryContainer" class="gallery-grid">
 
-</header>
+                <div class="loading">
+                    Loading gallery...
+                </div>
 
-<section>
-
-    <div class="container">
-
-        <div
-            id="galleryContainer"
-            class="gallery-grid">
-
-            <div class="loading">
-                Loading gallery...
             </div>
 
         </div>
+    </section>
 
-    </div>
 
-</section>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2026 Clinton Ncube. All rights reserved.
+            </p>
+        </div>
+    </footer>
 
-<footer>
 
-    <p>
-        © 2026 Clinton Ncube. All rights reserved.
-    </p>
+    <!-- MOBILE MENU -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("navMenu");
+            menu.classList.toggle("active");
+        }
+    </script>
 
-    <p>
-        Personal Portfolio Website
-    </p>
 
-</footer>
+    <!-- FIREBASE GALLERY -->
+    <script type="module">
 
-<script type="module">
+        import { initializeApp }
+            from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            get
+        }
+        from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-import {
-    getDatabase,
-    ref,
-    onValue
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-const firebaseConfig = {
+        const firebaseConfig = {
+            apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+            authDomain: "clinton-ncube-website.firebaseapp.com",
+            databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+            projectId: "clinton-ncube-website",
+            storageBucket: "clinton-ncube-website.firebasestorage.app",
+            messagingSenderId: "946671700613",
+            appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
+            measurementId: "G-K1S62MHHXP"
+        };
 
-    apiKey:
-        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-    authDomain:
-        "clinton-ncube-website.firebaseapp.com",
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-    databaseURL:
-        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-    projectId:
-        "clinton-ncube-website",
+        const galleryContainer =
+            document.getElementById("galleryContainer");
 
-    storageBucket:
-        "clinton-ncube-website.firebasestorage.app",
 
-    messagingSenderId:
-        "946671700613",
+        function escapeHTML(value) {
 
-    appId:
-        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+            if (!value) return "";
 
-    measurementId:
-        "G-K1S62MHHXP"
-};
-
-const app =
-    initializeApp(firebaseConfig);
-
-const db =
-    getDatabase(app);
-
-const galleryRef =
-    ref(db, "gallery");
-
-const container =
-    document.getElementById(
-        "galleryContainer"
-    );
-
-onValue(
-    galleryRef,
-    (snapshot) => {
-
-        container.innerHTML = "";
-
-        const data =
-            snapshot.val();
-
-        if (!data) {
-
-            container.innerHTML = `
-                <div class="empty">
-                    No gallery items have been added yet.
-                </div>
-            `;
-
-            return;
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
-        Object.values(data)
-            .forEach(item => {
 
-                const card =
-                    document.createElement("div");
+        function fixImagePath(path) {
 
-                card.className =
-                    "gallery-card";
+            if (!path) {
+                return "";
+            }
 
-                if (item.file) {
+            path = String(path).trim();
 
-                    const image =
-                        document.createElement("img");
+            /*
+                If the admin saved:
 
-                    image.src =
-                        item.file;
+                images/photo.jpg
 
-                    image.alt =
-                        item.title ||
-                        "Gallery image";
+                use it directly.
+            */
 
-                    image.onerror = () => {
-                        image.style.display = "none";
+            if (
+                path.startsWith("images/") ||
+                path.startsWith("http://") ||
+                path.startsWith("https://") ||
+                path.startsWith("data:")
+            ) {
+                return path;
+            }
+
+            /*
+                If only the filename was saved:
+
+                photo.jpg
+
+                automatically add images/
+            */
+
+            return "images/" + path;
+        }
+
+
+        function createGalleryCard(item) {
+
+            const title =
+                escapeHTML(item.title || "Gallery Picture");
+
+            const description =
+                escapeHTML(
+                    item.description ||
+                    "A picture from my personal gallery."
+                );
+
+            const imagePath =
+                fixImagePath(item.file);
+
+
+            const card =
+                document.createElement("div");
+
+            card.className = "gallery-card";
+
+
+            const imageContainer =
+                document.createElement("div");
+
+            imageContainer.className =
+                "gallery-image-container";
+
+
+            if (imagePath) {
+
+                const image =
+                    document.createElement("img");
+
+                image.className =
+                    "gallery-image";
+
+                image.src =
+                    imagePath;
+
+                image.alt =
+                    title;
+
+                image.loading =
+                    "lazy";
+
+
+                image.onerror =
+                    function() {
+
+                        image.style.display =
+                            "none";
+
+                        const error =
+                            document.createElement("div");
+
+                        error.className =
+                            "image-error";
+
+                        error.innerHTML =
+                            `
+                            <strong>Image not found</strong>
+                            <br>
+                            <small>
+                                ${escapeHTML(imagePath)}
+                            </small>
+                            `;
+
+                        imageContainer.appendChild(error);
                     };
 
-                    card.appendChild(image);
+
+                imageContainer.appendChild(image);
+
+            } else {
+
+                imageContainer.innerHTML =
+                    `
+                    <div class="image-error">
+                        No image selected
+                    </div>
+                    `;
+            }
+
+
+            const content =
+                document.createElement("div");
+
+            content.className =
+                "gallery-content";
+
+
+            content.innerHTML =
+                `
+                <h3>${title}</h3>
+                <p>${description}</p>
+                `;
+
+
+            card.appendChild(imageContainer);
+            card.appendChild(content);
+
+
+            return card;
+        }
+
+
+        async function loadGallery() {
+
+            try {
+
+                const galleryRef =
+                    ref(database, "gallery");
+
+                const snapshot =
+                    await get(galleryRef);
+
+
+                galleryContainer.innerHTML = "";
+
+
+                if (!snapshot.exists()) {
+
+                    galleryContainer.innerHTML =
+                        `
+                        <div class="empty-gallery">
+                            <h3>No Gallery Pictures Yet</h3>
+                            <p>
+                                Pictures added from the Admin Dashboard
+                                will appear here.
+                            </p>
+                        </div>
+                        `;
+
+                    return;
                 }
 
-                const content =
-                    document.createElement("div");
 
-                content.className =
-                    "gallery-card-content";
+                const data =
+                    snapshot.val();
 
-                const title =
-                    document.createElement("h3");
 
-                title.textContent =
-                    item.title ||
-                    "Gallery Item";
+                let count = 0;
 
-                const description =
-                    document.createElement("p");
 
-                description.textContent =
-                    item.description || "";
+                Object.keys(data).forEach(key => {
 
-                content.appendChild(title);
+                    const item =
+                        data[key];
 
-                content.appendChild(description);
 
-                card.appendChild(content);
+                    if (!item) {
+                        return;
+                    }
 
-                container.appendChild(card);
 
-            });
+                    const card =
+                        createGalleryCard(item);
 
-    },
-    (error) => {
 
-        container.innerHTML = `
-            <div class="empty">
-                Unable to load gallery.
-            </div>
-        `;
+                    galleryContainer.appendChild(card);
 
-        console.error(error);
+                    count++;
 
-    }
-);
+                });
 
-</script>
 
-<script>
+                if (count === 0) {
 
-const menuToggle =
-    document.getElementById("menuToggle");
+                    galleryContainer.innerHTML =
+                        `
+                        <div class="empty-gallery">
+                            <h3>No Gallery Pictures Yet</h3>
+                            <p>
+                                Add pictures from the Admin Dashboard.
+                            </p>
+                        </div>
+                        `;
+                }
 
-const navMenu =
-    document.getElementById("navMenu");
+            } catch (error) {
 
-menuToggle.addEventListener("click", () => {
+                console.error(
+                    "Gallery loading error:",
+                    error
+                );
 
-    navMenu.classList.toggle("active");
 
-    const isOpen =
-        navMenu.classList.contains("active");
+                galleryContainer.innerHTML =
+                    `
+                    <div class="empty-gallery">
+                        <h3>Unable to Load Gallery</h3>
+                        <p>
+                            Please refresh the page and try again.
+                        </p>
+                    </div>
+                    `;
+            }
+        }
 
-    menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen
-    );
 
-    menuToggle.textContent =
-        isOpen ? "✕" : "☰";
-});
+        loadGallery();
 
-document.querySelectorAll(".nav-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navMenu.classList.remove("active");
-
-            menuToggle.textContent = "☰";
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        });
-
-    });
-
-</script>
+    </script>
 
 </body>
 </html>
