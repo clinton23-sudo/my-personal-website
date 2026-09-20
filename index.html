@@ -145,88 +145,71 @@ const likesRef = ref(db, "websiteStats/likes");
 const visitorsRef = ref(db, "websiteStats/visitors");
 
 async function loadStats() {
-
     try {
-
-        const likesSnapshot = await get(likesRef);
+        const likes = await get(likesRef);
 
         document.getElementById("likeCount").textContent =
-            likesSnapshot.exists()
-                ? likesSnapshot.val()
-                : 0;
+            likes.exists() ? likes.val() : 0;
 
-        const visitorSnapshot = await runTransaction(
+        const visitors = await runTransaction(
             visitorsRef,
-            current => (current || 0) + 1
+            function(current) {
+                return (current || 0) + 1;
+            }
         );
 
         document.getElementById("visitorCount").textContent =
-            visitorSnapshot.snapshot.val();
+            visitors.snapshot.val();
 
     } catch (error) {
-
-        console.error("Stats error:", error);
-
+        console.error("Firebase error:", error);
     }
 }
 
 window.likeWebsite = async function() {
 
-    const button = document.getElementById("likeButton");
-
-    const alreadyLiked =
-        localStorage.getItem("clintonNcubeLiked");
-
-    if (alreadyLiked) {
-
-        alert("You have already liked this website ❤️");
-
-        return;
-    }
-
     try {
 
-        button.disabled = true;
-        button.innerHTML = "❤️ Liking...";
+        const alreadyLiked =
+            localStorage.getItem("clintonNcubeLiked");
+
+        if (alreadyLiked) {
+            alert("You have already liked this website ❤️");
+            return;
+        }
 
         const result = await runTransaction(
             likesRef,
-            current => (current || 0) + 1
+            function(current) {
+                return (current || 0) + 1;
+            }
         );
 
-        const newCount =
-            result.snapshot.val();
+        const count = result.snapshot.val();
+
+        document.getElementById("likeCount").textContent = count;
 
         localStorage.setItem(
             "clintonNcubeLiked",
             "true"
         );
 
-        document.getElementById("likeCount").textContent =
-            newCount;
-
-        button.innerHTML =
+        document.getElementById("likeButton").innerHTML =
             "❤️ Liked <span id='likeCount'>" +
-            newCount +
+            count +
             "</span>";
 
     } catch (error) {
 
         console.error("Like error:", error);
 
-        button.disabled = false;
-
-        button.innerHTML =
-            "❤️ Like <span id='likeCount'>0</span>";
-
         alert(
-            "The like could not be saved. Please try again."
+            "The Like could not be saved. Please check the Firebase database rules."
         );
     }
 };
 
 loadStats();
-
 </script>
 
     </button>
