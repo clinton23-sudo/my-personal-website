@@ -116,40 +116,117 @@ async function loadStats() {
         visitorSnapshot.snapshot.val();
 }
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getDatabase,
+    ref,
+    get,
+    runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB66C1Tymv5lkTxY89HLbX4_SQTpAZQVUE",
+    authDomain: "clinton-ncube-website.firebaseapp.com",
+    databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+    projectId: "clinton-ncube-website",
+    storageBucket: "clinton-ncube-website.firebasestorage.app",
+    messagingSenderId: "946671700613",
+    appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
+    measurementId: "G-K1S62MHHXP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const likesRef = ref(db, "websiteStats/likes");
+const visitorsRef = ref(db, "websiteStats/visitors");
+
+async function loadStats() {
+
+    try {
+
+        const likesSnapshot = await get(likesRef);
+
+        document.getElementById("likeCount").textContent =
+            likesSnapshot.exists()
+                ? likesSnapshot.val()
+                : 0;
+
+        const visitorSnapshot = await runTransaction(
+            visitorsRef,
+            current => (current || 0) + 1
+        );
+
+        document.getElementById("visitorCount").textContent =
+            visitorSnapshot.snapshot.val();
+
+    } catch (error) {
+
+        console.error("Stats error:", error);
+
+    }
+}
+
 window.likeWebsite = async function() {
+
+    const button = document.getElementById("likeButton");
 
     const alreadyLiked =
         localStorage.getItem("clintonNcubeLiked");
 
     if (alreadyLiked) {
+
         alert("You have already liked this website ❤️");
+
         return;
     }
 
-    await runTransaction(
-        likesRef,
-        current => (current || 0) + 1
-    );
+    try {
 
-    localStorage.setItem(
-        "clintonNcubeLiked",
-        "true"
-    );
+        button.disabled = true;
+        button.innerHTML = "❤️ Liking...";
 
-    const snapshot = await get(likesRef);
+        const result = await runTransaction(
+            likesRef,
+            current => (current || 0) + 1
+        );
 
-    document.getElementById("likeCount").textContent =
-        snapshot.val();
+        const newCount =
+            result.snapshot.val();
 
-    document.getElementById("likeButton").innerHTML =
-        "❤️ Liked <span id='likeCount'>" +
-        snapshot.val() +
-        "</span>";
+        localStorage.setItem(
+            "clintonNcubeLiked",
+            "true"
+        );
+
+        document.getElementById("likeCount").textContent =
+            newCount;
+
+        button.innerHTML =
+            "❤️ Liked <span id='likeCount'>" +
+            newCount +
+            "</span>";
+
+    } catch (error) {
+
+        console.error("Like error:", error);
+
+        button.disabled = false;
+
+        button.innerHTML =
+            "❤️ Like <span id='likeCount'>0</span>";
+
+        alert(
+            "The like could not be saved. Please try again."
+        );
+    }
 };
 
 loadStats();
 
 </script>
+
     </button>
 
     <ul class="nav-menu" id="navMenu">
