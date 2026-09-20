@@ -3649,6 +3649,47 @@ window.clearGalleryForm =
             "none";
 
     };
+    /* ================= ADD ALL 17 GALLERY IMAGES ================= */
+
+const galleryImages = [
+"images/IMG-20240819-WA0011_(1).jpg",
+"images/IMG-20240819-WA0020_(1).jpg",
+"images/IMG-20240819-WA0021_(1).jpg",
+"images/IMG-20251221-WA0056.jpg",
+"images/IMG_20250802_093252.jpg",
+"images/IMG_20250802_093305.jpg",
+"images/IMG_20250802_144742_edit_7426347801541.jpg",
+"images/IMG_20250802_145115_edit_7303969500494.jpg",
+"images/IMG_20250802_145348_edit_7272302860610.jpg",
+"images/WIN_20260814_16_48_08_Pro.jpg",
+"images/WIN_20260814_16_48_27_Pro.jpg",
+"images/WIN_20260814_16_48_35_Pro.jpg",
+"images/WIN_20260814_16_48_39_Pro.jpg",
+"images/WIN_20260814_16_49_03_Pro.jpg",
+"images/WIN_20260814_16_49_16_Pro.jpg",
+"images/WIN_20260814_16_49_28_Pro.jpg",
+"images/photo3.jpg"
+];
+
+window.addAllGalleryImages = async function(){
+    try{
+        for(const file of galleryImages){
+            await push(ref(db,"gallery"),{
+                title:file.split("/").pop(),
+                file:file,
+                description:""
+            });
+        }
+
+        await loadGallery();
+        await updateDashboardStats();
+
+        showToast("All 17 images added successfully!","success");
+    }catch(error){
+        console.error(error);
+        showToast("Could not add the images.","error");
+    }
+};
 
 
 /* ================= SIMPLE MANAGER ================= */
