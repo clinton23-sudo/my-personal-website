@@ -569,6 +569,33 @@ textarea{
     background:#eee;
 }
 
+/* ================= GALLERY BULK BUTTON ================= */
+
+.gallery-bulk-box{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:20px;
+}
+
+.gallery-bulk-box h3{
+    margin-bottom:8px;
+}
+
+.gallery-bulk-box p{
+    color:#4b5563;
+    line-height:1.6;
+    margin-bottom:14px;
+}
+
+.gallery-count-info{
+    display:inline-block;
+    margin-left:8px;
+    color:#2563eb;
+    font-weight:bold;
+}
+
 /* ================= PREVIEW ================= */
 
 .preview-box{
@@ -852,7 +879,6 @@ textarea{
 
 <body>
 
-
 <!-- ================= LOGIN ================= -->
 
 <div id="loginScreen">
@@ -926,66 +952,39 @@ textarea{
 
         </div>
 
-        <button
-            class="nav-btn active"
-            data-page="dashboard"
-        >
+        <button class="nav-btn active" data-page="dashboard">
             🏠 Dashboard
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="home"
-        >
+        <button class="nav-btn" data-page="home">
             🏡 Home Manager
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="gallery"
-        >
+        <button class="nav-btn" data-page="gallery">
             🖼️ Gallery
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="achievements"
-        >
+        <button class="nav-btn" data-page="achievements">
             🏆 Achievements
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="projects"
-        >
+        <button class="nav-btn" data-page="projects">
             📚 Projects
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="hobbies"
-        >
+        <button class="nav-btn" data-page="hobbies">
             🏀 Hobbies
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="skills"
-        >
+        <button class="nav-btn" data-page="skills">
             💡 Skills
         </button>
 
-        <button
-            class="nav-btn"
-            data-page="diary"
-        >
+        <button class="nav-btn" data-page="diary">
             📔 Private Diary
         </button>
 
-        <button
-            class="nav-btn logout-side"
-            id="logoutSide"
-        >
+        <button class="nav-btn logout-side" id="logoutSide">
             🚪 Logout
         </button>
 
@@ -1040,13 +1039,9 @@ textarea{
 
         <div class="content">
 
-
 <!-- ================= DASHBOARD ================= -->
 
-<section
-    class="page active"
-    id="page-dashboard"
->
+<section class="page active" id="page-dashboard">
 
     <h2 class="page-title">
         Dashboard
@@ -1055,7 +1050,6 @@ textarea{
     <p class="page-subtitle">
         Manage and monitor your personal website.
     </p>
-
 
     <div class="welcome-banner">
 
@@ -1108,92 +1102,33 @@ textarea{
     <div class="stats-grid">
 
         <div class="stat-card">
-
             <div class="icon">🖼️</div>
-
-            <div
-                class="number"
-                id="galleryCount"
-            >
-                0
-            </div>
-
-            <div class="label">
-                Gallery Images
-            </div>
-
+            <div class="number" id="galleryCount">0</div>
+            <div class="label">Gallery Images</div>
         </div>
 
-
         <div class="stat-card">
-
             <div class="icon">🏆</div>
-
-            <div
-                class="number"
-                id="achievementCount"
-            >
-                0
-            </div>
-
-            <div class="label">
-                Achievements
-            </div>
-
+            <div class="number" id="achievementCount">0</div>
+            <div class="label">Achievements</div>
         </div>
 
-
         <div class="stat-card">
-
             <div class="icon">📚</div>
-
-            <div
-                class="number"
-                id="projectCount"
-            >
-                0
-            </div>
-
-            <div class="label">
-                Projects
-            </div>
-
+            <div class="number" id="projectCount">0</div>
+            <div class="label">Projects</div>
         </div>
 
-
         <div class="stat-card">
-
             <div class="icon">🏀</div>
-
-            <div
-                class="number"
-                id="hobbyCount"
-            >
-                0
-            </div>
-
-            <div class="label">
-                Hobbies
-            </div>
-
+            <div class="number" id="hobbyCount">0</div>
+            <div class="label">Hobbies</div>
         </div>
 
-
         <div class="stat-card">
-
             <div class="icon">💡</div>
-
-            <div
-                class="number"
-                id="skillCount"
-            >
-                0
-            </div>
-
-            <div class="label">
-                Skills
-            </div>
-
+            <div class="number" id="skillCount">0</div>
+            <div class="label">Skills</div>
         </div>
 
     </div>
@@ -1208,48 +1143,24 @@ textarea{
             </h3>
 
             <div class="info-row">
-
-                <span class="info-label">
-                    Name
-                </span>
-
-                <span
-                    class="info-value"
-                    id="dashboardName"
-                >
+                <span class="info-label">Name</span>
+                <span class="info-value" id="dashboardName">
                     Loading...
                 </span>
-
             </div>
 
             <div class="info-row">
-
-                <span class="info-label">
-                    Goal
-                </span>
-
-                <span
-                    class="info-value"
-                    id="dashboardGoal"
-                >
+                <span class="info-label">Goal</span>
+                <span class="info-value" id="dashboardGoal">
                     Loading...
                 </span>
-
             </div>
 
             <div class="info-row">
-
-                <span class="info-label">
-                    Last Updated
-                </span>
-
-                <span
-                    class="info-value"
-                    id="dashboardUpdated"
-                >
+                <span class="info-label">Last Updated</span>
+                <span class="info-value" id="dashboardUpdated">
                     Loading...
                 </span>
-
             </div>
 
         </div>
@@ -1281,8 +1192,6 @@ textarea{
 
     </div>
 
-
-    <!-- QUICK ACTIONS -->
 
     <div class="card">
 
@@ -1338,8 +1247,6 @@ textarea{
 
     </div>
 
-
-    <!-- WEBSITE PREVIEW -->
 
     <div class="preview-box">
 
@@ -1450,10 +1357,7 @@ textarea{
 
 <!-- ================= HOME ================= -->
 
-<section
-    class="page"
-    id="page-home"
->
+<section class="page" id="page-home">
 
     <h2 class="page-title">
         Home Manager
@@ -1463,11 +1367,7 @@ textarea{
         Update your homepage information.
     </p>
 
-    <div
-        id="homeStatus"
-        class="status-box"
-    ></div>
-
+    <div id="homeStatus" class="status-box"></div>
 
     <div class="card">
 
@@ -1503,9 +1403,7 @@ textarea{
 
                     <label>Welcome Message</label>
 
-                    <textarea
-                        id="homeWelcome"
-                    ></textarea>
+                    <textarea id="homeWelcome"></textarea>
 
                 </div>
 
@@ -1513,9 +1411,7 @@ textarea{
 
                     <label>Goal</label>
 
-                    <textarea
-                        id="homeGoal"
-                    ></textarea>
+                    <textarea id="homeGoal"></textarea>
 
                 </div>
 
@@ -1523,9 +1419,7 @@ textarea{
 
                     <label>About</label>
 
-                    <textarea
-                        id="homeAbout"
-                    ></textarea>
+                    <textarea id="homeAbout"></textarea>
 
                 </div>
 
@@ -1562,19 +1456,13 @@ textarea{
         </form>
 
 
-        <div
-            id="homeLivePreview"
-            class="content-preview"
-        >
+        <div id="homeLivePreview" class="content-preview">
 
             <h4>
                 ✨ Draft Preview — Not Yet Saved
             </h4>
 
-            <p
-                id="homePreviewName"
-                class="live-text"
-            ></p>
+            <p id="homePreviewName" class="live-text"></p>
 
             <p
                 id="homePreviewWelcome"
@@ -1603,10 +1491,7 @@ textarea{
 
 <!-- ================= GALLERY ================= -->
 
-<section
-    class="page"
-    id="page-gallery"
->
+<section class="page" id="page-gallery">
 
     <h2 class="page-title">
         Gallery Manager
@@ -1631,6 +1516,39 @@ textarea{
         <br>
 
         Firebase Realtime Database stores the gallery information.
+
+    </div>
+
+
+    <!-- NEW: ADD ALL IMAGES -->
+
+    <div class="gallery-bulk-box">
+
+        <h3>
+            🖼️ Add Your 17 Website Images
+        </h3>
+
+        <p>
+            This will add all 17 images from your GitHub
+            <strong>images</strong> folder to the Firebase gallery.
+            Existing images will not be duplicated.
+        </p>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            id="addAllGalleryBtn"
+            onclick="addAllGalleryImages()"
+        >
+            🖼️ Add All 17 Images
+        </button>
+
+        <span
+            class="gallery-count-info"
+            id="availableGalleryCount"
+        >
+            17 images available
+        </span>
 
     </div>
 
@@ -1664,6 +1582,7 @@ textarea{
 
                 </div>
 
+
                 <div class="form-group full">
 
                     <label>
@@ -1679,12 +1598,42 @@ textarea{
                             -- Select an image --
                         </option>
 
+                        <!-- 17 IMAGES -->
+
+                        <option value="images/IMG-20240819-WA0011_(1).jpg">
+                            IMG-20240819-WA0011_(1).jpg
+                        </option>
+
+                        <option value="images/IMG-20240819-WA0020_(1).jpg">
+                            IMG-20240819-WA0020_(1).jpg
+                        </option>
+
+                        <option value="images/IMG-20240819-WA0021_(1).jpg">
+                            IMG-20240819-WA0021_(1).jpg
+                        </option>
+
+                        <option value="images/IMG-20251221-WA0056.jpg">
+                            IMG-20251221-WA0056.jpg
+                        </option>
+
                         <option value="images/IMG_20250802_093252.jpg">
                             IMG_20250802_093252.jpg
                         </option>
 
                         <option value="images/IMG_20250802_093305.jpg">
                             IMG_20250802_093305.jpg
+                        </option>
+
+                        <option value="images/IMG_20250802_144742_edit_7426347801541.jpg">
+                            IMG_20250802_144742_edit_7426347801541.jpg
+                        </option>
+
+                        <option value="images/IMG_20250802_145115_edit_7303969500494.jpg">
+                            IMG_20250802_145115_edit_7303969500494.jpg
+                        </option>
+
+                        <option value="images/IMG_20250802_145348_edit_7272302860610.jpg">
+                            IMG_20250802_145348_edit_7272302860610.jpg
                         </option>
 
                         <option value="images/WIN_20260814_16_48_08_Pro.jpg">
@@ -1715,9 +1664,14 @@ textarea{
                             WIN_20260814_16_49_28_Pro.jpg
                         </option>
 
+                        <option value="images/photo3.jpg">
+                            photo3.jpg
+                        </option>
+
                     </select>
 
                 </div>
+
 
                 <div class="form-group full">
 
@@ -1740,6 +1694,7 @@ textarea{
 
                 </div>
 
+
                 <div class="form-group full">
 
                     <label>
@@ -1753,6 +1708,7 @@ textarea{
                     >
 
                 </div>
+
 
                 <div class="form-group full">
 
@@ -1823,10 +1779,7 @@ textarea{
 
 <!-- ================= ACHIEVEMENTS ================= -->
 
-<section
-    class="page"
-    id="page-achievements"
->
+<section class="page" id="page-achievements">
 
     <h2 class="page-title">
         Achievements Manager
@@ -1835,7 +1788,6 @@ textarea{
     <p class="page-subtitle">
         Manage your achievements.
     </p>
-
 
     <div class="card">
 
@@ -1923,10 +1875,7 @@ textarea{
 
 <!-- ================= PROJECTS ================= -->
 
-<section
-    class="page"
-    id="page-projects"
->
+<section class="page" id="page-projects">
 
     <h2 class="page-title">
         Projects Manager
@@ -1935,7 +1884,6 @@ textarea{
     <p class="page-subtitle">
         Manage your projects and links.
     </p>
-
 
     <div class="card">
 
@@ -2035,10 +1983,7 @@ textarea{
 
 <!-- ================= HOBBIES ================= -->
 
-<section
-    class="page"
-    id="page-hobbies"
->
+<section class="page" id="page-hobbies">
 
     <h2 class="page-title">
         Hobbies Manager
@@ -2047,7 +1992,6 @@ textarea{
     <p class="page-subtitle">
         Manage your hobbies.
     </p>
-
 
     <div class="card">
 
@@ -2135,10 +2079,7 @@ textarea{
 
 <!-- ================= SKILLS ================= -->
 
-<section
-    class="page"
-    id="page-skills"
->
+<section class="page" id="page-skills">
 
     <h2 class="page-title">
         Skills Manager
@@ -2147,7 +2088,6 @@ textarea{
     <p class="page-subtitle">
         Manage your skills.
     </p>
-
 
     <div class="card">
 
@@ -2235,10 +2175,7 @@ textarea{
 
 <!-- ================= DIARY ================= -->
 
-<section
-    class="page"
-    id="page-diary"
->
+<section class="page" id="page-diary">
 
     <h2 class="page-title">
         Private Diary
@@ -2247,7 +2184,6 @@ textarea{
     <p class="page-subtitle">
         Manage your private diary entries.
     </p>
-
 
     <div class="card">
 
@@ -2292,9 +2228,7 @@ textarea{
 
                     <label>What Happened?</label>
 
-                    <textarea
-                        id="diaryHappened"
-                    ></textarea>
+                    <textarea id="diaryHappened"></textarea>
 
                 </div>
 
@@ -2302,9 +2236,7 @@ textarea{
 
                     <label>Feelings</label>
 
-                    <textarea
-                        id="diaryFeelings"
-                    ></textarea>
+                    <textarea id="diaryFeelings"></textarea>
 
                 </div>
 
@@ -2312,9 +2244,7 @@ textarea{
 
                     <label>Notes</label>
 
-                    <textarea
-                        id="diaryNotes"
-                    ></textarea>
+                    <textarea id="diaryNotes"></textarea>
 
                 </div>
 
@@ -2372,7 +2302,6 @@ textarea{
 
 </section>
 
-
         </div>
 
     </main>
@@ -2429,7 +2358,7 @@ const firebaseConfig = {
         "946671700613",
 
     appId:
-        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+        "1:946671700613:web:5d74536df1db0b35e77ec",
 
     measurementId:
         "G-K1S62MHHXP"
@@ -2499,6 +2428,47 @@ function formatDateTime(){
         });
 
 }
+
+
+/* ================= ALL GALLERY IMAGES ================= */
+
+const defaultGalleryImages = [
+
+    "images/IMG-20240819-WA0011_(1).jpg",
+
+    "images/IMG-20240819-WA0020_(1).jpg",
+
+    "images/IMG-20240819-WA0021_(1).jpg",
+
+    "images/IMG-20251221-WA0056.jpg",
+
+    "images/IMG_20250802_093252.jpg",
+
+    "images/IMG_20250802_093305.jpg",
+
+    "images/IMG_20250802_144742_edit_7426347801541.jpg",
+
+    "images/IMG_20250802_145115_edit_7303969500494.jpg",
+
+    "images/IMG_20250802_145348_edit_7272302860610.jpg",
+
+    "images/WIN_20260814_16_48_08_Pro.jpg",
+
+    "images/WIN_20260814_16_48_27_Pro.jpg",
+
+    "images/WIN_20260814_16_48_35_Pro.jpg",
+
+    "images/WIN_20260814_16_48_39_Pro.jpg",
+
+    "images/WIN_20260814_16_49_03_Pro.jpg",
+
+    "images/WIN_20260814_16_49_16_Pro.jpg",
+
+    "images/WIN_20260814_16_49_28_Pro.jpg",
+
+    "images/photo3.jpg"
+
+];
 
 
 /* ================= LOGIN ================= */
@@ -3068,6 +3038,24 @@ window.selectGalleryImage =
         $("galleryFile").value =
             selected;
 
+        /*
+         * Automatically use the filename as
+         * the title if the title is empty.
+         */
+
+        if(!$("galleryTitle").value.trim()){
+
+            const filename =
+                selected
+                    .split("/")
+                    .pop()
+                    .replace(/\.[^/.]+$/,"");
+
+            $("galleryTitle").value =
+                filename;
+
+        }
+
         previewGalleryURL();
 
     };
@@ -3106,7 +3094,7 @@ window.previewGalleryURL =
                     "none";
 
                 showToast(
-                    "The selected image could not be found.",
+                    "The selected image could not be found. Check that the file is in the GitHub images folder.",
                     "error"
                 );
 
@@ -3142,6 +3130,169 @@ window.previewLocalImage =
 
     };
 
+
+/* ================= ADD ALL 17 IMAGES ================= */
+
+window.addAllGalleryImages =
+    async function(){
+
+        const button =
+            $("addAllGalleryBtn");
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "⏳ Adding Images...";
+
+        try{
+
+            /*
+             * Read the current gallery from Firebase.
+             */
+
+            const snapshot =
+                await get(
+                    ref(db,"gallery")
+                );
+
+            const existingFiles = [];
+
+            if(snapshot.exists()){
+
+                Object.values(
+                    snapshot.val() || {}
+                ).forEach(
+                    item => {
+
+                        if(item && item.file){
+
+                            existingFiles.push(
+                                String(item.file)
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            let added =
+                0;
+
+            let skipped =
+                0;
+
+
+            /*
+             * Add only images that are not already
+             * stored in Firebase.
+             */
+
+            for(
+                const file
+                of defaultGalleryImages
+            ){
+
+                if(
+                    existingFiles.includes(file)
+                ){
+
+                    skipped++;
+
+                    continue;
+
+                }
+
+
+                const filename =
+                    file
+                        .split("/")
+                        .pop();
+
+
+                const title =
+                    filename
+                        .replace(/\.[^/.]+$/,"")
+                        .replace(/_/g," ")
+                        .replace(/\(\d+\)/g,"")
+                        .trim();
+
+
+                await push(
+                    ref(db,"gallery"),
+                    {
+
+                        title:
+                            title || filename,
+
+                        file:
+                            file,
+
+                        description:
+                            ""
+
+                    }
+                );
+
+
+                added++;
+
+            }
+
+
+            await loadGallery();
+
+            await updateDashboardStats();
+
+
+            if(added === 0){
+
+                showToast(
+                    "All 17 images are already in your gallery. No duplicates were added.",
+                    "info"
+                );
+
+            }else{
+
+                showToast(
+                    added +
+                    " image(s) added successfully. " +
+                    skipped +
+                    " already existed.",
+                    "success"
+                );
+
+            }
+
+        }catch(error){
+
+            console.error(
+                "Add all gallery images error:",
+                error
+            );
+
+            showToast(
+                "Could not add all gallery images. Check your Firebase connection and database rules.",
+                "error"
+            );
+
+        }finally{
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "🖼️ Add All 17 Images";
+
+        }
+
+    };
+
+
+/* ================= SAVE SINGLE GALLERY IMAGE ================= */
 
 $("galleryForm").addEventListener(
     "submit",
@@ -3190,6 +3341,53 @@ $("galleryForm").addEventListener(
 
             }else{
 
+                /*
+                 * Prevent duplicate individual images.
+                 */
+
+                const snapshot =
+                    await get(
+                        ref(db,"gallery")
+                    );
+
+                let duplicate =
+                    false;
+
+                if(snapshot.exists()){
+
+                    Object.values(
+                        snapshot.val() || {}
+                    ).forEach(
+                        item => {
+
+                            if(
+                                item &&
+                                item.file === data.file
+                            ){
+
+                                duplicate =
+                                    true;
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                if(duplicate){
+
+                    showToast(
+                        "This image is already in the gallery.",
+                        "info"
+                    );
+
+                    return;
+
+                }
+
+
                 await push(
                     ref(db,"gallery"),
                     data
@@ -3223,6 +3421,8 @@ $("galleryForm").addEventListener(
 );
 
 
+/* ================= LOAD GALLERY ================= */
+
 window.loadGallery =
     async function(){
 
@@ -3250,6 +3450,7 @@ window.loadGallery =
 
             }
 
+
             Object.entries(
                 snapshot.val()
             ).forEach(
@@ -3266,6 +3467,7 @@ window.loadGallery =
                         <img
                             src="${escapeHTML(item.file || "")}"
                             alt="${escapeHTML(item.title || "Gallery image")}"
+                            onerror="this.style.opacity='0.3';"
                         >
 
                         <div>
@@ -3310,6 +3512,7 @@ window.loadGallery =
 
                     `;
 
+
                     wrapper
                         .querySelector(".edit-btn")
                         .onclick =
@@ -3319,6 +3522,7 @@ window.loadGallery =
                                 item
                             );
 
+
                     wrapper
                         .querySelector(".preview-item-btn")
                         .onclick =
@@ -3327,11 +3531,13 @@ window.loadGallery =
                                 "gallery.html"
                             );
 
+
                     wrapper
                         .querySelector(".delete-btn")
                         .onclick =
                         () =>
                             deleteGallery(id);
+
 
                     list.appendChild(
                         wrapper
@@ -3353,6 +3559,8 @@ window.loadGallery =
 
     };
 
+
+/* ================= EDIT GALLERY ================= */
 
 window.editGallery =
     function(id,item){
@@ -3381,6 +3589,8 @@ window.editGallery =
 
     };
 
+
+/* ================= DELETE GALLERY ================= */
 
 window.deleteGallery =
     async function(id){
@@ -3421,6 +3631,8 @@ window.deleteGallery =
 
     };
 
+
+/* ================= CLEAR GALLERY ================= */
 
 window.clearGalleryForm =
     function(){
