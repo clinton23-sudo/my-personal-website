@@ -8,6 +8,12 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
     <style>
         .social-grid {
             display: grid;
@@ -18,7 +24,7 @@
 
         .social-card {
             background: white;
-            padding: 25px;
+            padding: 28px 20px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
@@ -26,13 +32,17 @@
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .social-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .social-icon i {
+            display: inline-block;
         }
 
         .social-card h3 {
@@ -46,27 +56,18 @@
 
         .social-button {
             display: inline-block;
-            padding: 10px 18px;
+            padding: 11px 18px;
             border-radius: 8px;
             text-decoration: none;
             background: #333;
             color: white;
             font-weight: bold;
-            transition: opacity 0.3s ease;
+            transition: transform 0.2s ease, opacity 0.3s ease;
         }
 
         .social-button:hover {
-            opacity: 0.8;
-        }
-
-        .email-list {
-            margin-top: 15px;
-        }
-
-        .email-list a {
-            display: block;
-            margin: 8px 0;
-            word-break: break-word;
+            opacity: 0.85;
+            transform: scale(1.03);
         }
 
         .contact-intro {
@@ -83,8 +84,29 @@
             line-height: 1.6;
         }
 
-        .email-button {
-            margin-top: 10px;
+        /* Social icon colours */
+        .tiktok-icon {
+            color: #000000;
+        }
+
+        .whatsapp-icon {
+            color: #25D366;
+        }
+
+        .facebook-icon {
+            color: #1877F2;
+        }
+
+        .youtube-icon {
+            color: #FF0000;
+        }
+
+        .instagram-icon {
+            color: #E1306C;
+        }
+
+        .email-icon {
+            color: #555555;
         }
 
         @media (max-width: 600px) {
@@ -93,7 +115,7 @@
             }
 
             .social-card {
-                padding: 22px;
+                padding: 25px 18px;
             }
         }
     </style>
@@ -146,7 +168,7 @@
                 <h2>Connect With Me</h2>
 
                 <p>
-                    You can follow me, contact me or find me on the social media
+                    You can follow me, contact me or find me on my social media
                     platforms and email accounts below.
                 </p>
             </div>
@@ -157,7 +179,9 @@
                 <!-- TIKTOK -->
                 <div class="social-card">
 
-                    <div class="social-icon">🎵</div>
+                    <div class="social-icon tiktok-icon">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </div>
 
                     <h3>TikTok</h3>
 
@@ -179,7 +203,9 @@
                 <!-- WHATSAPP -->
                 <div class="social-card">
 
-                    <div class="social-icon">💬</div>
+                    <div class="social-icon whatsapp-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
 
                     <h3>WhatsApp</h3>
 
@@ -201,7 +227,9 @@
                 <!-- FACEBOOK -->
                 <div class="social-card">
 
-                    <div class="social-icon">📘</div>
+                    <div class="social-icon facebook-icon">
+                        <i class="fa-brands fa-facebook"></i>
+                    </div>
 
                     <h3>Facebook</h3>
 
@@ -223,7 +251,9 @@
                 <!-- YOUTUBE -->
                 <div class="social-card">
 
-                    <div class="social-icon">▶️</div>
+                    <div class="social-icon youtube-icon">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
 
                     <h3>YouTube</h3>
 
@@ -242,10 +272,36 @@
                 </div>
 
 
+                <!-- INSTAGRAM -->
+                <div class="social-card">
+
+                    <div class="social-icon instagram-icon">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+
+                    <h3>Instagram</h3>
+
+                    <p>
+                        @vixeny19
+                    </p>
+
+                    <a
+                        class="social-button"
+                        href="https://www.instagram.com/vixeny19/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Visit Instagram
+                    </a>
+
+                </div>
+
+
                 <!-- EMAIL 1 -->
                 <div class="social-card">
 
-                    <div class="social-icon">✉️</div>
+                    <div class="social-icon email-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
 
                     <h3>Email</h3>
 
@@ -254,7 +310,7 @@
                     </p>
 
                     <a
-                        class="social-button email-button"
+                        class="social-button"
                         href="mailto:thabangncube78@gmail.com">
                         Send Email
                     </a>
@@ -265,7 +321,9 @@
                 <!-- EMAIL 2 -->
                 <div class="social-card">
 
-                    <div class="social-icon">✉️</div>
+                    <div class="social-icon email-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
 
                     <h3>Email</h3>
 
@@ -274,7 +332,7 @@
                     </p>
 
                     <a
-                        class="social-button email-button"
+                        class="social-button"
                         href="mailto:dabbaang23@gmail.com">
                         Send Email
                     </a>
@@ -285,7 +343,9 @@
                 <!-- EMAIL 3 -->
                 <div class="social-card">
 
-                    <div class="social-icon">✉️</div>
+                    <div class="social-icon email-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
 
                     <h3>Email</h3>
 
@@ -294,7 +354,7 @@
                     </p>
 
                     <a
-                        class="social-button email-button"
+                        class="social-button"
                         href="mailto:thabangncube2323@gmail.com">
                         Send Email
                     </a>
@@ -310,11 +370,9 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-
             <p>
                 &copy; 2026 Clinton Ncube. All rights reserved.
             </p>
-
         </div>
     </footer>
 
