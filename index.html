@@ -53,16 +53,7 @@
     max-width:500px;
 ">
 
- <button id="likeButton"onclick="likeWebsite()" style="
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    font-size:16px;
-    margin:10px;
-">
-    ❤️ Like <span id="likeCount">0</span>
-</button>
+
 
 
 
@@ -166,46 +157,9 @@ async function loadStats() {
     }
 }
 
-window.likeWebsite = async function() {
 
-    try {
 
-        const alreadyLiked =
-            localStorage.getItem("clintonNcubeLiked");
-
-        if (alreadyLiked) {
-            alert("You have already liked this website ❤️");
-            return;
-        }
-
-        const result = await runTransaction(
-            likesRef,
-            function(current) {
-                return (current || 0) + 1;
-            }
-        );
-
-        const count = result.snapshot.val();
-
-        document.getElementById("likeCount").textContent = count;
-
-        localStorage.setItem(
-            "clintonNcubeLiked",
-            "true"
-        );
-
-        document.getElementById("likeButton").innerHTML =
-            "❤️ Liked <span id='likeCount'>" +
-            count +
-            "</span>";
-
-    } catch (error) {
-
-        console.error("Like error:", error);
-
-        alert(
-            "The Like could not be saved. Please check the Firebase database rules."
-        );
+       
     }
 };
 
