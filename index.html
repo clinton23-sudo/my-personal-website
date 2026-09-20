@@ -45,6 +45,111 @@
         aria-label="Open navigation menu"
         aria-expanded="false">
         ☰
+   <!-- LIKE & VISITOR COUNTER -->
+<div style="
+    text-align:center;
+    margin:40px auto;
+    padding:20px;
+    max-width:500px;
+">
+
+    <button id="likeButton" onclick="likeWebsite()" style="
+        padding:12px 25px;
+        border:none;
+        border-radius:25px;
+        cursor:pointer;
+        font-size:16px;
+        margin:10px;
+    ">
+        ❤️ Like <span id="likeCount">0</span>
+    </button>
+
+    <div style="
+        margin-top:15px;
+        font-size:16px;
+    ">
+        👀 Visitors: <span id="visitorCount">0</span>
+    </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getDatabase,
+    ref,
+    get,
+    set,
+    runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB66C1Tymv5lkTxY89HLbX4_SQTpAZQVUE",
+    authDomain: "clinton-ncube-website.firebaseapp.com",
+    databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+    projectId: "clinton-ncube-website",
+    storageBucket: "clinton-ncube-website.firebasestorage.app",
+    messagingSenderId: "946671700613",
+    appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
+    measurementId: "G-K1S62MHHXP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const likesRef = ref(db, "websiteStats/likes");
+const visitorsRef = ref(db, "websiteStats/visitors");
+
+async function loadStats() {
+
+    const likesSnapshot = await get(likesRef);
+
+    document.getElementById("likeCount").textContent =
+        likesSnapshot.exists() ? likesSnapshot.val() : 0;
+
+    const visitorSnapshot = await runTransaction(
+        visitorsRef,
+        current => (current || 0) + 1
+    );
+
+    document.getElementById("visitorCount").textContent =
+        visitorSnapshot.snapshot.val();
+}
+
+window.likeWebsite = async function() {
+
+    const alreadyLiked =
+        localStorage.getItem("clintonNcubeLiked");
+
+    if (alreadyLiked) {
+        alert("You have already liked this website ❤️");
+        return;
+    }
+
+    await runTransaction(
+        likesRef,
+        current => (current || 0) + 1
+    );
+
+    localStorage.setItem(
+        "clintonNcubeLiked",
+        "true"
+    );
+
+    const snapshot = await get(likesRef);
+
+    document.getElementById("likeCount").textContent =
+        snapshot.val();
+
+    document.getElementById("likeButton").innerHTML =
+        "❤️ Liked <span id='likeCount'>" +
+        snapshot.val() +
+        "</span>";
+};
+
+loadStats();
+
+</script>
     </button>
 
     <ul class="nav-menu" id="navMenu">
