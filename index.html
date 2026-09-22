@@ -31,6 +31,49 @@
             max-width: 700px;
             margin: 0 auto 25px;
         }
+
+        /* HOMEPAGE HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url('images/lebron%20james.jfif');
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.8),
+                0 8px 25px rgba(0, 0, 0, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: white;
+            font-size: 1.25rem;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 
@@ -45,127 +88,6 @@
         aria-label="Open navigation menu"
         aria-expanded="false">
         ☰
-   <!-- LIKE & VISITOR COUNTER -->
-<div style="
-    text-align:center;
-    margin:40px auto;
-    padding:20px;
-    max-width:500px;
-">
-
-
-
-
-
-    <div style="
-        margin-top:15px;
-        font-size:16px;
-    ">
-        👀 Visitors: <span id="visitorCount">0</span>
-    </div>
-
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-    getDatabase,
-    ref,
-    get,
-    set,
-    runTransaction
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB66C1Tymv5lkTxY89HLbX4_SQTpAZQVUE",
-    authDomain: "clinton-ncube-website.firebaseapp.com",
-    databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-    projectId: "clinton-ncube-website",
-    storageBucket: "clinton-ncube-website.firebasestorage.app",
-    messagingSenderId: "946671700613",
-    appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-    measurementId: "G-K1S62MHHXP"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const likesRef = ref(db, "websiteStats/likes");
-const visitorsRef = ref(db, "websiteStats/visitors");
-
-async function loadStats() {
-
-    const likesSnapshot = await get(likesRef);
-
-    document.getElementById("likeCount").textContent =
-        likesSnapshot.exists() ? likesSnapshot.val() : 0;
-
-    const visitorSnapshot = await runTransaction(
-        visitorsRef,
-        current => (current || 0) + 1
-    );
-
-    document.getElementById("visitorCount").textContent =
-        visitorSnapshot.snapshot.val();
-}
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-    getDatabase,
-    ref,
-    get,
-    runTransaction
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB66C1Tymv5lkTxY89HLbX4_SQTpAZQVUE",
-    authDomain: "clinton-ncube-website.firebaseapp.com",
-    databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-    projectId: "clinton-ncube-website",
-    storageBucket: "clinton-ncube-website.firebasestorage.app",
-    messagingSenderId: "946671700613",
-    appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-    measurementId: "G-K1S62MHHXP"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const likesRef = ref(db, "websiteStats/likes");
-const visitorsRef = ref(db, "websiteStats/visitors");
-
-async function loadStats() {
-    try {
-        const likes = await get(likesRef);
-
-        document.getElementById("likeCount").textContent =
-            likes.exists() ? likes.val() : 0;
-
-        const visitors = await runTransaction(
-            visitorsRef,
-            function(current) {
-                return (current || 0) + 1;
-            }
-        );
-
-        document.getElementById("visitorCount").textContent =
-            visitors.snapshot.val();
-
-    } catch (error) {
-        console.error("Firebase error:", error);
-    }
-}
-
-
-
-       
-    }
-};
-
-loadStats();
-</script>
-
     </button>
 
     <ul class="nav-menu" id="navMenu">
@@ -180,7 +102,11 @@ loadStats();
     </ul>
 </nav>
 
+
+<!-- HOMEPAGE HERO -->
+
 <header class="hero">
+
     <div class="hero-content">
 
         <h1 id="homeName">Clinton Ncube</h1>
@@ -194,9 +120,34 @@ loadStats();
         </a>
 
     </div>
+
 </header>
 
+
+<!-- VISITOR COUNTER -->
+
+<div style="
+    text-align:center;
+    margin:40px auto;
+    padding:20px;
+    max-width:500px;
+">
+
+    <div style="
+        margin-top:15px;
+        font-size:16px;
+    ">
+        👀 Visitors:
+        <span id="visitorCount">0</span>
+    </div>
+
+</div>
+
+
+<!-- ABOUT ME -->
+
 <section>
+
     <div class="container">
 
         <h2>About Me</h2>
@@ -204,14 +155,21 @@ loadStats();
         <p
             id="aboutText"
             class="section-intro">
+
             I am Clinton Ncube. I am a student who enjoys learning,
             developing new skills and working on creative projects.
+
         </p>
 
     </div>
+
 </section>
 
+
+<!-- MY GOAL -->
+
 <section>
+
     <div class="container">
 
         <h2>My Goal</h2>
@@ -219,12 +177,18 @@ loadStats();
         <p
             id="goalText"
             class="section-intro">
+
             My goal is to continue learning, improving my skills
             and creating useful and interesting projects.
+
         </p>
 
     </div>
+
 </section>
+
+
+<!-- EXPLORE WEBSITE -->
 
 <section class="home-explore">
 
@@ -234,77 +198,117 @@ loadStats();
 
         <div class="cards">
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">📚</div>
+
                 <h3>Projects</h3>
+
                 <p>
                     View my school, creative and personal projects.
                 </p>
+
                 <a href="projects.html" class="btn">
                     View Projects
                 </a>
+
             </div>
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">🏆</div>
+
                 <h3>Achievements</h3>
+
                 <p>
                     Explore some of my achievements and activities.
                 </p>
+
                 <a href="achievements.html" class="btn">
                     View Achievements
                 </a>
+
             </div>
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">💻</div>
+
                 <h3>Skills</h3>
+
                 <p>
                     Discover the skills I am developing.
                 </p>
+
                 <a href="skills.html" class="btn">
                     View Skills
                 </a>
+
             </div>
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">🏀</div>
+
                 <h3>Hobbies</h3>
+
                 <p>
                     See some of the activities I enjoy.
                 </p>
+
                 <a href="hobbies.html" class="btn">
                     View Hobbies
                 </a>
+
             </div>
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">🖼️</div>
+
                 <h3>Gallery</h3>
+
                 <p>
                     Browse pictures and memories.
                 </p>
+
                 <a href="gallery.html" class="btn">
                     Open Gallery
                 </a>
+
             </div>
 
+
             <div class="card explore-card">
+
                 <div class="explore-icon">📩</div>
+
                 <h3>Contact</h3>
+
                 <p>
                     Find ways to get in touch with me.
                 </p>
+
                 <a href="contact.html" class="btn">
                     Contact Me
                 </a>
+
             </div>
+
 
         </div>
 
     </div>
 
 </section>
+
+
+<!-- CALL TO ACTION -->
 
 <section class="home-cta">
 
@@ -325,12 +329,21 @@ loadStats();
 
 </section>
 
+
+<!-- FOOTER -->
+
 <footer>
 
     <p>
+
         © <span id="lastUpdated">2026</span>
-        <span id="footerName">Clinton Ncube</span>.
+
+        <span id="footerName">
+            Clinton Ncube
+        </span>.
+
         All rights reserved.
+
     </p>
 
     <p>
@@ -338,6 +351,9 @@ loadStats();
     </p>
 
 </footer>
+
+
+<!-- FIREBASE WEBSITE DATA -->
 
 <script type="module">
 
@@ -348,12 +364,15 @@ import {
 import {
     getDatabase,
     ref,
-    onValue
+    onValue,
+    runTransaction
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+    apiKey:
+        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
     authDomain:
         "clinton-ncube-website.firebaseapp.com",
@@ -377,52 +396,113 @@ const firebaseConfig = {
         "G-K1S62MHHXP"
 };
 
-const app = initializeApp(firebaseConfig);
 
-const db = getDatabase(app);
+const app =
+    initializeApp(firebaseConfig);
+
+const db =
+    getDatabase(app);
+
+
+/* WEBSITE DATA */
 
 const websiteDataRef =
     ref(db, "websiteData");
+
 
 onValue(
     websiteDataRef,
     (snapshot) => {
 
-        const data = snapshot.val();
+        const data =
+            snapshot.val();
 
         if (!data) return;
 
-        if (data.name) {
-            document.getElementById("homeName").textContent =
-                data.name;
 
-            document.getElementById("footerName").textContent =
-                data.name;
+        if (data.name) {
+
+            document.getElementById(
+                "homeName"
+            ).textContent = data.name;
+
+            document.getElementById(
+                "footerName"
+            ).textContent = data.name;
+
         }
+
 
         if (data.welcome) {
-            document.getElementById("welcomeText").textContent =
-                data.welcome;
+
+            document.getElementById(
+                "welcomeText"
+            ).textContent = data.welcome;
+
         }
+
 
         if (data.goal) {
-            document.getElementById("goalText").textContent =
-                data.goal;
+
+            document.getElementById(
+                "goalText"
+            ).textContent = data.goal;
+
         }
+
 
         if (data.about) {
-            document.getElementById("aboutText").textContent =
-                data.about;
+
+            document.getElementById(
+                "aboutText"
+            ).textContent = data.about;
+
         }
 
+
         if (data.lastUpdated) {
-            document.getElementById("lastUpdated").textContent =
-                data.lastUpdated;
+
+            document.getElementById(
+                "lastUpdated"
+            ).textContent = data.lastUpdated;
+
         }
+
     }
 );
 
+
+/* VISITOR COUNTER */
+
+const visitorsRef =
+    ref(db, "websiteStats/visitors");
+
+
+runTransaction(
+    visitorsRef,
+    current => (current || 0) + 1
+)
+.then(result => {
+
+    document.getElementById(
+        "visitorCount"
+    ).textContent =
+        result.snapshot.val();
+
+})
+.catch(error => {
+
+    console.error(
+        "Visitor counter error:",
+        error
+    );
+
+});
+
 </script>
+
+
+<!-- MOBILE MENU -->
 
 <script>
 
@@ -432,41 +512,61 @@ const menuToggle =
 const navMenu =
     document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", () => {
 
-    navMenu.classList.toggle("active");
+menuToggle.addEventListener(
+    "click",
+    () => {
 
-    const isOpen =
-        navMenu.classList.contains("active");
+        navMenu.classList.toggle(
+            "active"
+        );
 
-    menuToggle.setAttribute(
-        "aria-expanded",
-        isOpen
-    );
-
-    menuToggle.textContent =
-        isOpen ? "✕" : "☰";
-});
-
-document.querySelectorAll(".nav-menu a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            navMenu.classList.remove("active");
-
-            menuToggle.textContent = "☰";
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
+        const isOpen =
+            navMenu.classList.contains(
+                "active"
             );
 
-        });
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+
+        menuToggle.textContent =
+            isOpen ? "✕" : "☰";
+
+    }
+);
+
+
+document
+    .querySelectorAll(".nav-menu a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                navMenu.classList.remove(
+                    "active"
+                );
+
+                menuToggle.textContent =
+                    "☰";
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+        );
 
     });
 
 </script>
+
 
 </body>
 </html>
