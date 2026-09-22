@@ -79,6 +79,48 @@
             color: #555;
         }
 
+        /* BUTTONS */
+
+        .gallery-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s ease;
+        }
+
+        .view-button {
+            background: #eeeeee;
+            color: #222;
+        }
+
+        .view-button:hover {
+            background: #dddddd;
+        }
+
+        .download-button {
+            background: #5c0d24;
+            color: white;
+        }
+
+        .download-button:hover {
+            background: #8b1638;
+        }
+
         .loading {
             text-align: center;
             padding: 40px 20px;
@@ -97,6 +139,61 @@
             margin-bottom: 10px;
         }
 
+        /* FULL IMAGE VIEWER */
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .modal-image {
+            max-width: 95%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #ddd;
+        }
+
+        .modal-download {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b1638;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .modal-download:hover {
+            background: #5c0d24;
+        }
+
         @media (max-width: 600px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -104,6 +201,14 @@
 
             .gallery-image-container {
                 height: 240px;
+            }
+
+            .gallery-button {
+                flex: 1;
+            }
+
+            .modal-image {
+                max-width: 100%;
             }
         }
     </style>
@@ -141,6 +246,7 @@
     <header class="page-header">
         <div class="container">
             <h1>My Gallery</h1>
+
             <p>
                 A collection of pictures and memories from my personal gallery.
             </p>
@@ -153,13 +259,16 @@
         <div class="container">
 
             <div class="gallery-intro">
+
                 <h2>My Pictures</h2>
 
                 <p>
                     Here you can see pictures from my personal gallery,
                     activities and memorable moments.
                 </p>
+
             </div>
+
 
             <div id="galleryContainer" class="gallery-grid">
 
@@ -173,26 +282,70 @@
     </section>
 
 
+    <!-- FULL IMAGE MODAL -->
+
+    <div
+        id="imageModal"
+        class="image-modal"
+        onclick="closeImageModal(event)">
+
+        <span
+            class="close-modal"
+            onclick="closeImageModal(event)">
+            &times;
+        </span>
+
+        <img
+            id="modalImage"
+            class="modal-image"
+            src=""
+            alt="Full gallery image">
+
+        <a
+            id="modalDownload"
+            class="modal-download"
+            href="#"
+            download>
+
+            <i class="fa-solid fa-download"></i>
+            Download Image
+
+        </a>
+
+    </div>
+
+
     <!-- FOOTER -->
     <footer>
+
         <div class="container">
+
             <p>
                 &copy; 2026 Clinton Ncube. All rights reserved.
             </p>
+
         </div>
+
     </footer>
 
 
     <!-- MOBILE MENU -->
     <script>
+
         function toggleMenu() {
-            const menu = document.getElementById("navMenu");
+
+            const menu =
+                document.getElementById("navMenu");
+
             menu.classList.toggle("active");
+
         }
+
     </script>
 
 
     <!-- FIREBASE GALLERY -->
+
     <script type="module">
 
         import { initializeApp }
@@ -207,23 +360,44 @@
 
 
         const firebaseConfig = {
-            apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
-            authDomain: "clinton-ncube-website.firebaseapp.com",
-            databaseURL: "https://clinton-ncube-website-default-rtdb.firebaseio.com",
-            projectId: "clinton-ncube-website",
-            storageBucket: "clinton-ncube-website.firebasestorage.app",
-            messagingSenderId: "946671700613",
-            appId: "1:946671700613:web:5d74536df1dbb0d35e77ec",
-            measurementId: "G-K1S62MHHXP"
+
+            apiKey:
+                "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
+
+            authDomain:
+                "clinton-ncube-website.firebaseapp.com",
+
+            databaseURL:
+                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+            projectId:
+                "clinton-ncube-website",
+
+            storageBucket:
+                "clinton-ncube-website.firebasestorage.app",
+
+            messagingSenderId:
+                "946671700613",
+
+            appId:
+                "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+            measurementId:
+                "G-K1S62MHHXP"
         };
 
 
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        const app =
+            initializeApp(firebaseConfig);
+
+        const database =
+            getDatabase(app);
 
 
         const galleryContainer =
-            document.getElementById("galleryContainer");
+            document.getElementById(
+                "galleryContainer"
+            );
 
 
         function escapeHTML(value) {
@@ -231,6 +405,7 @@
             if (!value) return "";
 
             return String(value)
+
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
@@ -245,15 +420,9 @@
                 return "";
             }
 
-            path = String(path).trim();
+            path =
+                String(path).trim();
 
-            /*
-                If the admin saved:
-
-                images/photo.jpg
-
-                use it directly.
-            */
 
             if (
                 path.startsWith("images/") ||
@@ -261,16 +430,11 @@
                 path.startsWith("https://") ||
                 path.startsWith("data:")
             ) {
+
                 return path;
+
             }
 
-            /*
-                If only the filename was saved:
-
-                photo.jpg
-
-                automatically add images/
-            */
 
             return "images/" + path;
         }
@@ -279,13 +443,18 @@
         function createGalleryCard(item) {
 
             const title =
-                escapeHTML(item.title || "Gallery Picture");
+                escapeHTML(
+                    item.title ||
+                    "Gallery Picture"
+                );
+
 
             const description =
                 escapeHTML(
                     item.description ||
                     "A picture from my personal gallery."
                 );
+
 
             const imagePath =
                 fixImagePath(item.file);
@@ -294,7 +463,8 @@
             const card =
                 document.createElement("div");
 
-            card.className = "gallery-card";
+            card.className =
+                "gallery-card";
 
 
             const imageContainer =
@@ -328,35 +498,52 @@
                         image.style.display =
                             "none";
 
+
                         const error =
                             document.createElement("div");
 
                         error.className =
                             "image-error";
 
-                        error.innerHTML =
-                            `
-                            <strong>Image not found</strong>
+
+                        error.innerHTML = `
+
+                            <strong>
+                                Image not found
+                            </strong>
+
                             <br>
+
                             <small>
                                 ${escapeHTML(imagePath)}
                             </small>
-                            `;
 
-                        imageContainer.appendChild(error);
+                        `;
+
+
+                        imageContainer.appendChild(
+                            error
+                        );
+
                     };
 
 
-                imageContainer.appendChild(image);
+                imageContainer.appendChild(
+                    image
+                );
 
             } else {
 
-                imageContainer.innerHTML =
-                    `
+                imageContainer.innerHTML = `
+
                     <div class="image-error">
+
                         No image selected
+
                     </div>
-                    `;
+
+                `;
+
             }
 
 
@@ -367,15 +554,73 @@
                 "gallery-content";
 
 
-            content.innerHTML =
-                `
-                <h3>${title}</h3>
-                <p>${description}</p>
-                `;
+            content.innerHTML = `
+
+                <h3>
+                    ${title}
+                </h3>
+
+                <p>
+                    ${description}
+                </p>
+
+                <div class="gallery-buttons">
+
+                    <button
+                        class="gallery-button view-button"
+                        type="button">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        View
+
+                    </button>
 
 
-            card.appendChild(imageContainer);
-            card.appendChild(content);
+                    <a
+                        class="gallery-button download-button"
+                        href="${escapeHTML(imagePath)}"
+                        download
+                        target="_blank"
+                        rel="noopener">
+
+                        <i class="fa-solid fa-download"></i>
+
+                        Download
+
+                    </a>
+
+                </div>
+
+            `;
+
+
+            const viewButton =
+                content.querySelector(
+                    ".view-button"
+                );
+
+
+            viewButton.addEventListener(
+                "click",
+                function() {
+
+                    openImageModal(
+                        imagePath,
+                        title
+                    );
+
+                }
+            );
+
+
+            card.appendChild(
+                imageContainer
+            );
+
+            card.appendChild(
+                content
+            );
 
 
             return card;
@@ -387,27 +632,38 @@
             try {
 
                 const galleryRef =
-                    ref(database, "gallery");
+                    ref(
+                        database,
+                        "gallery"
+                    );
+
 
                 const snapshot =
                     await get(galleryRef);
 
 
-                galleryContainer.innerHTML = "";
+                galleryContainer.innerHTML =
+                    "";
 
 
                 if (!snapshot.exists()) {
 
-                    galleryContainer.innerHTML =
-                        `
+                    galleryContainer.innerHTML = `
+
                         <div class="empty-gallery">
-                            <h3>No Gallery Pictures Yet</h3>
+
+                            <h3>
+                                No Gallery Pictures Yet
+                            </h3>
+
                             <p>
-                                Pictures added from the Admin Dashboard
-                                will appear here.
+                                Pictures added from the
+                                Admin Dashboard will appear here.
                             </p>
+
                         </div>
-                        `;
+
+                    `;
 
                     return;
                 }
@@ -420,39 +676,54 @@
                 let count = 0;
 
 
-                Object.keys(data).forEach(key => {
+                Object.keys(data).forEach(
+                    key => {
 
-                    const item =
-                        data[key];
+                        const item =
+                            data[key];
 
 
-                    if (!item) {
-                        return;
+                        if (!item) {
+                            return;
+                        }
+
+
+                        const card =
+                            createGalleryCard(
+                                item
+                            );
+
+
+                        galleryContainer.appendChild(
+                            card
+                        );
+
+
+                        count++;
+
                     }
-
-
-                    const card =
-                        createGalleryCard(item);
-
-
-                    galleryContainer.appendChild(card);
-
-                    count++;
-
-                });
+                );
 
 
                 if (count === 0) {
 
-                    galleryContainer.innerHTML =
-                        `
+                    galleryContainer.innerHTML = `
+
                         <div class="empty-gallery">
-                            <h3>No Gallery Pictures Yet</h3>
+
+                            <h3>
+                                No Gallery Pictures Yet
+                            </h3>
+
                             <p>
-                                Add pictures from the Admin Dashboard.
+                                Add pictures from the
+                                Admin Dashboard.
                             </p>
+
                         </div>
-                        `;
+
+                    `;
+
                 }
 
             } catch (error) {
@@ -463,17 +734,148 @@
                 );
 
 
-                galleryContainer.innerHTML =
-                    `
+                galleryContainer.innerHTML = `
+
                     <div class="empty-gallery">
-                        <h3>Unable to Load Gallery</h3>
+
+                        <h3>
+                            Unable to Load Gallery
+                        </h3>
+
                         <p>
-                            Please refresh the page and try again.
+                            Please refresh the page
+                            and try again.
                         </p>
+
                     </div>
-                    `;
+
+                `;
+
             }
+
         }
+
+
+        /* -----------------------------------
+           OPEN IMAGE
+        ----------------------------------- */
+
+        window.openImageModal =
+            function(imagePath, title) {
+
+                if (!imagePath) {
+                    return;
+                }
+
+
+                const modal =
+                    document.getElementById(
+                        "imageModal"
+                    );
+
+
+                const image =
+                    document.getElementById(
+                        "modalImage"
+                    );
+
+
+                const download =
+                    document.getElementById(
+                        "modalDownload"
+                    );
+
+
+                image.src =
+                    imagePath;
+
+
+                image.alt =
+                    title || "Gallery image";
+
+
+                download.href =
+                    imagePath;
+
+
+                download.download =
+                    title || "gallery-image";
+
+
+                modal.classList.add(
+                    "active"
+                );
+
+            };
+
+
+        /* -----------------------------------
+           CLOSE IMAGE
+        ----------------------------------- */
+
+        window.closeImageModal =
+            function(event) {
+
+                if (
+                    event &&
+                    event.target &&
+                    event.target.id !== "imageModal" &&
+                    !event.target.classList.contains(
+                        "close-modal"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const modal =
+                    document.getElementById(
+                        "imageModal"
+                    );
+
+
+                const image =
+                    document.getElementById(
+                        "modalImage"
+                    );
+
+
+                modal.classList.remove(
+                    "active"
+                );
+
+
+                image.src = "";
+
+            };
+
+
+        /* ESC KEY */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    const modal =
+                        document.getElementById(
+                            "imageModal"
+                        );
+
+
+                    modal.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
 
 
         loadGallery();
