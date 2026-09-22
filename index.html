@@ -6,46 +6,96 @@
 
     <title>Clinton Ncube | Personal Website</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
     <style>
-        .home-explore {
-            background: #eef4ff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .explore-card {
-            text-align: center;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .explore-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            color: #222;
         }
 
-        .home-cta {
-            text-align: center;
-            background: #e5e7eb;
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
         }
 
-        .home-cta p {
-            max-width: 700px;
-            margin: 0 auto 25px;
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
         }
 
-        /* HOMEPAGE HERO */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .menu-btn {
+            display: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            min-height: 85vh;
+            min-height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            overflow: hidden;
 
             background-image:
                 linear-gradient(
                     rgba(0, 0, 0, 0.45),
-                    rgba(0, 0, 0, 0.65)
+                    rgba(0, 0, 0, 0.68)
                 ),
-                url('images/court%20of%20gold.jfif');
+                url('images/kobe.jpg');
 
             background-size: cover;
             background-position: center;
@@ -55,6 +105,8 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            color: white;
+            padding: 30px;
         }
 
         .hero h1 {
@@ -63,179 +115,470 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 4px;
+
             text-shadow:
                 0 4px 10px rgba(0, 0, 0, 0.8),
                 0 8px 25px rgba(0, 0, 0, 0.6);
-            margin-bottom: 15px;
         }
 
         .hero p {
+            font-size: 22px;
+            margin-top: 15px;
             color: white;
-            font-size: 1.25rem;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background: #8b0000;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            background: #b00000;
+        }
+
+        .hero-button.secondary {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid white;
+        }
+
+        .hero-button.secondary:hover {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #8b0000;
+        }
+
+        .section-text {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: white;
+        }
+
+        /* =========================
+           GOAL
+        ========================= */
+
+        .goal {
+            background: #eeeeee;
+        }
+
+        .goal-box {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .goal-box i {
+            font-size: 50px;
+            color: #8b0000;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           EXPLORE
+        ========================= */
+
+        .explore {
+            background: white;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+
+        .card {
+            background: #f8f8f8;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #222;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card i {
+            font-size: 45px;
+            color: #8b0000;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           VISITOR COUNTER
+        ========================= */
+
+        .visitor-section {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .visitor-section h2 {
+            margin-bottom: 15px;
+        }
+
+        #visitorCount {
+            font-size: 40px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        /* =========================
+           THANK YOU
+        ========================= */
+
+        .thanks {
+            background: #8b0000;
+            color: white;
+            text-align: center;
+        }
+
+        .thanks h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .thanks p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #050505;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .footer-socials {
+            margin-top: 15px;
+        }
+
+        .footer-socials a {
+            color: white;
+            margin: 0 10px;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: #d4af37;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.97);
+
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 15px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 14vw, 5rem);
+                letter-spacing: 2px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            section {
+                padding: 60px 6%;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html" class="logo">Clinton Ncube</a>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false">
-        ☰
-    </button>
+    <nav>
 
-    <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="skills.html">Skills</a></li>
-        <li><a href="hobbies.html">Hobbies</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
-
-
-<!-- HOMEPAGE HERO -->
-
-<header class="hero">
-
-    <div class="hero-content">
-
-        <h1 id="homeName">Clinton Ncube</h1>
-
-        <p id="welcomeText">
-            Welcome to my personal website!
-        </p>
-
-        <a href="about.html" class="btn">
-            Learn More About Me
+        <a href="index.html" class="logo">
+            Clinton Ncube
         </a>
 
-    </div>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
 
-</header>
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="projects.html">Projects</a>
+            </li>
+
+            <li>
+                <a href="achievements.html">Achievements</a>
+            </li>
+
+            <li>
+                <a href="skills.html">Skills</a>
+            </li>
+
+            <li>
+                <a href="hobbies.html">Hobbies</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">Gallery</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+        </ul>
+
+    </nav>
 
 
-<!-- VISITOR COUNTER -->
+    <!-- =========================
+         HERO
+    ========================= -->
 
-<div style="
-    text-align:center;
-    margin:40px auto;
-    padding:20px;
-    max-width:500px;
-">
+    <header class="hero">
 
-    <div style="
-        margin-top:15px;
-        font-size:16px;
-    ">
-        👀 Visitors:
-        <span id="visitorCount">0</span>
-    </div>
+        <div class="hero-content">
 
-</div>
+            <h1>Clinton Ncube</h1>
+
+            <p>
+                Welcome to my personal website
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="about.html" class="hero-button">
+                    <i class="fa-solid fa-user"></i>
+                    About Me
+                </a>
+
+                <a href="gallery.html" class="hero-button secondary">
+                    <i class="fa-solid fa-images"></i>
+                    View Gallery
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
 
 
-<!-- ABOUT ME -->
+    <!-- =========================
+         ABOUT ME
+    ========================= -->
 
-<section>
+    <section class="about">
 
-    <div class="container">
+        <h2 class="section-title">
+            About Me
+        </h2>
 
-        <h2>About Me</h2>
-
-        <p
-            id="aboutText"
-            class="section-intro">
-
-            I am Clinton Ncube. I am a student who enjoys learning,
-            developing new skills and working on creative projects.
-
+        <p class="section-text">
+            Welcome to my personal website. My name is Clinton Ncube.
+            This website showcases my projects, achievements, skills,
+            hobbies, interests and some of the work I have been involved in.
         </p>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- MY GOAL -->
+    <!-- =========================
+         MY GOAL
+    ========================= -->
 
-<section>
+    <section class="goal">
 
-    <div class="container">
+        <h2 class="section-title">
+            My Goal
+        </h2>
 
-        <h2>My Goal</h2>
+        <div class="goal-box">
 
-        <p
-            id="goalText"
-            class="section-intro">
+            <i class="fa-solid fa-bullseye"></i>
 
-            My goal is to continue learning, improving my skills
-            and creating useful and interesting projects.
+            <p class="section-text">
+                My goal is to continue learning, developing my skills,
+                exploring technology and creating projects that can make
+                a positive difference. I also want to continue improving
+                my creativity and knowledge through practical experience.
+            </p>
 
-        </p>
+        </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- EXPLORE WEBSITE -->
+    <!-- =========================
+         EXPLORE MY WEBSITE
+    ========================= -->
 
-<section class="home-explore">
+    <section class="explore">
 
-    <div class="container">
-
-        <h2>Explore My Website</h2>
+        <h2 class="section-title">
+            Explore My Website
+        </h2>
 
         <div class="cards">
 
+            <a href="about.html" class="card">
 
-            <div class="card explore-card">
+                <i class="fa-solid fa-user"></i>
 
-                <div class="explore-icon">📚</div>
+                <h3>About Me</h3>
+
+                <p>
+                    Learn more about me and my interests.
+                </p>
+
+            </a>
+
+
+            <a href="projects.html" class="card">
+
+                <i class="fa-solid fa-code"></i>
 
                 <h3>Projects</h3>
 
                 <p>
-                    View my school, creative and personal projects.
+                    View some of my projects and work.
                 </p>
 
-                <a href="projects.html" class="btn">
-                    View Projects
-                </a>
-
-            </div>
+            </a>
 
 
-            <div class="card explore-card">
+            <a href="achievements.html" class="card">
 
-                <div class="explore-icon">🏆</div>
+                <i class="fa-solid fa-trophy"></i>
 
                 <h3>Achievements</h3>
 
                 <p>
-                    Explore some of my achievements and activities.
+                    Explore my achievements and accomplishments.
                 </p>
 
-                <a href="achievements.html" class="btn">
-                    View Achievements
-                </a>
-
-            </div>
+            </a>
 
 
-            <div class="card explore-card">
+            <a href="skills.html" class="card">
 
-                <div class="explore-icon">💻</div>
+                <i class="fa-solid fa-lightbulb"></i>
 
                 <h3>Skills</h3>
 
@@ -243,330 +586,254 @@
                     Discover the skills I am developing.
                 </p>
 
-                <a href="skills.html" class="btn">
-                    View Skills
-                </a>
-
-            </div>
+            </a>
 
 
-            <div class="card explore-card">
+            <a href="hobbies.html" class="card">
 
-                <div class="explore-icon">🏀</div>
+                <i class="fa-solid fa-basketball"></i>
 
                 <h3>Hobbies</h3>
 
                 <p>
-                    See some of the activities I enjoy.
+                    See some of the activities and hobbies I enjoy.
                 </p>
 
-                <a href="hobbies.html" class="btn">
-                    View Hobbies
-                </a>
-
-            </div>
+            </a>
 
 
-            <div class="card explore-card">
+            <a href="gallery.html" class="card">
 
-                <div class="explore-icon">🖼️</div>
+                <i class="fa-solid fa-camera"></i>
 
                 <h3>Gallery</h3>
 
                 <p>
-                    Browse pictures and memories.
+                    View pictures and memories in my gallery.
                 </p>
 
-                <a href="gallery.html" class="btn">
-                    Open Gallery
-                </a>
-
-            </div>
+            </a>
 
 
-            <div class="card explore-card">
+            <a href="contact.html" class="card">
 
-                <div class="explore-icon">📩</div>
+                <i class="fa-solid fa-envelope"></i>
 
                 <h3>Contact</h3>
 
                 <p>
-                    Find ways to get in touch with me.
+                    Find my social media and contact information.
                 </p>
 
-                <a href="contact.html" class="btn">
-                    Contact Me
-                </a>
-
-            </div>
-
+            </a>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- CALL TO ACTION -->
+    <!-- =========================
+         VISITOR COUNTER
+    ========================= -->
 
-<section class="home-cta">
+    <section class="visitor-section">
 
-    <div class="container">
-
-        <h2>Thanks for Visiting</h2>
+        <h2>
+            Website Visitors
+        </h2>
 
         <p>
-            This website is a collection of my interests,
-            projects, skills, achievements and memories.
+            You are visitor number
         </p>
 
-        <a href="gallery.html" class="btn">
-            Explore My Gallery
-        </a>
+        <div id="visitorCount">
+            Loading...
+        </div>
 
-    </div>
+    </section>
 
-</section>
 
+    <!-- =========================
+         THANK YOU
+    ========================= -->
 
-<!-- FOOTER -->
+    <section class="thanks">
 
-<footer>
+        <h2>
+            Thanks for Visiting
+        </h2>
 
-    <p>
+        <p>
+            Thank you for taking the time to visit my personal website.
+            Feel free to explore the different sections and discover
+            more about my projects, interests, skills and achievements.
+        </p>
 
-        © <span id="lastUpdated">2026</span>
+    </section>
 
-        <span id="footerName">
-            Clinton Ncube
-        </span>.
 
-        All rights reserved.
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
-    </p>
+    <footer>
 
-    <p>
-        Personal Portfolio Website
-    </p>
+        <p>
+            &copy; 2026 Clinton Ncube. All Rights Reserved.
+        </p>
 
-</footer>
+        <p>
+            Personal Website
+        </p>
 
+        <div class="footer-socials">
 
-<!-- FIREBASE WEBSITE DATA -->
+            <a
+                href="https://www.instagram.com/vixeny19/"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
 
-<script type="module">
+            <a
+                href="https://www.tiktok.com/@silveirahighsportsdesk"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+            <a
+                href="https://www.youtube.com/@TCN-CLINTON"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
 
-import {
-    getDatabase,
-    ref,
-    onValue,
-    runTransaction
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+            <a
+                href="https://www.facebook.com/profile.php?id=61586134052388"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
 
+        </div>
 
-const firebaseConfig = {
+    </footer>
 
-    apiKey:
-        "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-    authDomain:
-        "clinton-ncube-website.firebaseapp.com",
+    <!-- =========================
+         FIREBASE
+    ========================= -->
 
-    databaseURL:
-        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+    <script type="module">
 
-    projectId:
-        "clinton-ncube-website",
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    storageBucket:
-        "clinton-ncube-website.firebasestorage.app",
+        import {
+            getDatabase,
+            ref,
+            runTransaction
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-    messagingSenderId:
-        "946671700613",
 
-    appId:
-        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+        const firebaseConfig = {
 
-    measurementId:
-        "G-K1S62MHHXP"
-};
+            apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
+            authDomain:
+                "clinton-ncube-website.firebaseapp.com",
 
-const app =
-    initializeApp(firebaseConfig);
+            databaseURL:
+                "https://clinton-ncube-website-default-rtdb.firebaseio.com",
 
-const db =
-    getDatabase(app);
+            projectId:
+                "clinton-ncube-website",
 
+            storageBucket:
+                "clinton-ncube-website.firebasestorage.app",
 
-/* WEBSITE DATA */
+            messagingSenderId:
+                "946671700613",
 
-const websiteDataRef =
-    ref(db, "websiteData");
+            appId:
+                "1:946671700613:web:5d74536df1dbb0d35e77ec",
 
+            measurementId:
+                "G-K1S62MHHXP"
 
-onValue(
-    websiteDataRef,
-    (snapshot) => {
+        };
 
-        const data =
-            snapshot.val();
 
-        if (!data) return;
+        const app = initializeApp(firebaseConfig);
 
+        const database = getDatabase(app);
 
-        if (data.name) {
 
-            document.getElementById(
-                "homeName"
-            ).textContent = data.name;
+        /* =========================
+           VISITOR COUNTER
+        ========================= */
 
-            document.getElementById(
-                "footerName"
-            ).textContent = data.name;
+        const visitorRef = ref(database, "websiteVisitors");
 
-        }
 
+        runTransaction(visitorRef, (currentValue) => {
 
-        if (data.welcome) {
+            return (currentValue || 0) + 1;
 
-            document.getElementById(
-                "welcomeText"
-            ).textContent = data.welcome;
+        })
+        .then((result) => {
 
-        }
+            document.getElementById("visitorCount").textContent =
+                result.snapshot.val();
 
+        })
+        .catch((error) => {
 
-        if (data.goal) {
-
-            document.getElementById(
-                "goalText"
-            ).textContent = data.goal;
-
-        }
-
-
-        if (data.about) {
-
-            document.getElementById(
-                "aboutText"
-            ).textContent = data.about;
-
-        }
-
-
-        if (data.lastUpdated) {
-
-            document.getElementById(
-                "lastUpdated"
-            ).textContent = data.lastUpdated;
-
-        }
-
-    }
-);
-
-
-/* VISITOR COUNTER */
-
-const visitorsRef =
-    ref(db, "websiteStats/visitors");
-
-
-runTransaction(
-    visitorsRef,
-    current => (current || 0) + 1
-)
-.then(result => {
-
-    document.getElementById(
-        "visitorCount"
-    ).textContent =
-        result.snapshot.val();
-
-})
-.catch(error => {
-
-    console.error(
-        "Visitor counter error:",
-        error
-    );
-
-});
-
-</script>
-
-
-<!-- MOBILE MENU -->
-
-<script>
-
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const navMenu =
-    document.getElementById("navMenu");
-
-
-menuToggle.addEventListener(
-    "click",
-    () => {
-
-        navMenu.classList.toggle(
-            "active"
-        );
-
-        const isOpen =
-            navMenu.classList.contains(
-                "active"
+            console.error(
+                "Visitor counter error:",
+                error
             );
 
+            document.getElementById("visitorCount").textContent =
+                "—";
 
-        menuToggle.setAttribute(
-            "aria-expanded",
-            isOpen
-        );
+        });
 
-
-        menuToggle.textContent =
-            isOpen ? "✕" : "☰";
-
-    }
-);
+    </script>
 
 
-document
-    .querySelectorAll(".nav-menu a")
-    .forEach(link => {
+    <!-- =========================
+         MOBILE MENU
+    ========================= -->
 
-        link.addEventListener(
-            "click",
-            () => {
+    <script>
 
-                navMenu.classList.remove(
-                    "active"
-                );
+        function toggleMenu() {
 
-                menuToggle.textContent =
-                    "☰";
+            const navLinks =
+                document.getElementById("navLinks");
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+            navLinks.classList.toggle("active");
 
-            }
-        );
+        }
 
-    });
 
-</script>
+        document.querySelectorAll(".nav-links a")
+            .forEach(link => {
 
+                link.addEventListener("click", () => {
+
+                    document
+                        .getElementById("navLinks")
+                        .classList.remove("active");
+
+                });
+
+            });
+
+    </script>
 
 </body>
 </html>
