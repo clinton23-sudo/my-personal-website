@@ -569,33 +569,6 @@ textarea{
     background:#eee;
 }
 
-/* ================= GALLERY BULK BUTTON ================= */
-
-.gallery-bulk-box{
-    background:#eff6ff;
-    border:1px solid #bfdbfe;
-    border-radius:10px;
-    padding:18px;
-    margin-bottom:20px;
-}
-
-.gallery-bulk-box h3{
-    margin-bottom:8px;
-}
-
-.gallery-bulk-box p{
-    color:#4b5563;
-    line-height:1.6;
-    margin-bottom:14px;
-}
-
-.gallery-count-info{
-    display:inline-block;
-    margin-left:8px;
-    color:#2563eb;
-    font-weight:bold;
-}
-
 /* ================= PREVIEW ================= */
 
 .preview-box{
@@ -1520,39 +1493,6 @@ textarea{
     </div>
 
 
-    <!-- NEW: ADD ALL IMAGES -->
-
-    <div class="gallery-bulk-box">
-
-        <h3>
-            🖼️ Add Your 17 Website Images
-        </h3>
-
-        <p>
-            This will add all 17 images from your GitHub
-            <strong>images</strong> folder to the Firebase gallery.
-            Existing images will not be duplicated.
-        </p>
-
-        <button
-            type="button"
-            class="btn btn-primary"
-            id="addAllGalleryBtn"
-            onclick="addAllGalleryImages()"
-        >
-            🖼️ Add All 17 Images
-        </button>
-
-        <span
-            class="gallery-count-info"
-            id="availableGalleryCount"
-        >
-            17 images available
-        </span>
-
-    </div>
-
-
     <div class="card">
 
         <h3 id="galleryFormTitle">
@@ -1597,8 +1537,6 @@ textarea{
                         <option value="">
                             -- Select an image --
                         </option>
-
-                        <!-- 17 IMAGES -->
 
                         <option value="images/IMG-20240819-WA0011_(1).jpg">
                             IMG-20240819-WA0011_(1).jpg
@@ -2430,47 +2368,6 @@ function formatDateTime(){
 }
 
 
-/* ================= ALL GALLERY IMAGES ================= */
-
-const defaultGalleryImages = [
-
-    "images/IMG-20240819-WA0011_(1).jpg",
-
-    "images/IMG-20240819-WA0020_(1).jpg",
-
-    "images/IMG-20240819-WA0021_(1).jpg",
-
-    "images/IMG-20251221-WA0056.jpg",
-
-    "images/IMG_20250802_093252.jpg",
-
-    "images/IMG_20250802_093305.jpg",
-
-    "images/IMG_20250802_144742_edit_7426347801541.jpg",
-
-    "images/IMG_20250802_145115_edit_7303969500494.jpg",
-
-    "images/IMG_20250802_145348_edit_7272302860610.jpg",
-
-    "images/WIN_20260814_16_48_08_Pro.jpg",
-
-    "images/WIN_20260814_16_48_27_Pro.jpg",
-
-    "images/WIN_20260814_16_48_35_Pro.jpg",
-
-    "images/WIN_20260814_16_48_39_Pro.jpg",
-
-    "images/WIN_20260814_16_49_03_Pro.jpg",
-
-    "images/WIN_20260814_16_49_16_Pro.jpg",
-
-    "images/WIN_20260814_16_49_28_Pro.jpg",
-
-    "images/photo3.jpg"
-
-];
-
-
 /* ================= LOGIN ================= */
 
 $("loginForm").addEventListener(
@@ -3038,11 +2935,6 @@ window.selectGalleryImage =
         $("galleryFile").value =
             selected;
 
-        /*
-         * Automatically use the filename as
-         * the title if the title is empty.
-         */
-
         if(!$("galleryTitle").value.trim()){
 
             const filename =
@@ -3131,167 +3023,6 @@ window.previewLocalImage =
     };
 
 
-/* ================= ADD ALL 17 IMAGES ================= */
-
-window.addAllGalleryImages =
-    async function(){
-
-        const button =
-            $("addAllGalleryBtn");
-
-        button.disabled =
-            true;
-
-        button.textContent =
-            "⏳ Adding Images...";
-
-        try{
-
-            /*
-             * Read the current gallery from Firebase.
-             */
-
-            const snapshot =
-                await get(
-                    ref(db,"gallery")
-                );
-
-            const existingFiles = [];
-
-            if(snapshot.exists()){
-
-                Object.values(
-                    snapshot.val() || {}
-                ).forEach(
-                    item => {
-
-                        if(item && item.file){
-
-                            existingFiles.push(
-                                String(item.file)
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-
-
-            let added =
-                0;
-
-            let skipped =
-                0;
-
-
-            /*
-             * Add only images that are not already
-             * stored in Firebase.
-             */
-
-            for(
-                const file
-                of defaultGalleryImages
-            ){
-
-                if(
-                    existingFiles.includes(file)
-                ){
-
-                    skipped++;
-
-                    continue;
-
-                }
-
-
-                const filename =
-                    file
-                        .split("/")
-                        .pop();
-
-
-                const title =
-                    filename
-                        .replace(/\.[^/.]+$/,"")
-                        .replace(/_/g," ")
-                        .replace(/\(\d+\)/g,"")
-                        .trim();
-
-
-                await push(
-                    ref(db,"gallery"),
-                    {
-
-                        title:
-                            title || filename,
-
-                        file:
-                            file,
-
-                        description:
-                            ""
-
-                    }
-                );
-
-
-                added++;
-
-            }
-
-
-            await loadGallery();
-
-            await updateDashboardStats();
-
-
-            if(added === 0){
-
-                showToast(
-                    "All 17 images are already in your gallery. No duplicates were added.",
-                    "info"
-                );
-
-            }else{
-
-                showToast(
-                    added +
-                    " image(s) added successfully. " +
-                    skipped +
-                    " already existed.",
-                    "success"
-                );
-
-            }
-
-        }catch(error){
-
-            console.error(
-                "Add all gallery images error:",
-                error
-            );
-
-            showToast(
-                "Could not add all gallery images. Check your Firebase connection and database rules.",
-                "error"
-            );
-
-        }finally{
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "🖼️ Add All 17 Images";
-
-        }
-
-    };
-
-
 /* ================= SAVE SINGLE GALLERY IMAGE ================= */
 
 $("galleryForm").addEventListener(
@@ -3340,10 +3071,6 @@ $("galleryForm").addEventListener(
                 );
 
             }else{
-
-                /*
-                 * Prevent duplicate individual images.
-                 */
 
                 const snapshot =
                     await get(
@@ -3649,47 +3376,6 @@ window.clearGalleryForm =
             "none";
 
     };
-    /* ================= ADD ALL 17 GALLERY IMAGES ================= */
-
-const galleryImages = [
-"images/IMG-20240819-WA0011_(1).jpg",
-"images/IMG-20240819-WA0020_(1).jpg",
-"images/IMG-20240819-WA0021_(1).jpg",
-"images/IMG-20251221-WA0056.jpg",
-"images/IMG_20250802_093252.jpg",
-"images/IMG_20250802_093305.jpg",
-"images/IMG_20250802_144742_edit_7426347801541.jpg",
-"images/IMG_20250802_145115_edit_7303969500494.jpg",
-"images/IMG_20250802_145348_edit_7272302860610.jpg",
-"images/WIN_20260814_16_48_08_Pro.jpg",
-"images/WIN_20260814_16_48_27_Pro.jpg",
-"images/WIN_20260814_16_48_35_Pro.jpg",
-"images/WIN_20260814_16_48_39_Pro.jpg",
-"images/WIN_20260814_16_49_03_Pro.jpg",
-"images/WIN_20260814_16_49_16_Pro.jpg",
-"images/WIN_20260814_16_49_28_Pro.jpg",
-"images/photo3.jpg"
-];
-
-window.addAllGalleryImages = async function(){
-    try{
-        for(const file of galleryImages){
-            await push(ref(db,"gallery"),{
-                title:file.split("/").pop(),
-                file:file,
-                description:""
-            });
-        }
-
-        await loadGallery();
-        await updateDashboardStats();
-
-        showToast("All 17 images added successfully!","success");
-    }catch(error){
-        console.error(error);
-        showToast("Could not add the images.","error");
-    }
-};
 
 
 /* ================= SIMPLE MANAGER ================= */
