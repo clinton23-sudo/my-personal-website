@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Files | Clinton Ncube</title>
+    <title>Documents | Clinton Ncube</title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -18,11 +18,10 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f4f4;
+            background: #f5f5f5;
             color: #222;
         }
 
-        /* NAVIGATION */
         nav {
             background: #000;
             padding: 15px 7%;
@@ -36,14 +35,14 @@
 
         .logo {
             color: white;
+            text-decoration: none;
             font-size: 24px;
             font-weight: bold;
-            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 22px;
+            gap: 20px;
             list-style: none;
         }
 
@@ -65,25 +64,23 @@
             cursor: pointer;
         }
 
-        /* HERO */
         .hero {
+            min-height: 35vh;
             background:
                 linear-gradient(
-                    rgba(0,0,0,0.7),
-                    rgba(0,0,0,0.8)
+                    rgba(0,0,0,.7),
+                    rgba(0,0,0,.8)
                 ),
                 url('images/court%20of%20gold.jfif');
 
             background-size: cover;
             background-position: center;
 
-            min-height: 38vh;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
             text-align: center;
+
             color: white;
             padding: 40px 20px;
         }
@@ -91,84 +88,66 @@
         .hero h1 {
             font-size: 50px;
             text-transform: uppercase;
-            letter-spacing: 3px;
         }
 
         .hero p {
-            margin-top: 12px;
+            margin-top: 10px;
             color: #ddd;
             font-size: 18px;
         }
 
-        /* CONTAINER */
         .container {
             width: 90%;
             max-width: 1100px;
             margin: 45px auto;
         }
 
-        /* TOP BAR */
-        .top-bar {
+        .top-section {
             background: white;
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
 
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        .top-bar h2 {
+        .top-section h2 {
             font-size: 25px;
         }
 
-        .add-btn {
+        .upload-btn {
             background: #111;
             color: white;
+            padding: 13px 20px;
             border: none;
-            padding: 13px 22px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 15px;
-            transition: 0.3s;
         }
 
-        .add-btn:hover {
+        .upload-btn:hover {
             background: #d4af37;
             color: #111;
         }
 
-        .add-btn i {
-            margin-right: 8px;
-        }
-
-        /* SEARCH */
-        .search-box {
+        .search {
             margin: 25px 0;
-            position: relative;
         }
 
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 15px;
-            color: #777;
-        }
-
-        .search-box input {
+        .search input {
             width: 100%;
-            padding: 14px 15px 14px 45px;
+            padding: 15px;
             border: none;
             border-radius: 10px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0,0,0,.08);
             font-size: 15px;
             outline: none;
         }
 
-        /* FILES */
         #filesContainer {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -177,14 +156,13 @@
 
         .file-card {
             background: white;
-            border-radius: 15px;
             padding: 25px;
-
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.08);
 
             display: flex;
-            align-items: center;
             gap: 18px;
+            align-items: center;
         }
 
         .file-icon {
@@ -198,8 +176,8 @@
             border-radius: 12px;
 
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
 
             font-size: 25px;
         }
@@ -210,68 +188,46 @@
 
         .file-info h3 {
             font-size: 18px;
-            margin-bottom: 5px;
             word-break: break-word;
         }
 
         .file-info p {
-            font-size: 13px;
             color: #777;
-        }
-
-        .file-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .download-btn,
-        .delete-btn {
-            border: none;
-            padding: 9px 13px;
-            border-radius: 7px;
-            cursor: pointer;
             font-size: 13px;
-            text-decoration: none;
-            display: inline-block;
+            margin-top: 5px;
         }
 
-        .download-btn {
+        .download {
+            display: inline-block;
+            margin-top: 12px;
             background: #111;
             color: white;
+            padding: 9px 14px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
         }
 
-        .download-btn:hover {
+        .download:hover {
             background: #d4af37;
             color: #111;
         }
 
-        .delete-btn {
-            background: #eee;
-            color: #333;
-        }
-
-        .delete-btn:hover {
-            background: #ddd;
-        }
-
-        /* EMPTY */
         .empty {
             grid-column: 1 / -1;
             background: white;
             padding: 60px 20px;
-            text-align: center;
             border-radius: 15px;
+            text-align: center;
             color: #777;
         }
 
         .empty i {
             font-size: 50px;
-            margin-bottom: 15px;
             color: #ccc;
+            margin-bottom: 15px;
         }
 
-        /* FOOTER */
         footer {
             background: #000;
             color: #aaa;
@@ -284,25 +240,21 @@
             color: white;
         }
 
-        /* MOBILE */
-        @media (max-width: 800px) {
+        @media(max-width:800px) {
 
             .menu-btn {
                 display: block;
             }
 
             .nav-links {
+                display: none;
                 position: absolute;
                 top: 65px;
                 left: 0;
                 width: 100%;
                 background: #000;
-
                 flex-direction: column;
                 gap: 0;
-
-                display: none;
-
                 text-align: center;
             }
 
@@ -322,17 +274,12 @@
             #filesContainer {
                 grid-template-columns: 1fr;
             }
-
-            .file-card {
-                align-items: flex-start;
-            }
         }
     </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
 <nav>
 
     <a href="index.html" class="logo">
@@ -345,111 +292,86 @@
 
     <ul class="nav-links" id="navLinks">
 
-        <li>
-            <a href="index.html">Home</a>
-        </li>
-
-        <li>
-            <a href="about.html">About</a>
-        </li>
-
-        <li>
-            <a href="projects.html">Projects</a>
-        </li>
-
-        <li>
-            <a href="achievements.html">Achievements</a>
-        </li>
-
-        <li>
-            <a href="skills.html">Skills</a>
-        </li>
-
-        <li>
-            <a href="hobbies.html">Hobbies</a>
-        </li>
-
-        <li>
-            <a href="gallery.html">Gallery</a>
-        </li>
-
-        <li>
-            <a href="files.html" class="active">Files</a>
-        </li>
-
-        <li>
-            <a href="contact.html">Contact</a>
-        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="hobbies.html">Hobbies</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="files.html" class="active">Files</a></li>
+        <li><a href="contact.html">Contact</a></li>
 
     </ul>
 
 </nav>
 
 
-<!-- HERO -->
 <section class="hero">
 
     <div>
-        <h1>My Files</h1>
+        <h1>Documents</h1>
 
         <p>
-            Upload, view and download my documents.
+            Download documents, projects and other files.
         </p>
     </div>
 
 </section>
 
 
-<!-- MAIN -->
 <div class="container">
 
-    <div class="top-bar">
+    <div class="top-section">
 
         <h2>
             <i class="fas fa-folder-open"></i>
-            Documents
+            My Documents
         </h2>
 
-        <button class="add-btn"
-                onclick="document.getElementById('fileInput').click()">
+        <!--
+            This button is kept here for you.
+            Uploading should be done from the admin dashboard.
+        -->
 
-            <i class="fas fa-plus"></i>
-            Add File
+        <button
+            class="upload-btn"
+            onclick="window.location.href='admin.html'">
+
+            <i class="fas fa-upload"></i>
+            Add Files
 
         </button>
-
-        <input
-            type="file"
-            id="fileInput"
-            hidden
-            multiple
-        >
 
     </div>
 
 
-    <!-- SEARCH -->
-    <div class="search-box">
-
-        <i class="fas fa-search"></i>
+    <div class="search">
 
         <input
             type="text"
             id="searchInput"
-            placeholder="Search files..."
-            oninput="displayFiles()"
-        >
+            placeholder="Search documents..."
+            oninput="displayFiles()">
 
     </div>
 
 
-    <!-- FILES -->
-    <div id="filesContainer"></div>
+    <div id="filesContainer">
+
+        <div class="empty">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <h3>Loading documents...</h3>
+
+        </div>
+
+    </div>
 
 </div>
 
 
-<!-- FOOTER -->
 <footer>
 
     <p>
@@ -460,293 +382,241 @@
 </footer>
 
 
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+
 <script>
 
-    /* MOBILE MENU */
+const firebaseConfig = {
 
-    function toggleMenu() {
+    apiKey: "AIzaSyB66c1Tymv5lkTxY89HLbX4S_QTpAZQVUE",
 
-        document
-            .getElementById("navLinks")
-            .classList.toggle("active");
+    authDomain: "clinton-ncube-website.firebaseapp.com",
 
-    }
+    databaseURL:
+        "https://clinton-ncube-website-default-rtdb.firebaseio.com",
+
+    projectId: "clinton-ncube-website",
+
+    storageBucket:
+        "clinton-ncube-website.firebasestorage.app",
+
+    messagingSenderId: "946671700613",
+
+    appId:
+        "1:946671700613:web:5d74536df1dbb0d35e77ec",
+
+    measurementId: "G-K1S62MHHXP"
+
+};
 
 
-    /* FILE STORAGE */
-
-    let files = JSON.parse(
-        localStorage.getItem("clintonFiles") || "[]"
-    );
+firebase.initializeApp(firebaseConfig);
 
 
-    /* ADD FILE */
+const database =
+    firebase.database();
 
-    document
-        .getElementById("fileInput")
-        .addEventListener("change", function(event) {
+const filesRef =
+    database.ref("documents");
 
-            const selectedFiles = Array.from(event.target.files);
 
-            selectedFiles.forEach(file => {
+let files = [];
 
-                const reader = new FileReader();
 
-                reader.onload = function(e) {
+/* LOAD DOCUMENTS */
 
-                    const newFile = {
+filesRef.on("value", snapshot => {
 
-                        id: Date.now() + Math.random(),
+    files = [];
 
-                        name: file.name,
+    snapshot.forEach(child => {
 
-                        type: file.type,
+        files.push({
 
-                        size: file.size,
+            id: child.key,
 
-                        data: e.target.result
-
-                    };
-
-                    files.push(newFile);
-
-                    localStorage.setItem(
-                        "clintonFiles",
-                        JSON.stringify(files)
-                    );
-
-                    displayFiles();
-
-                };
-
-                reader.readAsDataURL(file);
-
-            });
-
-            event.target.value = "";
+            ...child.val()
 
         });
 
-
-    /* DISPLAY FILES */
-
-    function displayFiles() {
-
-        const container =
-            document.getElementById("filesContainer");
-
-        const search =
-            document
-                .getElementById("searchInput")
-                .value
-                .toLowerCase();
-
-        container.innerHTML = "";
-
-
-        const filteredFiles = files.filter(file =>
-            file.name.toLowerCase().includes(search)
-        );
-
-
-        if (filteredFiles.length === 0) {
-
-            container.innerHTML = `
-
-                <div class="empty">
-
-                    <i class="fas fa-folder-open"></i>
-
-                    <h3>No files found</h3>
-
-                    <p>
-                        Click "Add File" to upload a document.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        filteredFiles.forEach(file => {
-
-            const card =
-                document.createElement("div");
-
-            card.className = "file-card";
-
-
-            const extension =
-                file.name
-                    .split(".")
-                    .pop()
-                    .toUpperCase();
-
-
-            let icon = "fa-file";
-
-            if (["PDF"].includes(extension)) {
-
-                icon = "fa-file-pdf";
-
-            } else if (
-                ["DOC", "DOCX"].includes(extension)
-            ) {
-
-                icon = "fa-file-word";
-
-            } else if (
-                ["XLS", "XLSX"].includes(extension)
-            ) {
-
-                icon = "fa-file-excel";
-
-            } else if (
-                ["PPT", "PPTX"].includes(extension)
-            ) {
-
-                icon = "fa-file-powerpoint";
-
-            } else if (
-                ["JPG", "JPEG", "PNG", "GIF"].includes(extension)
-            ) {
-
-                icon = "fa-file-image";
-
-            }
-
-
-            const size =
-                formatFileSize(file.size);
-
-
-            card.innerHTML = `
-
-                <div class="file-icon">
-
-                    <i class="fas ${icon}"></i>
-
-                </div>
-
-
-                <div class="file-info">
-
-                    <h3>
-                        ${escapeHTML(file.name)}
-                    </h3>
-
-                    <p>
-                        ${extension} • ${size}
-                    </p>
-
-
-                    <div class="file-actions">
-
-                        <a
-                            class="download-btn"
-                            href="${file.data}"
-                            download="${escapeHTML(file.name)}"
-                        >
-
-                            <i class="fas fa-download"></i>
-                            Download
-
-                        </a>
-
-
-                        <button
-                            class="delete-btn"
-                            onclick="deleteFile('${file.id}')"
-                        >
-
-                            <i class="fas fa-trash"></i>
-                            Delete
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(card);
-
-        });
-
-    }
-
-
-    /* DELETE */
-
-    function deleteFile(id) {
-
-        files = files.filter(
-            file => String(file.id) !== String(id)
-        );
-
-        localStorage.setItem(
-            "clintonFiles",
-            JSON.stringify(files)
-        );
-
-        displayFiles();
-
-    }
-
-
-    /* FILE SIZE */
-
-    function formatFileSize(bytes) {
-
-        if (bytes === 0) return "0 Bytes";
-
-        const units = [
-            "Bytes",
-            "KB",
-            "MB",
-            "GB"
-        ];
-
-        const i =
-            Math.floor(
-                Math.log(bytes) / Math.log(1024)
-            );
-
-        return (
-            parseFloat(
-                (bytes / Math.pow(1024, i))
-                    .toFixed(2)
-            )
-            + " "
-            + units[i]
-        );
-
-    }
-
-
-    /* SECURITY */
-
-    function escapeHTML(text) {
-
-        const div =
-            document.createElement("div");
-
-        div.textContent = text;
-
-        return div.innerHTML;
-
-    }
-
-
-    /* LOAD */
+    });
 
     displayFiles();
+
+});
+
+
+/* DISPLAY */
+
+function displayFiles() {
+
+    const container =
+        document.getElementById("filesContainer");
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+    container.innerHTML = "";
+
+
+    const filtered =
+        files.filter(file => {
+
+            const name =
+                (file.name || "").toLowerCase();
+
+            const description =
+                (file.description || "").toLowerCase();
+
+            return (
+                name.includes(search) ||
+                description.includes(search)
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>No documents available</h3>
+
+                <p>
+                    Documents uploaded by the administrator
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(file => {
+
+        const extension =
+            (file.name || "")
+                .split(".")
+                .pop()
+                .toUpperCase();
+
+
+        let icon = "fa-file";
+
+        if (extension === "PDF")
+            icon = "fa-file-pdf";
+
+        else if (
+            extension === "DOC" ||
+            extension === "DOCX"
+        )
+            icon = "fa-file-word";
+
+        else if (
+            extension === "XLS" ||
+            extension === "XLSX"
+        )
+            icon = "fa-file-excel";
+
+        else if (
+            extension === "PPT" ||
+            extension === "PPTX"
+        )
+            icon = "fa-file-powerpoint";
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "file-card";
+
+
+        card.innerHTML = `
+
+            <div class="file-icon">
+
+                <i class="fas ${icon}"></i>
+
+            </div>
+
+
+            <div class="file-info">
+
+                <h3>
+                    ${escapeHTML(file.name || "Document")}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        file.description || "Document"
+                    )}
+                </p>
+
+
+                <a
+                    class="download"
+                    href="${file.url}"
+                    download="${escapeHTML(file.name || "document")}"
+                    target="_blank">
+
+                    <i class="fas fa-download"></i>
+                    Download
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* MENU */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("active");
+
+}
 
 </script>
 
