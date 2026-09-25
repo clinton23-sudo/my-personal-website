@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Files | Clinton Ncube</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: #000;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #d4af37;
+        }
+
+        .menu-btn {
+            display: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.7),
+                    rgba(0,0,0,0.8)
+                ),
+                url('images/court%20of%20gold.jfif');
+
+            background-size: cover;
+            background-position: center;
+
+            min-height: 38vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            margin-top: 12px;
+            color: #ddd;
+            font-size: 18px;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar h2 {
+            font-size: 25px;
+        }
+
+        .add-btn {
+            background: #111;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .add-btn i {
+            margin-right: 8px;
+        }
+
+        /* SEARCH */
+        .search-box {
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            color: #777;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            font-size: 15px;
+            outline: none;
+        }
+
+        /* FILES */
+        #filesContainer {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .file-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .file-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+
+            background: #111;
+            color: #d4af37;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+
+        .file-info p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .download-btn,
+        .delete-btn {
+            border: none;
+            padding: 9px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 13px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn {
+            background: #111;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .delete-btn {
+            background: #eee;
+            color: #333;
+        }
+
+        .delete-btn:hover {
+            background: #ddd;
+        }
+
+        /* EMPTY */
+        .empty {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+            color: #777;
+        }
+
+        .empty i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #000;
+
+                flex-direction: column;
+                gap: 0;
+
+                display: none;
+
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 15px;
+                border-top: 1px solid #222;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            #filesContainer {
+                grid-template-columns: 1fr;
+            }
+
+            .file-card {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+
+    <a href="index.html" class="logo">
+        Clinton Ncube
+    </a>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+        <li>
+            <a href="projects.html">Projects</a>
+        </li>
+
+        <li>
+            <a href="achievements.html">Achievements</a>
+        </li>
+
+        <li>
+            <a href="skills.html">Skills</a>
+        </li>
+
+        <li>
+            <a href="hobbies.html">Hobbies</a>
+        </li>
+
+        <li>
+            <a href="gallery.html">Gallery</a>
+        </li>
+
+        <li>
+            <a href="files.html" class="active">Files</a>
+        </li>
+
+        <li>
+            <a href="contact.html">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div>
+        <h1>My Files</h1>
+
+        <p>
+            Upload, view and download my documents.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- MAIN -->
+<div class="container">
+
+    <div class="top-bar">
+
+        <h2>
+            <i class="fas fa-folder-open"></i>
+            Documents
+        </h2>
+
+        <button class="add-btn"
+                onclick="document.getElementById('fileInput').click()">
+
+            <i class="fas fa-plus"></i>
+            Add File
+
+        </button>
+
+        <input
+            type="file"
+            id="fileInput"
+            hidden
+            multiple
+        >
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="search-box">
+
+        <i class="fas fa-search"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search files..."
+            oninput="displayFiles()"
+        >
+
+    </div>
+
+
+    <!-- FILES -->
+    <div id="filesContainer"></div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 <strong>Clinton Ncube</strong>.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* MOBILE MENU */
+
+    function toggleMenu() {
+
+        document
+            .getElementById("navLinks")
+            .classList.toggle("active");
+
+    }
+
+
+    /* FILE STORAGE */
+
+    let files = JSON.parse(
+        localStorage.getItem("clintonFiles") || "[]"
+    );
+
+
+    /* ADD FILE */
+
+    document
+        .getElementById("fileInput")
+        .addEventListener("change", function(event) {
+
+            const selectedFiles = Array.from(event.target.files);
+
+            selectedFiles.forEach(file => {
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    const newFile = {
+
+                        id: Date.now() + Math.random(),
+
+                        name: file.name,
+
+                        type: file.type,
+
+                        size: file.size,
+
+                        data: e.target.result
+
+                    };
+
+                    files.push(newFile);
+
+                    localStorage.setItem(
+                        "clintonFiles",
+                        JSON.stringify(files)
+                    );
+
+                    displayFiles();
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+            event.target.value = "";
+
+        });
+
+
+    /* DISPLAY FILES */
+
+    function displayFiles() {
+
+        const container =
+            document.getElementById("filesContainer");
+
+        const search =
+            document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+        container.innerHTML = "";
+
+
+        const filteredFiles = files.filter(file =>
+            file.name.toLowerCase().includes(search)
+        );
+
+
+        if (filteredFiles.length === 0) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <i class="fas fa-folder-open"></i>
+
+                    <h3>No files found</h3>
+
+                    <p>
+                        Click "Add File" to upload a document.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        filteredFiles.forEach(file => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "file-card";
+
+
+            const extension =
+                file.name
+                    .split(".")
+                    .pop()
+                    .toUpperCase();
+
+
+            let icon = "fa-file";
+
+            if (["PDF"].includes(extension)) {
+
+                icon = "fa-file-pdf";
+
+            } else if (
+                ["DOC", "DOCX"].includes(extension)
+            ) {
+
+                icon = "fa-file-word";
+
+            } else if (
+                ["XLS", "XLSX"].includes(extension)
+            ) {
+
+                icon = "fa-file-excel";
+
+            } else if (
+                ["PPT", "PPTX"].includes(extension)
+            ) {
+
+                icon = "fa-file-powerpoint";
+
+            } else if (
+                ["JPG", "JPEG", "PNG", "GIF"].includes(extension)
+            ) {
+
+                icon = "fa-file-image";
+
+            }
+
+
+            const size =
+                formatFileSize(file.size);
+
+
+            card.innerHTML = `
+
+                <div class="file-icon">
+
+                    <i class="fas ${icon}"></i>
+
+                </div>
+
+
+                <div class="file-info">
+
+                    <h3>
+                        ${escapeHTML(file.name)}
+                    </h3>
+
+                    <p>
+                        ${extension} • ${size}
+                    </p>
+
+
+                    <div class="file-actions">
+
+                        <a
+                            class="download-btn"
+                            href="${file.data}"
+                            download="${escapeHTML(file.name)}"
+                        >
+
+                            <i class="fas fa-download"></i>
+                            Download
+
+                        </a>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteFile('${file.id}')"
+                        >
+
+                            <i class="fas fa-trash"></i>
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+    }
+
+
+    /* DELETE */
+
+    function deleteFile(id) {
+
+        files = files.filter(
+            file => String(file.id) !== String(id)
+        );
+
+        localStorage.setItem(
+            "clintonFiles",
+            JSON.stringify(files)
+        );
+
+        displayFiles();
+
+    }
+
+
+    /* FILE SIZE */
+
+    function formatFileSize(bytes) {
+
+        if (bytes === 0) return "0 Bytes";
+
+        const units = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB"
+        ];
+
+        const i =
+            Math.floor(
+                Math.log(bytes) / Math.log(1024)
+            );
+
+        return (
+            parseFloat(
+                (bytes / Math.pow(1024, i))
+                    .toFixed(2)
+            )
+            + " "
+            + units[i]
+        );
+
+    }
+
+
+    /* SECURITY */
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* LOAD */
+
+    displayFiles();
+
+</script>
+
+</body>
+</html>
